@@ -1,0 +1,15 @@
+CREATE TABLE mentee (
+    id INTEGER PRIMARY KEY,
+    email TEXT,
+    password TEXT,
+    first_name TEXT,
+    surname TEXT,
+    age INTEGER,
+    contact_number INTEGER,
+    profile_degree_title TEXT,
+    profile_degree_year TEXT,
+    profile_interests TEXT,
+    profile_text TEXT,
+    linked_mentor_id TEXT,
+    current_request_id TEXT,
+);
