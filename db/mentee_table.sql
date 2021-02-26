@@ -10,6 +10,6 @@ CREATE TABLE mentee (
     profile_degree_year TEXT,
     profile_interests TEXT,
     profile_text TEXT,
-    linked_mentor_id TEXT,
-    current_request_id TEXT,
+    linked_mentor_id INTEGER,
+    current_request_id INTEGER,
 );

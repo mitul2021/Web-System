@@ -10,6 +10,6 @@ CREATE TABLE mentee (
     profile_job_information TEXT,
     profile_interests TEXT,
     profile_text TEXT,
-    linked_mentee_id TEXT,
-    current_requests_id TEXT,
+    linked_mentee_id INTEGER,
+    current_requests_id INTEGER,
 );
