@@ -2,13 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     logger (1.4.3)
+    require_all (3.0.0)
     sequel (5.41.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
   logger
+  require_all
   sequel
 
 BUNDLED WITH
