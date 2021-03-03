@@ -5,6 +5,7 @@ CREATE TABLE mentor (
     first_name TEXT,
     surname TEXT,
     age INTEGER,
+    gender TEXT,
     contact_number INTEGER,
     profile_job_title TEXT,
     profile_job_information TEXT,

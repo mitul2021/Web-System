@@ -5,6 +5,7 @@ CREATE TABLE mentee (
     first_name TEXT,
     surname TEXT,
     age INTEGER,
+    gender TEXT,
     contact_number INTEGER,
     profile_degree_title TEXT,
     profile_degree_year TEXT,
