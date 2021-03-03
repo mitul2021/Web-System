@@ -7,23 +7,45 @@
         <h1>Multi Choice Survey:</h1>
             
         <form method="post" action="process-multichoicesurvey">
+             
             <% if @role=="mentee" %> <!-- need to get is mentee or mentor out of cookies -->
-            <a>Course Name:</a>
-            <input type="text" name="form_field_mentee1" value=""/> <!-- need to be dropdown will do properly later -->
-            <a>Subject area:</a>
-            <input type="text" name="form_field_mentee1" value=""/>
-            <a>Question ...</a>
-            <input type="text" name="form_field_mentee1" value=""/>
-            <input type="submit" value="Submit:" name="submitmentee" />
+                
+                <label>First Name:</label>
+                <input type="text" name="first_name" value=""/>
+                
+                <label>Surname:</label>
+                <input type="text" name="surname" value=""/>
+            
+                <label>Year of Birth:</label>
+                <select name="year_of_birth">
+                    <% (1900..2021).each do |i| %>
+                        <% @str="<option value=\"#{i}\">#{i}</option>" %>
+                        <%= @str %>
+                    <% end %>
+                </select>
+            
+                <label>Course Name:</label>
+                <input type="text" name="form_field_mentee1" value=""/> <!-- need to be dropdown will do properly later -->
+                
+                <label>Subject area:</label>
+                <input type="text" name="form_field_mentee2" value=""/>
+                
+                <label>Question ...</label>
+                <input type="text" name="form_field_mentee3" value=""/>
+                
+                <input type="submit" value="Submit:" name="submitmentee" />
             
             <% elsif @role=="mentor" %>
-            <a>Job Title:</a>
-            <input type="text" name="form_field_mentor1" value=""/>
-            <a>Industry area:</a>
-            <input type="text" name="form_field_mentor1" value=""/>
-            <a>Job information</a>
-            <input type="text" name="form_field_mentor1" value=""/>
-            <input type="submit" value="Submit:" name="submitmentor" />
+            
+                <label>Job Title:</label>
+                <input type="text" name="form_field_mentor1" value=""/>
+                
+                <label>Industry area:</label>
+                <input type="text" name="form_field_mentor2" value=""/>
+                <label>Job information</label>
+                <input type="text" name="form_field_mentor3" value=""/>
+                
+                <input type="submit" value="Submit:" name="submitmentor" />
             
             <% else %>
                 <p>ERROR</p>
