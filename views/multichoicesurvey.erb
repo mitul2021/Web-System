@@ -5,10 +5,9 @@
     </head>
     <body>
         <h1>Multi Choice Survey:</h1>
-        <%= @role="mentee" %> <!-- placeholder to make code work, remove when cookies have been implemented -->
             
         <form method="post" action="process-multichoicesurvey">
-            <%= if @role=="mentee" %> <!-- need to get is mentee or mentor out of cookies -->
+            <% if @role=="mentee" %> <!-- need to get is mentee or mentor out of cookies -->
             <a>Course Name:</a>
             <input type="text" name="form_field_mentee1" value=""/> <!-- need to be dropdown will do properly later -->
             <a>Subject area:</a>
@@ -16,9 +15,8 @@
             <a>Question ...</a>
             <input type="text" name="form_field_mentee1" value=""/>
             <input type="submit" value="Submit:" name="submitmentee" />
-            <%= end %>
             
-            <%= else if @role="mentor" %>
+            <% elsif @role=="mentor" %>
             <a>Job Title:</a>
             <input type="text" name="form_field_mentor1" value=""/>
             <a>Industry area:</a>
@@ -26,10 +24,10 @@
             <a>Job information</a>
             <input type="text" name="form_field_mentor1" value=""/>
             <input type="submit" value="Submit:" name="submitmentor" />
-            <%= end %>
-            <%= else %>
-                <!-- error -->
-            <%= end %>
+            
+            <% else %>
+                <p>ERROR</p>
+            <% end %>
         </form>
 
         

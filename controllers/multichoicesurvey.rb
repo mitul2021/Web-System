@@ -1,3 +1,4 @@
 get "/multichoicesurvey" do
-   #setting variable will be done here 
+   @role="mentee"
+   erb :multichoicesurvey
 end
