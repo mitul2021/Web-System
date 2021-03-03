@@ -1,4 +1,4 @@
 get "/multichoicesurvey" do
-   @role="mentee"
+   @role="mentor"
    erb :multichoicesurvey
 end

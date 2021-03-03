@@ -7,8 +7,9 @@
         <h1>Multi Choice Survey:</h1>
             
         <form method="post" action="process-multichoicesurvey">
+<!--             <%= @role %> commented out for debugging purposes -->
              
-            <% if @role=="mentee" %> <!-- need to get is mentee or mentor out of cookies -->
+            <% if @role.eql?("mentee") %> <!-- need to get is mentee or mentor out of cookies -->
                 
                 <label>First Name:</label>
                 <input type="text" name="first_name" value=""/>
@@ -41,21 +42,50 @@
                     <option value="masters">Masters Year</option>
                     <option value="phd">PhD</option>
                 </select>
+            
+                <label>Interests:</label>
+                <input type="text" name="interests" value=""/>
                 
-                <label>Question ...</label>
-                <input type="text" name="form_field_mentee3" value=""/>
+                <label>Other Notes:</label> <!-- Other Notes is equivalent to Profile Text in database -->
+                <input type="text" name="other_notes" value=""/>
+                
                 
                 <input type="submit" value="Submit:" name="submitmentee" />
             
-            <% elsif @role=="mentor" %>
+            <% elsif @role.eql?("mentor") %>
+            
+                <label>First Name:</label>
+                <input type="text" name="first_name" value=""/>
+                
+                <label>Surname:</label>
+                <input type="text" name="surname" value=""/>
+            
+                <label>Year of Birth:</label>
+                <select name="year_of_birth">
+                    <% (1900..2021).each do |i| %>
+                        <% @str="<option value=\"#{i}\">#{i}</option>" %>
+                        <%= @str %>
+                    <% end %>
+                </select>
+            
+                <label>Contact number:</label>
+                <input type="tel" name="contact_number" value=""/>
             
                 <label>Job Title:</label>
-                <input type="text" name="form_field_mentor1" value=""/>
+                <input type="text" name="job_title" value=""/>
                 
-                <label>Industry area:</label>
-                <input type="text" name="form_field_mentor2" value=""/>
-                <label>Job information</label>
+                <label>Job information:</label>
                 <input type="text" name="form_field_mentor3" value=""/>
+            
+<!--                 <label>Industry area:</label>
+                <input type="text" name="form_field_mentor2" value=""/> -->
+            
+                <label>Interests:</label>
+                <input type="text" name="interests" value=""/>
+                
+                <label>Other Notes:</label> <!-- Other Notes is equivalent to Profile Text in database -->
+                <input type="text" name="other_notes" value=""/>
+                
                 
                 <input type="submit" value="Submit:" name="submitmentor" />
             

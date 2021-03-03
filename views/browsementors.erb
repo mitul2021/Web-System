@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Mentors</title>
+    </head>
+    <body>
+        <h1>Mentors</h1>
+        <h2>Below is a list of mentors that are currently available:</h2>
+        <ul>
+            <% @mentors.each do |firstName, surname| %>
+            <li>Mentor: <%= @firstName %>' '<%= @surname %></li>
+            <% end %>
+        </ul>
+    </body>
+</html>
