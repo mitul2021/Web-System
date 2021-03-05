@@ -1,7 +1,8 @@
 require "logger"
 require "sequel"
+require "sqlite3"
 
-DB = Sequel.sqlite("mentor_table.sqlite3", logger: Logger.new("mentor.log"))
+DB = Sequel.sqlite("../db/mentor_table.sqlite3", logger: Logger.new("mentor.log"))
 
 dataset = DB[:mentor]
 num_rows = dataset.count

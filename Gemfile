@@ -7,3 +7,4 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "sequel"
 gem "logger"
 gem "require_all"
+gem "sqlite3"
