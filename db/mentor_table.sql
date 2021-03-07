@@ -1,4 +1,4 @@
-CREATE TABLE mentor (
+CREATE TABLE mentors (
     id INTEGER PRIMARY KEY,
     email TEXT,
     password TEXT,

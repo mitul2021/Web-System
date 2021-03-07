@@ -9,3 +9,12 @@ I, [2021-03-05T16:19:04.971428 #494]  INFO -- : (0.000015s) PRAGMA case_sensitiv
 I, [2021-03-05T16:19:04.971649 #494]  INFO -- : (0.000055s) SELECT sqlite_version()
 I, [2021-03-05T16:19:04.971854 #494]  INFO -- : (0.000069s) SELECT count(*) AS 'count' FROM `mentor` LIMIT 1
 I, [2021-03-05T16:19:04.972100 #494]  INFO -- : (0.000176s) SELECT * FROM `mentor`
+I, [2021-03-05T17:06:00.664200 #683]  INFO -- : (0.001091s) PRAGMA foreign_keys = 1
+I, [2021-03-05T17:06:00.664349 #683]  INFO -- : (0.000029s) PRAGMA case_sensitive_like = 1
+I, [2021-03-05T17:06:00.664811 #683]  INFO -- : (0.000089s) SELECT sqlite_version()
+I, [2021-03-05T17:06:00.665062 #683]  INFO -- : (0.000052s) PRAGMA table_info('mentors')
+E, [2021-03-05T17:06:00.665293 #683] ERROR -- : SQLite3::SQLException: no such table: mentors: SELECT * FROM `mentors` LIMIT 1
+I, [2021-03-05T17:06:19.426812 #687]  INFO -- : (0.000495s) PRAGMA foreign_keys = 1
+I, [2021-03-05T17:06:19.426929 #687]  INFO -- : (0.000019s) PRAGMA case_sensitive_like = 1
+I, [2021-03-07T15:18:31.929166 #362]  INFO -- : (0.000152s) PRAGMA foreign_keys = 1
+I, [2021-03-07T15:18:31.929267 #362]  INFO -- : (0.000019s) PRAGMA case_sensitive_like = 1
