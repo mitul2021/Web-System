@@ -5,9 +5,18 @@
     <body>
         <h1>Mentors</h1>
         <h2>Below is a list of mentors that are currently available:</h2>
-        <ul>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Job Title</th>
+                <th>Main Interest</th>
+            </tr>
             <% @mentors.each do |mentor| %>
-            <li>Mentor: <%= mentor.first_name %> <%= mentor.surname %></li>
+            <tr>
+                <td><%= mentor.first_name %> <%= mentor.surname %></td>
+                <td><%= mentor.job_deg_cosmetic_name%></td>
+                <td><%= mentor.major_interest%>
+            <td>
             <% end %>
         </ul>
     </body>
