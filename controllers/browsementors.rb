@@ -1,4 +1,4 @@
 get "/browsementors" do
-    @mentors = Mentor.all
+    @mentors = User.where(user_type: "mentor")
     erb :browsementors
 end
