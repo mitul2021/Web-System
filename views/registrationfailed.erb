@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <body>
+        <h1>Register</h1>
+        <p>Login with your credentials below:</p>
+        
+        <form method="post" action="/register-successfully">
+            
+            <label>Enter Email:</label>
+            <input type="email" name="email" value=""/>
+            <br>
+            
+            <label>Password:</label>
+            <input type="password" name="password" value=""/>
+            <br>
+            
+            <label>Repeat Password:</label>
+            <input type="password" name="password" value=""/>
+            <br>
+            
+            <label>Mentee:</label>
+            <input type="radio" name="user_type" value="" checked/>
+            <br>
+            
+            <label>Mentor:</label>
+            <input type="radio" name="user_type" value=""/>
+            <br>
+            
+            <label>Admin:</label>
+            <input type="radio" name="user_type" value=""/>
+            <br><br>
+                
+<!--             do some comparison and validation if the typed password meets the minimum requerements -->
+            <input type="submit" value="Register" name="submit_register"/>
+        </form>
+    </body>
+</html>
