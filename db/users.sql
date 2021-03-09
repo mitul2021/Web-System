@@ -1,7 +1,14 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "courses" (
+	"deg_id"	INTEGER NOT NULL,
+	"faculty1"	TEXT NOT NULL,
+	"faculty2"	TEXT,
+	"deg_name_functional"	TEXT NOT NULL,
+	PRIMARY KEY("deg_id" AUTOINCREMENT)
+);
 CREATE TABLE IF NOT EXISTS "users" (
 	"id"	INTEGER NOT NULL,
-	"email"	INTEGER NOT NULL,
+	"email"	TEXT NOT NULL,
 	"password"	TEXT,
 	"first_name"	TEXT,
 	"surname"	TEXT,
@@ -25,14 +32,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"interest8"	INTEGER,
 	"interest9"	INTEGER,
 	"interest10"	INTEGER,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "courses" (
-	"deg_id"	INTEGER NOT NULL,
-	"faculty1"	TEXT NOT NULL,
-	"faculty2"	TEXT,
-	"deg_name_functional"	INTEGER NOT NULL,
-	PRIMARY KEY("deg_id" AUTOINCREMENT),
-	FOREIGN KEY("deg_id") REFERENCES "users"("deg_id")
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("deg_id") REFERENCES "courses"("deg_id")
 );
 COMMIT;
