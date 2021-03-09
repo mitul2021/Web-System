@@ -1,4 +1,5 @@
-get "process-multichoicesurvey" do
+get "/process-multichoicesurvey" do
+    
     @firstname = params["first_name"]
     @surname = params["surname"]
     @yearofbirth = params["year_of_birth"]
