@@ -1,3 +1,3 @@
-get "/logoutsuccesful" do
-   erb :logoutsuccesful
+get "/logoutsuccessful" do
+   erb :logoutsuccessful
 end
