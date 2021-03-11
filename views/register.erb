@@ -1,10 +1,11 @@
 <html>
     <head>
         <title>Register</title>
+        <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <h1>Register</h1>
-        <p>Login with your credentials below:</p>
+        <p>Register with your credentials below:</p>
         
         <form method="post" action="/register-successfully">
             
@@ -33,7 +34,7 @@
             <br><br>
                 
 <!--             do some comparison and validation if the typed password meets the minimum requerements -->
-            <input type="submit" value="Register" name="submit_register"/>
+            <input type="submit" value="Register" id="signinbutton" name="submit_register"/>
         </form>
     </body>
 </html>
