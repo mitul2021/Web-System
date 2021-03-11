@@ -2,7 +2,7 @@ require "logger"
 require "sequel"
 require "sqlite3"
 
-name = "mentor_table" #hard-coded for testing purposes, it will depend on the type of user.
+name = "users" #hard-coded for testing purposes, it will depend on the type of user.
 
 # # find the path to the database
 db_dir_path = File.dirname(__FILE__)
