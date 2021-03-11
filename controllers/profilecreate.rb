@@ -1,7 +1,4 @@
-get "/menteeprofilecreate" do
-   erb :menteeprofilecreate
+get "/profilecreate" do
+   erb :profilecreate
 end
 
-get "/mentorprofilecreate" do
-   erb :mentorprofilecreate
-end
