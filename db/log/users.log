@@ -1,0 +1,5 @@
+# Logfile created on 2021-03-11 15:36:45 +0000 by logger.rb/v1.4.3
+I, [2021-03-11T15:36:45.727989 #729]  INFO -- : (0.000226s) PRAGMA foreign_keys = 1
+I, [2021-03-11T15:36:45.728103 #729]  INFO -- : (0.000018s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T15:36:45.742625 #729]  INFO -- : (0.000097s) SELECT sqlite_version()
+I, [2021-03-11T15:36:45.743101 #729]  INFO -- : (0.000266s) PRAGMA table_info('users')
