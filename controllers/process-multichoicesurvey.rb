@@ -20,9 +20,9 @@ get "/process-multichoicesurvey" do
     #the view accordingly
     #fill in intrests 1-10 in the db
     $user = User.create({email: $email}) #when instantiating model, need to choose table somehow???
-    $user.email = 
-    $user.password =
-    $user.first_name = $firstname
+    #$user.email = 
+    #$user.password =
+    #$user.first_name = $firstname
     $user.surname = $surname
 
     $year = Time.new.year
@@ -31,11 +31,11 @@ get "/process-multichoicesurvey" do
     #$user.gender = 
     $user.contact_number = $contactnumber
     #$user.user_type =
-    $user.job_deg_cosmetic_name =
-    $user.deg_id = 
-    $user.profile_text =
-    $user.course_year =
-    $user.paired_id =
+    #$user.job_deg_cosmetic_name =
+    #$user.deg_id = 
+    #$user.profile_text =
+    #$user.course_year =
+    #$user.paired_id =
     #skipping intrest fields
 
 end

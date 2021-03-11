@@ -1,0 +1,24 @@
+# Logfile created on 2021-03-11 14:45:16 +0000 by logger.rb/v1.4.3
+I, [2021-03-11T14:45:16.312779 #602]  INFO -- : (0.000183s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:45:16.312863 #602]  INFO -- : (0.000018s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:47:15.069172 #626]  INFO -- : (0.000151s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:47:15.069269 #626]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:48:12.046759 #627]  INFO -- : (0.000159s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:48:12.046863 #627]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:48:40.353182 #647]  INFO -- : (0.000156s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:48:40.353294 #647]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:49:20.813965 #648]  INFO -- : (0.000165s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:49:20.814077 #648]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:49:20.826916 #648]  INFO -- : (0.000059s) SELECT sqlite_version()
+I, [2021-03-11T14:49:20.827098 #648]  INFO -- : (0.000036s) PRAGMA table_info('users')
+E, [2021-03-11T14:49:20.827277 #648] ERROR -- : SQLite3::SQLException: no such table: users: SELECT * FROM `users` LIMIT 1
+I, [2021-03-11T14:51:52.802219 #650]  INFO -- : (0.000159s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:51:52.802323 #650]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:51:52.814798 #650]  INFO -- : (0.000056s) SELECT sqlite_version()
+I, [2021-03-11T14:51:52.814983 #650]  INFO -- : (0.000029s) PRAGMA table_info('users')
+E, [2021-03-11T14:51:52.815135 #650] ERROR -- : SQLite3::SQLException: no such table: users: SELECT * FROM `users` LIMIT 1
+I, [2021-03-11T14:51:59.147195 #653]  INFO -- : (0.000162s) PRAGMA foreign_keys = 1
+I, [2021-03-11T14:51:59.147300 #653]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-11T14:51:59.159345 #653]  INFO -- : (0.000052s) SELECT sqlite_version()
+I, [2021-03-11T14:51:59.159518 #653]  INFO -- : (0.000027s) PRAGMA table_info('users')
+E, [2021-03-11T14:51:59.159679 #653] ERROR -- : SQLite3::SQLException: no such table: users: SELECT * FROM `users` LIMIT 1
