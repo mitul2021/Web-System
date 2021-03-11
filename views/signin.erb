@@ -1,22 +1,21 @@
 <html>
     <head>
         <title>Sign in</title>
+    <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <h1>Sign In</h1>
         <p>Login with your credentials below:</p>
         
         <form method="post" action="process-sign-in">
-            
-            <label>Email:</label>
-            <input type="email" name="email" value=""/>
+            <label id="important">Email:</label>
+            <input type="email"  id="important" name="email" value=""/>
             <br>
             
-            <label>Password:</label>
-            <input type="password" name="password" value=""/>
+            <label id="important">Password:</label>
+            <input type="password"  name="password" id="important" value=""/>
             <br><br>
-            
-            <input type="submit" value="Sign in" name="submit_login"/>
+            <input type="submit" value="Sign in" id="signinbutton" name="submit_login"/>
         </form>
     </body>
 </html>
