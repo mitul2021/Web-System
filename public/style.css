@@ -1,0 +1,14 @@
+body {
+  color: DarkSlateGray;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.1;
+  margin: 0;
+  margin-bottom: 30vh;
+  font-size:30px;
+}
+
+#logoutsuccessful {
+    color:green;
+    font-size:40px;
+}
+    
