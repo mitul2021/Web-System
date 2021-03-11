@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Profile</title>
+        
+    </head>
+    <body>
+        <h1>Your Profile</h1>
+        <button type="button">Profile Picture</button><br>
+        <button type="button">Change Details</button><br>
+            
+        <form method="post" action="process-create-profile">
+                
+            <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
+                
+                <label>ID:</label>
+                <input type="number" name="id" value=""/><br>
+                
+                <label>Email:</label>
+                <input type="text" name="email" value=""/><br>
+            
+                <label>Password:</label>
+                <input type="text" name="password" value=""/><br>
+            
+                <label>First name:</label>
+                <input type="text" name="first_name" value=""/><br>
+            
+                <label>Surname:</label>
+                <input type="text" name="surname" value=""/><br> 
+            
+                <label>Age:</label>
+                <input type="number" name="age" value=""/><br>
+                
+                <label>Gender:</label>
+                <input type="text" name="gender" value=""/><br>
+            
+                <label>Contact number:</label>
+                <input type="text" name="contact_number" value=""/><br>
+                
+                <label>Profile degree title:</label>
+                <input type="text" name="profile_degree_title" value=""/><br>
+            
+                <label>Profile degree year:</label>
+                <input type="text" name="profile_degree_year" value=""/><br>
+            
+                <label>Profile interests:</label>
+                <input type="text" name="profile_interests" value=""/><br>
+                
+                <label>Profile text:</label>
+                <input type="text" name="profile_text" value=""/><br>
+            
+                <label>Linked mentor ID:</label>
+                <input type="number" name="linked_mentor_id" value=""/><br>
+                
+                <label>Current request ID:</label>
+                <input type="number" name="current_request_id" value=""/><br>
+            
+            
+            <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
+                    
+                <label>ID:</label>
+                <input type="number" name="id" value=""/><br>
+                
+                <label>Email:</label>
+                <input type="text" name="email" value=""/><br>
+            
+                <label>Password:</label>
+                <input type="text" name="password" value=""/><br>
+            
+                <label>First name:</label>
+                <input type="text" name="first_name" value=""/><br>
+            
+                <label>Surname:</label>
+                <input type="text" name="surname" value=""/><br> 
+            
+                <label>Age:</label>
+                <input type="number" name="age" value=""/><br>
+                
+                <label>Gender:</label>
+                <input type="text" name="gender" value=""/><br>
+            
+                <label>Contact number:</label>
+                <input type="text" name="contact_number" value=""/><br>
+                
+                <label>Profile job title:</label>
+                <input type="text" name="profile_job_title" value=""/><br>
+            
+                <label>Profile job information:</label>
+                <input type="text" name="profile_job_information" value=""/><br>
+            
+                <label>Profile interests:</label>
+                <input type="text" name="profile_interests" value=""/><br>
+                
+                <label>Profile text:</label>
+                <input type="text" name="profile_text" value=""/><br>
+            
+                <label>Linked mentee ID:</label>
+                <input type="number" name="linked_mentee_id" value=""/><br>
+                
+                <label>Current request ID:</label>
+                <input type="number" name="current_request_id" value=""/><br>
+                
+            
+            <% else %>
+            <p>ERROR</p>
+            <!-- redirect to the home page "/index" -->
+            <% end %>
+        
+        </form>
+
+    </body>
+</html>
