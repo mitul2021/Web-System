@@ -24,6 +24,7 @@ I, [2021-03-12T11:11:05.786579 #297]  INFO -- : (0.000190s) PRAGMA foreign_keys 
 I, [2021-03-12T11:11:05.786680 #297]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
 I, [2021-03-12T11:11:05.797297 #297]  INFO -- : (0.000055s) SELECT sqlite_version()
 I, [2021-03-12T11:11:05.797626 #297]  INFO -- : (0.000204s) PRAGMA table_info('users')
+<<<<<<< HEAD
 I, [2021-03-12T11:19:51.511843 #332]  INFO -- : (0.000188s) PRAGMA foreign_keys = 1
 I, [2021-03-12T11:19:51.511937 #332]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
 I, [2021-03-12T11:19:51.523128 #332]  INFO -- : (0.000066s) SELECT sqlite_version()
@@ -90,3 +91,17 @@ I, [2021-03-12T12:14:58.964710 #639]  INFO -- : (0.000212s) PRAGMA table_info('u
 I, [2021-03-12T12:15:08.349294 #639]  INFO -- : (0.000229s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
 I, [2021-03-12T12:15:14.379596 #639]  INFO -- : (0.000216s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
 I, [2021-03-12T12:15:22.864493 #639]  INFO -- : (0.000245s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+=======
+I, [2021-03-12T11:17:41.725471 #1234]  INFO -- : (0.000206s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:17:41.725641 #1234]  INFO -- : (0.000018s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:17:41.737947 #1234]  INFO -- : (0.000091s) SELECT sqlite_version()
+I, [2021-03-12T11:17:41.738345 #1234]  INFO -- : (0.000227s) PRAGMA table_info('users')
+I, [2021-03-12T11:33:26.238363 #1417]  INFO -- : (0.000193s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:33:26.238466 #1417]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:36:13.932616 #1420]  INFO -- : (0.000183s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:36:13.932721 #1420]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:36:37.894939 #1421]  INFO -- : (0.000271s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:36:37.895087 #1421]  INFO -- : (0.000025s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:36:37.911488 #1421]  INFO -- : (0.000086s) SELECT sqlite_version()
+I, [2021-03-12T11:36:37.911894 #1421]  INFO -- : (0.000246s) PRAGMA table_info('users')
+>>>>>>> 663783f504dbd24fa0dad8fb8fb3561c2ae8af33
