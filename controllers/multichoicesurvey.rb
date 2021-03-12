@@ -1,10 +1,10 @@
 get "/multichoicesurvey" do
-   @role = nil
-   #user_status is the role cookie 
-   @role = request.cookies["user_status"] #expects a 'role' session cookie to be set when user logs in
-   erb :multichoicesurvey
+    @role = nil
+    @courses = Course.all()
+    #user_status is the role cookie 
+    @role = request.cookies["user_status"] #expects a 'role' session cookie to be set when user logs in
+    erb :multichoicesurvey
 end
-
 #i think this code may need to go in process-multichoicesurvey.rb
 #nvm it doesnt cuz this code needs to run when the page opens so it knows to display the questionaire for mentee or mentor
 

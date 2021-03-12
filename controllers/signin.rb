@@ -1,5 +1,5 @@
 get "/" do
-    redirect "/signin" unless session[:logged_in]
+    redirect "/signin" unless session[:signedin]
     erb :index
 end
 
