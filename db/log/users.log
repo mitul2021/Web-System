@@ -105,3 +105,28 @@ I, [2021-03-12T11:36:37.895087 #1421]  INFO -- : (0.000025s) PRAGMA case_sensiti
 I, [2021-03-12T11:36:37.911488 #1421]  INFO -- : (0.000086s) SELECT sqlite_version()
 I, [2021-03-12T11:36:37.911894 #1421]  INFO -- : (0.000246s) PRAGMA table_info('users')
 >>>>>>> 663783f504dbd24fa0dad8fb8fb3561c2ae8af33
+I, [2021-03-12T13:05:25.169333 #443]  INFO -- : (0.000213s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:05:25.169495 #443]  INFO -- : (0.000030s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:05:25.184007 #443]  INFO -- : (0.000080s) SELECT sqlite_version()
+I, [2021-03-12T13:05:25.184370 #443]  INFO -- : (0.000216s) PRAGMA table_info('users')
+I, [2021-03-12T13:06:07.692233 #443]  INFO -- : (0.000232s) SELECT * FROM `users` WHERE (`email` = 'tupolewcx@gmail.com') LIMIT 1
+I, [2021-03-12T13:07:07.041589 #469]  INFO -- : (0.000196s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:07:07.041683 #469]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:07:07.055718 #469]  INFO -- : (0.000077s) SELECT sqlite_version()
+I, [2021-03-12T13:07:07.056093 #469]  INFO -- : (0.000214s) PRAGMA table_info('users')
+I, [2021-03-12T13:08:04.547030 #493]  INFO -- : (0.000187s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:08:04.547141 #493]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:08:04.560772 #493]  INFO -- : (0.000070s) SELECT sqlite_version()
+I, [2021-03-12T13:08:04.561124 #493]  INFO -- : (0.000211s) PRAGMA table_info('users')
+I, [2021-03-12T13:14:42.671042 #810]  INFO -- : (0.000194s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:14:42.671138 #810]  INFO -- : (0.000013s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:14:42.684766 #810]  INFO -- : (0.000073s) SELECT sqlite_version()
+I, [2021-03-12T13:14:42.685131 #810]  INFO -- : (0.000213s) PRAGMA table_info('users')
+I, [2021-03-12T13:18:41.225885 #838]  INFO -- : (0.000188s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:18:41.225976 #838]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:18:41.239749 #838]  INFO -- : (0.000062s) SELECT sqlite_version()
+I, [2021-03-12T13:18:41.240105 #838]  INFO -- : (0.000221s) PRAGMA table_info('users')
+I, [2021-03-12T13:19:52.557904 #862]  INFO -- : (0.000191s) PRAGMA foreign_keys = 1
+I, [2021-03-12T13:19:52.558010 #862]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T13:19:52.571537 #862]  INFO -- : (0.000069s) SELECT sqlite_version()
+I, [2021-03-12T13:19:52.571890 #862]  INFO -- : (0.000211s) PRAGMA table_info('users')
