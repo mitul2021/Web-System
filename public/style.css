@@ -9,6 +9,10 @@ body {
   padding: 5px;
 }
 
+nav{
+  margin: 55px;
+}
+
 /* appropriate coloring for successful / unsuccessful messages */
 
 #logoutsuccessful {
@@ -27,8 +31,8 @@ body {
   padding:40px;
 }
 
-/* button on sign in page */
-#signinbutton {
+/* button on sign in and register page */
+#signinbutton, #register, #changedetails {
 display: inline-block;
     background-color:rgb(128, 170, 255);
     border-radius: 10px;
@@ -45,8 +49,29 @@ display: inline-block;
 /* id for input boxes */
 
 #important {
-    font-weight:bold;
     height:25px;
     width: 200px;
 }
 
+/* Bold the Labels */
+label {
+    font-weight:bold;
+}
+
+/* Draw a border for the contents of the page */
+#changedetailsbody {
+    border: 10px solid black;
+    margin: 55px;
+}
+
+/*Display of the Change Details page */
+#flexcontainer{
+    display: flex;
+}
+
+#flexcontainer div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
