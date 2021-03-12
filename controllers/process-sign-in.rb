@@ -1,27 +1,25 @@
-post "/signin" do
+post "/process-sign-in" do
     $email = params["email"]
-    $password = params["pasword"] #this isnt very secure, want to use a secret session ideally
+    $password = params["pasword"] #!!! we currently have an issue with retreiving pw, seems to be just whitespace
     #need to create a user object and query db to get if mentee or mentor, and pass to cookie
     #@user = User.new
     #@user.load[] no user model for db, need to get a model without yet knowing for mentee or mentor
     #DB = Sequel.sqlite3("users.sqlite3") #garbage code above get rid of
     
-    $users = User.all
+    #puts $email
+    #puts $password
     
-    #search users via email
-    #get if mentee or mentor
-    $user_type = nil
-    $users.each do |user|
-        if user.email == $email
-            $user_type = user.user_type
-            break
-        end
+    ##!!!!!!!!!!!!   this doesnt work properly yet, currently denies valid users
+    @user = User.new
+    @user.load($email, $password)
+    if @user.exist?
+        session[:signedin] = true
+        erb :loginsuccessful
+    else
+        session[:signedin] = false
+        erb :accessdenied
     end
     
-    if user_type != nil
-        responce.set_cookie("user_status", value: user_type)
-    end
+    #$pw = User.find_by email: $email #from https://guides.rubyonrails.org/active_record_querying.html, finds first record matching conditions
     
-    
-    erb :signin
 end

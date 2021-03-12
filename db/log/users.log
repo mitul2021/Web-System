@@ -24,3 +24,69 @@ I, [2021-03-12T11:11:05.786579 #297]  INFO -- : (0.000190s) PRAGMA foreign_keys 
 I, [2021-03-12T11:11:05.786680 #297]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
 I, [2021-03-12T11:11:05.797297 #297]  INFO -- : (0.000055s) SELECT sqlite_version()
 I, [2021-03-12T11:11:05.797626 #297]  INFO -- : (0.000204s) PRAGMA table_info('users')
+I, [2021-03-12T11:19:51.511843 #332]  INFO -- : (0.000188s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:19:51.511937 #332]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:19:51.523128 #332]  INFO -- : (0.000066s) SELECT sqlite_version()
+I, [2021-03-12T11:19:51.523476 #332]  INFO -- : (0.000214s) PRAGMA table_info('users')
+I, [2021-03-12T11:19:59.859052 #332]  INFO -- : (0.000271s) SELECT * FROM `users` WHERE (`user_type` = 'mentor')
+I, [2021-03-12T11:22:14.667297 #354]  INFO -- : (0.000179s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:22:14.667386 #354]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:22:14.678210 #354]  INFO -- : (0.000057s) SELECT sqlite_version()
+I, [2021-03-12T11:22:14.678529 #354]  INFO -- : (0.000200s) PRAGMA table_info('users')
+I, [2021-03-12T11:42:30.227687 #377]  INFO -- : (0.000180s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:42:30.227785 #377]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:42:50.999677 #378]  INFO -- : (0.000175s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:42:50.999766 #378]  INFO -- : (0.000013s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:45:06.066549 #379]  INFO -- : (0.000181s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:45:06.066641 #379]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:45:06.077283 #379]  INFO -- : (0.000056s) SELECT sqlite_version()
+I, [2021-03-12T11:45:06.077604 #379]  INFO -- : (0.000202s) PRAGMA table_info('users')
+I, [2021-03-12T11:47:24.168117 #400]  INFO -- : (0.000198s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:47:24.168199 #400]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:47:24.178781 #400]  INFO -- : (0.000057s) SELECT sqlite_version()
+I, [2021-03-12T11:47:24.179098 #400]  INFO -- : (0.000201s) PRAGMA table_info('users')
+I, [2021-03-12T11:48:50.270794 #421]  INFO -- : (0.000180s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:48:50.270887 #421]  INFO -- : (0.000018s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:48:50.282179 #421]  INFO -- : (0.000058s) SELECT sqlite_version()
+I, [2021-03-12T11:48:50.282523 #421]  INFO -- : (0.000209s) PRAGMA table_info('users')
+I, [2021-03-12T11:50:12.087193 #442]  INFO -- : (0.000174s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:50:12.087283 #442]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:50:12.098928 #442]  INFO -- : (0.000068s) SELECT sqlite_version()
+I, [2021-03-12T11:50:12.099272 #442]  INFO -- : (0.000207s) PRAGMA table_info('users')
+I, [2021-03-12T11:53:25.056509 #464]  INFO -- : (0.000180s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:53:25.056602 #464]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:53:25.067962 #464]  INFO -- : (0.000058s) SELECT sqlite_version()
+I, [2021-03-12T11:53:25.068305 #464]  INFO -- : (0.000219s) PRAGMA table_info('users')
+I, [2021-03-12T11:57:11.196109 #485]  INFO -- : (0.000181s) PRAGMA foreign_keys = 1
+I, [2021-03-12T11:57:11.196207 #485]  INFO -- : (0.000019s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T11:57:11.207483 #485]  INFO -- : (0.000057s) SELECT sqlite_version()
+I, [2021-03-12T11:57:11.207833 #485]  INFO -- : (0.000209s) PRAGMA table_info('users')
+I, [2021-03-12T12:07:22.080370 #508]  INFO -- : (0.000193s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:07:22.080456 #508]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:08:15.557321 #509]  INFO -- : (0.000189s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:08:15.557420 #509]  INFO -- : (0.000018s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:08:47.722598 #510]  INFO -- : (0.000170s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:08:47.722687 #510]  INFO -- : (0.000013s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:08:47.734107 #510]  INFO -- : (0.000063s) SELECT sqlite_version()
+I, [2021-03-12T12:08:47.734444 #510]  INFO -- : (0.000206s) PRAGMA table_info('users')
+I, [2021-03-12T12:10:06.422670 #531]  INFO -- : (0.000187s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:10:06.422765 #531]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:10:06.434772 #531]  INFO -- : (0.000066s) SELECT sqlite_version()
+I, [2021-03-12T12:10:06.435146 #531]  INFO -- : (0.000217s) PRAGMA table_info('users')
+I, [2021-03-12T12:10:36.757572 #552]  INFO -- : (0.000182s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:10:36.757664 #552]  INFO -- : (0.000013s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:10:36.769249 #552]  INFO -- : (0.000063s) SELECT sqlite_version()
+I, [2021-03-12T12:10:36.769640 #552]  INFO -- : (0.000240s) PRAGMA table_info('users')
+I, [2021-03-12T12:10:43.077056 #552]  INFO -- : (0.000220s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-12T12:11:23.423679 #573]  INFO -- : (0.000183s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:11:23.423768 #573]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:11:23.435343 #573]  INFO -- : (0.000063s) SELECT sqlite_version()
+I, [2021-03-12T12:11:23.435741 #573]  INFO -- : (0.000250s) PRAGMA table_info('users')
+I, [2021-03-12T12:11:35.179836 #573]  INFO -- : (0.000225s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-12T12:14:58.951593 #639]  INFO -- : (0.000190s) PRAGMA foreign_keys = 1
+I, [2021-03-12T12:14:58.951690 #639]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-12T12:14:58.964350 #639]  INFO -- : (0.000074s) SELECT sqlite_version()
+I, [2021-03-12T12:14:58.964710 #639]  INFO -- : (0.000212s) PRAGMA table_info('users')
+I, [2021-03-12T12:15:08.349294 #639]  INFO -- : (0.000229s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-12T12:15:14.379596 #639]  INFO -- : (0.000216s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-12T12:15:22.864493 #639]  INFO -- : (0.000245s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
