@@ -1,3 +1,3 @@
 get "/registrationsuccessful" do
-    erb: registrationsuccessful
+    erb :registrationsuccessful
 end
