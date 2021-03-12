@@ -9,9 +9,34 @@ body {
   padding: 5px;
 }
 
-nav{
+nav {
   margin: 55px;
+    text-align:center;
 }
+
+nav ul li {
+    display:inline;
+    margin: 25px;
+    border: solid black;
+    padding: 5px;
+    font-size: 35px;
+    font-family: Calibri, serif;
+}
+
+a:link {
+     text-decoration:none;
+    color: olive;
+    font-weight:bold;
+    
+}
+
+a:visited {
+    color: olive;
+}
+a:hover {
+    color: seagreen;
+}
+
 
 /* appropriate coloring for successful / unsuccessful messages */
 
@@ -64,7 +89,8 @@ label {
 /* Draw a border for the contents of the page */
 #changedetailsbody {
     border: 10px solid black;
-    margin: 55px;
+    margin: 0px 55px 0px 55px;
+    padding-left: 20px;
 }
 
 /*Display of the Change Details page */
@@ -77,4 +103,17 @@ label {
   margin: 10px;
   padding: 20px;
   font-size: 30px;
+}
+
+th {
+    text-align: left;
+    background: #bcbcbc;
+}
+
+td {
+    background: #efefef;
+}
+
+th, td {
+    padding: 5px;
 }

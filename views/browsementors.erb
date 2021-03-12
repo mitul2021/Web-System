@@ -1,9 +1,28 @@
 <html>
     <head>
         <title>Mentors</title>
+                <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h1>Mentors</h1>
+                <nav>
+          <ul>
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="browsementors">Mentor List</a>
+            </li>
+            <li>
+                <a href="">Profile</a>
+            </li>
+            <li>
+                <a href="logoutsuccessful">Logout</a>
+            </li>
+          </ul>
+        </nav>
+                        <div id="changedetailsbody">
+
+        <h1>Mentors</h1>    
         <h2>Below is a list of mentors that are currently available:</h2>
         <table>
             <tr>
@@ -16,8 +35,10 @@
                 <td><%= mentor.first_name %> <%= mentor.surname %></td>
                 <td><%= mentor.job_deg_cosmetic_name%></td>
                 <td><%= mentor.major_interest%>
-            <td>
+                </td>
+            </tr>
             <% end %>
-        </ul>
+        </table>
+        </div>
     </body>
 </html>
