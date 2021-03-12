@@ -1,14 +1,36 @@
 <html>
     <head>
         <title>Change Details</title>
-        
+        <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h1>Profile</h1>
-        <button type="button">Profile Picture</button><br>
-        <button type="button">Change Details</button><br>
-            
-        <form method="post" action="process-create-profile">
+        <nav>
+          <ul>
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="browsementors">Mentor List</a>
+            </li>
+            <li>
+                <a href="">Profile</a>
+            </li>
+            <li>
+                <a href="">Logout</a>
+            </li>
+          </ul>
+        </nav>
+        
+        <div id="changedetailsbody">
+          <h1>Profile</h1>
+        
+          <div id="flexcontainer">
+            <div>
+                <input type="submit" value="Profile Picture" name="submit_register"/><br>
+                <button type="button" id="changedetails">Change Details</button><br>
+            </div>
+            <div>
+                <form method="post" action="process-create-profile">
                 
                 <label>ID:</label>
                 <input type="number" name="id" value=""/><br>
@@ -52,8 +74,9 @@
                 <label>Current request ID:</label>
                 <input type="number" name="current_request_id" value=""/><br>
            
-        </form>
-
-        
+                </form>
+            </div>
+          </div> 
+        </div>   
     </body>
 </html>
