@@ -1,6 +1,7 @@
 
 class User < Sequel::Model
     
+    
     def load(params)
         self.email = params.fetch("email"," ").strip
         self.password = params.fetch("password"," ").strip
@@ -8,15 +9,10 @@ class User < Sequel::Model
     end
     
     def exist?
-        first_user = User.first(email: email)
+        db_user = User.first(email: email)
         
-        if first_user.nil?
-            return false
-        elsif first_user.password == self.password
-            return true
-        else
-            return false
-        end
+        #if user is nil return false, if db_user exists and it has the same password return true
+        return !db_user.nil? && db_user.password == self.password
     end
     
 end

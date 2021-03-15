@@ -4,15 +4,16 @@ end
 
 post "/register" do
     #user validation
-    @user = User.new
-    @user.load(params)
+    if(params["password"]==params["password_repeat"])
+        @user = User.new
+        @user.load(params)
     
-    if(@user.valid? && !@user.exist?) #those functions need to be implemented
+        if(@user.valid? && !@user.exist?) #those functions need to be implemented
+            @user.save_changes
+            puts "SUCCESS, There is new entry in the DB"
         
-        @user.save_changes
-        puts "SUCCESS, There is new entry in the DB"
-        
-        redirect "/register-successfully"
+            redirect "/register-successfully"
+        end
     else 
         erb :register
     end
