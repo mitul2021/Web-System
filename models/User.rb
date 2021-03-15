@@ -1,11 +1,32 @@
 
 class User < Sequel::Model
     
+    @password_repeat #temporary variable to compare passwords,won't be stored in database
+    
+    def set_password_repeat(p)
+        @password_repeat = p
+    end
+    
     
     def load(params)
         self.email = params.fetch("email"," ").strip
         self.password = params.fetch("password"," ").strip
         self.user_type = params.fetch("user_type"," ").strip
+    end
+    
+    def validate
+        super
+        errors.add("email", "cannot be empty") if email.empty?
+        errors.add("password", "cannot be empty") if password.empty?
+        errors.add("password_repeat", "cannot be empty") if @password_repeat.empty?
+        errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
+        errors.add("password", "password must be at least 8 characters long") if password.length<8
+        errors.add("email", "there exist user with such email address") if self.exist?
+        
+        
+        
+        return errors.empty? #if there are no errors we are good to go, and returns true
+        
     end
     
     def exist?
