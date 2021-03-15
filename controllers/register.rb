@@ -8,10 +8,8 @@ post "/register" do
     @user.load(params) #load to the database
     @user.set_password_repeat(params.fetch("password_repeat"," ").strip) #won't be stored in DB
         
-    if(@user.valid?) #valid? includes password check, and invokes exist
+    if(@user.valid?) #valid? includes password check, and invokes exist?
             @user.save_changes
-            puts "SUCCESS, There is new entry in the DB"
-        
             redirect "/register-successfully"
     else 
         erb :register
