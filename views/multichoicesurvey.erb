@@ -35,6 +35,8 @@
                     <% @courses.each do |course| %>
                         <option value="<%course.id%>"><%course.deg_name_functional%></option>
                     <% end %>
+                </select>
+            
                 <label>Degree year:</label>
                 <select name="degree_year">
                     <option value="foundation_year">Foundation Year</option>
@@ -54,7 +56,7 @@
                 <input type="text" name="other_notes" value=""/><br>
                 
                 
-                <input type="submit" value="Submit:" name="submitmentee" />
+                <input type="submit" value="Submit:" name="submitmentee"/>
             
             <% else if @role.eql?("mentor") %>
             
@@ -108,12 +110,11 @@
                         <option value="<% i %>"><% interestsArray[i] %></option>
                         <% end %>
                     </select>
+                    
+                    <input type="submit" value="Submit:" name="submitmentor" />
+            <% end %>
+           <% end %>
                 
-                
-                
-                <input type="submit" value="Submit:" name="submitmentor" />
         </form>
-
-        
     </body>
 </html>

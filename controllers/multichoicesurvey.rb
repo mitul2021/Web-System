@@ -1,8 +1,8 @@
 get "/multichoicesurvey" do
-    @role = nil
-    @courses = Course.all()
+    @role = "mentee" #Change to nil after uncommenting line 5
+    @courses = Courses.all
     #user_status is the role cookie 
-    @role = request.cookies["user_status"] #expects a 'role' session cookie to be set when user logs in
+    #@role = request.cookies["user_status"] #expects a 'role' session cookie to be set when user logs in
     erb :multichoicesurvey
 end
 #i think this code may need to go in process-multichoicesurvey.rb
