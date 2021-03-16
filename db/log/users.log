@@ -77,3 +77,10 @@ I, [2021-03-16T11:53:53.582838 #579]  INFO -- : (0.000104s) PRAGMA table_info('c
 I, [2021-03-16T11:53:53.583764 #579]  INFO -- : (0.000209s) PRAGMA table_info('users')
 I, [2021-03-16T11:53:58.638228 #579]  INFO -- : (0.000237s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
 I, [2021-03-16T11:54:08.852521 #579]  INFO -- : (0.000331s) SELECT * FROM `users` WHERE (`user_type` = 'mentor')
+I, [2021-03-16T12:02:07.648366 #610]  INFO -- : (0.000224s) PRAGMA foreign_keys = 1
+I, [2021-03-16T12:02:07.648479 #610]  INFO -- : (0.000020s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T12:02:07.669805 #610]  INFO -- : (0.000094s) SELECT sqlite_version()
+I, [2021-03-16T12:02:07.670272 #610]  INFO -- : (0.000231s) PRAGMA table_info('courses')
+I, [2021-03-16T12:02:07.671700 #610]  INFO -- : (0.000318s) PRAGMA table_info('users')
+I, [2021-03-16T12:02:15.800956 #610]  INFO -- : (0.000284s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T12:02:24.313207 #610]  INFO -- : (0.000280s) SELECT * FROM `users` WHERE (`user_type` = 'mentor')
