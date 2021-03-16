@@ -9,6 +9,12 @@ get "/logout" do
 end   
    
 get "/login" do
+    
+   cookie = request.cookies.fetch("make-register-popup",0)
+  # if cookie == "true"
+  # else
+  # end
+    
    erb :login
 end
 

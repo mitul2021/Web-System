@@ -10,7 +10,8 @@ post "/register" do
         
     if(@user.valid?) #valid? includes password check, and invokes exist?
             @user.save_changes
-            redirect "/register-successfully"
+            response.set_cookie("make-register-popup", value: 'true')
+            redirect "/login"
     else 
         erb :register
     end
