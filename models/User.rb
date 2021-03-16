@@ -12,13 +12,24 @@ class User < Sequel::Model
     end
     
     
-    def load(params)
+    def load_register(params)
         self.email = params.fetch("email"," ").strip
         self.password = params.fetch("password"," ").strip
-        #self.user_type = params.fetch("user_type"," ").strip #not sure what this line is needed for, maybe if we want to return user_type, make a getter
+        self.user_type = params.fetch("user_type"," ").strip
     end
     
-    def validate
+    def load_login(params)
+        self.email = params.fetch("email"," ").strip
+        self.password = params.fetch("password"," ").strip
+    end
+    
+    def valid_login? #for the login
+        errors.add("email", "Combination of email and password does not match") if !self.exist?
+        
+        return errors.empty? #if there are no errors we are good to go, and returns true
+    end
+    
+    def validate #for the register
         super
         errors.add("email", "email cannot be empty") if email.empty?
         errors.add("password", "password cannot be empty") if password.empty?

@@ -7,14 +7,26 @@
         <h1>Login</h1>
         <p>Login with your credentials below:</p>
         
-        <form method="post" action="process-sign-in">
+        <form method="post" action="login">
             <label>Email:</label>
-            <input type="email"  id="important" name="email" value=""/>
+            <input type="email" id="important" name="email" value="<%= h @user.email unless @user.nil? %>"/>
+            <% if !@user.nil? && @user.errors.include?("email") %>
+                <% @user.errors["email"].each do |error| %>
+                    <p class="error"><strong><%= error %></strong></p>
+                <% end %>
+            <% end %>
             <br>
             
             <label>Password:</label>
-            <input type="password"  name="password" id="important" value=""/>
+            <input type="password"  name="password" id="important" value="<%= h @user.password unless @user.nil? %>"/>
+            <% if !@user.nil? && @user.errors.include?("password") %>
+                <% @user.errors["password"].each do |error| %>
+                    <p class="error"><strong><%= error %></strong></p>
+                <% end %>
+            <% end %>
             <br><br>
+            
+            
             <input type="submit" value="login" id="register" name="submit_login"/>
         </form>
         <a href="/register" id="go_to_register">Create an account</a>
