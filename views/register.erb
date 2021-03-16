@@ -10,15 +10,30 @@
         <form method="post" action="/register">
             
             <label>Enter Email:</label>
-            <input type="email" name="email" value=""/>
+            <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/>
+            <% if !@user.nil? && @user.errors.include?("email") %>
+                <% @user.errors["email"].each do |error| %>
+                    <p class="error"><strong><%= error %></strong></p>
+                <% end %>
+            <% end %>
             <br>
             
             <label>Password:</label>
-            <input type="password" name="password" value=""/>
+            <input type="password" name="password" value="<%= h @user.password unless @user.nil? %>"/>
+            <% if !@user.nil? && @user.errors.include?("password") %>
+                <% @user.errors["password"].each do |error| %>
+                    <p class="error"><strong><%= error %></strong></p>
+                <% end %>
+            <% end %>
             <br>
             
             <label>Repeat Password:</label>
-            <input type="password" name="password_repeat" value=""/>
+            <input type="password" name="password_repeat" value="<%= h @user.password_repeat unless @user.nil? %>"/>
+            <% if !@user.nil? && @user.errors.include?("password_repeat") %>
+                <% @user.errors["password_repeat"].each do |error| %>
+                    <p class="error"><strong><%= error %></strong></p>
+                <% end %>
+            <% end %>
             <br>
             
             <label>Mentee:</label>

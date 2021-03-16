@@ -7,6 +7,10 @@ class User < Sequel::Model
         @password_repeat = p
     end
     
+    def password_repeat #getter for the password_repeat field
+        @password_repeat
+    end
+    
     
     def load(params)
         self.email = params.fetch("email"," ").strip
@@ -16,9 +20,9 @@ class User < Sequel::Model
     
     def validate
         super
-        errors.add("email", "cannot be empty") if email.empty?
-        errors.add("password", "cannot be empty") if password.empty?
-        errors.add("password_repeat", "cannot be empty") if @password_repeat.empty?
+        errors.add("email", "email cannot be empty") if email.empty?
+        errors.add("password", "password cannot be empty") if password.empty?
+        errors.add("password_repeat", "password repeacannot be empty") if @password_repeat.empty?
         errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
         errors.add("password", "password must be at least 8 characters long") if password.length<8
         errors.add("email", "there exist user with such email address") if self.exist?
