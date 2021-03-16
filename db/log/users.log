@@ -1,0 +1,65 @@
+# Logfile created on 2021-03-16 10:47:16 +0000 by logger.rb/v1.4.3
+I, [2021-03-16T10:47:16.127252 #181]  INFO -- : (0.000202s) PRAGMA foreign_keys = 1
+I, [2021-03-16T10:47:16.127356 #181]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T10:47:16.151376 #181]  INFO -- : (0.000098s) SELECT sqlite_version()
+I, [2021-03-16T10:47:16.151777 #181]  INFO -- : (0.000123s) PRAGMA table_info('courses')
+I, [2021-03-16T10:47:16.153299 #181]  INFO -- : (0.000376s) PRAGMA table_info('users')
+I, [2021-03-16T10:50:48.047639 #202]  INFO -- : (0.000197s) PRAGMA foreign_keys = 1
+I, [2021-03-16T10:50:48.047754 #202]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T10:50:48.064599 #202]  INFO -- : (0.000091s) SELECT sqlite_version()
+I, [2021-03-16T10:50:48.064898 #202]  INFO -- : (0.000111s) PRAGMA table_info('courses')
+I, [2021-03-16T10:50:48.065855 #202]  INFO -- : (0.000209s) PRAGMA table_info('users')
+I, [2021-03-16T10:58:09.496419 #224]  INFO -- : (0.000239s) PRAGMA foreign_keys = 1
+I, [2021-03-16T10:58:09.496595 #224]  INFO -- : (0.000036s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T10:58:09.518705 #224]  INFO -- : (0.000092s) SELECT sqlite_version()
+I, [2021-03-16T10:58:09.518992 #224]  INFO -- : (0.000108s) PRAGMA table_info('courses')
+I, [2021-03-16T10:58:09.519959 #224]  INFO -- : (0.000212s) PRAGMA table_info('users')
+I, [2021-03-16T10:58:42.811816 #245]  INFO -- : (0.000271s) PRAGMA foreign_keys = 1
+I, [2021-03-16T10:58:42.811984 #245]  INFO -- : (0.000030s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T10:58:42.835307 #245]  INFO -- : (0.000090s) SELECT sqlite_version()
+I, [2021-03-16T10:58:42.835603 #245]  INFO -- : (0.000106s) PRAGMA table_info('courses')
+I, [2021-03-16T10:58:42.836575 #245]  INFO -- : (0.000215s) PRAGMA table_info('users')
+I, [2021-03-16T10:58:49.353569 #245]  INFO -- : (0.000234s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T10:59:58.114366 #266]  INFO -- : (0.000201s) PRAGMA foreign_keys = 1
+I, [2021-03-16T10:59:58.114482 #266]  INFO -- : (0.000017s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T10:59:58.130979 #266]  INFO -- : (0.000089s) SELECT sqlite_version()
+I, [2021-03-16T10:59:58.131248 #266]  INFO -- : (0.000102s) PRAGMA table_info('courses')
+I, [2021-03-16T10:59:58.132170 #266]  INFO -- : (0.000209s) PRAGMA table_info('users')
+I, [2021-03-16T11:00:09.456267 #266]  INFO -- : (0.000245s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:01:17.973347 #287]  INFO -- : (0.000193s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:01:17.973451 #287]  INFO -- : (0.000014s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:01:17.990138 #287]  INFO -- : (0.000089s) SELECT sqlite_version()
+I, [2021-03-16T11:01:17.990426 #287]  INFO -- : (0.000110s) PRAGMA table_info('courses')
+I, [2021-03-16T11:01:17.991411 #287]  INFO -- : (0.000218s) PRAGMA table_info('users')
+I, [2021-03-16T11:01:25.335947 #287]  INFO -- : (0.000233s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:01:57.997007 #308]  INFO -- : (0.000213s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:01:57.997123 #308]  INFO -- : (0.000019s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:01:58.014584 #308]  INFO -- : (0.000091s) SELECT sqlite_version()
+I, [2021-03-16T11:01:58.014886 #308]  INFO -- : (0.000110s) PRAGMA table_info('courses')
+I, [2021-03-16T11:01:58.015883 #308]  INFO -- : (0.000218s) PRAGMA table_info('users')
+I, [2021-03-16T11:02:00.798473 #308]  INFO -- : (0.000232s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:02:41.621278 #329]  INFO -- : (0.000196s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:02:41.621386 #329]  INFO -- : (0.000015s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:02:41.638399 #329]  INFO -- : (0.000093s) SELECT sqlite_version()
+I, [2021-03-16T11:02:41.638675 #329]  INFO -- : (0.000104s) PRAGMA table_info('courses')
+I, [2021-03-16T11:02:41.639633 #329]  INFO -- : (0.000218s) PRAGMA table_info('users')
+I, [2021-03-16T11:02:46.047022 #329]  INFO -- : (0.000230s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:05:45.669703 #351]  INFO -- : (0.000316s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:05:45.669826 #351]  INFO -- : (0.000021s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:05:45.691168 #351]  INFO -- : (0.000119s) SELECT sqlite_version()
+I, [2021-03-16T11:05:45.691565 #351]  INFO -- : (0.000156s) PRAGMA table_info('courses')
+I, [2021-03-16T11:05:45.693078 #351]  INFO -- : (0.000315s) PRAGMA table_info('users')
+I, [2021-03-16T11:05:49.879173 #351]  INFO -- : (0.000235s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:07:03.305800 #372]  INFO -- : (0.000197s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:07:03.305911 #372]  INFO -- : (0.000016s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:07:03.323263 #372]  INFO -- : (0.000095s) SELECT sqlite_version()
+I, [2021-03-16T11:07:03.323538 #372]  INFO -- : (0.000104s) PRAGMA table_info('courses')
+I, [2021-03-16T11:07:03.324504 #372]  INFO -- : (0.000217s) PRAGMA table_info('users')
+I, [2021-03-16T11:07:09.883684 #372]  INFO -- : (0.000236s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:07:36.573063 #393]  INFO -- : (0.000221s) PRAGMA foreign_keys = 1
+I, [2021-03-16T11:07:36.573179 #393]  INFO -- : (0.000017s) PRAGMA case_sensitive_like = 1
+I, [2021-03-16T11:07:36.592077 #393]  INFO -- : (0.000091s) SELECT sqlite_version()
+I, [2021-03-16T11:07:36.592446 #393]  INFO -- : (0.000135s) PRAGMA table_info('courses')
+I, [2021-03-16T11:07:36.593505 #393]  INFO -- : (0.000213s) PRAGMA table_info('users')
+I, [2021-03-16T11:07:39.972739 #393]  INFO -- : (0.000242s) SELECT * FROM `users` WHERE (`email` = 'john@sheffield.ac.uk') LIMIT 1
+I, [2021-03-16T11:07:44.052110 #393]  INFO -- : (0.000291s) SELECT * FROM `users` WHERE (`email` = '') LIMIT 1

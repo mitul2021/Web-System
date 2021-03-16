@@ -15,7 +15,7 @@ class User < Sequel::Model
     def load(params)
         self.email = params.fetch("email"," ").strip
         self.password = params.fetch("password"," ").strip
-        self.user_type = params.fetch("user_type"," ").strip
+        #self.user_type = params.fetch("user_type"," ").strip #not sure what this line is needed for, maybe if we want to return user_type, make a getter
     end
     
     def validate
