@@ -1,5 +1,5 @@
 get "/process-multichoicesurvey" do
-    if session[:signedin]
+    if session[:loggedin]
         $email = request.cookies["email"]
         $firstname = params["first_name"]
         $surname = params["surname"]
