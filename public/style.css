@@ -40,7 +40,7 @@ a:hover {
 
 /* appropriate coloring for successful / unsuccessful messages */
 
-#logoutsuccessful, #logoutunsuccesful {
+#logoutsuccessful, #logoutunsuccessful {
     color:green;
     font-family: "Verdana", sans-serif;
     font-size:60px;
