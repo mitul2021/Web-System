@@ -35,6 +35,7 @@ get "/process-multichoicesurvey" do
         $year = Time.new.year
 
         $user.age = $year - $yearofbirth
-
+    else
+        redirect "/login"
     end
 end

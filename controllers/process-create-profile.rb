@@ -1,4 +1,8 @@
 get "/profilecreate" do
-   erb :profilecreate
+    if session[:loggedin]
+        erb :profilecreate
+    else
+        redirect "/login"
+    end
 end
 
