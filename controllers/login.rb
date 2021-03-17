@@ -8,13 +8,13 @@ get "/" do
 end
 
 get "/login" do
-    
-   cookie = request.cookies.fetch("make-register-popup",0)
-  if cookie == "true"
-      @registered = true
-  end
-   @registered = false 
-   erb :login
+    cookie = request.cookies.fetch("make-register-popup",0)
+    if cookie == "true"
+        @registered = true
+    end
+
+    erb :login
+
 end
 
 post "/login" do
