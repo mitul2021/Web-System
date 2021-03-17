@@ -12,6 +12,7 @@ get "/login" do
     if cookie == "true"
         @registered = true
     end
+    response.delete_cookie("make-register-popup")
 
     erb :login
 
@@ -33,6 +34,8 @@ post "/login" do
         puts "LOGIN CONTROLLER:"
         puts "My role is #{session[:user_type]}"
         puts "My login in status is : #{session[:loggedin]}"
+        
+        response.set_cookie("make-login-popup", value: 'true')
         
         redirect "/index"
     else

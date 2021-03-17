@@ -20,7 +20,12 @@
             </li>
          </ul>
       </nav>
-      <div id="changedetailsbody">
+       
+      <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>> 
+            <p>Login successful</p> <!-- CSS: green border to surround the text to indicate success -->
+      </div>
+       
+      <div id="changedetailsbody"> <!-- propably repetion of the id selectors pls fix --> 
          <h1> Home</h1>
          <div id="container">
             <div id="boxes">
