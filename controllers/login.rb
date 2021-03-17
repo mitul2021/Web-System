@@ -7,11 +7,6 @@ get "/" do
     end 
 end
 
-get "/logout" do
-    session.clear
-    erb :logout
-end   
-   
 get "/login" do
     
    cookie = request.cookies.fetch("make-register-popup",0)
