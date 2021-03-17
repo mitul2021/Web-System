@@ -1,12 +1,3 @@
-get "/" do
-    if session[:loggedin]
-       erb :index
-    else
-        #maybe add some cookie here to inform user that is not logged in
-        redirect "/login"
-    end 
-end
-
 get "/login" do
     cookie = request.cookies.fetch("make-register-popup",0)
     if cookie == "true"
