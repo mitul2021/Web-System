@@ -7,38 +7,37 @@
                 <nav>
           <ul>
             <li>
-                <a href="">Home</a>
+                <a href="index">Home</a>
             </li>
             <li>
                 <a href="browsementors">Mentor List</a>
             </li>
             <li>
-                <a href="">Profile</a>
+                <a href="profilecreate">Profile</a>
             </li>
             <li>
                 <a href="logout">Logout</a>
             </li>
           </ul>
         </nav>
-                        <div id="changedetailsbody">
-
-        <h1>Mentors</h1>    
-        <h2>Below is a list of mentors that are currently available:</h2>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Job Title</th>
-                <th>Main Interest</th>
-            </tr>
-            <% @mentors.each do |mentor| %>
-            <tr>
-                <td><%= mentor.first_name %> <%= mentor.surname %></td>
-                <td><%= mentor.job_deg_cosmetic_name%></td>
-                <td><%= mentor.major_interest%>
-                </td>
-            </tr>
-            <% end %>
-        </table>
+        <div id="changedetailsbody">
+            <h1>Mentors</h1>    
+            <h2>Below is a list of mentors that are currently available:</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Job Title</th>
+                    <th>Main Interest</th>
+                </tr>
+                <% @mentors.each do |mentor| %>
+                <tr>
+                    <td><%= mentor.first_name %> <%= mentor.surname %></td>
+                    <td><%= mentor.job_deg_cosmetic_name%></td>
+                    <td><%= mentor.major_interest%>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
         </div>
     </body>
 </html>
