@@ -4,7 +4,11 @@ get "/login" do
         @registered = true
     end
     response.delete_cookie("make-register-popup")
-
+    
+    cookie = request.cookies.fetch("redirected-popup",0) #reading the cookie
+    @redirected = true if cookie == "true" #used by view to display the message
+    response.delete_cookie("redirected-popup") #deleting the cookie
+    
     erb :login
 
 end

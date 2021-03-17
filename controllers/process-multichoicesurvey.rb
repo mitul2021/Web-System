@@ -36,6 +36,7 @@ get "/process-multichoicesurvey" do
 
         $user.age = $year - $yearofbirth
     else
+        response.set_cookie("redirected-popup", value: 'true')
         redirect "/login"
     end
 end

@@ -3,7 +3,7 @@ get "/browsementors" do
         @mentors = User.where(user_type: "mentor")
         erb :browsementors
     else
-        #maybe add some cookie here to inform user that is not logged in
+        response.set_cookie("redirected-popup", value: 'true')
         redirect "/login"
     end
 end

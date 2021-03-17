@@ -12,7 +12,7 @@ post "/register" do
             @user.save_changes
             response.set_cookie("make-register-popup", value: 'true')
             redirect "/login"
-    else 
+    else
         erb :register
     end
 end
