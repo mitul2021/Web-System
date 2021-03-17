@@ -2,7 +2,6 @@ get "/" do
     if session[:loggedin]
        erb :index
     else
-        response.set_cookie("redirected-popup", value: 'true')
         redirect "/login"
     end 
 end
