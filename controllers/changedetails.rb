@@ -1,6 +1,6 @@
 get "/changedetails" do   
     if session[:loggedin]
-        erb :menteechangedetails
+        erb :changedetails
     else
         response.set_cookie("redirected-popup", value: 'true')
         redirect "/login"
