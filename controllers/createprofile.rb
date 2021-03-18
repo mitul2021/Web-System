@@ -1,5 +1,6 @@
 get "/profilecreate" do
     if session[:loggedin]
+        @role = session[:user_type]
         erb :profilecreate
     else
         response.set_cookie("redirected-popup", value: 'true')
