@@ -78,24 +78,41 @@ label {
 }
 
 /* Draw a border for the contents of the page */
-#changedetailsbody {
+#changedetailsbody, #profilecreatebody {
     border: 10px solid black;
     margin: 0px 55px 0px 55px;
     padding-left: 20px;
 }
 
+/* Draw a border for the contents of the profile of mentor */
 #profileinfo {
-    border: 10px solid black;
-    margin: 0px 55px 0px 55px;
-    padding-left: 20px;
+    border: 3px ridge black;
+    position: absolute;
+    top: 200px;
+    padding: 10px;
+}
+
+#contactdetail{
+    border: 3px ridge black;
+    position: absolute;
+    top: 440px;
+    font-size: 25px;
+    padding: 20px;
 }
 
 /*Display of the Change Details page */
-#flexcontainer{
+#flexcontainer, #displayflex{
     display: flex;
 }
 
 #flexcontainer div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+#displayflex div {
   background-color: #f1f1f1;
   margin: 10px;
   padding: 20px;
