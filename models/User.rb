@@ -36,7 +36,7 @@ class User < Sequel::Model
         errors.add("password_repeat", "password repeacannot be empty") if @password_repeat.empty?
         errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
         errors.add("password", "password must be at least 8 characters long") if password.length<8
-        errors.add("email", "there exist user with such email address") if self.exist?
+        errors.add("email", "there exist user with such email address") if exist?
         
         
         
@@ -48,7 +48,7 @@ class User < Sequel::Model
         db_user = User.first(email: email)
         
         #if user is nil return false, if db_user exists and it has the same password return true
-        return !db_user.nil? && db_user.password == self.password
+        return !db_user.nil?
     end
     
 end

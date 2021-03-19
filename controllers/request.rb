@@ -1,22 +1,29 @@
 get "/request" do
-    #@mentor = User[mentors_id] if User.exists?(mentors_id)
-    puts "#{session[:user_type]}"
+    
+    mentee_id = session[:user_id]
+    puts "This is mentee's ID: #{session[:user_id]}"
+    
     if(session[:user_type].eql?("mentee"))
-        puts "HELLO MENTEE"
+        puts "User is a mentee."
         @request = Request.new
 
-        puts params["id"]
+        puts "This is mentor's ID: #{params["id"]}"
         @request.mentor_id = params["id"]
-        
-        puts "#{session[:user_id]}"
-        @request.mentee_id = session[:user_id]
+        @request.mentee_id = mentee_id
 
         #updating DB with new request 
         if @request.valid?
             puts "We have valid request."
             @request.save_changes
             puts "Changes saved. Redirecting..."
-            redirect "/browsementors"
+            
+        else
+            puts "Request is invalid."
+            puts "#{@request.errors}"
         end
+        
+        
     end
+    
+    redirect "/browsementors"
 end
