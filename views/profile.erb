@@ -1,8 +1,14 @@
 <html>
     <head>
-        <title><%= @user.first_name %> <%= @user.surname></title>
-        <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+        <title><%= @user.first_name %> <%= @user.surname %></title>
     </head>
     <body>
+        <h1><%= @user.first_name %> <%= @user.surname %> - <%= @user.user_type.capitalize() %></h1>
+        <p><%= @user.job_deg_cosmetic_name.capitalize() %>\n</p>
+        <p><%= @user.profile_text %></p>
+        <p>Major Interest: <%= @user.major_interest %>\n</p>
+        <h1>Contact Details:</h1>
+        <p>Email: <%= @user.email %></p>
+        <p>Phone: <%= @user.contact_number %></p> <!--maybe don't display phone for mentors?-->
     </body>
 </html>
