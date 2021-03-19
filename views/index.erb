@@ -46,12 +46,42 @@
              </p>
          <% elsif @user_type.eql?("mentor") %>
               <p>
-                  As a mentor, you can fill in the multi choice survey by clicking the 'Profile' byutton.
-                  Once you have filled in the survey, you can view or change deails about you profile from the 'Profile' page.
+                  As a mentor, you can fill in the multi choice survey by clicking the 'Profile' button.
+                  Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
                   
                   When all details have been filled in, you can view any requests for menteeship from the 'View Requests button',
                   where you can accept or deny requests.
+                  
               </p>
+              <h1>Your requests</h1>
+              <table>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                </tr>
+                <% @requests = Request.where(mentor_id: @mentorsID) %>
+                <% @requests.each do |request| %>
+                    <% @menteeID = request.mentee_id %>
+                    <% @mentee = User.first(id: @menteeID) %>
+                <tr>
+                    
+                    <td>
+                        <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
+                        <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
+                    </td>
+                    
+                    <td>
+                        <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
+                    </td>
+                    
+                    <td>
+                        <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
+                    </td>
+                    
+                </tr>
+                <% end %>
+              </table>
          
          <% elsif @user_type.eql?("admin") %>
              <p>admin info here</p>
