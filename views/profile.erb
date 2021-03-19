@@ -7,11 +7,13 @@
         <h1><%= @user.first_name %> <%= @user.surname %> - <%= @user.user_type.capitalize() %></h1>
         <h2><%= @user.job_deg_cosmetic_name.capitalize() %></h2>
         <div id="profileinfo">
-        <br><p><%= @user.profile_text %></p>              
-        <p>Major Interest: <%= @user.major_interest %></p>
+            <p><%= @user.profile_text %></p>              
+            <p>Major Interest: <%= @user.major_interest %></p>
         </div>            
-        <br><h3>Contact Details:</h3>
-        <p>Email: <%= @user.email %></p>
-        <p>Phone: <%= @user.contact_number %></p> <!--maybe don't display phone for mentors?-->
+        <div id="contactdetail">
+            <h3>Contact Details:</h3>
+            <p>Email: <%= @user.email %></p>
+            <p>Phone: <%= @user.contact_number %></p> <!--maybe don't display phone for mentors?-->
+        </div>
     </body>
 </html>
