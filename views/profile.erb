@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title><%= @user.first_name %> <%= @user.surname %></title>
+    </head>
+    <body>
+        <h1><%= @user.first_name %> <%= @user.surname %> - <%= @user.user_type.capitalize() %></h1>
+        <p><%= @user.job_deg_cosmetic_name.capitalize() %></p>
+        <br><p><%= @user.profile_text %></p>
+        <p>Major Interest: <%= @user.major_interest %></p>
+        <br><h1>Contact Details:</h1>
+        <p>Email: <%= @user.email %></p>
+        <p>Phone: <%= @user.contact_number %></p> <!--maybe don't display phone for mentors?-->
+    </body>
+</html>

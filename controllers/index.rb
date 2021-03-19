@@ -1,6 +1,6 @@
 get "/" do
     if session[:loggedin]
-       erb :index
+        redirect "/index"
     else
         redirect "/login"
     end 
@@ -16,6 +16,9 @@ get "/index" do
         @just_logged_in = true if cookie == "true" #used by view to display the message
         response.delete_cookie("make-login-popup") #deleting the cookie
         
+        @user_type = session[:user_type]
+        @mentorsID = session[:user_id]
+        puts @mentorsID
         erb :index
     else
         response.set_cookie("redirected-popup", value: 'true')

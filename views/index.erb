@@ -25,22 +25,71 @@
             <p>Login successful</p> <!-- CSS: green border to surround the text to indicate success -->
       </div>
        
+      <div>
+          <p>Welcome, <%= @user_type %>!<p></p>
+      </div>
+       
       <div id="changedetailsbody"> <!-- propably repetion of the id selectors pls fix --> 
          <h1> Home</h1>
-         <div id="container">
-            <div id="boxes">
-               <h2>Are you a mentee?</h2>
-               <p> paopapoa</p>
-            </div>
-            <div id="boxes">
-               <h2>Are you a mentor?</h2>
-               <p> psofpdopd</p>
-            </div>
-            <div id="boxes">
-               <h2> Are you an admin?</h2>
-               <p> psofpsopo</p>
-            </div>
-         </div>
+         
+         <% if @user_type.eql?("mentee") %>
+             <p>
+                 As a mentee, you should fill in the multi choice survey by clicking the 'Profile' button.
+                 Once you have filled in the survey, you can view or change details about your profile from the 'Profile' page.
+                 
+                 Once your details have been filled in, you can view reccomended mentors for you from the 'Mentor List' page,
+                 where you should chose a preferred mentor by clicking the 'request mentorship' button next to their name.
+                 
+                 You will then be able to contact them via email once they have accepted your request.
+                 
+                 You may logout at any time by pressing the 'Logout' button.
+             </p>
+         <% elsif @user_type.eql?("mentor") %>
+              <p>
+                  As a mentor, you can fill in the multi choice survey by clicking the 'Profile' button.
+                  Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
+                  
+                  When all details have been filled in, you can view any requests for menteeship from the 'View Requests button',
+                  where you can accept or deny requests.
+                  
+              </p>
+              <h1>Your requests</h1>
+              <table>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                </tr>
+                <% @requests = Request.where(mentor_id: @mentorsID) %>
+                <% @requests.each do |request| %>
+                    <% @menteeID = request.mentee_id %>
+                    <% @mentee = User.first(id: @menteeID) %>
+                <tr>
+                    
+                    <td>
+                        <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
+                        <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
+                    </td>
+                    
+                    <td>
+                        <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
+                    </td>
+                    
+                    <td>
+                        <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
+                    </td>
+                    
+                </tr>
+                <% end %>
+              </table>
+         
+         <% elsif @user_type.eql?("admin") %>
+             <p>admin info here</p>
+         <% else %>
+                <p>error with retreiving user type, please try again at another time</p>
+          
+         <% end %>
+          
       </div>
    </body>
 </html>

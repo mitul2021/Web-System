@@ -34,7 +34,8 @@
                     <td><%= mentor.first_name %> <%= mentor.surname %></td>
                     <td><%= mentor.job_deg_cosmetic_name%></td>
                     <td><%= mentor.major_interest%>
-                    </td>
+                    <td><a href="profile/<%= mentor.id %>">Profile</a></td>
+                    <td><a href="request?id=<%= mentor.id %>">Request Mentorship</a></td>
                 </tr>
                 <% end %>
             </table>
