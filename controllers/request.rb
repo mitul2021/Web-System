@@ -1,4 +1,4 @@
-get "/register" do
+get "/request" do
     #@mentor = User[mentors_id] if User.exists?(mentors_id)
     puts session[:user_type]
     if(session[:user_type].eql?("mentee"))
