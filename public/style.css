@@ -72,10 +72,6 @@ a:hover {
     text-decoration: none;
 }
 
-/* id for input boxes */
-
-
-
 /* Bold the Labels */
 label {
     font-weight:bold;
@@ -83,6 +79,12 @@ label {
 
 /* Draw a border for the contents of the page */
 #changedetailsbody {
+    border: 10px solid black;
+    margin: 0px 55px 0px 55px;
+    padding-left: 20px;
+}
+
+#profileinfo {
     border: 10px solid black;
     margin: 0px 55px 0px 55px;
     padding-left: 20px;
