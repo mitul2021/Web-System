@@ -1,6 +1,6 @@
 get "/request" do
     #@mentor = User[mentors_id] if User.exists?(mentors_id)
-    puts session[:user_type]
+    puts "#{session[:user_type]}"
     if(session[:user_type].eql?("mentee"))
         puts "HELLO MENTEE"
         @request = Request.new
@@ -8,7 +8,7 @@ get "/request" do
         puts params["id"]
         @request.mentor_id = params["id"]
         
-        puts session[:user_id]
+        puts "#{session[:user_id]}"
         @request.mentee_id = session[:user_id]
 
         #updating DB with new request 

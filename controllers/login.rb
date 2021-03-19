@@ -22,6 +22,7 @@ post "/login" do
         
         @user = User.first(email: @user.email)
         session[:user_id] = @user.id
+        puts "THIS IS MY USER'S ID: #{session[:user_id]}"
         session[:user_type] = @user.user_type
         
         
