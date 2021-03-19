@@ -1,5 +1,8 @@
 get "/profile/*" do
     # * = wildcard for user ID
     id_num = params[:splat][0]
-    @user = User.where(id=id_num)
+    #not_found unless
+    @user = User[id_num]
+    erb :profile
+    
 end
