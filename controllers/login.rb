@@ -21,6 +21,7 @@ post "/login" do
         session[:loggedin] = true
         
         @user = User.first(email: @user.email)
+        session[:user_id] = @user.id
         session[:user_type] = @user.user_type
         
         
