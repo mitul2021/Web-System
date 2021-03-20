@@ -6,7 +6,7 @@ get "/request" do
     if(session[:user_type].eql?("mentee"))
         puts "User is a mentee."
         @pair = Pair.new
-git 
+
         puts "This is mentor's ID: #{params["id"]}"
         @pair.mentor_id = params["id"]
         @pair.mentee_id = mentee_id
