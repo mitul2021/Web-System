@@ -60,10 +60,10 @@
                     <th>Email</th>
                     <th>Contact Number</th>
                 </tr>
-                <% @requests = Request.where(mentor_id: @mentorsID) %>
+                <% @requests = Pair.where(mentor_id: @mentorsID, status: 0) %>
                 <% @requests.each do |request| %>
-                    <% @menteeID = request.mentee_id %>
-                    <% @mentee = User.first(id: @menteeID) %>
+                <% @menteeID = request.mentee_id %>
+                <% @mentee = User.first(id: @menteeID) %>
                 <tr>
                     
                     <td>

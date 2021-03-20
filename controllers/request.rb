@@ -5,21 +5,22 @@ get "/request" do
     
     if(session[:user_type].eql?("mentee"))
         puts "User is a mentee."
-        @request = Request.new
-
+        @pair = Pair.new
+git 
         puts "This is mentor's ID: #{params["id"]}"
-        @request.mentor_id = params["id"]
-        @request.mentee_id = mentee_id
-
+        @pair.mentor_id = params["id"]
+        @pair.mentee_id = mentee_id
+        @pair.status = 0 #every request is initially not accepted
+        
         #updating DB with new request 
-        if @request.valid?
+        if @pair.valid?
             puts "We have valid request."
-            @request.save_changes
+            @pair.save_changes
             puts "Changes saved. Redirecting..."
             
         else
             puts "Request is invalid."
-            puts "#{@request.errors}"
+            puts "#{@pair.errors}"
         end
         
         

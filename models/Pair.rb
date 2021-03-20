@@ -1,4 +1,4 @@
-class Request < Sequel::Model
+class Pair < Sequel::Model
     
     
      def validate
@@ -12,8 +12,8 @@ class Request < Sequel::Model
     end
     
     def exist?
-        db_requests_array = Request.all
-        db_requests_array.each do |record|
+        db_pair_array = Pair.all
+        db_pair_array.each do |record|
             return true if ((record.mentor_id==self.mentor_id) && (record.mentee_id==self.mentee_id))
         end
         return false
