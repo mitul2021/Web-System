@@ -1,42 +1,49 @@
 <html>
-    <head>
-        <title>Login</title>
-    <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <h1>Login</h1>
-        <div class = "green_pop_up" <%="hidden" unless @registered%>> 
-            <p>You have registered successfully</p> <!-- CSS: green border to surround the text to indicate success -->
-        </div>
-        <div class = "red_pop_up" <%="hidden" unless @redirected%>>
-            <p>You have been redirected because you have not logged in yet</p> <!-- CSS: red border to surround the text to indicate access denied -->
-        </div>
-        <p>Login with your credentials below:</p>
-        
-        <form method="post" action="login">
-            <label>Email:</label>
-            <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/>
-            <% if !@user.nil? && @user.errors.include?("email") %>
-                <% @user.errors["email"].each do |error| %>
-                    <p class="error"><strong><%= error %></strong></p>
-                <% end %>
-            <% end %>
-            <br>
-            
-            <label>Password:</label>
-            <input type="password"  name="password" value="<%= h @user.password unless @user.nil? %>"/>
-            <% if !@user.nil? && @user.errors.include?("password") %>
-                <% @user.errors["password"].each do |error| %>
-                    <p class="error"><strong><%= error %></strong></p>
-                <% end %>
-            <% end %>
-            <br><br>
-            
-            <div id=buttongrouping>
+   <head>
+      <title>Login</title>
+      <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+   </head>
+    
+   <body>
+      <h1>Login</h1>
+       
+      <div class = "green_pop_up" <%="hidden" unless @registered%>>
+         <p>You have registered successfully</p>
+         <!-- CSS: green border to surround the text to indicate success -->
+      </div>
+       
+      <div class = "red_pop_up" <%="hidden" unless @redirected%>>
+         <p>You have been redirected because you have not logged in yet</p>
+         <!-- CSS: red border to surround the text to indicate access denied -->
+      </div>
+       
+      <p>Login with your credentials below:</p>
+      <form method="post" action="login">
+         <label>Email:</label>
+         <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/>
+          
+         <% if !@user.nil? && @user.errors.include?("email") %>
+         <% @user.errors["email"].each do |error| %>
+         <p class="error"><strong><%= error %></strong></p>
+         <% end %>
+         <% end %>
+         <br>
+         <label>Password:</label>
+         <input type="password"  name="password" value="<%= h @user.password unless @user.nil? %>"/>
+          
+         <% if !@user.nil? && @user.errors.include?("password") %>
+         <% @user.errors["password"].each do |error| %>
+         <p class="error"><strong><%= error %></strong></p>
+         <% end %>
+         <% end %>
+         <br><br>
+          
+         <div id=buttongrouping>
             <input type="submit" value="Login" class="button" name="submit_login"/>
             <br>
-        </form>
-        <a href="/register" id="go_to_register" class="button">Create an account</a>
-            </div>
-    </body>
+      </form>
+      <a href="/register" id="go_to_register" class="button">Create an account</a>
+      </div>
+       
+   </body>
 </html>
