@@ -39,23 +39,6 @@ nav a:hover {
     color: seagreen;
 }
 
-
-/* appropriate coloring for successful / unsuccessful messages */
-
-#logoutsuccessful, #logoutunsuccessful {
-    color:green;
-    font-family: "Verdana", sans-serif;
-    font-size:60px;
-}
-
-#logoutunsuccessful {
-    color: red;
-}
-
-#logout {
-  padding:40px;
-}
-
 /* button on sign in and register page */
 .button {
     display: inline-block;
@@ -77,6 +60,36 @@ nav a:hover {
 /* Bold the Labels */
 label {
     font-weight:bold;
+}
+
+/*Style the table in browsementors page */
+th {
+    text-align: left;
+    background: #bcbcbc;
+}
+
+td {
+    background: #efefef;
+}
+
+th, td {
+    padding: 5px;
+}
+
+/* appropriate coloring for successful / unsuccessful messages */
+
+#logoutsuccessful, #logoutunsuccessful {
+    color:green;
+    font-family: "Verdana", sans-serif;
+    font-size:60px;
+}
+
+#logoutunsuccessful {
+    color: red;
+}
+
+#logout {
+  padding:40px;
 }
 
 /* Draw a border for the contents of the page */
@@ -119,19 +132,6 @@ label {
   margin: 10px;
   padding: 20px;
   font-size: 30px;
-}
-
-th {
-    text-align: left;
-    background: #bcbcbc;
-}
-
-td {
-    background: #efefef;
-}
-
-th, td {
-    padding: 5px;
 }
 
 #boxes {
