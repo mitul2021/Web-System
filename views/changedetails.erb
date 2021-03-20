@@ -1,16 +1,16 @@
 <html>
-    <head>
-        <title>Change Details</title>
-        <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-   <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
+   <head>
+      <title>Change Details</title>
+      <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+   </head>
+    
+   <body>
+      <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
       <nav>
          <ul>
             <li>
                <a href="index">Home</a>
             </li>
-
             <li>
                <a href="profilecreate">Profile</a>
             </li>
@@ -20,8 +20,8 @@
          </ul>
       </nav>
        
-     <% else %> <!-- for mentees/admins, mentor list will be displayed -->
-             <nav>
+      <% else %> <!-- for mentees/admins, mentor list will be displayed -->
+      <nav>
          <ul>
             <li>
                <a href="index">Home</a>
@@ -36,66 +36,64 @@
                <a href="logout">Logout</a>
             </li>
          </ul>
-      </nav>   
-       <% end %>
-   
-        
-        <div id="changedetailsbody">
-          <h1>Profile</h1>
-        
-          <div id="flexcontainer">
+      </nav>
+      <% end %>
+       
+      <div id="changedetailsbody">
+         <h1>Profile</h1>
+         <div id="flexcontainer">
             <div>
-                <input type="submit" value="Profile Picture" name="submit_register"/><br>
-                <button type="button" class="button">Change Details</button><br>
+               <input type="submit" value="Profile Picture" name="submit_register"/><br>
+               <button type="button" class="button">Change Details</button><br>
             </div>
+             
             <div>
-                <form method="post" action="process-create-profile">
-                
-                <label>ID:</label>
-                <input type="number" name="id" value=""/><br>
-                
-                <label>Email:</label>
-                <input type="text" name="email" value=""/><br>
-            
-                <label>Password:</label>
-                <input type="text" name="password" value=""/><br>
-            
-                <label>First name:</label>
-                <input type="text" name="first_name" value=""/><br>
-            
-                <label>Surname:</label>
-                <input type="text" name="surname" value=""/><br> 
-            
-                <label>Age:</label>
-                <input type="number" name="age" value=""/><br>
-                
-                <label>Gender:</label>
-                <input type="text" name="gender" value=""/><br>
-            
-                <label>Contact number:</label>
-                <input type="text" name="contact_number" value=""/><br>
-                
-                <label>Profile degree title:</label>
-                <input type="text" name="profile_degree_title" value=""/><br>
-            
-                <label>Profile degree year:</label>
-                <input type="text" name="profile_degree_year" value=""/><br>
-            
-                <label>Profile interests:</label>
-                <input type="text" name="profile_interests" value=""/><br>
-                
-                <label>Profile text:</label>
-                <input type="text" name="profile_text" value=""/><br>
-            
-                <label>Linked mentor ID:</label>
-                <input type="number" name="linked_mentor_id" value=""/><br>
-                
-                <label>Current request ID:</label>
-                <input type="number" name="current_request_id" value=""/><br>
-           
-                </form>
+               <form method="post" action="process-create-profile">
+                  <label>ID:</label>
+                  <input type="number" name="id" value=""/><br>
+                   
+                  <label>Email:</label>
+                  <input type="text" name="email" value=""/><br>
+                   
+                  <label>Password:</label>
+                  <input type="text" name="password" value=""/><br>
+                   
+                  <label>First name:</label>
+                  <input type="text" name="first_name" value=""/><br>
+                   
+                  <label>Surname:</label>
+                  <input type="text" name="surname" value=""/><br> 
+                   
+                  <label>Age:</label>
+                  <input type="number" name="age" value=""/><br>
+                   
+                  <label>Gender:</label>
+                  <input type="text" name="gender" value=""/><br>
+                   
+                  <label>Contact number:</label>
+                  <input type="text" name="contact_number" value=""/><br>
+                   
+                  <label>Profile degree title:</label>
+                  <input type="text" name="profile_degree_title" value=""/><br>
+                   
+                  <label>Profile degree year:</label>
+                  <input type="text" name="profile_degree_year" value=""/><br>
+                   
+                  <label>Profile interests:</label>
+                  <input type="text" name="profile_interests" value=""/><br>
+                   
+                  <label>Profile text:</label>
+                  <input type="text" name="profile_text" value=""/><br>
+                   
+                  <label>Linked mentor ID:</label>
+                  <input type="number" name="linked_mentor_id" value=""/><br>
+                   
+                  <label>Current request ID:</label>
+                  <input type="number" name="current_request_id" value=""/><br>
+               </form>
             </div>
-          </div> 
-        </div>   
-    </body>
+         </div>
+      </div>
+       
+   </body>
 </html>
