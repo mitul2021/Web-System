@@ -17,8 +17,8 @@ get "/index" do
         response.delete_cookie("make-login-popup") #deleting the cookie
         
         @user_type = session[:user_type]
-        @mentorsID = session[:user_id]
-        puts @mentorsID
+        @user_id = session[:user_id]
+        puts @user_id
         erb :index
     else
         response.set_cookie("redirected-popup", value: 'true')
