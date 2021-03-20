@@ -44,7 +44,7 @@ class User < Sequel::Model
         
     end
     
-    def exist #for the register
+    def exist? #for the register
         db_user = User.first(email: email)
         
         #if user is nil return false, if db_user exists and it has the same password return true
