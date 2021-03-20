@@ -24,7 +24,7 @@ class User < Sequel::Model
     end
     
     def valid_login? #for the login
-        errors.add("email", "Combination of email and password does not match") if !self.exist?
+        errors.add("email", "Combination of email and password does not match") if !self.exist_login?
         
         return errors.empty? #if there are no errors we are good to go, and returns true
     end
@@ -44,11 +44,16 @@ class User < Sequel::Model
         
     end
     
-    def exist?
+    def exist #for the register
         db_user = User.first(email: email)
         
         #if user is nil return false, if db_user exists and it has the same password return true
         return !db_user.nil?
+    end
+    
+    def exist_login? #for the login
+        db_user = User.first(email: email)
+        return !db_user.nil? && db_user.password == self.password
     end
     
 end
