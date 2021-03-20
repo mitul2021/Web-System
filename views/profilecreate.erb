@@ -4,40 +4,53 @@
         <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <nav>
-          <ul>
+    <% if @role.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
+      <nav>
+         <ul>
             <li>
-                <a href="index">Home</a>
+               <a href="index">Home</a>
+            </li>
+
+            <li>
+               <a href="profilecreate">Profile</a>
             </li>
             <li>
-                <a href="browsementors">Mentor List</a>
+               <a href="logout">Logout</a>
+            </li>
+         </ul>
+      </nav>
+       
+     <% else %> <!-- for mentees/admins, mentor list will be displayed -->
+             <nav>
+         <ul>
+            <li>
+               <a href="index">Home</a>
             </li>
             <li>
-                <a href="profilecreate">Profile</a>
+               <a href="profilecreate">Profile</a>              
             </li>
             <li>
-                <a href="logout">Logout</a>
+               <a href="browsementors">Mentor List</a>
             </li>
-          </ul>
-        </nav>
+            <li>
+               <a href="logout">Logout</a>
+            </li>
+         </ul>
+      </nav>   
+       <% end %>
         
         <div id="profilecreatebody">
             <h1>Your Profile</h1>
             
             <div id="displayflex">
                 <div>
-                <input type="submit" value="Profile Picture" name="submit_register"/><br>
-                <button type="button" class="button">Change Details</button><br>
-            </div>
-            
+            <input type="submit" value="Profile Picture" class="button" name="submit_register"/><br>
+            </div>           
             <div>
                 <form method="post" action="createprofile">
                 
                 <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
-                
-                    <label>ID:</label>
-                    <input type="number" name="id" value=""/><br>
-                
+                               
                     <label>Email:</label>
                     <input type="text" name="email" value=""/><br>
             
@@ -54,34 +67,31 @@
                     <input type="number" name="age" value=""/><br>
                 
                     <label>Gender:</label>
+                    <select name="cars" id="cars">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option> 
+                    </select>
+                    <br>
                     <input type="text" name="gender" value=""/><br>
             
                     <label>Contact number:</label>
                     <input type="text" name="contact_number" value=""/><br>
                 
-                    <label>Profile degree title:</label>
+                    <label>Degree title:</label>
                     <input type="text" name="profile_degree_title" value=""/><br>
             
-                    <label>Profile degree year:</label>
+                    <label>Degree year:</label>
                     <input type="text" name="profile_degree_year" value=""/><br>
             
-                    <label>Profile interests:</label>
+                    <label>Interests:</label>
                     <input type="text" name="profile_interests" value=""/><br>
                 
                     <label>Profile text:</label>
                     <input type="text" name="profile_text" value=""/><br>
             
-                    <label>Linked mentor ID:</label>
-                    <input type="number" name="linked_mentor_id" value=""/><br>
-                
-                    <label>Current request ID:</label>
-                    <input type="number" name="current_request_id" value=""/><br>
-            
-            
+             
                 <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
-                    
-                    <label>ID:</label>
-                    <input type="number" name="id" value=""/><br>
                 
                     <label>Email:</label>
                     <input type="text" name="email" value=""/><br>
@@ -99,36 +109,35 @@
                     <input type="number" name="age" value=""/><br>
                 
                     <label>Gender:</label>
-                    <input type="text" name="gender" value=""/><br>
-            
+                    <select name="cars" id="cars">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option> 
+                    </select>
+            <br>
                     <label>Contact number:</label>
                     <input type="text" name="contact_number" value=""/><br>
                 
-                    <label>Profile job title:</label>
+                    <label>Job title:</label>
                     <input type="text" name="profile_job_title" value=""/><br>
             
-                    <label>Profile job information:</label>
+                    <label>Job information:</label>
                     <input type="text" name="profile_job_information" value=""/><br>
             
-                    <label>Profile interests:</label>
+                    <label>Interests:</label>
                     <input type="text" name="profile_interests" value=""/><br>
                 
                     <label>Profile text:</label>
                     <input type="text" name="profile_text" value=""/><br>
-            
-                    <label>Linked mentee ID:</label>
-                    <input type="number" name="linked_mentee_id" value=""/><br>
-                
-                    <label>Current request ID:</label>
-                    <input type="number" name="current_request_id" value=""/><br>
-                
              
                  <% else %>
                     <p>ERROR</p>
                     <!-- redirect to the home page "/index" -->
                   <% end %>
                 <% end %>
-        
+                        <br><button type="button" class="button">Change Details</button><br>
+
+
                </form>
               </div>
             </div>

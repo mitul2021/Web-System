@@ -4,14 +4,13 @@
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
    </head>
    <body>
+   <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
       <nav>
          <ul>
             <li>
                <a href="index">Home</a>
             </li>
-            <li>
-               <a href="browsementors">Mentor List</a>
-            </li>
+
             <li>
                <a href="profilecreate">Profile</a>
             </li>
@@ -20,6 +19,28 @@
             </li>
          </ul>
       </nav>
+       
+     <% else %> <!-- for mentees/admins, mentor list will be displayed -->
+             <nav>
+         <ul>
+            <li>
+               <a href="index">Home</a>
+            </li>
+            <li>
+               <a href="profilecreate">Profile</a>              
+            </li>
+            <li>
+               <a href="browsementors">Mentor List</a>
+            </li>
+            <li>
+               <a href="logout">Logout</a>
+            </li>
+         </ul>
+      </nav>   
+       <% end %>
+
+
+      
        
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>> 
             <p>Login successful</p> <!-- CSS: green border to surround the text to indicate success -->

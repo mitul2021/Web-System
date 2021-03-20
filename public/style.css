@@ -10,30 +10,32 @@ body {
 }
 
 nav {
-  margin: 55px;
-    text-align:center;
+  text-align:center;
 }
 
 nav ul li {
-    display:inline;
+    display:inline-block;
     margin: 25px;
     border: solid black;
-    padding: 5px;
+    padding: 8px;
     font-size: 35px;
     font-family: Calibri, serif;
+    border-radius: 20px;
+    background: lightbrown;
+
 }
 
-a:link {
+nav a:link {
      text-decoration:none;
     color: olive;
     font-weight:bold;
     
 }
 
-a:visited {
+nav a:visited {
     color: olive;
 }
-a:hover {
+nav a:hover {
     color: seagreen;
 }
 
