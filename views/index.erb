@@ -87,11 +87,11 @@
                               </td>
 
                               <td>
-                                  <a href="accept?id=<%= request.pair_id %>">Accept Mentorship</a>  
+                                  <a href="accept?id=<%= request.pair_id %>">Accept Request</a>  
                               </td>
 
                               <td>
-                                  <a href="decline?id=<%= request.pair_id %>">Decline Mentorship</a>
+                                  <a href="decline?id=<%= request.pair_id %>">Decline Request</a>
                               </td>
                             </tr>
                       <% end %>
@@ -134,7 +134,7 @@
                                 <a href="profile/<%= @menteeID %>">Profile</a>
                             </td>
                             <td>
-                                <a href="decline?id=<%= request.pair_id %>">Cancel</a> <!--now it cancels mentorship right away, later it will send request  for an admin-->
+                                <a href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a> <!--now it cancels mentorship right away, later it will send request  for an admin-->
                             </td>
                         </tr>
                     <% end %>
@@ -144,7 +144,7 @@
          <% elsif @user_type.eql?("admin") %>
              <p>admin info here</p>
          <% else %>
-             <p>error with retreiving user type, please try again at another time</p>
+             <p>error with retrieving user type, please try again at another time</p>
          <% end %>
           
       </div>
