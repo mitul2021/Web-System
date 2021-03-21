@@ -25,17 +25,17 @@ nav ul li {
  
 }
  
-nav a:link {
-     text-decoration:none;
-    color: olive;
+a:link {
+    text-decoration:none;
+    color: rgb(100,100,0);
     font-weight:bold;
     
 }
  
-nav a:visited {
-    color: olive;
+a:visited {
+    color: rgb(100,100,0);
 }
-nav a:hover {
+a:hover {
     color: seagreen;
 }
  
