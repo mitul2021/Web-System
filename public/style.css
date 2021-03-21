@@ -8,11 +8,11 @@ body {
   font-size:30px;
   padding: 5px;
 }
-
+ 
 nav {
   text-align:center;
 }
-
+ 
 nav ul li {
     display:inline-block;
     margin: 25px;
@@ -22,23 +22,23 @@ nav ul li {
     font-family: Calibri, serif;
     border-radius: 20px;
     background: lightbrown;
-
+ 
 }
-
+ 
 nav a:link {
      text-decoration:none;
     color: olive;
     font-weight:bold;
     
 }
-
+ 
 nav a:visited {
     color: olive;
 }
 nav a:hover {
     color: seagreen;
 }
-
+ 
 /* button on sign in and register page */
 .button {
     display: inline-block;
@@ -50,55 +50,55 @@ nav a:hover {
     font-size: 18px;
     font-family: Arial;
     padding: 10px;
-    width: 150px;
+    width: 200px;
     cursor: pointer;
     margin: 5px;
     font-weight: bold;
     text-decoration: none;
 }
-
+ 
 /* Bold the Labels */
 label {
     font-weight:bold;
 }
-
+ 
 /*Style the table in browsementors page */
 th {
     text-align: left;
     background: #bcbcbc;
 }
-
+ 
 td {
     background: #efefef;
 }
-
+ 
 th, td {
     padding: 5px;
 }
-
+ 
 /* appropriate coloring for successful / unsuccessful messages */
-
+ 
 #logoutsuccessful, #logoutunsuccessful {
     color:green;
     font-family: "Verdana", sans-serif;
     font-size:60px;
 }
-
+ 
 #logoutunsuccessful {
     color: red;
 }
-
+ 
 #logout {
   padding:40px;
 }
-
+ 
 /* Draw a border for the contents of the page */
 #changedetailsbody, #profilecreatebody {
     border: 10px solid black;
     margin: 0px 55px 0px 55px;
     padding-left: 20px;
 }
-
+ 
 /* Draw a border for the contents of the profile of mentor */
 #profileinfo {
     border: 3px ridge black;
@@ -106,7 +106,7 @@ th, td {
     top: 200px;
     padding: 10px;
 }
-
+ 
 #contactdetail{
     border: 3px ridge black;
     position: absolute;
@@ -114,26 +114,26 @@ th, td {
     font-size: 25px;
     padding: 20px;
 }
-
+ 
 /*Display of the Change Details page */
 #flexcontainer, #displayflex{
     display: flex;
 }
-
+ 
 #flexcontainer div {
   background-color: #f1f1f1;
   margin: 10px;
   padding: 20px;
   font-size: 30px;
 }
-
+ 
 #displayflex div {
   background-color: #f1f1f1;
   margin: 10px;
   padding: 20px;
   font-size: 30px;
 }
-
+ 
 #boxes {
     border: 2px solid;
     margin: 50px;
@@ -141,11 +141,10 @@ th, td {
     height: 500px;
     text-align:center;
 }
-
+ 
 #container {
     display: flex;
     justify-content:center;
 }
-
 
 
