@@ -58,6 +58,8 @@ class User < Sequel::Model
     
     def valid_login? #for the login
         errors.add("email", "Combination of email and password does not match") if !self.exist_login?
+        errors.add("password", "The password cannot be empty") if self.password.empty?
+        errors.add("email", "The email cannot be empty") if self.email.empty?
         
         return errors.empty? #if there are no errors we are good to go, and returns true
     end
