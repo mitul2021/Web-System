@@ -47,8 +47,9 @@
              
             <div>
                <form method="post" action="createprofile">
-                  <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
                   <% @user=User.first(id: @user_id) %>
+                  <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
+                  
                    
                   <label>First Name:</label>
                   <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
@@ -117,43 +118,49 @@
                   <input type="text" name="profile_text" value=<%= h @user.profile_text %>/><br>
                    
                   <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
-                  <label>Email:</label>
-                  <input type="text" name="email" value=""/><br>
+                  
                    
-                  <label>Password:</label>
-                  <input type="text" name="password" value=""/><br>
-                   
-                  <label>First name:</label>
-                  <input type="text" name="first_name" value=""/><br>
-                   
+                  <label>First Name:</label>
+                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                
                   <label>Surname:</label>
-                  <input type="text" name="surname" value=""/><br> 
-                   
-                  <label>Age:</label>
-                  <input type="number" name="age" value=""/><br>
+                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+            
+                  <%if @user.age.nil?%> <!-- Later to be change to year of birth-->
+                      <label>Year of Birth:</label>
+                      <select name="year_of_birth">
+                        <% (1900..2021).each do |i| %>
+                            <%= "<option value=\"#{i}\">#{i}</option>" %>
+                        <% end %>
+                      </select><br>
+                  <% else %>
+                       <label>Year of Birth: <%= @user.age%></label><br>
+                  <% end %>
                    
                   <label>Gender:</label>
-                  <select name="cars" id="cars">
-                     <option>Male</option>
-                     <option>Female</option>
-                     <option>Other</option>
+
+                  <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                  <% if !@user.gender.nil?%>
+                      <% gender[@user.gender] = true %>
+                  <%end%> 
+                  <select name="gender">
+                     <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                     <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                     <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
                   </select>
                   <br>
                    
                   <label>Contact number:</label>
-                  <input type="text" name="contact_number" value=""/><br>
+                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
                    
                   <label>Job title:</label>
-                  <input type="text" name="profile_job_title" value=""/><br>
-                   
-                  <label>Job information:</label>
-                  <input type="text" name="profile_job_information" value=""/><br>
+                  <input type="text" name="profile_job_title" value="<%= h @user.job_deg_cosmetic_name%>"/><br>
                    
                   <label>Interests:</label>
-                  <input type="text" name="profile_interests" value=""/><br>
+                  <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
                    
-                  <label>Profile text:</label>
-                  <input type="text" name="profile_text" value=""/><br>
+                  <label>Other Notes:</label>
+                  <input type="text" name="profile_text" value=<%= h @user.profile_text %>/><br>
                   <% else %>
                   <p>ERROR</p>
                   <!-- redirect to the home page "/index" -->
