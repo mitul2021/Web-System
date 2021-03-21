@@ -91,10 +91,8 @@
                   
                       <label>Your course:</label>
                       <select name="deg_id">
-                      <%puts @user.deg_id%>    
                         <% @courses = Course.all %>
                         <% @courses.each_with_index do |course, index| %>
-                            <%puts course.deg_id %>
                             <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>  ><%=course.deg_name_functional%></option>
                         <% end %>
                       </select>
