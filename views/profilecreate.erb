@@ -57,7 +57,7 @@
                   <label>Surname:</label>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
-                  <%if @user.age.nil?%> <!-- Later to be change to year of birth-->
+                  <%if @user.year_of_birth.nil?%> <!-- Later to be change to year of birth-->
                       <label>Year of Birth:</label>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
@@ -65,9 +65,9 @@
                         <% end %>
                       </select><br>
                   <% else %>
-                       <label>Year of Birth: <%= @user.age%></label>
+                       <label>Year of Birth: <%= @user.year_of_birth%></label>
                        <select name="year_of_birth" hidden>
-                       <option value="<%= @user.age%>"> </option>
+                       <option value="<%= @user.year_of_birth%>"> </option>
                        </select>
                    <br>
                   <% end %>
@@ -130,7 +130,7 @@
                   <label>Surname:</label>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
-                  <%if @user.age.nil?%> <!-- Later to be change to year of birth-->
+                  <%if @user.year_of_birth.nil?%> <!-- Later to be change to year of birth-->
                       <label>Year of Birth:</label>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
@@ -140,7 +140,7 @@
                   <% else %>
                        <label>Year of Birth: <%= @user.age%></label>
                        <select name="year_of_birth" hidden>
-                       <option value="<%= @user.age%>"> </option>
+                       <option value="<%= @user.year_of_birth%>"> </option>
                        </select>
                    <br>
                   <% end %>

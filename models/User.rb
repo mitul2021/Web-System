@@ -27,7 +27,7 @@ class User < Sequel::Model
 
         self.first_name = params.fetch("first_name"," ").strip
         self.surname = params.fetch("surname"," ").strip
-        self.age = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.year_of_birth = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
         self.gender = params.fetch("gender"," ").strip
         self.contact_number = params.fetch("contact_number"," ").strip
         #self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
@@ -41,7 +41,7 @@ class User < Sequel::Model
 
         self.first_name = params.fetch("first_name"," ").strip
         self.surname = params.fetch("surname"," ").strip
-        self.age = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.year_of_birth = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
         self.gender = params.fetch("gender"," ").strip
         self.contact_number = params.fetch("contact_number"," ").strip
         self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
