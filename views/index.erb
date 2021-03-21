@@ -90,12 +90,7 @@
                   <a href="profile/<%= @mentorID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="cancelMentorship()" href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a>
-                  <script>
-                      function cancelMentorship() {
-                          confirm("Are you sure you want to cancel mentorship? This action cannot be undone.")
-                      }
-                  </script>
+                  <a onclick="return confirm('Are you sure you want to cancel mentorship? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a>
                </td>
             </tr>
             <% end %>
@@ -131,12 +126,7 @@
                   <a href="profile/<%= @mentorID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="cancelRequest()" href="decline?id=<%= request.pair_id %>">Cancel request</a>
-                  <script>
-                      function cancelRequest() {
-                          confirm("Are you sure you want to cancel this request? This action cannot be undone.")
-                      }
-                  </script>
+                  <a onclick="return confirm('Are you sure you want to cancel this request? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Cancel request</a>
                </td>
             </tr>
             <% end %>
