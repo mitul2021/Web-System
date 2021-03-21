@@ -81,23 +81,25 @@
                   <br>
                    
                   <label>Contact number:</label>
-                  <input type="text" name="contact_number" value=""/><br>
+                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
                    
-                  <label>Which course is this most similar to?</label>
-                  <select name="deg_id">
-                    <% @courses = Course.all %>
-                    <% @courses.each do |course| %>
-                        <option value="<%=course.id%>"><%=course.deg_name_functional%></option>
-                    <% end %>
-                  </select>
+                  
+                      <label>Your course:</label>
+                      <select name="deg_id">
+                      <%puts @user.deg_id%>    
+                        <% @courses = Course.all %>
+                        <% @courses.each_with_index do |course, index| %>
+                            <%puts "#{course.deg_name_functional} #{index}"%>
+                            <option value="<%=course.id%>" <%="selected" if index+1==@user.deg_id%>  ><%=course.deg_name_functional%></option>
+                        <% end %>
+                      </select>
                   <br>
                    
                   <label>Degree year:</label>
                   <select name="degree_year">
                       <option value="foundation_year">Foundation Year</option>
                       <% (1..3).each do |i| %>
-                          <% @str="<option value=\"#{i}\">#{i}</option>" %>
-                          <%= @str %>
+                          <%= "<option value=\"#{i}\">#{i}</option>" %>
                       <% end %>
                       <option value="year_in_industry">Year In Industry</option>
                       <option value="masters">Masters Year</option>
@@ -105,7 +107,7 @@
                   </select><br>
                    
                   <label>Interests:</label>
-                  <input type="text" name="major_interest" value=""/><br>
+                  <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
                    
                    <label>Other Notes:</label>
                   <input type="text" name="profile_text" value=""/><br>
