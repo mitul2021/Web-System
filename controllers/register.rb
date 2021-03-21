@@ -8,7 +8,7 @@ post "/register" do
     @user.load_register(params) #load to the database
     @user.set_password_repeat(params.fetch("password_repeat"," ").strip) #won't be stored in DB
         
-    if(@user.valid?) #valid? includes password check, and invokes exist?
+    if(@user.valid_register?) #valid? includes password check, and invokes exist?
             @user.save_changes
             response.set_cookie("make-register-popup", value: 'true')
             redirect "/login"
