@@ -96,21 +96,25 @@
                   <br>
                    
                   <label>Degree year:</label>
-                  <select name="degree_year">
-                      <option value="foundation_year">Foundation Year</option>
-                      <% (1..3).each do |i| %>
-                          <%= "<option value=\"#{i}\">#{i}</option>" %>
-                      <% end %>
-                      <option value="year_in_industry">Year In Industry</option>
-                      <option value="masters">Masters Year</option>
-                      <option value="phd">PhD</option>
+                  <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+                  <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+                  <% selected = Array.new(keys.length) {false}%>
+                  <% if !@user.deg_year.nil?%>
+                       <% keys.each_with_index do |key, i| %>
+                           <%selected[i]=true if key==@user.deg_year %>
+                       <% end %>
+                  <% end %> 
+                  <select name="deg_year">
+                      <% for i in 0...keys.length do %>
+                          <option value="<%= keys[i]%>" <%="selected" if selected[i]%> > <%=values[i]%></option>
+                      <% end %> 
                   </select><br>
                    
                   <label>Interests:</label>
                   <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
                    
                    <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value=""/><br>
+                  <input type="text" name="profile_text" value=<%= h @user.profile_text %>/><br>
                    
                   <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
                   <label>Email:</label>
