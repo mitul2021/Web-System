@@ -32,19 +32,18 @@
          <input type="password"  name="password" value="<%= h @user.password unless @user.nil? %>"/>
           
          <% if !@user.nil? && @user.errors.include?("password") %>
-             <% @user.errors["password"].each do |error| %>
-                 <p class="error"><strong><%= error %></strong></p>
-             <% end %>
+         <% @user.errors["password"].each do |error| %>
+         <p class="error"><strong><%= error %></strong></p>
+         <% end %>
          <% end %>
          <br><br>
           
-         <!-- <div id=buttongrouping> -->
-            <input type="submit" value="Log in" class="button"/>
+         <div id=buttongrouping>
+            <input type="submit" value="Log in" class="button" name="submit_login"/>
             <br>
       </form>
-          <input type="submit" value="Create an account" class="button"/>
-      <!-- <a href="/register" id="go_to_register" class="button">Create an account</a> -->
-      <!-- </div> -->
+      <a href="/register" id="go_to_register" class="button">Create an account</a>
+      </div>
        
    </body>
 </html>
