@@ -9,6 +9,12 @@ get "/login" do
     @redirected = true if cookie == "true" #used by view to display the message
     response.delete_cookie("redirected-popup") #deleting the cookie
     
+    cookie = request.cookies.fetch("redirected-popup",0) #cookie when user requests mentorship
+    if cookie == "true"
+        puts "successfuly requested mentorship"
+        responce.delete_cookie("redirected-popup")
+    end
+    
     erb :login
 
 end
