@@ -23,14 +23,47 @@ class User < Sequel::Model
         self.password = params.fetch("password"," ").strip
     end
     
+    def load_details_mentee(params)
+
+        self.first_name = params.fetch("first_name"," ").strip
+        self.surname = params.fetch("surname"," ").strip
+        self.age = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.gender = params.fetch("gender"," ").strip
+        self.contact_number = params.fetch("contact_number"," ").strip
+        #self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
+        self.deg_id = params.fetch("deg_id"," ").strip
+        self.deg_year = params.fetch("deg_year"," ").strip
+        self.major_interest = params.fetch("major_interest"," ").strip
+        self.profile_text = params.fetch("profile_text"," ").strip
+    end
+    
+    def load_details_mentor(params)
+
+        self.first_name = params.fetch("first_name"," ").strip
+        self.surname = params.fetch("surname"," ").strip
+        self.age = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.gender = params.fetch("gender"," ").strip
+        self.contact_number = params.fetch("contact_number"," ").strip
+        self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
+        #self.deg_id = params.fetch("deg_id"," ").strip
+        self.profile_text = params.fetch("profile_text"," ").strip
+        #self.deg_year = params.fetch("deg_year"," ").strip
+        self.major_interest = params.fetch("major_interest"," ").strip
+    end
+    
+    def valid_details?
+        validate
+        return true
+    end
+    
     def valid_login? #for the login
         errors.add("email", "Combination of email and password does not match") if !self.exist_login?
         
         return errors.empty? #if there are no errors we are good to go, and returns true
     end
     
-    def validate #for the register
-        super
+    def valid_register? #for the register
+        validate
         errors.add("email", "email cannot be empty") if email.empty?
         errors.add("password", "password cannot be empty") if password.empty?
         errors.add("password_repeat", "password repeacannot be empty") if @password_repeat.empty?
