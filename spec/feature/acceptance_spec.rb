@@ -196,3 +196,18 @@ describe "the mentor list page" do
     expect(page).to have_content "Request Mentorship"
   end
 end
+
+describe "mentor-mentee pairing" do
+  it "allows a mentee request a mentor" do
+    add_user("mentor")
+    sign_in("mentor")
+    click_link "Logout"
+    visit "/login"
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Mentor List"
+    accept_confirm do
+      click_link "Request Mentorship"
+    end
+  end
+end
