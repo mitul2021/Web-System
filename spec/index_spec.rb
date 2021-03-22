@@ -19,11 +19,11 @@ RSpec.describe "Index page" do
 
     it "has css" do
       get "/index"
-      expect(page.has_css?)
+        page.has_css?('title', text: "Home")
     end
 
     it "displays the text 'welcome'" do
-        get "/index"
+        visit '/index'
         expect(page).to have_text("Welcome")
       end
   end
