@@ -34,8 +34,8 @@
                     <label>Which course is this most similar to?</label>
                     <select name="deg_title" value="course" style="width: 150px">
                         <% @courses.each do |course| %>
-                            <option value="<%course.deg_name_functional%>"></option>
-                            <!-- <option value="<%course.id%>"> <%course.deg_name_functional%> </option> -->
+                            <% @current_course_name = (course.get_deg_name).to_str.strip %>
+                            <option value="<%course.get_id%>"> <%= @current_course_name %> </option>
                         <% end %>
                     </select>
                         
