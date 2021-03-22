@@ -78,6 +78,25 @@ describe "the login page" do
   end
 end
 
-describe "the mentee page" do
+describe "the home page" do
+  it "will show the mentee page if logged in as a mentee" do
+    add_user("mentee")
+    sign_in("mentee")
+    expect(page).to have_content "Welcome, mentee!"
+    clear_database
+  end
   
+  it "will show the mentor page if logged in as a mentor" do
+    add_user("mentor")
+    sign_in("mentor")
+    expect(page).to have_content "Welcome, mentor!"
+    clear_database
+  end
+  
+  it "will show the mentor page if logged in as an admin" do
+    add_user("admin")
+    sign_in("admin")
+    expect(page).to have_content "Welcome, admin!"
+    clear_database
+  end
 end
