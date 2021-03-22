@@ -113,7 +113,21 @@ describe "the home page" do
     expect(page).to have_content "You haven't accepted any mentees yet."
     clear_database
   end
+end
+
+describe "the logout page" do
+  it "is accessible from the home page" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Logout"
+    expect(page).to have_content "Logout was successful"
+  end
   
-  
-  
+  it "contains link back to login" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Logout"
+    click_link "Log in"
+    expect(page).to have_content "Login"
+  end
 end
