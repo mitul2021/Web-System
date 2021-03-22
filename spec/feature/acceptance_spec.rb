@@ -99,4 +99,21 @@ describe "the home page" do
     expect(page).to have_content "Welcome, admin!"
     clear_database
   end
+  
+  it "will show if I have no mentor as a mentee" do
+    add_user("mentee")
+    sign_in("mentee")
+    expect(page).to have_content "You don't have a mentor at the moment."
+    clear_database
+  end
+  
+  it "will show if I have no mentee as a mentor" do
+    add_user("mentor")
+    sign_in("mentor")
+    expect(page).to have_content "You haven't accepted any mentees yet."
+    clear_database
+  end
+  
+  
+  
 end
