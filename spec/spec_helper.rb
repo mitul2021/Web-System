@@ -40,7 +40,7 @@ end
 
 def clear_database
 
- DB.from("users").delete
+ DB.from("acceptance_test").delete
 
 end
 
@@ -61,6 +61,13 @@ def sign_in(type) #test email is eg: mentee@email.com/mentor@email.com/admin@ema
   click_button "submit_login"
 end
 
-
+def add_mentor_mentee
+  add_user("mentor")
+  sign_in("mentor")
+  click_link "Logout"
+  visit "/login"
+  add_user("mentee")
+  sign_in("mentee")
+end
 
 clear_database

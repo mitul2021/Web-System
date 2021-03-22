@@ -186,12 +186,7 @@ describe "the mentor list page" do
   end
   
   it "contains list of available mentors" do
-    add_user("mentor")
-    sign_in("mentor")
-    click_link "Logout"
-    visit "/login"
-    add_user("mentee")
-    sign_in("mentee")
+    add_mentor_mentee
     click_link "Mentor List"
     expect(page).to have_content "Request Mentorship"
     clear_database
@@ -200,14 +195,75 @@ end
 
 describe "mentor-mentee pairing" do
   it "allows a mentee request a mentor" do
-    add_user("mentor")
-    sign_in("mentor")
-    click_link "Logout"
-    visit "/login"
-    add_user("mentee")
-    sign_in("mentee")
+    add_mentor_mentee
     click_link "Mentor List"
     click_link "Request Mentorship"
     clear_database
+  end
+  
+  it "shows a requested mentor on the home page" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    visit "/index"
+    expect(page).to have_link "Cancel request"
+    clear_database
+  end
+  
+  it "allows a mentee to cancel a request " do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    visit "/index"
+    click_link "Cancel request"
+    expect(page).to have_content "You don't have any ongoing requests."
+    clear_database
+  end
+  
+  it "shows mentors requested mentees" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    expect(page).to have_content "Accept Request"
+    clear_database
+  end
+  
+  it "allows mentors to decline mentees" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Decline Request"
+    expect(page).to have_content "You haven't recieved any new mentorship requests yet."
+  end
+  
+  it "allows mentors to accept mentees" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Accept Request"
+    expect(page).to have_content "Cancel Mentorship"
+  end
+  
+  it "allows mentors to cancel a mentorship" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Accept Request"
+    click_link "Cancel Mentorship"
+    expect(page).to have_content "You haven't accepted any mentees yet."
+  end
+  
+  it "shows mentees their mentor" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Accept Request"
+    sign_in("mentee")
+    expect(page).to have_content "Cancel Mentorship"
   end
 end
