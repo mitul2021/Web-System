@@ -1,7 +1,7 @@
 require "rspec"
 require "rack/test"
 
-require_relative "../controllers/browsementors"
+require_relative "../app"
 
 RSpec.describe "Browse mentors page" do
   include Rack::Test::Methods

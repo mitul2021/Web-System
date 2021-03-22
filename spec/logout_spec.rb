@@ -1,7 +1,7 @@
 require "rspec"
 require "rack/test"
 
-require_relative "../controllers/logout"
+require_relative "../app"
 
 RSpec.describe "Logout Page" do
   include Rack::Test::Methods
