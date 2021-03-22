@@ -1,5 +1,6 @@
 get "/request" do
     
+    #retreives user id from session key, so it can be added as part of a unuiqe pair in the db
     mentee_id = session[:user_id]
     puts "This is mentee's ID: #{session[:user_id]}"
     
@@ -8,6 +9,7 @@ get "/request" do
         @pair = Pair.new
 
         puts "This is mentor's ID: #{params["id"]}"
+        #creates the mentor and mentee id of the pair in the db
         @pair.mentor_id = params["id"]
         @pair.mentee_id = mentee_id
         @pair.status = 0 #every request is initially not accepted
