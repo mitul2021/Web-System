@@ -17,6 +17,7 @@ get "/request" do
             puts "We have valid request."
             @pair.save_changes
             puts "Changes saved. Redirecting..."
+            response.set_cookie("request-popup", value: 'true')
             
         else
             puts "Request is invalid."
