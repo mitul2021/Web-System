@@ -12,17 +12,17 @@ RSpec.describe "Browse mentors page" do
 
   describe "GET /browsementors" do
     it "has a status code of 200 (OK)" do
-      get "/logout"
+      get "/browsementors"
       expect(last_response.status).to eq(200)
     end
 
     it "has css" do
-      get "/logout"
+      get "/browsementors"
       expect(page.has_css?)
     end
 
     it "has mentors table" do
-        get "/logout"
+        get "/browsementors"
         expect(page.has_table?)
       end
   end
