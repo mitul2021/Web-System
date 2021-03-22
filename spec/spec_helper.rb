@@ -1,3 +1,5 @@
+ENV["APP_ENV"] = "acceptance_test"
+
 require "simplecov"
 SimpleCov.start do
   add_filter "/spec"
@@ -12,11 +14,7 @@ require_relative "../app"
 
 require "capybara/rspec"
 
-
-
-ENV["APP_ENV"] = "test"
-
-
+#session[:env] = "test"
 
 Capybara.app = Sinatra::Application
 
