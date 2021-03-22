@@ -1,5 +1,5 @@
 require "spec_helper"
-require_relative "../controllers/process-multichoicesurvey"
+require_relative "../app"
 
 RSpec.describe "Process MultiChoiceSurvey" do
   include Rack::Test::Methods

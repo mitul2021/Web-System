@@ -194,6 +194,7 @@ describe "the mentor list page" do
     sign_in("mentee")
     click_link "Mentor List"
     expect(page).to have_content "Request Mentorship"
+    clear_database
   end
 end
 
@@ -207,5 +208,6 @@ describe "mentor-mentee pairing" do
     sign_in("mentee")
     click_link "Mentor List"
     click_link "Request Mentorship"
+    clear_database
   end
 end
