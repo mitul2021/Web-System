@@ -1,7 +1,7 @@
 require "rspec"
 require "rack/test"
 
-require_relative "../controllers/index.rb"
+require_relative "../app"
 
 RSpec.describe "Index page" do
   include Rack::Test::Methods
