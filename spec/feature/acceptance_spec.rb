@@ -205,8 +205,7 @@ describe "mentor-mentee pairing" do
     add_mentor_mentee
     click_link "Mentor List"
     click_link "Request Mentorship"
-    visit "/home"
-    save_page
+    visit "/index"
     expect(page).to have_link "Cancel request"
     clear_database
   end
@@ -215,7 +214,7 @@ describe "mentor-mentee pairing" do
     add_mentor_mentee
     click_link "Mentor List"
     click_link "Request Mentorship"
-    visit "/home"
+    visit "/index"
     click_link "Cancel request"
     expect(page).to have_content "You don't have any ongoing requests."
     clear_database
