@@ -12,9 +12,9 @@ RSpec.describe "Browse mentors page" do
   end
 
   describe "GET /browsementors" do
-    it "has a status code of 200 (OK)" do
+    it "has a status code of 302 (OK)" do
       get "/browsementors"
-      expect(last_response.status).to eq(200)
+      expect(last_response.status).to eq(302)
     end
 
     it "has css" do

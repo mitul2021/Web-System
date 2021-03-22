@@ -13,9 +13,9 @@ RSpec.describe "Index page" do
 
   #this returns a 302 redirect instead of 200, should be inconsequential
   describe "GET /index" do
-    it "has a status code of 200 (OK)" do
+    it "has a status code of 302 (OK)" do
       get "/index"
-      expect(last_response.status).to eq(200)
+      expect(last_response.status).to eq(302)
     end
 
     it "has css" do

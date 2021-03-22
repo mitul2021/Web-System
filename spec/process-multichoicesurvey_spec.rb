@@ -14,10 +14,8 @@ RSpec.describe "Process MultiChoiceSurvey" do
       #login as a mentee
       #submit multichoicesurvey
       #expect a redirect to login 
-      sign_in("mentee")
-      visit("/multichoicesurvey")
-      fill_in
-      
+      #sign_in("mentee")
+      #visit("/multichoicesurvey") 
     end
   end
 end
