@@ -40,17 +40,16 @@ describe "the register page" do
   
   it "will add a user when all details are entered" do
     visit "/register"
-    add_test_mentee
-    save_page
+    add_user("mentee")
     expect(page).to have_content "You have registered successfully"
     clear_database
   end
   
   it "will not add an already existing user" do
     visit "/register"
-    add_test_mentee
+    add_user("mentee")
     visit "/register"
-    add_test_mentee
+    add_user("mentee")
     expect(page).to have_content "there exist user with such email address"
     clear_database
   end
@@ -58,8 +57,8 @@ end
 
 describe "the login page" do
   it "will sign in an existing user with correct details" do
-    add_test_mentee
-    sign_in
+    add_user("mentee")
+    sign_in("mentee")
     expect(page).to have_content "Login successful"
     clear_database
   end

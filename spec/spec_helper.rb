@@ -38,18 +38,18 @@ def clear_database
 
 end
 
-def add_test_mentee
+def add_user(type)
   visit "/register"
-  fill_in "email", with: "test@email.com"
+  fill_in "email", with: "#{type}@email.com"
   fill_in "password", with: "test12345"
   fill_in "password_repeat", with: "test12345"
-  choose "mentee"
+  choose "#{type}"
   click_button "submit_register"
 end
 
-def sign_in
+def sign_in(type)
   visit "/login"
-  fill_in "email", with: "test@email.com"
+  fill_in "email", with: "#{type}@email.com"
   fill_in "password", with: "test12345"
   click_button "submit_login"
 end
