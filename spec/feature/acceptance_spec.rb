@@ -167,3 +167,32 @@ describe "the profile page" do
     clear_database
   end
 end
+
+describe "the mentor list page" do
+  it "is accessible from the mentee page" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Mentor List"
+    expect(page).to have_content "Mentors"
+    clear_database
+  end
+  
+  it "is accessible from the admin page" do
+    add_user("admin")
+    sign_in("admin")
+    click_link "Mentor List"
+    expect(page).to have_content "Mentors"
+    clear_database
+  end
+  
+  it "contains list of available mentors" do
+    add_user("mentor")
+    sign_in("mentor")
+    click_link "Logout"
+    click_link "Login"
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Mentor List"
+    expect(page).to have_content "Request Membership"
+  end
+end
