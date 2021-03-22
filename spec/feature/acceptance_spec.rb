@@ -219,4 +219,24 @@ describe "mentor-mentee pairing" do
     expect(page).to have_content "You don't have any ongoing requests."
     clear_database
   end
+  
+  it "shows mentors requested mentees" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    expect(page).to have_content "Accept Request"
+    clear_database
+  end
+  
+  it "allows mentors to decline mentees" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Decline Request"
+    expect(page).to have_content "You haven't recieved any new mentorship requests yet."
+  end
+  
+  
 end
