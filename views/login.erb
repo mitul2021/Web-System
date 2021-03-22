@@ -18,10 +18,13 @@
       </div>
        
       <p>Login with your credentials below:</p>
+       
+      <!--defines form that posts to login.rb controller -->
       <form method="post" action="login">
          <label>Email:</label>
          <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/>
           
+         <!-- uses methods from the User model to print errors with email (eg: missing @)-->
          <% if !@user.nil? && @user.errors.include?("email") %>
          <% @user.errors["email"].each do |error| %>
          <p class="error"><strong><%= error %></strong></p>
@@ -31,6 +34,7 @@
          <label>Password:</label>
          <input type="password"  name="password" value="<%= h @user.password unless @user.nil? %>"/>
           
+         <!-- uses User model to print errors with password (eg: too short)-->
          <% if !@user.nil? && @user.errors.include?("password") %>
          <% @user.errors["password"].each do |error| %>
          <p class="error"><strong><%= error %></strong></p>
