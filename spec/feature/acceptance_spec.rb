@@ -189,10 +189,10 @@ describe "the mentor list page" do
     add_user("mentor")
     sign_in("mentor")
     click_link "Logout"
-    click_link "Login"
+    visit "/login"
     add_user("mentee")
     sign_in("mentee")
     click_link "Mentor List"
-    expect(page).to have_content "Request Membership"
+    expect(page).to have_content "Request Mentorship"
   end
 end
