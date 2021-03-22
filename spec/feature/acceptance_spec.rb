@@ -206,8 +206,6 @@ describe "mentor-mentee pairing" do
     add_user("mentee")
     sign_in("mentee")
     click_link "Mentor List"
-    accept_confirm do
-      click_link "Request Mentorship"
-    end
+    click_link "Request Mentorship"
   end
 end
