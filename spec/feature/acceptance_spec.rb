@@ -283,3 +283,45 @@ describe "mentor-mentee pairing" do
     clear_database
   end
 end
+
+describe "profile page" do
+  it "is accessible from the home page" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    expect(page).to have_content "Your Profile"
+    clear_database
+  end
+  
+  it "contains fields to change the users profile" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    expect(page).to have_field "first_name"
+    expect(page).to have_field "surname"
+    expect(page).to have_select "year_of_birth"
+    expect(page).to have_select "gender"
+    expect(page).to have_field "contact_number"
+    expect(page).to have_select "deg_id"
+    expect(page).to have_select "deg_year"
+    expect(page).to have_field "major_interest"
+    expect(page).to have_field "profile_text"
+    save_page
+    expect(page).to have_button "submit_change_details"
+    clear_database
+  end
+  
+  it "allows the user to edit and save their profile" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    fill_profile
+    click_button "submit_change_details"
+    visit "/profilecreate"
+    expect(page).to have_field "first_name", with: "Joe"
+    expect(page).to have_field "surname", with: "Bloggs"
+    expect(page).to have_field "contact_number", with: "07415638951"
+    expect(page).to have_field "major_interest", with: "Cycling"
+    clear_database
+  end
+end
