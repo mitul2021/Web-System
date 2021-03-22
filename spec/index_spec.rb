@@ -11,6 +11,7 @@ RSpec.describe "Index page" do
     Sinatra::Application
   end
 
+  #this returns a 302 redirect instead of 200, should be inconsequential
   describe "GET /index" do
     it "has a status code of 200 (OK)" do
       get "/index"
