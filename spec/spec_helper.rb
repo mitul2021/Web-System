@@ -38,12 +38,12 @@ def clear_database
 
 end
 
-def add_test_player
+def add_test_mentee
   visit "/register"
   fill_in "email", with: "test@email.com"
   fill_in "password", with: "test12345"
   fill_in "password_repeat", with: "test12345"
-  choose "mentee_Radio"
+  choose "mentee"
   click_button "submit_register"
 end
 
