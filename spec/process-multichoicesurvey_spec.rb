@@ -1,6 +1,4 @@
-require "rspec"
-require "rack/test"
-
+require "spec_helper"
 require_relative "../controllers/process-multichoicesurvey"
 
 RSpec.describe "Process MultiChoiceSurvey" do
@@ -16,6 +14,9 @@ RSpec.describe "Process MultiChoiceSurvey" do
       #login as a mentee
       #submit multichoicesurvey
       #expect a redirect to login 
+      sign_in("mentee")
+      visit("/multichoicesurvey")
+      fill_in
       
     end
   end

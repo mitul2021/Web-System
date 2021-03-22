@@ -53,11 +53,14 @@ def add_user(type)
   click_button "submit_register"
 end
 
-def sign_in(type)
+#signs in as the user given in type parameter 
+def sign_in(type) #test email is eg: mentee@email.com/mentor@email.com/admin@email.com
   visit "/login"
   fill_in "email", with: "#{type}@email.com"
   fill_in "password", with: "test12345"
   click_button "submit_login"
 end
+
+
 
 clear_database

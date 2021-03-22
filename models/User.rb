@@ -23,6 +23,12 @@ class User < Sequel::Model
         self.password = params.fetch("password"," ").strip
     end
     
+    def load_id(id) #loads user via their id
+        if session[:loggedin] #wont log in with id unless session is logged in for security
+            self.id = id
+        end
+    end
+    
     def load_details_mentee(params)
 
         self.first_name = params.fetch("first_name"," ").strip
@@ -49,6 +55,34 @@ class User < Sequel::Model
         self.profile_text = params.fetch("profile_text"," ").strip
         #self.deg_year = params.fetch("deg_year"," ").strip
         self.major_interest = params.fetch("major_interest"," ").strip
+    end
+        
+        
+    def load_survey(params)
+        #some of these fields are repeated in the profile page, removing some of these could be iteration 2
+        self.first_name = params.fetch("first_name"," ").strip
+        self.surname = params.fetch.fetch("surname"," ").strip
+        self.year_of_birth = params.fetch("year_of_birth"," ").strip.to_i
+        self.contact_number = params.fetch("contact_number"," ").strip
+        self.job_deg_cosmetic_name = params.fetch("course"," ").strip
+        self.deg_year = params.fetch("degree_year"," ").strip
+        self.intrests = params.fetch("intrests"," ").strip
+        self.profile_text = params.fetch("other_notes"," ").strip
+        #self.jobtitle = params.fetch["job_title"]
+        #self.jobinfo = params.fetch["form_field_mentor3"]
+        #commented as arnt references to these fields in particular in the db table
+        
+        self.interest1 = params.fetch("interest1"," ").strip
+        self.interest2 = params.fetch("interest2"," ").strip
+        self.interest3 = params.fetch("interest3"," ").strip
+        self.interest4 = params.fetch("interest4"," ").strip
+        self.interest5 = params.fetch("interest5"," ").strip
+        self.interest6 = params.fetch("interest6"," ").strip
+        self.interest7 = params.fetch("interest7"," ").strip
+        self.interest8 = params.fetch("interest8"," ").strip
+        self.interest9 = params.fetch("interest9"," ").strip
+        self.interest10 = params.fetch("interest10"," ").strip
+        self.major_interest = params.fetch("majorinterest"," ").strip
     end
     
     def valid_details?
