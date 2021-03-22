@@ -90,7 +90,7 @@
                   <a href="profile/<%= @mentorID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="return confirm('Are you sure you want to cancel mentorship? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a>
+                  <a href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a>
                </td>
             </tr>
             <% end %>
@@ -126,7 +126,7 @@
                   <a href="profile/<%= @mentorID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="return confirm('Are you sure you want to cancel this request? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Cancel request</a>
+                  <a href="decline?id=<%= request.pair_id %>">Cancel request</a>
                </td>
             </tr>
             <% end %>
@@ -168,7 +168,7 @@
                   <a href="profile/<%= @menteeID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="return confirm('Are you sure you want to cancel mentorship? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a> <!--now it cancels mentorship right away, later it will send request  for an admin-->
+                  <a href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a> <!--now it cancels mentorship right away, later it will send request  for an admin-->
                </td>
             </tr>
             <% end %>
@@ -204,10 +204,10 @@
                   <a href="profile/<%= @menteeID %>">Profile</a>
                </td>
                <td>
-                  <a onclick="return confirm('Are you sure you want to accept this request?')" href="accept?id=<%= request.pair_id %>">Accept Request</a>  
+                  <a href="accept?id=<%= request.pair_id %>">Accept Request</a>  
                </td>
                <td>
-                  <a onclick="return confirm('Are you sure you want to cancel this request? This action cannot be undone.')" href="decline?id=<%= request.pair_id %>">Decline Request</a>
+                  <a href="decline?id=<%= request.pair_id %>">Decline Request</a>
                </td>
             </tr>
             <% end %>
