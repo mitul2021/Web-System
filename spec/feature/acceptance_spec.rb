@@ -121,6 +121,7 @@ describe "the logout page" do
     sign_in("mentee")
     click_link "Logout"
     expect(page).to have_content "Logout was successful"
+    clear_database
   end
   
   it "contains link back to login" do
@@ -129,5 +130,40 @@ describe "the logout page" do
     click_link "Logout"
     click_link "Log in"
     expect(page).to have_content "Login"
+    clear_database
+  end
+end
+
+describe "the profile page" do
+  it "is accessible from the home page" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    expect(page).to have_content "Your Profile"
+    clear_database
+  end
+  
+  it "contains fields for changing personal info" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    expect(page).to have_content "First Name:"
+    clear_database
+  end
+  
+  it "contains fields for changing mentee information" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    expect(page).to have_content "Degree year:"
+    clear_database
+  end
+  
+  it "contains fields for changing mentor information" do
+    add_user("mentor")
+    sign_in("mentor")
+    click_link "Profile"
+    expect(page).to have_content "Job title:"
+    clear_database
   end
 end
