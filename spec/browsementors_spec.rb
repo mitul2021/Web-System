@@ -1,6 +1,7 @@
 require "rspec"
 require "rack/test"
 
+require_relative "spec_helper"
 require_relative "../app"
 
 RSpec.describe "Browse mentors page" do
@@ -18,12 +19,12 @@ RSpec.describe "Browse mentors page" do
 
     it "has css" do
       get "/browsementors"
-      expect(page.has_css?)
+      expect(page).to have_css
     end
 
     it "has mentors table" do
-        get "/browsementors"
-        expect(page.has_table?)
-      end
+      get "/browsementors"
+      expect(page.has_table?)
+    end
   end
 end

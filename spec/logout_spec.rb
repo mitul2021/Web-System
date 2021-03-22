@@ -1,6 +1,7 @@
 require "rspec"
 require "rack/test"
 
+require_relative "spec_helper"
 require_relative "../app"
 
 RSpec.describe "Logout Page" do
