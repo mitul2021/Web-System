@@ -68,4 +68,20 @@ def add_mentor_mentee
   sign_in("mentee")
 end
 
+def fill_profile
+  fill_in "first_name", with: "Joe"
+  fill_in "surname", with: "Bloggs"
+  select "1989", from: "year_of_birth"
+  select "Male", from: "gender"
+  fill_in "contact_number", with: "07415638951"
+  select "Geography", from: "deg_id"
+  select "2", from: "deg_year"
+  fill_in "major_interest", with: "Cycling"
+  fill_in "profile_text", with: "An absolute geezer"
+end
+
+def read_profile
+  expect(page).to have_field "first_name", text: "Joe" 
+end
+
 clear_database
