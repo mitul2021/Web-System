@@ -186,12 +186,7 @@ describe "the mentor list page" do
   end
   
   it "contains list of available mentors" do
-    add_user("mentor")
-    sign_in("mentor")
-    click_link "Logout"
-    visit "/login"
-    add_user("mentee")
-    sign_in("mentee")
+    add_mentor_mentee
     click_link "Mentor List"
     expect(page).to have_content "Request Mentorship"
     clear_database
@@ -200,14 +195,29 @@ end
 
 describe "mentor-mentee pairing" do
   it "allows a mentee request a mentor" do
-    add_user("mentor")
-    sign_in("mentor")
-    click_link "Logout"
-    visit "/login"
-    add_user("mentee")
-    sign_in("mentee")
+    add_mentor_mentee
     click_link "Mentor List"
     click_link "Request Mentorship"
+    clear_database
+  end
+  
+  it "shows a requested mentor on the home page" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    visit "/home"
+    save_page
+    expect(page).to have_link "Cancel request"
+    clear_database
+  end
+  
+  it "allows a mentee to cancel a request " do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    visit "/home"
+    click_link "Cancel request"
+    expect(page).to have_content "You don't have any ongoing requests."
     clear_database
   end
 end
