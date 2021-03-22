@@ -236,6 +236,7 @@ describe "mentor-mentee pairing" do
     sign_in("mentor")
     click_link "Decline Request"
     expect(page).to have_content "You haven't recieved any new mentorship requests yet."
+    clear_database
   end
   
   it "allows mentors to accept mentees" do
@@ -245,6 +246,7 @@ describe "mentor-mentee pairing" do
     sign_in("mentor")
     click_link "Accept Request"
     expect(page).to have_content "Cancel Mentorship"
+    clear_database
   end
   
   it "allows mentors to cancel a mentorship" do
@@ -255,6 +257,7 @@ describe "mentor-mentee pairing" do
     click_link "Accept Request"
     click_link "Cancel Mentorship"
     expect(page).to have_content "You haven't accepted any mentees yet."
+    clear_database
   end
   
   it "shows mentees their mentor" do
@@ -265,5 +268,18 @@ describe "mentor-mentee pairing" do
     click_link "Accept Request"
     sign_in("mentee")
     expect(page).to have_content "Cancel Mentorship"
+    clear_database
+  end
+  
+  it "allows mentees to cancel their mentorship" do
+    add_mentor_mentee
+    click_link "Mentor List"
+    click_link "Request Mentorship"
+    sign_in("mentor")
+    click_link "Accept Request"
+    sign_in("mentee")
+    click_link "Cancel Mentorship"
+    expect(page).to have_content "You don't have a mentor at the moment."
+    clear_database
   end
 end

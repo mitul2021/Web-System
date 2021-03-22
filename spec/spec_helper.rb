@@ -40,7 +40,7 @@ end
 
 def clear_database
 
- DB.from("acceptance_test").delete
+ DB.from("users").delete
 
 end
 
