@@ -37,7 +37,7 @@
                <td><%= mentor.job_deg_cosmetic_name%></td>
                <td><%= mentor.major_interest%>
                <td><a href="profile/<%= mentor.id %>">Profile</a></td>
-               <td><a onclick="return confirm('Are you sure you want to request a mentorship from this mentor?')" href="request?id=<%= mentor.id %>">Request Mentorship</a></td>
+               <td><a href="request?id=<%= mentor.id %>">Request Mentorship</a></td>
             </tr>
             <% end %>
          </table>
