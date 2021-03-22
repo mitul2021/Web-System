@@ -12,7 +12,7 @@ get "/login" do
     cookie = request.cookies.fetch("redirected-popup",0) #cookie when user requests mentorship
     if cookie == "true"
         puts "successfuly requested mentorship"
-        responce.delete_cookie("redirected-popup")
+        response.delete_cookie("redirected-popup")
     end
     
     erb :login
