@@ -2,7 +2,7 @@ require "logger"
 require "sequel"
 require "sqlite3"
 
-#name = "users" #hard-coded for testing purposes, it will depend on the type of user.
+
 
 # # find the path to the database
 #db_dir_path = File.dirname(__FILE__)
@@ -18,7 +18,8 @@ require "sqlite3"
 # # set up the Sequel database instance
 #DB = Sequel.sqlite(db_path, logger: Logger.new(log_path))
 
-name = "acceptance_test" #hard-coded for testing purposes, it will depend on the type of user.
+#name = "acceptance_test" 
+name = "users"
 
 # # find the path to the database
 db_dir_path = File.dirname(__FILE__)
