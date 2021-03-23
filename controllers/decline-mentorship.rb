@@ -8,6 +8,8 @@ get "/decline" do
             @pair = Pair[@pairID]
             @pair.delete
             #@pair.save_changes(validate: false) maybe we don't need that
+            response.set_cookie("decline-popup", value: 'true') if session[:user_type].eql?("mentee")
+            response.set_cookie("cancel-popup", value: 'true') if session[:user_type].eql?("mentor")
         end
     end
     redirect "/index"

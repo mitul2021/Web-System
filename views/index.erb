@@ -42,6 +42,21 @@
          <p>Login successful</p>
          <!-- CSS: green border to surround the text to indicate success -->
       </div>
+      
+      <div class = "green_pop_up" <%="hidden" unless @just_declined%>>
+         <p>You have successfully changed the status of your mentorship.</p>
+         <!-- CSS: green border to surround the text to indicate success -->
+      </div>
+       
+      <div class = "green_pop_up" <%="hidden" unless @just_cancelled%>>
+         <p>You have successfully cancelled your mentorship.</p>
+         <!-- CSS: green border to surround the text to indicate success -->
+      </div>
+       
+      <div class = "green_pop_up" <%="hidden" unless @just_accepted%>>
+         <p>You have successfully accepted your mentorship.</p>
+         <!-- CSS: green border to surround the text to indicate success -->
+      </div>
        
       <div>
          <p>Welcome, <%= @user_type %>!

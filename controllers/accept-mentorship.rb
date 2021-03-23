@@ -9,6 +9,7 @@ get "/accept" do
             @pair = Pair[@pairID]
             @pair.status = 1
             @pair.save_changes(validate: false) # Updates DB without validation (not secure so will have to be changed for iteration 2)
+            response.set_cookie("accept-popup", value: 'true')
         end
     end
     redirect "/index"
