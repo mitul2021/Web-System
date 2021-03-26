@@ -148,7 +148,7 @@ th, td {
 }
 
 /* Styling the popups */
-p.green_pop_up {
+.green_pop_up {
     border: darkgreen solid 5px;
     color: darkblue;
     background-color: lightgreen;
