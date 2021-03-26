@@ -119,6 +119,35 @@
                    <label>Other Notes:</label>
                   <input type="text" name="profile_text" value="<%= h @user.profile_text %>"/><br>
                    
+                   <!-- TO BE IMPLEMENTED PROPERLY                     -->
+                      <!--                 <label>Industry area:</label>
+                    <input type="text" name="form_field_mentor2" value=""/><br> -->
+<!--                     <% interestsArray = ["Exercise & Outdoors",
+                                        "Video or Board Games",
+                                        "Art or Graphic Design",
+                                        "Cooking",
+                                        "Technology",
+                                        "Music",
+                                        "Engineering",
+                                        "Reading or Writing",
+                                        "Travel",
+                                        "Pets or Animals"] %>
+                    <% (0..9).each do |i| %>
+                        <label>Do you like <% interestsArray[i] %>?</label>
+                        <select name="interest<% i %>">
+                            <option value="">-</option>
+                            <option value="y">Yes</option>
+                            <option value="n">No</option>
+                        </select>
+                    <% end %>
+
+                   <label>Which of these is your favourite interest?</label>
+                        <select name="majorinterest">
+                            <% (0..9).each do |i| %>
+                            <option value="<% i %>"><% interestsArray[i] %></option>
+                            <% end %>
+                        </select> -->
+                   
                   <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
                   
                    
@@ -167,6 +196,37 @@
                    
                   <label>Other Notes:</label>
                   <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                   
+<!-- TO BE IMPLEMENTED PROPERLY                     -->
+                      <!--                 <label>Industry area:</label>
+                    <input type="text" name="form_field_mentor2" value=""/><br> -->
+<!--                     <% interestsArray = ["Exercise & Outdoors",
+                                        "Video or Board Games",
+                                        "Art or Graphic Design",
+                                        "Cooking",
+                                        "Technology",
+                                        "Music",
+                                        "Engineering",
+                                        "Reading or Writing",
+                                        "Travel",
+                                        "Pets or Animals"] %>
+                    <% (0..9).each do |i| %>
+                        <label>Do you like <% interestsArray[i] %>?</label>
+                        <select name="interest<% i %>">
+                            <option value="">-</option>
+                            <option value="y">Yes</option>
+                            <option value="n">No</option>
+                        </select>
+                    <% end %>
+
+                   <label>Which of these is your favourite interest?</label>
+                        <select name="majorinterest">
+                            <% (0..9).each do |i| %>
+                            <option value="<% i %>"><% interestsArray[i] %></option>
+                            <% end %>
+                        </select> -->
+
+                   
                   <% else %>
                   <p>ERROR</p>
                   <!-- redirect to the home page "/index" -->
