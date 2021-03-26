@@ -54,6 +54,11 @@ a:hover {
     font-weight: bold;
     text-decoration: none;
 }
+
+/* Styling the popups */
+.green_pop_up {
+    color: green;
+}
  
 /* Bold the Labels */
 label {
