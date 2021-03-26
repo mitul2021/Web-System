@@ -330,6 +330,19 @@ describe "profile page" do
     expect(page).to have_content "Login"
     clear_database
   end
+  
+  it "allows mentors to change their profile" do
+    add_user("mentor")
+    sign_in("mentor")
+    click_link "Profile"
+    fill_in "first_name", with: "Joe"
+    fill_in "surname", with: "Bloggs"
+    click_button "submit_change_details"
+    visit "/profilecreate"
+    expect(page).to have_field "first_name", with: "Joe"
+    expect(page).to have_field "surname", with: "Bloggs"
+    clear_database
+  end
 end
 
 describe "the default page" do

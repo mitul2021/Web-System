@@ -85,18 +85,6 @@ class User < Sequel::Model
 #         self.major_interest = params.fetch("majorinterest"," ").strip
 #     end
     
-    def load_profile(params)
-        self.first_name = params.fetch("first_name"," ").strip
-        self.surname = params.fetch.fetch("surname"," ").strip
-        self.year_of_birth = params.fetch("year_of_birth"," ").strip.to_i
-        self.contact_number = params.fetch("contact_number"," ").strip
-        self.job_deg_cosmetic_name = params.fetch("course"," ").strip
-        self.deg_year = params.fetch("degree_year"," ").strip
-        self.intrests = params.fetch("intrests"," ").strip
-        self.profile_text = params.fetch("other_notes"," ").strip
-        self.gender = params.fetch("gender","").strip
-    end
-    
     def valid_details?
         validate
         return true
