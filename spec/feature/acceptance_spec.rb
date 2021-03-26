@@ -306,7 +306,6 @@ describe "profile page" do
     expect(page).to have_select "deg_year"
     expect(page).to have_field "major_interest"
     expect(page).to have_field "profile_text"
-    save_page
     expect(page).to have_button "submit_change_details"
     clear_database
   end
@@ -368,3 +367,22 @@ describe "page not found page" do
     clear_database
   end
 end
+
+# describe "mentor profile viewer" do
+#   it "the mentee can view the information of a mentor" do
+#     add_user("mentor")
+#     sign_in("mentor")
+#     visit "/profilecreate"
+#     fill_in "first_name", with: "Joe"
+#     fill_in "surname", with: "Bloggs"
+#     fill_in "contact_number", with: "04156789541"
+#     fill_in "job_deg_cosmetic_name", with: "CEO"
+#     fill_in "major_interest", with: "Cycling"
+#     click_link "Logout"
+#     visit "/login"
+#     add_user("mentee")
+#     sign_in("mentee")
+#     visit "profile"
+#     expect(page).to have_content "Major Interest: Cycling"
+#   end
+# end
