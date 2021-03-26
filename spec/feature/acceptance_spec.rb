@@ -324,4 +324,26 @@ describe "profile page" do
     expect(page).to have_field "major_interest", with: "Cycling"
     clear_database
   end
+  
+  it "redirects to login if not logged in" do
+    visit "/profilecreate"
+    expect(page).to have_content "Login"
+    clear_database
+  end
+end
+
+describe "the default page" do
+  it "will redirect to the login page if not logged in" do
+    visit "/"
+    expect(page).to have_content "Login"
+    clear_database
+  end
+  
+  it "will redirect to the home page if logged in" do
+    add_user("mentee")
+    sign_in("mentee")
+    visit "/"
+    expect(page).to have_content "Welcome, mentee!"
+    clear_database
+  end
 end
