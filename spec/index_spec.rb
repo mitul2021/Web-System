@@ -25,7 +25,7 @@ RSpec.describe "Index page" do
 
     it "displays the text 'welcome'" do
         visit '/index'
-        expect(page).to have_text("Welcome")
+        expect(page.has_text?("Welcome"))
       end
   end
 end

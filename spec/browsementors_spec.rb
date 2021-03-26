@@ -19,7 +19,7 @@ RSpec.describe "Browse mentors page" do
 
     it "has css" do
       get "/browsementors"
-      expect(page).to have_css
+      expect(page.has_css?("#changedetailsbody"))
     end
 
     it "has mentors table" do

@@ -19,7 +19,13 @@ RSpec.describe "Logout Page" do
 
     it "says 'Logout was successful'" do
       get "/logout"
-      expect(last_response.body).to eq("Logout was successful")
+      expect(last_response.body).to include("Logout was successful")
     end
+      
+    it "has a button that says 'Log in'" do
+      get "/logout"
+      expect(page.has_button?("Log in"))
+    end  
+      
   end
 end
