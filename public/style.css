@@ -55,10 +55,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* Styling the popups */
-.green_pop_up {
-    color: green;
-}
+
  
 /* Bold the Labels */
 label {
@@ -148,6 +145,17 @@ th, td {
 #container {
     display: flex;
     justify-content:center;
+}
+
+/* Styling the popups */
+p.green_pop_up {
+    border: darkgreen solid 5px;
+    color: darkblue;
+    background-color: lightgreen;
+    border-radius: 20px;
+    text-align: center;
+    margin: 0px 55px 20px 55px;
+
 }
 
 
