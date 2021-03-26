@@ -360,3 +360,11 @@ describe "the default page" do
     clear_database
   end
 end
+
+describe "page not found page" do
+  it "will redirect if page not found" do
+    visit "/jhkdsjlakhd"
+    expect(page).to have_content "Error 404: Page not found"
+    clear_database
+  end
+end
