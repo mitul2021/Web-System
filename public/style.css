@@ -1,7 +1,7 @@
 body {
   color: DarkSlateGray;
-  background-color:rgb(225, 226, 234);
-  font-family: "Garamond", serif;
+  background-color: rgb(225, 226, 234);
+  font-family: "Helvetica", sans-serif;
   line-height: 1.1;
   margin: 0;
   margin-bottom: 30vh;
@@ -19,7 +19,7 @@ nav ul li {
     border: solid black;
     padding: 8px;
     font-size: 35px;
-    font-family: Calibri, serif;
+    font-family: "Helvetica", sans-serif;
     border-radius: 20px;
 }
  
