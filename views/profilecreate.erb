@@ -19,7 +19,7 @@
             </li>
          </ul>
       </nav>
-      <% else %> <!-- for mentees/admins, mentor list will be displayed -->
+      <% elsif @role.eql?("mentee") %>
       <nav>
          <ul>
             <li>
@@ -36,6 +36,25 @@
             </li>
          </ul>
       </nav>
+      <% elsif @role.eql?("admin") %>
+      <nav>
+         <ul>
+            <li>
+               <a href="index">Home</a>
+            </li>
+            <li>
+               <a href="profilecreate">Profile</a>              
+            </li>
+            <li>
+               <a href="userlist">User List</a>
+            </li>
+            <li>
+               <a href="logout">Logout</a>
+            </li>
+         </ul>
+      </nav>
+      <% else %>
+         ERROR: user_type is not correct
       <% end %>
        
       <div id="profilecreatebody">
