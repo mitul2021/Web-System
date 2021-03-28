@@ -10,12 +10,20 @@ body {
 }
  
 nav {
-  text-align: center;
-  justify-content: space-between;  
+  
+ 
 }
  
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-evenly;  
+}
+
 nav ul li {
-    display: inline-block;
+/*     display: inline-block; */
+    text-align: center;
     margin: 25px;
     border: solid black 5px;
     padding: 8px;
