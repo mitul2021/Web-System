@@ -1,41 +1,52 @@
 <html>
     <head>
         <title>
-            <%= @user.first_name.nil? ? "Unknown" : (h @user.first_name) %>
-            <%= @user.surname.nil? ? "Unknown" : (h @user.surname) %>
+            <% if !@user.nil? %>
+                <%= @user.first_name.nil? ? "Unknown" : (h @user.first_name) %>
+                <%= @user.surname.nil? ? "Unknown" : (h @user.surname) %>
+            <%else %>
+                <%= "Nil user"%>
+            <% end %>
         </title>
         <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     
     <body>
-        <h1>
-            <%= @user.first_name.nil? ? "Unknown" : (h @user.first_name)%>
-            <%= @user.surname.nil? ? "Unknown" : (h @user.surname) %>
-            <%= @user.user_type.nil? ? "" : "- " + (h @user.user_type.capitalize()) %>
-        </h1>
-        <h2>
-            <%= @user.job_deg_cosmetic_name.nil? ? "No occupation" : (h @user.job_deg_cosmetic_name.capitalize()) %>
-        </h2>
+        <% if !@user.nil? %>
+            <h1>
+                <%= @user.first_name.nil? ? "Unknown" : (h @user.first_name)%>
+                <%= @user.surname.nil? ? "Unknown" : (h @user.surname) %>
+                <%= @user.user_type.nil? ? "" : "- " + (h @user.user_type.capitalize()) %>
+            </h1>
+            <h2>
+                <%= @user.job_deg_cosmetic_name.nil? ? "No occupation" : (h @user.job_deg_cosmetic_name.capitalize()) %>
+            </h2>
+
+            <div id="profileinfo">
+                <p>
+                    <%= @user.profile_text.nil? ? "No profile text given" : (h @user.profile_text) %>
+                </p>              
+                <p>
+                    Major Interest: 
+                    <%= @user.major_interest.nil? ? "No major interest given" : (h @user.major_interest) %>
+                </p>
+            </div>            
+
+            <div id="contactdetail">
+                <h3>Contact Details:</h3>
+                <p>
+                    Email: <%= @user.email.nil? ? "No email given" : (h @user.email) %>
+                </p>
+                <p>
+                    Phone: <%= @user.contact_number.nil? ? "No contact number given" : (h @user.contact_number) %> <!--maybe don't display phone for mentors?-->
+                </p> 
+            </div>
+        <% else %>
+        <%= "The user doesn't exist in the database."%>
+        <% end %>
         
-        <div id="profileinfo">
-            <p>
-                <%= @user.profile_text.nil? ? "No profile text given" : (h @user.profile_text) %>
-            </p>              
-            <p>
-                Major Interest: 
-                <%= @user.major_interest.nil? ? "No major interest given" : (h @user.major_interest) %>
-            </p>
-        </div>            
-        
-        <div id="contactdetail">
-            <h3>Contact Details:</h3>
-            <p>
-                Email: <%= @user.email.nil? ? "No email given" : (h @user.email) %>
-            </p>
-            <p>
-                Phone: <%= @user.contact_number.nil? ? "No contact number given" : (h @user.contact_number) %> <!--maybe don't display phone for mentors?-->
-            </p> 
-        </div>
-        
+        <a href="index">GO BACK</a>
     </body>
+    
+        
 </html>
