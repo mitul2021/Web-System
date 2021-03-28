@@ -39,14 +39,13 @@
                 </p>
                 <p>
                     Phone: <%= @user.contact_number.nil? ? "No contact number given" : (h @user.contact_number) %> <!--maybe don't display phone for mentors?-->
-                </p> 
+                </p>
+                
             </div>
+        
         <% else %>
         <%= "The user doesn't exist in the database."%>
         <% end %>
-        
-        <a href="index">GO BACK</a>
-    </body>
-    
-        
+        <a href=<% redirect back %>>GO BACK</a>
+    </body>  
 </html>

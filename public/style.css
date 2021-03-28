@@ -112,17 +112,15 @@ th, td {
 /* Draw a border for the contents of the profile of mentor */
 #profileinfo {
     border: 3px ridge black;
-    position: absolute;
-    top: 200px;
     padding: 10px;
+    display: flex;
 }
  
 #contactdetail{
     border: 3px ridge black;
-    position: absolute;
-    top: 440px;
     font-size: 25px;
     padding: 20px;
+    display: flex;
 }
  
 /*Display of the Change Details page */
