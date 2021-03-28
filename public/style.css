@@ -8,12 +8,7 @@ body {
   font-size: 30px;
   padding: 5px;
 }
- 
-nav {
-  
- 
-}
- 
+
 nav ul {
     display: flex;
     flex-direction: row;
@@ -112,17 +107,20 @@ th, td {
 /* Draw a border for the contents of the profile of mentor */
 #profileinfo {
     border: 3px ridge black;
-    padding: 10px;
-    display: flex;
+    padding: 10px 10px 50px 10px;
+    margin: 0px 55px 30px 55px;
+    display: inline-flex;
+    position: relative;
+    flex-direction: column;
+    
 }
- 
-#contactdetail{
-    border: 3px ridge black;
-    font-size: 25px;
-    padding: 20px;
-    display: flex;
+#go_back, #profile_header {
+    margin: 0px 55px 30px 55px;
 }
- 
+#profileinfo p {
+    margin: 0px;
+    width: auto;
+}
 /*Display of the Change Details page */
 #flexcontainer, #displayflex{
     display: flex;
