@@ -156,7 +156,7 @@
                </td>
             </tr>
             <% end %>
-         </table>
+         </table> <br>
          <% end %>
          <% elsif @user_type.eql?("mentor") %>
          <p>
@@ -345,13 +345,17 @@
             <% @mentee = User[pair.mentee_id] %>
             <tr>
                <td>
-                  <%= (@mentor.first_name.nil?) ? ("Not given") : (@mentor.first_name) %> 
-                  <%= (@mentor.surname.nil?) ? ("Not given") : (@mentor.surname) %>
+                  <a href="profile/<%= pair.mentor_id unless pair.mentor_id.nil? %>" > 
+                      <%= (@mentor.first_name.nil?) ? ("Not given") : (@mentor.first_name) %> 
+                      <%= (@mentor.surname.nil?) ? ("Not given") : (@mentor.surname) %>
+                  </a>  
                </td>
                 
                <td>
-                  <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                  <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
+                   <a href="profile/<%= pair.mentee_id unless pair.mentee_id.nil? %>">
+                      <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
+                      <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
+                   </a>
                </td> 
                
                <td>
