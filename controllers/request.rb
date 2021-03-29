@@ -22,6 +22,18 @@ get "/request" do
             response.set_cookie("request-popup", value: 'true')
             
         else
+            if @pair.errors.include?("general")
+                response.set_cookie("error-mentor-exists-popup", value: 'true')
+            end
+            
+            if @pair.errors.include?("mentor_id")
+                response.set_cookie("error-mentor_id-not-integer-popup", value: 'true')
+            end
+            
+            if @pair.errors.include?("mentee_id")
+                response.set_cookie("error-mentee_id-not-integer-popup", value: 'true')
+            end
+            
             puts "Request is invalid."
             puts "#{@pair.errors}"
         end
