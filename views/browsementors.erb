@@ -23,7 +23,6 @@
       </nav>
       <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
          <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>
-         <!-- CSS: green border to surround the text to indicate success -->
       </div>
       <div id="changedetailsbody">
          <h1>Mentors</h1>
@@ -36,14 +35,17 @@
             </tr>
             <% @mentors.each do |mentor| %>
             <tr>
-               <td><%= mentor.first_name %> <%= mentor.surname %></td>
-               <td><%= mentor.job_deg_cosmetic_name%></td>
-               <td><%= mentor.major_interest%>
-               <td><a href="profile/<%= mentor.id %>">Profile</a></td>
-               <td><a href="request?id=<%= mentor.id %>">Request Mentorship</a></td>
+               <td>
+                   <%= mentor.first_name.nil? ? "Unknown" : (h mentor.first_name) %>
+                   <%= mentor.surname.nil? ? "Unknown" : (h mentor.surname) %>
+                </td>
+               <td><%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %></td>
+                <td><%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %></td>
+               <td><a href="">Profile</a></td>
+               <td><a href="<%= mentor.id.nil? ? "/not_found" : "request?id=" + (h mentor.id) %>">Request Mentorship</a></td> 
             </tr>
             <% end %>
-         </table>
+         </table><br>
       </div>
        
    </body>
