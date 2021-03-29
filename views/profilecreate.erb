@@ -70,28 +70,28 @@
                   <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
                   
                    
-                  <label>First Name:</label>
+                  <label>First Name:</label><br>
                   <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
                 
-                  <label>Surname:</label>
+                  <label>Surname:</label><br>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
                   <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label>
+                      <label>Year of Birth:</label><br>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
                             <%= "<option value=\"#{i}\">#{i}</option>" %>
                         <% end %>
                       </select><br>
                   <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label>
+                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
                        <select name="year_of_birth" hidden>
                        <option value="<%= @user.year_of_birth%>"> </option>
                        </select>
                    <br>
                   <% end %>
                    
-                  <label>Gender:</label>
+                  <label>Gender:</label><br>
 
                   <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
                   <% if !@user.gender.nil?%>
@@ -104,11 +104,11 @@
                   </select>
                   <br>
                    
-                  <label>Contact number:</label>
+                  <label>Contact number:</label><br>
                   <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
                    
                   
-                      <label>Your course:</label>
+                      <label>Your course:</label><br>
                       <select name="deg_id">
                         <% @courses = Course.all %>
                         <% @courses.each_with_index do |course, index| %>
@@ -117,7 +117,7 @@
                       </select>
                   <br>
                    
-                  <label>Degree year:</label>
+                  <label>Degree year:</label><br>
                   <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
                   <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
                   <% selected = Array.new(keys.length) {false}%>
@@ -132,11 +132,11 @@
                       <% end %> 
                   </select><br>
                    
-                  <label>Interests:</label>
+                  <label>Interests:</label><br>
                   <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
                    
-                   <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>"/><br>
+                  <label>Other Notes:</label><br>
+                  <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= h @user.profile_text %>"></textarea><br>
                    
                    <!-- TO BE IMPLEMENTED PROPERLY                     -->
                       <!--                 <label>Industry area:</label>
@@ -170,28 +170,28 @@
                   <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
                   
                    
-                  <label>First Name:</label>
+                  <label>First Name:</label><br>
                   <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
                 
-                  <label>Surname:</label>
+                  <label>Surname:</label><br>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
                   <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label>
+                      <label>Year of Birth:</label><br>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
                             <%= "<option value=\"#{i}\">#{i}</option>" %>
                         <% end %>
                       </select><br>
                   <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label>
+                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
                        <select name="year_of_birth" hidden>
                        <option value="<%= @user.year_of_birth%>"> </option>
                        </select>
                    <br>
                   <% end %>
                    
-                  <label>Gender:</label>
+                  <label>Gender:</label><br>
 
                   <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
                   <% if !@user.gender.nil?%>
@@ -204,17 +204,17 @@
                   </select>
                   <br>
                    
-                  <label>Contact number:</label>
+                  <label>Contact number:</label><br>
                   <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
                    
-                  <label>Job title:</label>
+                  <label>Job title:</label><br>
                   <input type="text" name="job_deg_cosmetic_name" value="<%= h @user.job_deg_cosmetic_name%>"/><br>
                    
-                  <label>Interests:</label>
+                  <label>Interests:</label><br>
                   <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
                    
-                  <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                  <label>Other Notes:</label><br>
+                  <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= h @user.profile_text %>"></textarea><br>
                    
 <!-- TO BE IMPLEMENTED PROPERLY                     -->
                       <!--                 <label>Industry area:</label>
@@ -248,28 +248,28 @@
                    
                   <% else if @role.eql?("admin") %>
                   
-                  <label>First Name:</label>
-                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                  <label>First Name:</label><br>
+                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br><br>
                 
-                  <label>Surname:</label>
-                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+                  <label>Surname:</label><br>
+                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br><br>
             
                   <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label>
+                      <label>Year of Birth:</label><br>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
                             <%= "<option value=\"#{i}\">#{i}</option>" %>
                         <% end %>
-                      </select><br>
+                      </select>
                   <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label>
+                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
                        <select name="year_of_birth" hidden>
-                       <option value="<%= @user.year_of_birth%>"> </option>
+                           <option value="<%= @user.year_of_birth%>"> </option>
                        </select>
                    <br>
                   <% end %>
                    
-                  <label>Gender:</label>
+                  <label>Gender:</label><br>
 
                   <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
                   <% if !@user.gender.nil?%>
@@ -279,14 +279,14 @@
                      <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
                      <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
                      <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
-                  </select>
+                  </select><br>
                   <br>
                    
-                  <label>Contact number:</label>
-                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
+                  <label>Contact number:</label><br>
+                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br><br>
                    
-                  <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                  <label>Other Notes:</label><br>
+                  <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= h @user.profile_text %>"></textarea><br>
                   
                   <% else %>
                       <p>ERROR</p>

@@ -9,8 +9,8 @@
         
         <form method="post" action="/register">
             
-            <label>Enter Email:</label>
-            <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/>
+            <label>Enter Email:</label><br>
+            <input type="email" name="email" value="<%= h @user.email unless @user.nil? %>"/><br>
             <% if !@user.nil? && @user.errors.include?("email") %>
                 <% @user.errors["email"].each do |error| %>
                     <p class="error"><strong><%= error %></strong></p>
@@ -18,8 +18,8 @@
             <% end %>
             <br>
             
-            <label>Password:</label>
-            <input type="password" name="password" value="<%= h @user.password unless @user.nil? %>"/>
+            <label>Password:</label><br>
+            <input type="password" name="password" value="<%= h @user.password unless @user.nil? %>"/><br>
             <% if !@user.nil? && @user.errors.include?("password") %>
                 <% @user.errors["password"].each do |error| %>
                     <p class="error"><strong><%= error %></strong></p>
@@ -27,8 +27,8 @@
             <% end %>
             <br>
             
-            <label>Repeat Password:</label>
-            <input type="password" name="password_repeat" value="<%= h @user.password_repeat unless @user.nil? %>"/>
+            <label>Repeat Password:</label><br>
+            <input type="password" name="password_repeat" value="<%= h @user.password_repeat unless @user.nil? %>"/><br>
             <% if !@user.nil? && @user.errors.include?("password_repeat") %>
                 <% @user.errors["password_repeat"].each do |error| %>
                     <p class="error"><strong><%= error %></strong></p>
