@@ -32,12 +32,19 @@
                <th>Contact Number</th>
             </tr>
             <% @mentees.each do |mentee| %>
-            <tr>
-               <td><%= mentee.first_name %> <%= mentee.surname %></td>
-               <td><%= mentee.email %></td>
-               <td><%= mentee.contact_number %></td>
-               <td><a href="profile/<%= mentee.id %>">Profile</a></td>
-            </tr>
+               <% unless mentee.nil? %>
+                  <tr>
+                     <td>
+                        <%= h mentee.first_name unless mentee.first_name.nil? %>
+                        <%= h mentee.surname unless mentee.surname.nil?%>
+                     </td>
+                     <td><%= h mentee.email unless mentee.surname.nil? %></td>
+                     <td><%= h mentee.contact_number unless mentee.surname.nil? %></td>
+                     <td>
+                        <a href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
+                     </td>
+                  </tr>
+               <% end %>
             <% end %>
          </table>
          <br>
@@ -50,10 +57,15 @@
             </tr>
             <% @mentors.each do |mentor| %>
             <tr>
-               <td><%= mentor.first_name %> <%= mentor.surname %></td>
-               <td><%= mentor.job_deg_cosmetic_name%></td>
-               <td><%= mentor.major_interest%>
-               <td><a href="profile/<%= mentor.id %>">Profile</a></td>
+               <td>
+                     <%= h mentor.first_name unless mentor.first_name.nil? %>
+                     <%= h mentor.surname unless mentor.surname.nil?%>
+               </td>
+               <td><%=h mentor.job_deg_cosmetic_name unless mentor.job_deg_cosmetic_name.nil? %></td>
+               <td><%=h mentor.major_interest unless mentor.major_interest.nil? %>
+               <td>
+               <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+               </td>
             </tr>
             <% end %>
          </table>
