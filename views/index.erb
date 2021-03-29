@@ -3,383 +3,322 @@
       <title>Home</title>
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
    </head>
-    
+
    <body>
       <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
+         <nav>
+            <ul>
+               <li>
+                  <a href="index">Home</a>
+               </li>
+               <li>
+                  <a href="profilecreate">Profile</a>
+               </li>
+               <li>
+                  <a href="logout">Logout</a>
+               </li>
+            </ul>
+         </nav>
       <% elsif @user_type.eql?("mentee") %>
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>              
-            </li>
-            <li>
-               <a href="browsementors">Mentor List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
+         <nav>
+            <ul>
+               <li>
+                  <a href="index">Home</a>
+               </li>
+               <li>
+                  <a href="profilecreate">Profile</a>              
+               </li>
+               <li>
+                  <a href="browsementors">Mentor List</a>
+               </li>
+               <li>
+                  <a href="logout">Logout</a>
+               </li>
+            </ul>
+         </nav>
       <% elsif @user_type.eql?("admin") %> 
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>              
-            </li>
-            <li>
-               <a href="userlist">User List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav> 
+         <nav>
+            <ul>
+               <li>
+                  <a href="index">Home</a>
+               </li>
+               <li>
+                  <a href="profilecreate">Profile</a>              
+               </li>
+               <li>
+                  <a href="userlist">User List</a>
+               </li>
+               <li>
+                  <a href="logout">Logout</a>
+               </li>
+            </ul>
+         </nav> 
       <% end %>
-       
+
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
          <p>Login successful</p>
       </div>
-      
+
       <div class = "green_pop_up" <%="hidden" unless @just_declined%>>
          <p>You have successfully changed the status of your mentorship.</p>
       </div>
-       
+
       <div class = "green_pop_up" <%="hidden" unless @just_cancelled%>>
          <p>You have successfully cancelled your mentorship.</p>
       </div>
-       
+
       <div class = "green_pop_up" <%="hidden" unless @just_accepted%>>
          <p>You have successfully accepted your mentorship.</p>
       </div>
-       
-       
+
+
       <div id="changedetailsbody">
          <!-- propably repetion of the id selectors pls fix --> 
          <h1> Home</h1>
-         <p>Welcome, <%= @user_type %>! 
-         <% if @user_type.eql?("mentee") %>
-         <p>
-            As a mentee, you should fill in the multi choice survey by clicking the 'Profile' button.
-            Once you have filled in the survey, you can view or change details about your profile from the 'Profile' page.
-            Once your details have been filled in, you can view reccomended mentors for you from the 'Mentor List' page,
-            where you should chose a preferred mentor by clicking the 'request mentorship' button next to their name.
-            You will then be able to contact them via email once they have accepted your request.
-            You may logout at any time by pressing the 'Logout' button.
-         </p>
-         
-         <h1>Your mentor:</h1>
-         <% @requests = Pair.where(mentee_id: @user_id, status: 1) %>
-         <% if(@requests.empty?) %>
-         <p>You don't have a mentor at the moment.</p>
-         <% else %>
-          
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @mentorID = request.mentor_id %>
-            <% @mentor = User.first(id: @mentorID) %>
-            <tr>
-               <td>
-                  <%= (@mentor.first_name.nil?) ? ("Not given") : (@mentor.first_name) %> 
-                  <%= (@mentor.surname.nil?) ? ("Not given") : (@mentor.surname) %>
-               </td>
-               <td>
-                  <%= (@mentor.email.nil?) ? ("Not given") : (@mentor.email) %>
-               </td>
-               <td>
-                  <%= (@mentor.contact_number.nil?) ? ("Not given") : (@mentor.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @mentorID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a>
-               </td>
-            </tr>
+         <p>Welcome, <%=(h @user_type )%>!
+         <!--MENTEE--> 
+         <% if @user_type.eql?("mentee") %> 
+            <p>
+               As a mentee, you should fill in the multi choice survey by clicking the 'Profile' button.
+               Once you have filled in the survey, you can view or change details about your profile from the 'Profile' page.
+               Once your details have been filled in, you can view reccomended mentors for you from the 'Mentor List' page,
+               where you should chose a preferred mentor by clicking the 'request mentorship' button next to their name.
+               You will then be able to contact them via email once they have accepted your request.
+               You may logout at any time by pressing the 'Logout' button.
+            </p>
+
+            <h1>Your mentor:</h1>
+            <% @requests = Pair.where(mentee_id: @user_id, status: 1) %>
+            <% if(@requests.empty?) %>
+               <p>You don't have a mentor at the moment.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentor = User.first(id: request.mentor_id) %>
+                     <%unless @mentor.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
+                              <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentor.email.nil?) ? ("Not given") : (h @mentor.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentor.contact_number.nil?) ? ("Not given") : (h @mentor.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <a href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table>
             <% end %>
-         </table>
-         <% end %>
-          
-         <h1>Your mentorship requests:</h1>
-         <% @requests = Pair.where(mentee_id: @user_id, status: 0) %>
-         <% if(@requests.empty?) %>
-         <p>You don't have any ongoing requests.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @mentorID = request.mentor_id %>
-            <% @mentor = User.first(id: @mentorID) %>
-            <tr>
-               <td>
-                  <%= (@mentor.first_name.nil?) ? ("Not given") : (@mentor.first_name) %> 
-                  <%= (@mentor.surname.nil?) ? ("Not given") : (@mentor.surname) %>
-               </td>
-               <td>
-                  <%= (@mentor.email.nil?) ? ("Not given") : (@mentor.email) %>
-               </td>
-               <td>
-                  <%= (@mentor.contact_number.nil?) ? ("Not given") : (@mentor.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @mentorID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="decline?id=<%= request.pair_id %>">Cancel request</a>
-               </td>
-            </tr>
+
+
+            <h1>Your mentorship requests:</h1>
+            <% @requests = Pair.where(mentee_id: @user_id, status: 0) %>
+            <% if(@requests.empty?) %>
+               <p>You don't have any ongoing requests.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+
+                  <% @requests.each do |request| %>
+                     <% @mentor = User.first(id: request.mentor_id) %>
+                     <%unless @mentor.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
+                              <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentor.email.nil?) ? ("Not given") : (h @mentor.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentor.contact_number.nil?) ? ("Not given") : (h @mentor.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <a href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Request</a>  
+                           </td>
+                        </tr>                  
+                     <% end %>
+                  <% end %>
+               </table> <br>
             <% end %>
-         </table> <br>
-         <% end %>
-         <% elsif @user_type.eql?("mentor") %>
-         <p>
-            As a mentor, you can fill in the multi choice survey by clicking the 'Profile' button.
-            Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
-            When all details have been filled in, you can view any requests for menteeship from the 'View Requests button',
-            where you can accept or deny requests.
-         </p>
-         <h1>Your mentees:</h1>
-         <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
-         <% if(@requests.empty?) %>
-         <p>You haven't accepted any mentees yet.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @menteeID = request.mentee_id %>
-            <% @mentee = User.first(id: @menteeID) %>
-            <tr>
-               <td>
-                  <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                  <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
-               </td>
-               <td>
-                  <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
-               </td>
-               <td>
-                  <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @menteeID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="decline?id=<%= request.pair_id %>">Cancel Mentorship</a> <!--now it cancels mentorship right away, later it will send request  for an admin-->
-               </td>
-            </tr>
-            <% end %>
-         </table>
-         <% end %>
-          
-         <h1>Your requests:</h1>
-         <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
-         <% if(@requests.empty?) %>
-         <p>You haven't recieved any new mentorship requests yet.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @menteeID = request.mentee_id %>
-            <% @mentee = User.first(id: @menteeID) %>
-            <tr>
-               <td>
-                  <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                  <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
-               </td>
-               <td>
-                  <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
-               </td>
-               <td>
-                  <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @menteeID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="accept?id=<%= request.pair_id %>">Accept Request</a>  
-               </td>
-               <td>
-                  <a href="decline?id=<%= request.pair_id %>">Decline Request</a>
-               </td>
-            </tr>
-            <% end %>
-         </table>
-         <% end %>
-         
-         
-          
-         <% elsif @user_type.eql?("admin") %>
-         
-         <p>
-            As an admin, you can fill in the multi choice survey by clicking the 'Profile' button.
-            Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
-            When all details have been filled in, you can view any requests made by mentees or mentors and you can choose
-            to approve or reject their requests.
-         </p>
-         <h1>Mentee requests:</h1>
-         <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
-         <% if(@requests.empty?) %>
-         <p>You haven't received any new requests from mentees yet.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @menteeID = request.mentee_id %>
-            <% @mentee = User.first(id: @menteeID) %>
-            <tr>
-               <td>
-                  <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                  <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
-               </td>
-               <td>
-                  <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
-               </td>
-               <td>
-                  <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @menteeID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="approve?id=<%= request.pair_id %>">Approve Request</a>
-               </td>
-               <td>
-                  <a href="deny?id=<%= request.pair_id %>">Deny Request</a>
-               </td> 
-            </tr>
-            <% end %>
-         </table>
-         <% end %>
-          
-         <h1>Mentor requests:</h1>
-         <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
-         <% if(@requests.empty?) %>
-         <p>You haven't recieved any new requests from mentors yet.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Name</th>
-               <th>Email</th>
-               <th>Contact Number</th>
-            </tr>
-            <% @requests.each do |request| %>
-            <% @menteeID = request.mentee_id %>
-            <% @mentee = User.first(id: @menteeID) %>
-            <tr>
-               <td>
-                  <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                  <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
-               </td>
-               <td>
-                  <%= (@mentee.email.nil?) ? ("Not given") : (@mentee.email) %>
-               </td>
-               <td>
-                  <%= (@mentee.contact_number.nil?) ? ("Not given") : (@mentee.contact_number) %>
-               </td>
-               <td>
-                  <a href="profile/<%= @menteeID %>">Profile</a>
-               </td>
-               <td>
-                  <a href="approve?id=<%= request.pair_id %>">Approve Request</a>  
-               </td>
-               <td>
-                  <a href="deny?id=<%= request.pair_id %>">Deny Request</a>
-               </td>
-            </tr>
-            <% end %>
-         </table>
-         <% end %>
-          
-          
-         <h1>View pairings:</h1>
-         <% @pairs = Pair.all %>
-         <% if(@pairs.empty?) %>
-         <p>There are no current pairs between mentees and mentors.</p>
-         <% else %>
-         <table>
-            <tr>
-               <th>Mentor</th>
-               <th>Mentee</th>
-               <th>Status</th>
-            </tr>
-            <% @pairs.each do |pair| %>
-            <% @mentor = User[pair.mentor_id] %>
-            <% @mentee = User[pair.mentee_id] %>
-            <tr>
-               <td>
-                  <a href="profile/<%= pair.mentor_id unless pair.mentor_id.nil? %>" > 
-                      <%= (@mentor.first_name.nil?) ? ("Not given") : (@mentor.first_name) %> 
-                      <%= (@mentor.surname.nil?) ? ("Not given") : (@mentor.surname) %>
-                  </a>  
-               </td>
-                
-               <td>
-                   <a href="profile/<%= pair.mentee_id unless pair.mentee_id.nil? %>">
-                      <%= (@mentee.first_name.nil?) ? ("Not given") : (@mentee.first_name) %> 
-                      <%= (@mentee.surname.nil?) ? ("Not given") : (@mentee.surname) %>
-                   </a>
-               </td> 
+            
                
-               <td>
-                  <% if !pair.status.nil? %>     
-                      <% if pair.status == 1 %>
-                          <%= "Accepted" %>
-                      <% elsif pair.status == 0 %>
-                          <%= "Currently being reviewed" %>
-                      <% else %>
-                          <%= "Status unknown" %>
-                      <% end %>
-                  <% else %>
-                      <%= "Does not exist" %>
-                  <% end %> 
-               </td> 
-            </tr>
+         <!--MENTOR-->
+         <% elsif @user_type.eql?("mentor") %>
+            <p>
+               As a mentor, you can fill in the multi choice survey by clicking the 'Profile' button.
+               Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
+               When all details have been filled in, you can view any requests for menteeship from the 'View Requests button',
+               where you can accept or deny requests.
+            </p>
+
+            <h1>Your mentees:</h1>
+            <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
+            <% if(@requests.empty?) %>
+               <p>You haven't accepted any mentees yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentee = User.first(id: request.mentee_id) %>
+                     <%unless @mentee.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <a href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table>
             <% end %>
-         </table><br>
-         <% end %> 
-          
+
+            <h1>Your requests:</h1>
+            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
+            <% if(@requests.empty?) %>
+               <p>You haven't recieved any new mentorship requests yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentee = User.first(id: request.mentee_id) %>
+                     <%unless @mentee.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <a href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
+                           </td>
+                           <td>
+                              <a href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table>
+            <% end %>
+
+
+            <!--ADMIN-->
+         <% elsif @user_type.eql?("admin") %>
+
+            <p>
+               As an admin, you can fill in the multi choice survey by clicking the 'Profile' button.
+               Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
+               When all details have been filled in, you can view any requests made by mentees or mentors and you can choose
+               to approve or reject their requests.
+            </p>
+            <h1>User requests:</h1>
+            <p>Place holder for user request<p>
+            
+
+
+            <h1>View pairings:</h1>
+            <% @pairs = Pair.all %>
+            <% if(@pairs.empty?) %>
+               <p>There are no current pairs between mentees and mentors.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Mentor</th>
+                     <th>Mentee</th>
+                     <th>Status</th>
+                  </tr>
+                  <% @pairs.each do |pair| %>
+                     <% @mentor = User[pair.mentor_id] %>
+                     <% @mentee = User[pair.mentee_id] %>
+                     <tr>
+                        <% unless @mentor.nil? %>
+                           <td>
+                              <a href="profile/<%= (h pair.mentor_id) unless pair.mentor_id.nil? %>" > 
+                                 <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
+                                 <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
+                              </a>  
+                           </td>
+                        <%end%>
+                        <% unless @mentee.nil? %>
+                           <td>
+                              <a href="profile/<%= (h pair.mentee_id) unless pair.mentee_id.nil? %>">
+                                 <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                                 <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                              </a>
+                           </td> 
+                        <%end%>
+                        <td>
+                           <% if !pair.status.nil? %>     
+                              <% if pair.status == 1 %>
+                                 <%= "Accepted" %>
+                              <% elsif pair.status == 0 %>
+                                 <%= "Currently being reviewed" %>
+                              <% else %>
+                                 <%= "Status unknown" %>
+                              <% end %>
+                           <% else %>
+                              <%= "Does not exist" %>
+                           <% end %> 
+                        </td> 
+                     </tr>
+                  <% end %>
+               </table><br>
+            <% end %> 
+
+         <!--ERROR-->
          <% else %>
-         <p>error with retrieving user type, please try again at another time</p>
+            <p>error with retrieving user type, please try again at another time</p>
          <% end %>
       </div>
-       
+
    </body>
 </html>
