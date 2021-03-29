@@ -41,7 +41,7 @@
                 </td>
                <td><%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %></td>
                 <td><%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %></td>
-               <td><a href="">Profile</a></td>
+               <td><a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a></td>
                <td><a href="<%= mentor.id.nil? ? "/not_found" : "request?id=" + (h mentor.id) %>">Request Mentorship</a></td> 
             </tr>
             <% end %>
