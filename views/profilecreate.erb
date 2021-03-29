@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
    <head>
       <title>Profile</title>
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
@@ -76,7 +76,7 @@
                   <label>Surname:</label>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
-                  <%if @user.year_of_birth.nil?%> <!-- Later to be change to year of birth-->
+                  <%if @user.year_of_birth.nil?%>
                       <label>Year of Birth:</label>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
@@ -123,7 +123,7 @@
                   <% selected = Array.new(keys.length) {false}%>
                   <% if !@user.deg_year.nil?%>
                        <% keys.each_with_index do |key, i| %>
-                           <%selected[i]=true if key==@user.deg_year %>
+                           <% selected[i]=true if key==@user.deg_year %>
                        <% end %>
                   <% end %> 
                   <select name="deg_year">
@@ -176,7 +176,7 @@
                   <label>Surname:</label>
                   <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
             
-                  <%if @user.year_of_birth.nil?%> <!-- Later to be change to year of birth-->
+                  <%if @user.year_of_birth.nil?%>
                       <label>Year of Birth:</label>
                       <select name="year_of_birth">
                         <% (1900..2021).each do |i| %>
@@ -246,11 +246,55 @@
                         </select> -->
 
                    
+                  <% else if @role.eql?("admin") %>
+                  
+                  <label>First Name:</label>
+                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                
+                  <label>Surname:</label>
+                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+            
+                  <%if @user.year_of_birth.nil?%>
+                      <label>Year of Birth:</label>
+                      <select name="year_of_birth">
+                        <% (1900..2021).each do |i| %>
+                            <%= "<option value=\"#{i}\">#{i}</option>" %>
+                        <% end %>
+                      </select><br>
                   <% else %>
-                  <p>ERROR</p>
+                       <label>Year of Birth: <%= @user.year_of_birth%></label>
+                       <select name="year_of_birth" hidden>
+                       <option value="<%= @user.year_of_birth%>"> </option>
+                       </select>
+                   <br>
+                  <% end %>
+                   
+                  <label>Gender:</label>
+
+                  <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                  <% if !@user.gender.nil?%>
+                      <% gender[@user.gender] = true %>
+                  <%end%> 
+                  <select name="gender">
+                     <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                     <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                     <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+                  </select>
+                  <br>
+                   
+                  <label>Contact number:</label>
+                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
+                   
+                  <label>Other Notes:</label>
+                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                  
+                  <% else %>
+                      <p>ERROR</p>
+                   
                   <!-- redirect to the home page "/index" -->
                   <% end %>
                   <% end %>
+                  <% end %> 
                   <br>
                   <input type="submit" class="button" value="Change Details" name="submit_change_details"/>
                   <br>

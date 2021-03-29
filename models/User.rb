@@ -7,6 +7,7 @@ class User < Sequel::Model
         @password_repeat = p
     end
     
+    
     def password_repeat #getter for the password_repeat field
         @password_repeat
     end
@@ -18,16 +19,19 @@ class User < Sequel::Model
         self.user_type = params.fetch("user_type"," ").strip
     end
     
+    
     def load_login(params)
         self.email = params.fetch("email"," ").strip
         self.password = params.fetch("password"," ").strip
     end
+    
     
     def load_id(id) #loads user via their id
         if session[:loggedin] #wont log in with id unless session is logged in for security
             self.id = id
         end
     end
+    
     
     def load_details_mentee(params)
 
@@ -41,7 +45,9 @@ class User < Sequel::Model
         self.deg_year = params.fetch("deg_year"," ").strip
         self.major_interest = params.fetch("major_interest"," ").strip
         self.profile_text = params.fetch("profile_text"," ").strip
+    
     end
+    
     
     def load_details_mentor(params)
 
@@ -56,6 +62,20 @@ class User < Sequel::Model
         #self.deg_year = params.fetch("deg_year"," ").strip
         self.major_interest = params.fetch("major_interest"," ").strip
     end
+    
+    
+    def load_details_admin(params)
+
+        self.first_name = params.fetch("first_name"," ").strip
+        self.surname = params.fetch("surname"," ").strip
+        self.year_of_birth = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.gender = params.fetch("gender"," ").strip
+        self.contact_number = params.fetch("contact_number"," ").strip
+        self.profile_text = params.fetch("profile_text"," ").strip
+    
+    end
+    
+    
         
         
 #     def load_survey(params) #redundant method, refactor in iteration 2 when multichoice survey is integrated 
