@@ -71,10 +71,10 @@
                   
                    
                   <label>First Name:</label>
-                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br>
                 
                   <label>Surname:</label>
-                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br>
             
                   <%if @user.year_of_birth.nil?%>
                       <label>Year of Birth:</label>
@@ -105,14 +105,16 @@
                   <br>
                    
                   <label>Contact number:</label>
-                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
+                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br>
                    
                   
                       <label>Your course:</label>
                       <select name="deg_id">
                         <% @courses = Course.all %>
                         <% @courses.each_with_index do |course, index| %>
-                            <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>  ><%=course.deg_name_functional%></option>
+                            <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>>
+                              <%=course.deg_name_functional%>
+                            </option>
                         <% end %>
                       </select>
                   <br>
@@ -133,10 +135,10 @@
                   </select><br>
                    
                   <label>Interests:</label>
-                  <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
+                  <input type="text" name="major_interest" value="<%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br>
                    
-                   <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>"/><br>
+                  <label>Other Notes:</label>
+                  <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br>
                    
                    <!-- TO BE IMPLEMENTED PROPERLY                     -->
                       <!--                 <label>Industry area:</label>
@@ -166,15 +168,16 @@
                             <option value="<% i %>"><% interestsArray[i] %></option>
                             <% end %>
                         </select> -->
-                   
+
+                  <!--MENTOR -->
                   <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
                   
                    
                   <label>First Name:</label>
-                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br>
                 
                   <label>Surname:</label>
-                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br>
             
                   <%if @user.year_of_birth.nil?%>
                       <label>Year of Birth:</label>
@@ -205,16 +208,16 @@
                   <br>
                    
                   <label>Contact number:</label>
-                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
+                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br>
                    
                   <label>Job title:</label>
-                  <input type="text" name="job_deg_cosmetic_name" value="<%= h @user.job_deg_cosmetic_name%>"/><br>
+                  <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br>
                    
                   <label>Interests:</label>
-                  <input type="text" name="major_interest" value="<%= h @user.major_interest %>" /><br>
+                  <input type="text" name="major_interest" value="<%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br>
                    
                   <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                  <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br>
                    
 <!-- TO BE IMPLEMENTED PROPERLY                     -->
                       <!--                 <label>Industry area:</label>
@@ -249,10 +252,10 @@
                   <% else if @role.eql?("admin") %>
                   
                   <label>First Name:</label>
-                  <input type="text" name="first_name" value="<%= h @user.first_name %>"/><br>
+                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br>
                 
                   <label>Surname:</label>
-                  <input type="text" name="surname" value="<%= h @user.surname %>"/><br>
+                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br>
             
                   <%if @user.year_of_birth.nil?%>
                       <label>Year of Birth:</label>
@@ -283,10 +286,10 @@
                   <br>
                    
                   <label>Contact number:</label>
-                  <input type="text" name="contact_number" value="<%= h @user.contact_number %>"/><br>
+                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br>
                    
                   <label>Other Notes:</label>
-                  <input type="text" name="profile_text" value="<%= h @user.profile_text %>" /><br>
+                  <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br>
                   
                   <% else %>
                       <p>ERROR</p>
