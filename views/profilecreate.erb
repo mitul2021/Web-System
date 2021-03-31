@@ -154,7 +154,8 @@
                         <% end %>
 
                         <label>Other Notes:</label><br>
-                        <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
+                        <br>
                         
                         <!--MENTOR -->
                         <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
@@ -201,8 +202,6 @@
                         
                         <label>Interests:</label><br>
                         <% @usr_interests = Userinterest.where(user_id: @user_id) %>
-                        <% puts @user_id%>
-                        <% puts @usr_interests%>
                         <%if @usr_interests.empty?%>
                            <p>You didn't enter any details about interests yet.</p>
                         <% else %>
@@ -217,7 +216,8 @@
                         <% end %>
                         
                         <label>Other Notes:</label><br>
-                        <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
+                        <br>
                                           
                         <% else if @role.eql?("admin") %>
                         
@@ -259,7 +259,8 @@
                         <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
                         
                         <label>Other Notes:</label><br>
-                        <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
+                        <br>
                         
                         <% else %>
                            <p>ERROR</p>
