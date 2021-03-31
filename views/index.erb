@@ -117,7 +117,7 @@
                               <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                              <a onclick="return cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
                            </td>
                         </tr>
                      <% end %>
@@ -156,7 +156,7 @@
                               <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="cancelRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Request</a>  
+                              <a onclick="return cancelRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Request</a>  
                            </td>
                         </tr>                  
                      <% end %>
@@ -203,7 +203,7 @@
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                              <a onclick="return cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
                            </td>
                         </tr>
                      <% end %>
@@ -240,10 +240,10 @@
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="acceptRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
+                              <a onclick="return acceptRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
                            </td>
                            <td>
-                              <a onclick="denyRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
+                              <a onclick="return denyRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
                            </td>
                         </tr>
                      <% end %>
