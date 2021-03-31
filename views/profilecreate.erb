@@ -63,242 +63,330 @@
             <div>
                <input type="submit" value="Profile Picture" class="button" name="profile_picture"/><br>
             </div>
-             
-            <div>
-               <form method="post" action="profilecreate">
-                  <% @user=User.first(id: @user_id) %>
-                  <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
+
+            <%if @change%> 
+               <div>
+               
                   
-                   
-                  <label>First Name:</label><br>
-                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
-                
-                  <label>Surname:</label><br>
-                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
-            
-                  <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label><br>
-                      <select name="year_of_birth">
-                        <% (1900..2021).each do |i| %>
-                            <%= "<option value=\"#{i}\">#{i}</option>" %>
-                        <% end %>
-                      </select><br>
-                  <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
-                       <select name="year_of_birth" hidden>
-                       <option value="<%= @user.year_of_birth%>"> </option>
-                       </select><br> 
-                  <% end %>
-                   
-                  <label>Gender:</label><br>
-
-                  <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
-                  <% if !@user.gender.nil?%>
-                      <% gender[@user.gender] = true %>
-                  <%end%> 
-                  <select name="gender">
-                     <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
-                     <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
-                     <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
-                  </select><br><br>
-                   
-                  <label>Contact number:</label><br>
-                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
-                   
+                     <!-- CHANGING DETAILS-->
+                     <form method="post" action="profilecreate">
+                        <% @user=User.first(id: @user_id) %>
+                        <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
+                        
+                        
+                        <label>First Name:</label><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                     
+                        <label>Surname:</label><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
                   
-                      <label>Your course:</label><br>
-                      <select name="deg_id">
-                        <% @courses = Course.all %>
-                        <% @courses.each_with_index do |course, index| %>
-                            <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>>
-                              <%=course.deg_name_functional%>
-                            </option>
-                        <% end %>
-                      </select><br><br>
-                   
-                  <label>Degree year:</label><br>
-                  <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
-                  <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
-                  <% selected = Array.new(keys.length) {false}%>
-                  <% if !@user.deg_year.nil?%>
-                       <% keys.each_with_index do |key, i| %>
-                           <% selected[i]=true if key==@user.deg_year %>
-                       <% end %>
-                  <% end %> 
-                  <select name="deg_year">
-                      <% for i in 0...keys.length do %>
-                          <option value="<%= keys[i]%>" <%="selected" if selected[i]%> > <%=values[i]%></option>
-                      <% end %> 
-                  </select><br><br>
-                   
-<!--                   <label>Interests:</label><br>
-                  <input type="text" name="major_interest" value="%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br> -->
-                   
-                  <label>Other Notes:</label><br>
-                  <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
-                   
-                   <!-- TO BE IMPLEMENTED PROPERLY                     -->
-                      <!--                 <label>Industry area:</label>
-                    <input type="text" name="form_field_mentor2" value=""/><br> -->
-<!--                     <% interestsArray = ["Exercise & Outdoors",
-                                        "Video or Board Games",
-                                        "Art or Graphic Design",
-                                        "Cooking",
-                                        "Technology",
-                                        "Music",
-                                        "Engineering",
-                                        "Reading or Writing",
-                                        "Travel",
-                                        "Pets or Animals"] %>
-                    <% (0..9).each do |i| %>
-                        <label>Do you like <% interestsArray[i] %>?</label>
-                        <select name="interest<% i %>">
-                            <option value="">-</option>
-                            <option value="y">Yes</option>
-                            <option value="n">No</option>
-                        </select>
-                    <% end %>
-
-                   <label>Which of these is your favourite interest?</label>
-                        <select name="majorinterest">
-                            <% (0..9).each do |i| %>
-                            <option value="<% i %>"><% interestsArray[i] %></option>
-                            <% end %>
-                        </select> -->
-
-                  <!--MENTOR -->
-                  <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
-                  
-                   
-                  <label>First Name:</label><br>
-                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
-                
-                  <label>Surname:</label><br>
-                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
-            
-                  <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label><br>
-                      <select name="year_of_birth">
-                        <% (1900..2021).each do |i| %>
-                            <%= "<option value=\"#{i}\">#{i}</option>" %>
-                        <% end %>
-                      </select><br>
-                  <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
-                       <select name="year_of_birth" hidden>
-                       <option value="<%= @user.year_of_birth%>"> </option>
-                       </select><br>
-                  <% end %>
-                   
-                  <label>Gender:</label><br>
-
-                  <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
-                  <% if !@user.gender.nil?%>
-                      <% gender[@user.gender] = true %>
-                  <%end%> 
-                  <select name="gender">
-                     <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
-                     <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
-                     <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
-                  </select><br><br>
-                  
-                   
-                  <label>Contact number:</label><br>
-                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
-                   
-                  <label>Job title:</label><br>
-                  <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
-                   
-<!--                   <label>Interests:</label><br>
-                  <input type="text" name="major_interest" value="%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br> -->
-                   
-                  <label>Other Notes:</label><br>
-                  <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br><br>
-                   
-<!-- TO BE IMPLEMENTED PROPERLY                     -->
-                      <!--                 <label>Industry area:</label>
-                    <input type="text" name="form_field_mentor2" value=""/><br> -->
-<!--                     <% interestsArray = ["Exercise & Outdoors",
-                                        "Video or Board Games",
-                                        "Art or Graphic Design",
-                                        "Cooking",
-                                        "Technology",
-                                        "Music",
-                                        "Engineering",
-                                        "Reading or Writing",
-                                        "Travel",
-                                        "Pets or Animals"] %>
-                    <% (0..9).each do |i| %>
-                        <label>Do you like <% interestsArray[i] %>?</label>
-                        <select name="interest<% i %>">
-                            <option value="">-</option>
-                            <option value="y">Yes</option>
-                            <option value="n">No</option>
-                        </select>
-                    <% end %>
-
-                   <label>Which of these is your favourite interest?</label>
-                        <select name="majorinterest">
-                            <% (0..9).each do |i| %>
-                            <option value="<% i %>"><% interestsArray[i] %></option>
-                            <% end %>
-                        </select> -->
-
-                   
-                  <% else if @role.eql?("admin") %>
-                  
-                  <label>First Name:</label><br>
-                  <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
-                
-                  <label>Surname:</label><br>
-                  <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
-            
-                  <%if @user.year_of_birth.nil?%>
-                      <label>Year of Birth:</label><br>
-                      <select name="year_of_birth">
-                        <% (1900..2021).each do |i| %>
-                            <%= "<option value=\"#{i}\">#{i}</option>" %>
-                        <% end %>
-                      </select>
-                  <% else %>
-                       <label>Year of Birth: <%= @user.year_of_birth%></label><br>
-                       <select name="year_of_birth" hidden>
+                        <%if @user.year_of_birth.nil?%>
+                           <label>Year of Birth:</label><br>
+                           <select name="year_of_birth">
+                              <% (1900..2021).each do |i| %>
+                                 <%= "<option value=\"#{i}\">#{i}</option>" %>
+                              <% end %>
+                           </select><br>
+                        <% else %>
+                           <label>Year of Birth: <%= @user.year_of_birth%></label><br>
+                           <select name="year_of_birth" hidden>
                            <option value="<%= @user.year_of_birth%>"> </option>
-                       </select>
-                   <br>
-                  <% end %>
-                   
-                  <label>Gender:</label><br>
+                           </select><br> 
+                        <% end %>
+                        
+                        <label>Gender:</label><br>
 
-                  <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
-                  <% if !@user.gender.nil?%>
-                      <% gender[@user.gender] = true %>
-                  <%end%> 
-                  <select name="gender">
-                     <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
-                     <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
-                     <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
-                  </select><br>
-                  <br>
-                   
-                  <label>Contact number:</label><br>
-                  <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
-                   
-                  <label>Other Notes:</label><br>
-                  <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
+                        <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                        <% if !@user.gender.nil?%>
+                           <% gender[@user.gender] = true %>
+                        <%end%> 
+                        <select name="gender">
+                           <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                           <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                           <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+                        </select><br><br>
+                        
+                        <label>Contact number:</label><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
+                        
+                        
+                           <label>Your course:</label><br>
+                           <select name="deg_id">
+                              <% @courses = Course.all %>
+                              <% @courses.each_with_index do |course, index| %>
+                                 <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>>
+                                    <%=course.deg_name_functional%>
+                                 </option>
+                              <% end %>
+                           </select><br><br>
+                        
+                        <label>Degree year:</label><br>
+                        <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+                        <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+                        <% selected = Array.new(keys.length) {false}%>
+                        <% if !@user.deg_year.nil?%>
+                           <% keys.each_with_index do |key, i| %>
+                                 <% selected[i]=true if key==@user.deg_year %>
+                           <% end %>
+                        <% end %> 
+                        <select name="deg_year">
+                           <% for i in 0...keys.length do %>
+                              <option value="<%= keys[i]%>" <%="selected" if selected[i]%> > <%=values[i]%></option>
+                           <% end %> 
+                        </select><br><br>
+
+
+                        <label>Interests:</label><br>
+                        <% @usr_interests = Userinterest.where(user_id: @user_id) %>
+                        <% puts @user_id%>
+                        <% puts @usr_interests%>
+                        <%if @usr_interests.empty?%>
+                           <p>You didn't enter any details about interests yet.</p>
+                        <% else %>
+                           <ul>
+                              <% @usr_interests.each do | usr_interest |%>
+                                 <li>
+                                    <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+                                    <%=  @interest.description %>
+                                 </li>
+                              <% end %>
+                           </ul>
+                        <% end %>
+
+                        <label>Other Notes:</label><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
+                        
+                        <!--MENTOR -->
+                        <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
+                        
+                        
+                        <label>First Name:</label><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                     
+                        <label>Surname:</label><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
                   
+                        <%if @user.year_of_birth.nil?%>
+                           <label>Year of Birth:</label><br>
+                           <select name="year_of_birth">
+                              <% (1900..2021).each do |i| %>
+                                 <%= "<option value=\"#{i}\">#{i}</option>" %>
+                              <% end %>
+                           </select><br>
+                        <% else %>
+                           <label>Year of Birth: <%= @user.year_of_birth%></label><br>
+                           <select name="year_of_birth" hidden>
+                           <option value="<%= @user.year_of_birth%>"> </option>
+                           </select><br>
+                        <% end %>
+                        
+                        <label>Gender:</label><br>
+
+                        <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                        <% if !@user.gender.nil?%>
+                           <% gender[@user.gender] = true %>
+                        <%end%> 
+                        <select name="gender">
+                           <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                           <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                           <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+                        </select><br><br>
+                        
+                        
+                        <label>Contact number:</label><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
+                        
+                        <label>Job title:</label><br>
+                        <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
+                        
+                        <label>Interests:</label><br>
+                        <% @usr_interests = Userinterest.where(user_id: @user_id) %>
+                        <% puts @user_id%>
+                        <% puts @usr_interests%>
+                        <%if @usr_interests.empty?%>
+                           <p>You didn't enter any details about interests yet.</p>
+                        <% else %>
+                           <ul>
+                              <% @usr_interests.each do | usr_interest |%>
+                                 <li>
+                                    <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+                                    <%=  @interest.description %>
+                                 </li>
+                              <% end %>
+                           </ul>
+                        <% end %>
+                        
+                        <label>Other Notes:</label><br>
+                        <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br><br>
+                                          
+                        <% else if @role.eql?("admin") %>
+                        
+                        <label>First Name:</label><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                     
+                        <label>Surname:</label><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
+                  
+                        <%if @user.year_of_birth.nil?%>
+                           <label>Year of Birth:</label><br>
+                           <select name="year_of_birth">
+                              <% (1900..2021).each do |i| %>
+                                 <%= "<option value=\"#{i}\">#{i}</option>" %>
+                              <% end %>
+                           </select>
+                        <% else %>
+                           <label>Year of Birth: <%= @user.year_of_birth%></label><br>
+                           <select name="year_of_birth" hidden>
+                                 <option value="<%= @user.year_of_birth%>"> </option>
+                           </select>
+                        <br>
+                        <% end %>
+                        
+                        <label>Gender:</label><br>
+
+                        <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                        <% if !@user.gender.nil?%>
+                           <% gender[@user.gender] = true %>
+                        <%end%> 
+                        <select name="gender">
+                           <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                           <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                           <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+                        </select><br>
+                        <br>
+                        
+                        <label>Contact number:</label><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
+                        
+                        <label>Other Notes:</label><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
+                        
+                        <% else %>
+                           <p>ERROR</p>
+                        
+                        <!-- redirect to the home page "/index" -->
+                        <% end %>
+                        <% end %>
+                        <% end %> 
+                        <br>
+                        <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
+                        <br>
+                     </form>
+                  
+               </div>
+            <% else %>
+               <div>
+                  <!-- PRESENTING DETAILS-->
+                  <% @user=User.first(id: @user_id) %>
+                  <% if @role.eql?("mentee") %>
+                     <label>First Name:</label><br>
+                     <%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %><br><br>
+                  
+                     <label>Surname:</label><br>
+                     <%= @user.surname.nil? ? "Not given" : (h @user.surname) %><br><br>
+               
+                     <label>Year of Birth:</label><br>
+                     <%= @user.year_of_birth.nil? ? "Not given" : (h @user.year_of_birth) %><br><br>
+
+                     
+                     <label>Gender:</label><br>
+                     <%= @user.gender.nil? ? "Not given" : (h @user.gender) %><br><br>
+                     
+                     <label>Contact number:</label><br>
+                     <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
+                     
+                     
+                     <label>Your course:</label><br>
+                           <% @courses = Course.all %>
+                           <% @courses.each_with_index do |course, index| %>
+                              <%if index+1==@user.deg_id%>
+                                 <%=course.deg_name_functional%>
+                              <% end %>
+                           <% end %><br><br>
+                     
+                     <label>Degree year:</label><br>
+                     <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+                     <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+                     <% selected = Array.new(keys.length) {false}%>
+                     <% if !@user.deg_year.nil?%>
+                        <% keys.each_with_index do |key, i| %>
+                              <% selected[i]=true if key==@user.deg_year %>
+                        <% end %>
+                     <% end %> 
+                     <% for i in 0...keys.length do %>
+                        <%=values[i] if selected[i]%>
+                     <% end %><br><br> 
+
+
+                     <label>Interests:</label><br>
+                     <% @usr_interests = Userinterest.where(user_id: @user_id) %>
+                     <%if @usr_interests.empty?%>
+                        <p>You didn't enter any details about interests yet.</p>
+                     <% else %>
+                        <ul>
+                           <% @usr_interests.each do | usr_interest |%>
+                              <li>
+                                 <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+                                 <%=  @interest.description %>
+                              </li>
+                           <% end %>
+                        </ul>
+                     <% end %>
+            
+                     
+                     <label>Other Notes:</label><br>
+                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %></textarea><br>
+                  
+                  <% elsif @role.eql?("mentor") %>
+
+                     <label>First Name:</label><br>
+                     <%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %><br><br>
+                  
+                     <label>Surname:</label><br>
+                     <%= @user.surname.nil? ? "Not given" : (h @user.surname) %><br><br>
+               
+                     <label>Year of Birth:</label><br>
+                     <%= @user.year_of_birth.nil? ? "Not given" : (h @user.year_of_birth) %><br><br>
+
+                     
+                     <label>Gender:</label><br>
+                     <%= @user.gender.nil? ? "Not given" : (h @user.gender) %><br><br>
+                     
+                     <label>Contact number:</label><br>
+                     <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
+                  
+                     <label>Job title:</label><br>
+                     <%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %><br><br>
+
+                     <label>Interests:</label><br>
+                     <% @usr_interests = Userinterest.where(user_id: @user_id) %>
+                     <%if @usr_interests.empty?%>
+                        <p>You didn't enter any details about interests yet.</p>
+                     <% else %>
+                        <ul>
+                           <% @usr_interests.each do | usr_interest |%>
+                              <li>
+                                 <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+                                 <%=  @interest.description %>
+                              </li>
+                           <% end %>
+                        </ul>
+                     <% end %>
+
+
+                     <label>Other Notes:</label><br>
+                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %></textarea><br>
+                  
+                  <% elsif @role.eql?("admin") %>
                   <% else %>
-                      <p>ERROR</p>
-                   
-                  <!-- redirect to the home page "/index" -->
-                  <% end %>
-                  <% end %>
-                  <% end %> 
-                  <br>
-                  <input type="submit" class="button" value="Change Details" name="submit_change_details"/>
-                  <br>
-               </form>
-            </div>
+                  <%end%>
+                 
+               </div>
+               <div>
+                  <a href="profilecreate?change=true" class="button">Change Details</a>
+               </div>
+            <% end %> 
+            
          </div>
       </div>
        
