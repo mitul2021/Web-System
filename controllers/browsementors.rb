@@ -1,4 +1,4 @@
-get "/browsementors" do
+get "/mentorlist" do
     if session[:loggedin]
         
         cookie = request.cookies.fetch("request-popup", 0) #reading the cookie
@@ -18,7 +18,7 @@ get "/browsementors" do
         response.delete_cookie("error-mentee_id-not-integer-popup") #deleting the cookie
         
         @mentors = User.where(user_type: "mentor")
-        erb :browsementors
+        erb :mentorlist
     else
         response.set_cookie("redirected-popup", value: 'true')
         redirect "/login"

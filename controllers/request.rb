@@ -1,6 +1,6 @@
 get "/request" do
     
-    #retreives user id from session key, so it can be added as part of a unuiqe pair in the db
+    #retreives user id from session key, so it can be added as part of a unique pair in the db
     mentee_id = session[:user_id]
     puts "This is mentee's ID: #{session[:user_id]}"
     
@@ -41,5 +41,5 @@ get "/request" do
         
     end
     
-    redirect "/browsementors"
+    redirect "/mentorlist"
 end

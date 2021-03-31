@@ -2,6 +2,7 @@
    <head>
       <title>Mentors</title>
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+      <script src="popups.js"></script> 
    </head>
     
    <body>
@@ -14,7 +15,7 @@
                <a href="profilecreate">Profile</a>
             </li>
             <li>
-               <a href="browsementors">Mentor List</a>
+               <a href="mentorlist">Mentor List</a>
             </li>
             <li>
                <a href="logout">Logout</a>
@@ -35,7 +36,7 @@
          <p>Unexpected error as mentor_id cannot be an integer.</p>
       </div>
        
-      <div class = "red_pop_up" <%="hidden" unless @mentor_already_requested%>>
+      <div class = "red_pop_up" <%="hidden" unless @mentee_id_not_integer%>>
          <p>Unexpected error as mentee_id cannot be an integer.</p>
       </div> 
       
@@ -57,9 +58,9 @@
                    <%= mentor.surname.nil? ? "Unknown" : (h mentor.surname) %>
                 </td>
                <td><%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %></td>
-                <td><%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %></td>
+               <td><%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %></td>
                <td><a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a></td>
-               <td><a href="<%= mentor.id.nil? ? "/not_found" : "request?id=" + (h mentor.id) %>">Request Mentorship</a></td> 
+               <td><a onclick="requestMentorship()" href="<%= mentor.id.nil? ? "/not_found" : "request?id=" + (h mentor.id) %>">Request Mentorship</a></td> 
             </tr>
             <% end %>
          </table><br>
