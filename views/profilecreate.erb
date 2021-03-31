@@ -131,8 +131,8 @@
                       <% end %> 
                   </select><br><br>
                    
-                  <label>Interests:</label><br>
-                  <input type="text" name="major_interest" value="<%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br>
+<!--                   <label>Interests:</label><br>
+                  <input type="text" name="major_interest" value="%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br> -->
                    
                   <label>Other Notes:</label><br>
                   <textarea type="text" name="profile_text" rows="5" cols="50" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"></textarea><br>
@@ -209,8 +209,8 @@
                   <label>Job title:</label><br>
                   <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                    
-                  <label>Interests:</label><br>
-                  <input type="text" name="major_interest" value="<%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br>
+<!--                   <label>Interests:</label><br>
+                  <input type="text" name="major_interest" value="%= @user.major_interest.nil? ? "" : (h @user.major_interest) %>" /><br><br> -->
                    
                   <label>Other Notes:</label><br>
                   <input type="text" name="profile_text" value="<%= @user.profile_text.nil? ? "" : (h @user.profile_text) %>"/><br><br>
