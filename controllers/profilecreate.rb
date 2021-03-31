@@ -20,6 +20,9 @@ post "/profilecreate" do
     
     @user_id = session[:user_id]
     @user = User[@user_id]
+
+    load_userinterest(params, @user_id)
+
     @user.load_details_mentee(params) if session[:user_type].eql?("mentee")
     @user.load_details_mentor(params) if session[:user_type].eql?("mentor")
     @user.load_details_admin(params) if session[:user_type].eql?("admin")
@@ -29,4 +32,27 @@ post "/profilecreate" do
     end
     
     redirect "/profilecreate"
+end
+
+
+def load_userinterest(params, user_id)
+
+    i_id = params.fetch("interest_id"," ").strip
+    puts "This is choosen interest's ID #{i_id}"
+
+    if(Userinterest.where(user_id: user_id, interest_id: i_id).empty?)
+        @userinterest = Userinterest.new
+        @userinterest.user_id = user_id
+        @userinterest.interest_id = i_id
+
+        if @userinterest.valid?
+            @userinterest.save_changes
+        else
+            puts "LOADING USER INTEREST GONE WRONG"
+        end
+    else
+        puts "We already have such user interest nothing to do"
+    end
+
+
 end

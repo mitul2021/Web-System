@@ -68,12 +68,12 @@
                <div>
                
                   
-                     <!-- CHANGING DETAILS-->
-                     <form method="post" action="profilecreate">
-                        <% @user=User.first(id: @user_id) %>
-                        <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
-                        
-                        
+                  <!-- CHANGING DETAILS-->
+                  <form method="post" action="profilecreate">
+                     <% @user=User.first(id: @user_id) %>
+                     <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
+                     
+                     
                         <label>First Name:</label><br>
                         <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
                      
@@ -137,30 +137,21 @@
 
 
                         <label>Interests:</label><br>
-                        <% @usr_interests = Userinterest.where(user_id: @user_id) %>
-                        <% puts @user_id%>
-                        <% puts @usr_interests%>
-                        <%if @usr_interests.empty?%>
-                           <p>You didn't enter any details about interests yet.</p>
-                        <% else %>
-                           <ul>
-                              <% @usr_interests.each do | usr_interest |%>
-                                 <li>
-                                    <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
-                                    <%=  @interest.description %>
-                                 </li>
-                              <% end %>
-                           </ul>
-                        <% end %>
+                        <% @interests = Interest.all %>
+                        <select name="interest_id">
+                           <% @interests.each do |interest|%>
+                              <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+                           <%end%>
+                        </select><br>
 
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
                         <br>
                         
                         <!--MENTOR -->
-                        <% else if @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
-                        
-                        
+                     <% elsif @role.eql?("mentor") %> <!-- If you are a mentor, then it will display the relevant fields for a mentor -->
+                     
+                     
                         <label>First Name:</label><br>
                         <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
                      
@@ -201,26 +192,21 @@
                         <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                         
                         <label>Interests:</label><br>
-                        <% @usr_interests = Userinterest.where(user_id: @user_id) %>
-                        <%if @usr_interests.empty?%>
-                           <p>You didn't enter any details about interests yet.</p>
-                        <% else %>
-                           <ul>
-                              <% @usr_interests.each do | usr_interest |%>
-                                 <li>
-                                    <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
-                                    <%=  @interest.description %>
-                                 </li>
-                              <% end %>
-                           </ul>
-                        <% end %>
+                        <% @interests = Interest.all %>
+                        <select name="interest_id">
+                           <% @interests.each do |interest|%>
+                              <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+                           <%end%>
+                        </select><br>
+                        
+                     
                         
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
                         <br>
-                                          
-                        <% else if @role.eql?("admin") %>
-                        
+                                       
+                     <% elsif @role.eql?("admin") %>
+                     
                         <label>First Name:</label><br>
                         <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
                      
@@ -261,18 +247,16 @@
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
                         <br>
-                        
-                        <% else %>
-                           <p>ERROR</p>
-                        
-                        <!-- redirect to the home page "/index" -->
-                        <% end %>
-                        <% end %>
-                        <% end %> 
-                        <br>
-                        <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
-                        <br>
-                     </form>
+                     
+                     <% else %>
+                        <p>ERROR</p>
+                     
+                     <!-- redirect to the home page "/index" -->
+                     <% end %>
+                     <br>
+                     <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
+                     <br>
+                  </form>
                   
                </div>
             <% else %>
@@ -381,7 +365,6 @@
                   <% elsif @role.eql?("admin") %>
                   <% else %>
                   <%end%>
-                 
                </div>
                <div>
                   <a href="profilecreate?change=true" class="button">Change Details</a>

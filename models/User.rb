@@ -35,15 +35,14 @@ class User < Sequel::Model
     
     def load_details_mentee(params)
 
+        
         self.first_name = params.fetch("first_name"," ").strip
         self.surname = params.fetch("surname"," ").strip
-        self.year_of_birth = params.fetch("year_of_birth"," ").strip #to be changed later age -> year_of_birth
+        self.year_of_birth = params.fetch("year_of_birth"," ").strip
         self.gender = params.fetch("gender"," ").strip
         self.contact_number = params.fetch("contact_number"," ").strip
-        #self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
         self.deg_id = params.fetch("deg_id"," ").strip
         self.deg_year = params.fetch("deg_year"," ").strip
-        #self.major_interest = params.fetch("major_interest"," ").strip
         self.profile_text = params.fetch("profile_text"," ").strip
     
     end
