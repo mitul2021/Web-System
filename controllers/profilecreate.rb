@@ -4,10 +4,11 @@ get "/profilecreate" do
         @user_id = session[:user_id]
         @change = false
         @change = true if params["change"].eql?("true")
-        puts params["change"].eql?("true")
-        #puts @user_id
-        #@user = User.new
-        #@user.load_id(@user_id) #loads user from id
+
+        @obj = InfoInterests.new()
+        
+        
+
         
         erb :profilecreate
     else
@@ -38,7 +39,7 @@ end
 def load_userinterest(params, user_id)
 
     i_id = params.fetch("interest_id"," ").strip
-    puts "This is choosen interest's ID #{i_id}"
+    #puts "This is choosen interest's ID #{i_id}"
 
     if(Userinterest.where(user_id: user_id, interest_id: i_id).empty?)
         @userinterest = Userinterest.new
@@ -53,6 +54,12 @@ def load_userinterest(params, user_id)
     else
         puts "We already have such user interest nothing to do"
     end
-
-
 end
+
+
+# class InfoInterests
+#     numOfInterests = Interest.all.size #maximum
+#     @usr_interests = Userinterest.where(user_id: @user_id)
+#     numOfUserInterests = @usr_interests.size #default
+
+# end

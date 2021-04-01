@@ -66,8 +66,6 @@
 
             <%if @change%> 
                <div>
-               
-                  
                   <!-- CHANGING DETAILS-->
                   <form method="post" action="profilecreate">
                      <% @user=User.first(id: @user_id) %>
@@ -135,14 +133,27 @@
                            <% end %> 
                         </select><br><br>
 
-
                         <label>Interests:</label><br>
-                        <% @interests = Interest.all %>
-                        <select name="interest_id">
-                           <% @interests.each do |interest|%>
-                              <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+
+                        <%if @usr_interests.empty?%>
+                           <select name="interest_id">
+                              <% Interest.all.each do |interest|%>
+                                 <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+                              <%end%>
+                           </select><br>
+                        <% else %>
+                           <%@usr_interests.each_with_index do |usr_interest, i|%>
+                              <select name="<%="interest_id_#{i}"%>">
+                                 <% Interest.all.each do |interest|%>
+                                    <option value="<%= interest.interest_id %>"  <%= interest.interest_id.eql?(interest.description) ? "selected" : "" %>>
+                                       <%= interest.description%>
+                                    </option>
+                                 <%end%>
+                              </select><br>
+                              <!--@interest=Interest.first(interest_id: usr_interest.interest_id)
+                              @interest.description #right text-->
                            <%end%>
-                        </select><br>
+                        <%end%>
 
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
@@ -190,14 +201,29 @@
                         
                         <label>Job title:</label><br>
                         <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
-                        
+                  
+
                         <label>Interests:</label><br>
-                        <% @interests = Interest.all %>
-                        <select name="interest_id">
-                           <% @interests.each do |interest|%>
-                              <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+
+                        <%if @usr_interests.empty?%>
+                           <select name="interest_id">
+                              <% Interest.all.each do |interest|%>
+                                 <option value="<%= interest.interest_id %>"><%= interest.description%></option>
+                              <%end%>
+                           </select><br>
+                        <% else %>
+                           <%@usr_interests.each_with_index do |usr_interest, i|%>
+                              <select name="<%="interest_id_#{i}"%>">
+                                 <% Interest.all.each do |interest|%>
+                                    <option value="<%= interest.interest_id %>"  <%= interest.interest_id.eql?(interest.description) ? "selected" : "" %>>
+                                       <%= interest.description%>
+                                    </option>
+                                 <%end%>
+                              </select><br>
+                              <!--@interest=Interest.first(interest_id: usr_interest.interest_id)
+                              @interest.description #right text-->
                            <%end%>
-                        </select><br>
+                        <%end%>
                         
                      
                         
@@ -317,6 +343,8 @@
                            <% end %>
                         </ul>
                      <% end %>
+
+                     
             
                      
                      <label>Other Notes:</label><br>
