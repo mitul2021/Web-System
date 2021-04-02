@@ -89,6 +89,7 @@
             </p>
 
             <h1>Your mentor:</h1>
+            <!-- Retrieving all the pairs with a status of 1 (status 1 means that they are in a relationship) -->
             <% @requests = Pair.where(mentee_id: @user_id, status: 1) %>
             <% if(@requests.empty?) %>
                <p>You don't have a mentor at the moment.</p>
@@ -100,6 +101,7 @@
                      <th>Contact Number</th>
                   </tr>
                   <% @requests.each do |request| %>
+                     <!-- Reading from the database, in each iteration, we are getting a mentor whos id is request.mentor_id (the mentor that accepted your request) -->
                      <% @mentor = User.first(id: request.mentor_id) %>
                      <%unless @mentor.nil?%>
                         <tr>
@@ -211,7 +213,7 @@
                </table>
             <% end %>
 
-            <h1>Your requests:</h1>
+            <h1>Incoming requests:</h1>
             <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
             <% if(@requests.empty?) %>
                <p>You haven't recieved any new mentorship requests yet.</p>
@@ -261,9 +263,51 @@
                When all details have been filled in, you can view any requests made by mentees or mentors and you can choose
                to approve or reject their requests.
             </p>
+          
             <h1>User requests:</h1>
+          
             <p>Place holder for user request<p>
             
+            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
+            <% if(@requests.empty?) %>
+               <p>You haven't recieved any new mentorship requests yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                     <th>Request</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentee = User.first(id: request.mentee_id) %>
+                     <%unless @mentee.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <a onclick="return acceptRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
+                           </td>
+                           <td>
+                              <a onclick="return denyRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table>
+            <% end %>
+
 
 
             <h1>View pairings:</h1>

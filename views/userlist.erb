@@ -23,7 +23,10 @@
       </nav>
       
       <div id="changedetailsbody">
+         
          <h1>Users:</h1>
+         
+         
          <h2>Below is a list of Mentees that are currently enrolled in the system:</h2>
          <table>
             <tr>
@@ -35,11 +38,18 @@
                <% unless mentee.nil? %>
                   <tr>
                      <td>
-                        <%= h mentee.first_name unless mentee.first_name.nil? %>
-                        <%= h mentee.surname unless mentee.surname.nil?%>
+                        <%= (mentee.first_name.nil?) ? ("Not given") : (h mentee.first_name) %>
+                        <%= (mentee.surname.nil?) ? ("Not given") : (h mentee.surname) %>
                      </td>
-                     <td><%= h mentee.email unless mentee.surname.nil? %></td>
-                     <td><%= h mentee.contact_number unless mentee.surname.nil? %></td>
+                     
+                     <td>
+                         <%= (mentee.email.nil?) ? ("Not given") : (h mentee.email) %>
+                     </td>
+                     
+                     <td>
+                         <%= (mentee.contact_number.nil?) ? ("Not given") : (h mentee.contact_number) %>
+                     </td>
+                     
                      <td>
                         <a href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
                      </td>
@@ -48,28 +58,80 @@
             <% end %>
          </table>
          <br>
+         
+         
          <h2>Below is a list of Mentors that are currently enrolled in the system:</h2> 
          <table>
             <tr>
                <th>Name</th>
                <th>Job Title</th>
-               <th>Main Interest</th>
+               <th>Email</th>
+               <th>Contact Number</th> 
             </tr>
             <% @mentors.each do |mentor| %>
             <tr>
                <td>
-                     <%= h mentor.first_name unless mentor.first_name.nil? %>
-                     <%= h mentor.surname unless mentor.surname.nil?%>
+                   <%= (mentor.first_name.nil?) ? ("Not given") : (h mentor.first_name) %>
+                   <%= (mentor.surname.nil?) ? ("Not given") : (h mentor.surname) %>
                </td>
-               <td><%=h mentor.job_deg_cosmetic_name unless mentor.job_deg_cosmetic_name.nil? %></td>
-               <td><%=h mentor.major_interest unless mentor.major_interest.nil? %>
+               
                <td>
-               <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+                   <%= (mentor.job_deg_cosmetic_name.nil?) ? ("Not given") : (h mentor.job_deg_cosmetic_name) %>
+               </td>
+               
+               <td>
+                   <%= (mentor.email.nil?) ? ("Not given") : (h mentor.email) %>
+               </td>
+                   
+               <td> 
+                   <%= (mentor.contact_number.nil?) ? ("Not given") : (h mentor.contact_number) %>
+               </td>
+               
+               <td>    
+                   <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+               </td>
+            
+            </tr>
+            <% end %>
+         </table>
+         <br>
+          
+          
+          <h2>Below is a list of Admins that are currently enrolled in the system:</h2> 
+         <table>
+            <tr>
+               <th>Name</th>
+               <th>Job Title</th>
+               <th>Email</th>
+               <th>Contact Number</th> 
+            </tr>
+            <% @admins.each do |admin| %>
+            <tr>
+               <td>
+                   <%= (admin.first_name.nil?) ? ("Not given") : (h admin.first_name) %>
+                   <%= (admin.surname.nil?) ? ("Not given") : (h admin.surname) %>
+               </td>
+               
+               <td>
+                   <%= (admin.job_deg_cosmetic_name.nil?) ? ("Not given") : (h admin.job_deg_cosmetic_name) %>
+               </td>
+               
+               <td>
+                   <%= (admin.email.nil?) ? ("Not given") : (h admin.email) %>
+               </td>
+               
+               <td>
+                   <%= (admin.contact_number.nil?) ? ("Not given") : (h admin.contact_number) %>
+               </td> 
+                
+               <td>
+                   <a href="<%= admin.id.nil? ? "/not_found" : "profile/" + (h admin.id) %>">Profile</a>
                </td>
             </tr>
             <% end %>
          </table>
-         <br> 
+         <br>
+             
       </div>
        
    </body>
