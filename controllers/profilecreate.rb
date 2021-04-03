@@ -25,8 +25,18 @@ post "/profilecreate" do
     
     @user_id = session[:user_id]
     @user = User[@user_id]
-
-    load_userinterest(params, @user_id)
+    
+    
+    
+    
+    #here we need to get rid of the all old record
+    Userinterest.where(user_id: @user_id).each do |interest|
+        interest.delete
+    end
+    #loading all user interests
+    for i in 0...Interest.all.size()
+        load_userinterest(params, @user_id,i)
+    end
 
     @user.load_details_mentee(params) if session[:user_type].eql?("mentee")
     @user.load_details_mentor(params) if session[:user_type].eql?("mentor")
@@ -40,15 +50,15 @@ post "/profilecreate" do
 end
 
 
-def load_userinterest(params, user_id)
+def load_userinterest(params, user_id, i)
 
-    i_id = params.fetch("interest_id"," ").strip
+    interest_id = params.fetch("interest_id_#{i}"," ").strip
     #puts "This is choosen interest's ID #{i_id}"
 
-    if(Userinterest.where(user_id: user_id, interest_id: i_id).empty?)
+    if(Userinterest.where(user_id: user_id, interest_id: interest_id).empty?)
         @userinterest = Userinterest.new
         @userinterest.user_id = user_id
-        @userinterest.interest_id = i_id
+        @userinterest.interest_id = interest_id
 
         if @userinterest.valid?
             @userinterest.save_changes
