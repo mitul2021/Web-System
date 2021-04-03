@@ -5,9 +5,13 @@ get "/profilecreate" do
         @change = false
         @change = true if params["change"].eql?("true")
 
-        @obj = InfoInterests.new()
+        #EXPERIMANTAL HANDLING INTERESTS
+        @numOfInterests = Interest.all.size() #maximum
+        puts @numOfInterests
         
-        
+        @usr_interests = Userinterest.where(user_id: @user_id)
+        @numOfUserInterests = @usr_interests.count  #default
+        puts "numOfUserInterests #{@numOfUserInterests}"
 
         
         erb :profilecreate
@@ -57,9 +61,7 @@ def load_userinterest(params, user_id)
 end
 
 
-# class InfoInterests
-#     numOfInterests = Interest.all.size #maximum
-#     @usr_interests = Userinterest.where(user_id: @user_id)
-#     numOfUserInterests = @usr_interests.size #default
+class InfoInterests
+    
 
-# end
+end

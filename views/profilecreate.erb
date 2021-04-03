@@ -142,18 +142,34 @@
                               <%end%>
                            </select><br>
                         <% else %>
-                           <%@usr_interests.each_with_index do |usr_interest, i|%>
-                              <select name="<%="interest_id_#{i}"%>">
-                                 <% Interest.all.each do |interest|%>
-                                    <option value="<%= interest.interest_id %>"  <%= interest.interest_id.eql?(interest.description) ? "selected" : "" %>>
-                                       <%= interest.description%>
-                                    </option>
-                                 <%end%>
-                              </select><br>
-                              <!--@interest=Interest.first(interest_id: usr_interest.interest_id)
-                              @interest.description #right text-->
-                           <%end%>
+                            <!-- for visible interest dropdown lists-->
+                            <%@usr_interests.each_with_index do |usr_interest, i|%>
+                                  <select name="<%="interest_id_#{i}"%>">
+                                     <% Interest.all.each do |interest|%>
+                                        <option value="<%= interest.interest_id %>"
+                                                <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %>>
+                                           <%= interest.description%>
+                                        </option>
+                                     <%end%>
+                                  </select><br>
+                            <%end%>
+                              <!-- for hidden interest dropdown lists-->
+                            <% for i in @numOfUserInterests...@numOfInterests%>
+                                <select name="<%="interest_id_#{i}"%>" hidden="true">
+                                     <% Interest.all.each do |interest|%>
+
+
+                                        <option value="<%= interest.interest_id %>">
+                                           <%= interest.description%>
+                                        </option>
+                                     <%end%>
+                                </select><br>
+                            <% end %>
                         <%end%>
+                         
+                      
+                        
+                      
 
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
