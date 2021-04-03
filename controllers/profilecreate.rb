@@ -69,9 +69,3 @@ def load_userinterest(params, user_id, i)
         puts "We already have such user interest nothing to do"
     end
 end
-
-
-class InfoInterests
-    
-
-end
