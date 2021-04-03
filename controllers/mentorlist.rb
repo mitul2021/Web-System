@@ -17,6 +17,10 @@ get "/mentorlist" do
         @mentee_id_not_integer = true if cookie == "true" #used by view to display the message
         response.delete_cookie("error-mentee_id-not-integer-popup") #deleting the cookie
         
+        cookie = request.cookies.fetch("error-more-than-one-mentor", 0) #reading the cookie
+        @more_than_one_mentor = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("error-more-than-one-mentor") #deleting the cookie
+        
         @mentors = User.where(user_type: "mentor")
         erb :mentorlist
     else

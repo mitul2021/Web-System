@@ -28,7 +28,7 @@
       </div>
       
       <div class = "red_pop_up" <%="hidden" unless @mentor_already_requested%>>
-         <p>You cannot request the same mentor more than once.</p>
+         <p>You cannot request as you already have a mentor or an ongoing request.</p>
       </div>
       
       <!-- These 2 pop ups for the id should be more useful for the programmer but this is to prevent the app from crashing --> 
@@ -54,8 +54,8 @@
             <% @mentors.each do |mentor| %>
             <tr>
                <td>
-                   <%= mentor.first_name.nil? ? "Unknown" : (h mentor.first_name) %>
-                   <%= mentor.surname.nil? ? "Unknown" : (h mentor.surname) %>
+                   <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
+                   <%= mentor.surname.nil? ? "Not given" : (h mentor.surname) %>
                 </td>
                <td><%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %></td>
                <td><%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %></td>
