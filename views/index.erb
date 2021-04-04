@@ -250,7 +250,7 @@
                         </tr>
                      <% end %>
                   <% end %>
-               </table>
+               </table><br>
             <% end %>
 
 
@@ -268,47 +268,6 @@
           
             <p>Place holder for user request<p>
             
-            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
-            <% if(@requests.empty?) %>
-               <p>You haven't recieved any new mentorship requests yet.</p>
-            <% else %>
-               <table>
-                  <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Contact Number</th>
-                     <th>Request</th>
-                  </tr>
-                  <% @requests.each do |request| %>
-                     <% @mentee = User.first(id: request.mentee_id) %>
-                     <%unless @mentee.nil?%>
-                        <tr>
-                           <td>
-                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
-                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
-                           </td>
-                           <td>
-                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <a onclick="return acceptRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
-                           </td>
-                           <td>
-                              <a onclick="return denyRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
-                           </td>
-                        </tr>
-                     <% end %>
-                  <% end %>
-               </table>
-            <% end %>
-
-
 
             <h1>View pairings:</h1>
             <% @pairs = Pair.all %>

@@ -42,7 +42,7 @@ a:hover {
 }
  
 /* button on sign in and register page */
-.button, #go_to_register {
+.button, #go_to_register, #go_to_login, #go_back_to_login {
     display: inline-block;
     background-color: rgb(128, 170, 255);
     border-radius: 10px;
