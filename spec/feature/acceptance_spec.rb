@@ -180,8 +180,8 @@ describe "the mentor list page" do
   it "is accessible from the admin page" do
     add_user("admin")
     sign_in("admin")
-    click_link "Mentor List"
-    expect(page).to have_content "Mentors"
+    click_link "User List"
+    expect(page).to have_content "enrolled in the system"
     clear_database
   end
   
@@ -206,7 +206,7 @@ describe "mentor-mentee pairing" do
     click_link "Mentor List"
     click_link "Request Mentorship"
     visit "/index"
-    expect(page).to have_link "Cancel request"
+    expect(page.has_link?("Cancel request"))
     clear_database
   end
   
@@ -215,7 +215,7 @@ describe "mentor-mentee pairing" do
     click_link "Mentor List"
     click_link "Request Mentorship"
     visit "/index"
-    click_link "Cancel request"
+    click_link "Cancel Request"
     expect(page).to have_content "You don't have any ongoing requests."
     clear_database
   end
