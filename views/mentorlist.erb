@@ -63,7 +63,7 @@
                </td>
                
                <td>
-                   <%= mentor.major_interest.nil? ? "No major interest given" : (h mentor.major_interest) %>
+                   <%= Userinterest.first(user_id: mentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: mentor.id).interest_id].description %>
                </td>
                
                <td>
@@ -72,8 +72,7 @@
                
                <td>
                    <a onclick="return requestMentorship()" href="<%= mentor.id.nil? ? "/not_found" : "request?id=" + (h mentor.id) %>">Request Mentorship</a>
-               </td> 
-            
+              </td>
             </tr>
             <% end %>
          </table><br>

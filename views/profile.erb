@@ -29,7 +29,7 @@
                 </p>         
                 <p>
                     Major Interest: 
-                    <%= @user.major_interest.nil? ? "No major interest given" : (h @user.major_interest) %>
+                    <%= Userinterest.first(user_id: @user.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: @user.id).interest_id].description %>
                 </p>
                 <h3>Contact Details:</h3>
                 <p>
