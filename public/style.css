@@ -178,3 +178,8 @@ th, td {
     text-align: center;
     margin: 0px 55px 20px 55px;
 }
+
+#dropdowns {
+    display: flex;
+    flex-direction: column;
+}

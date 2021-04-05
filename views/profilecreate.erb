@@ -2,6 +2,7 @@
    <head>
       <title>Profile</title>
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+      <script src="profilecreate.js" defer></script> 
    </head>
     
    <body>
@@ -134,39 +135,38 @@
                         </select><br><br>
 
                         <label>Interests:</label><br>
-
-                        <%if @usr_interests.empty?%>
-                           <select name="interest_id">
-                              <% Interest.all.each do |interest|%>
-                                 <option value="<%= interest.interest_id %>"><%= interest.description%></option>
-                              <%end%>
-                           </select><br>
-                        <% else %>
-                            <!-- for visible interest dropdown lists-->
-                            <%@usr_interests.each_with_index do |usr_interest, i|%>
-                                  <select name="<%="interest_id_#{i}"%>">
-                                     <% Interest.all.each do |interest|%>
-                                        <option value="<%= interest.interest_id %>"
-                                                <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %>>
-                                           <%= interest.description%>
-                                        </option>
-                                     <%end%>
-                                  </select><br>
-                            <%end%>
-                              <!-- for hidden interest dropdown lists-->
-                            <% for i in @numOfUserInterests...@numOfInterests%>
-                                <select name="<%="interest_id_#{i}"%>" hidden="true">
-                                     <% Interest.all.each do |interest|%>
+                        <div id="dropdowns">
+                           <!-- for visible interest dropdown lists-->
+                           <%@usr_interests.each_with_index do |usr_interest, i|%>
+                                 <select name="<%="interest_id_#{i}"%>">
+                                    <% Interest.all.each do |interest|%>
+                                       <option value="<%= interest.interest_id %>"
+                                             <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %>>
+                                          <%= interest.description%>
+                                       </option>
+                                       
+                                    <%end%>
+                                    <option value="none">none</option>
+                                 </select>
+                           <%end%>
+                           <!-- for hidden interest dropdown lists-->
+                           <% for i in @numOfUserInterests...@numOfInterests%>
+                              <select name="<%="interest_id_#{i}"%>" hidden="true">
+                                    <% Interest.all.each do |interest|%>
 
 
-                                        <option value="<%= interest.interest_id %>">
-                                           <%= interest.description%>
-                                        </option>
-                                     <%end%>
-                                     <option value="none" selected>none</option>
-                                </select><br>
-                            <% end %>
-                        <%end%>
+                                       <option value="<%= interest.interest_id %>">
+                                          <%= interest.description%>
+                                       </option>
+                                    <%end%>
+                                    <option value="none" selected>none</option>
+                              </select>
+                           <% end %>
+                        </div>
+                        <button type="button" id="btn_show">Add Interest</button> 
+                        <button type="button" id="btn_hide">Remove Interest</button>
+                        <!--type="button" prevents the page from refreshing-->
+                        <br>
                          
                       
                         
@@ -220,27 +220,39 @@
                         <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                   
 
-                        <label>Interests:</label><br>
-
-                        <%if @usr_interests.empty?%>
-                           <select name="interest_id">
-                              <% Interest.all.each do |interest|%>
-                                 <option value="<%= interest.interest_id %>"><%= interest.description%></option>
-                              <%end%>
-                           </select><br>
-                        <% else %>
+                        <<label>Interests:</label><br>
+                        <div id="dropdowns">
+                           <!-- for visible interest dropdown lists-->
                            <%@usr_interests.each_with_index do |usr_interest, i|%>
-                              <select name="<%="interest_id_#{i}"%>">
-                                 <% Interest.all.each do |interest|%>
-                                    <option value="<%= interest.interest_id %>"  <%= interest.interest_id.eql?(interest.description) ? "selected" : "" %>>
-                                       <%= interest.description%>
-                                    </option>
-                                 <%end%>
-                              </select><br>
-                              <!--@interest=Interest.first(interest_id: usr_interest.interest_id)
-                              @interest.description #right text-->
+                                 <select name="<%="interest_id_#{i}"%>">
+                                    <% Interest.all.each do |interest|%>
+                                       <option value="<%= interest.interest_id %>"
+                                             <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %>>
+                                          <%= interest.description%>
+                                       </option>
+                                       
+                                    <%end%>
+                                    <option value="none">none</option>
+                                 </select>
                            <%end%>
-                        <%end%>
+                           <!-- for hidden interest dropdown lists-->
+                           <% for i in @numOfUserInterests...@numOfInterests%>
+                              <select name="<%="interest_id_#{i}"%>" hidden="true">
+                                    <% Interest.all.each do |interest|%>
+
+
+                                       <option value="<%= interest.interest_id %>">
+                                          <%= interest.description%>
+                                       </option>
+                                    <%end%>
+                                    <option value="none" selected>none</option>
+                              </select>
+                           <% end %>
+                        </div>
+                        <button type="button" id="btn_show">Add Interest</button> 
+                        <button type="button" id="btn_hide">Remove Interest</button>
+                        <!--type="button" prevents the page from refreshing-->
+                        <br>
                         
                      
                         
