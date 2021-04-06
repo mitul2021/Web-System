@@ -21,7 +21,7 @@
       <!--defines form that posts to login.rb controller -->
       <form method="post" action="login">
          <label>Email:</label><br>
-         <input type="email" name="email" placeholder="enter your email here..." value="<%= (h @user.email) unless @user.nil? %>"/><br>
+         <input name="email" placeholder="enter your email here..." value="<%= (h @user.email) unless @user.nil? %>"/><br>
           
          <!-- uses methods from the User model to print errors with email (eg: missing @)-->
          <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
