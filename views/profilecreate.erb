@@ -368,7 +368,7 @@
                      <% end %>
                                                       
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.empty? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
                   
                   <% elsif @role.eql?("mentor") %>
 
@@ -407,7 +407,7 @@
 
 
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.empty? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
                   
                   <% elsif @role.eql?("admin") %>
                      
@@ -427,7 +427,7 @@
                      <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
              
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.empty? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
                   
                   <% else %>
                      <% redirect "/not_found" %>
