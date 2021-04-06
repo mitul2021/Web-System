@@ -22,5 +22,3 @@ function denyRequest() {
 function requestMentorship() {
     return confirm("Are you sure you want to request a mentorship? This action cannot be undone.");
 }
-
-
