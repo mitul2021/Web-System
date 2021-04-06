@@ -1,6 +1,10 @@
 get "/login" do
     cookie = request.cookies.fetch("make-register-popup",0)
-    @registered = true if cookie == "true"
+    unless cookie.eql?(0)
+      @registered = true
+      @code = cookie
+      puts "This is code after reading cookie #{@code}"
+    end
     response.delete_cookie("make-register-popup")
     
     cookie = request.cookies.fetch("redirected-popup",0) #reading the cookie
