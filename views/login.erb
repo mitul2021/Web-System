@@ -9,6 +9,7 @@
        
       <div class = "green_pop_up" <%="hidden" unless @registered%>>
          <p>You have registered successfully</p>
+         <p>Your recovery code is: <%= @code%></p>
       </div>
        
       <div class = "red_pop_up" <%="hidden" unless @redirected%>>
