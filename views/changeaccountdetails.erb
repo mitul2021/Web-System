@@ -1,0 +1,33 @@
+<html lang="en">
+   <head>
+      <title>Change Details</title>
+      <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+   </head>
+    
+   <body>
+      <h1>Change Account Details</h1>
+       
+      <p>What would you like to change?:</p>
+       
+      <!--defines form that posts to changeaccountdetails.rb controller -->
+      
+      <form method="post" action="changeaccountdetails">
+         <a href="/changeaccountdetails" id="change_email" class="button">My email</a><br>
+         
+         <div id="displayemailbox" hidden>
+             <input onclick="desiredEmail()" type="email" name="email" placeholder="enter your desired email here..."/><br> 
+         </div>
+         
+         <a href="/changeaccountdetails" id="change_password" class="button">My password</a><br> 
+         
+         <div id="displaypasswordbox" hidden>
+             <input onclick="desiredPassword()" type="password" name="password" placeholder="enter your desired password here..."/><br>
+         </div>
+         
+         <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+          
+         <a href="javascript:history.back()" class="button" id="go_back">Go Back</a> 
+      
+      </form> 
+   </body>
+</html>

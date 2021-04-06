@@ -9,6 +9,9 @@ get "/profile/*" do
     # the id_num is the number in the url for that profile 
     @user = User[id_num]
     
+    # redirect to the not found page if the user does not even exist
+    redirect "/not_found" if @user.nil?
+    
     # If you are a mentee
     if @role.eql?("mentee")
         

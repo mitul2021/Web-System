@@ -42,7 +42,7 @@ a:hover {
 }
  
 /* button on sign in and register page */
-.button, #go_to_register, #go_to_login, #go_back_to_login {
+.button, #go_to_register, #go_to_login, #go_back_to_login, #go_to_change_details, #change_email, #change_password, #go_back, #change_details {
     display: inline-block;
     background-color: rgb(128, 170, 255);
     border-radius: 10px;
@@ -58,7 +58,11 @@ a:hover {
     font-weight: bold;
     text-decoration: none;
 }
- 
+
+textarea {
+    width: 95%;
+}
+
 /* Bold the Labels */
 label {
     font-weight: bold;
