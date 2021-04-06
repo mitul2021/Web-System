@@ -166,12 +166,8 @@
                         <button type="button" id="btn_show">Add Interest</button> 
                         <button type="button" id="btn_hide">Remove Interest</button>
                         <!--type="button" prevents the page from refreshing-->
-                        <br>
+                        <br><br>
                          
-                      
-                        
-                      
-
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
                         <br>
@@ -252,10 +248,8 @@
                         <button type="button" id="btn_show">Add Interest</button> 
                         <button type="button" id="btn_hide">Remove Interest</button>
                         <!--type="button" prevents the page from refreshing-->
-                        <br>
-                        
-                     
-                        
+                        <br><br>
+
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
                         <br>
@@ -440,7 +434,8 @@
                   <%end%>
                </div>
                <div>
-                  <a href="profilecreate?change=true" id ="change_details" class="button">Change Details</a>
+                  <a href="profilecreate?change=true" id ="change_details" class="button">Change Profile Details</a><br>
+                  <a href="/changeaccountdetails" id="go_to_change_details" class="button">Change Account Details</a> 
                </div>
             <% end %> 
             

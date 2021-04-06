@@ -59,8 +59,10 @@ a:hover {
     text-decoration: none;
 }
 
-textarea {
-    width: 95%;
+#change_details_container {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
 }
 
 /* Bold the Labels */
