@@ -73,7 +73,7 @@ def newRequest1(data)
     @new_request.request_id = 1 #code for changing email
     @new_request.user_id = session[:user_id]
     @new_request.request_data = data[0] #for the request we are entering desired email of the user
-    @new_request.status = 0 #code pending request
+    @new_request.status = 0 #code for pending request
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
@@ -133,7 +133,7 @@ def newRequest2(data)
     @new_request.request_id = 2 #code for changing password
     @new_request.user_id = session[:user_id]
     @new_request.request_data = data[1] #for the request we are entering desired password
-    @new_request.status = 0 #code pending request
+    @new_request.status = 0 #code for pending request
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
@@ -151,22 +151,51 @@ end
 # ================
 
 def handleType3(params)
-    data = loadFormDataType3(params) #new_email, recovery_code
+    data = loadFormDataType3(params) #new_email, password, recovery_code
+    #validation
+    return if !validateUser3(data)  #if the validation gone wrong don't go any further just return
+
+    newRequest3(data)
 end
 
 def loadFormDataType3(params)
-    new_email = params.fetch("new_email"," ").strip 
+    new_email = params.fetch("new_email"," ").strip
+    password = params.fetch("password"," ").strip
     recovery_code = params.fetch("recovery_code"," ").strip
 
-    puts "FORM NO.3 new_email: #{new_email}, recovery_code: #{recovery_code}"
-    return [new_email,recovery_code]
+    puts "FORM NO.3 new_email: #{new_email}, password: #{password}, recovery_code: #{recovery_code}"
+    return [new_email, password, recovery_code]
 end
 
 def validateUser3(data)
-
+    @user = User.first(recovery_code: data[2])
+    return false if @user.nil?
+    
+    #Here we are checking that the users' recovery code and password match together in the database record
+    return false unless @user.password.eql?(data[1])
+    
+    return true
+    
 end
 
-def newRequest3(data) 
+def newRequest3(data)
+    @new_request = Userrequest.new
+    @new_request.request_id = 1 #code for changing email
+    
+    #We already know that the user exists since we function called validateUser3
+    @new_request.user_id = User.first(recovery_code: data[2]).id
+    
+    @new_request.request_data = data[0] #for the request we are entering desired email
+    @new_request.status = 0 #code for pending request
+
+    if @new_request.valid?
+        puts "New request is valid saving changes..."
+        @new_request.save_changes
+    else
+        puts "New request is invalid sth gone wrong."
+        #place holder for displaying error messages
+        #errors.add ....
+    end
 end
 
 # ================
@@ -174,22 +203,56 @@ end
 # ================
 
 def handleType4(params)
-    data = loadFormDataType4(params) #password, repeat_password, recovery_code
+    data = loadFormDataType4(params) #current email, new_password, repeat_password, recovery_code
+    #validation
+    return if !validateUser4(data)  #if the validation gone wrong don't go any further just return
+
+    newRequest4(data)
 end
 
 def loadFormDataType4(params)
-    password = params.fetch("password"," ").strip
+    email = params.fetch("email", " ").strip
+    new_password = params.fetch("new_password"," ").strip
     repeat_password = params.fetch("repeat_password"," ").strip
     recovery_code = params.fetch("recovery_code"," ").strip
 
-    puts "FORM NO.4 password: #{password}, repeat_password: #{repeat_password}, recovery_code: #{recovery_code}"
-    return [password,repeat_password,recovery_code]
+    puts "FORM NO.4 email: #{email}, new_password: #{new_password}, repeat_password: #{repeat_password}, recovery_code: #{recovery_code}"
+    return [email, new_password, repeat_password, recovery_code]
 end
+
 
 def validateUser4(data)
-
+    
+    @user = User.first(recovery_code: data[3])
+    return false if @user.nil?
+    
+    #Here we are checking that the users' email and recovery code match together in the database record
+    return false unless @user.email.eql?(data[0])
+    
+    return false unless data[1] == data[2]
+    
+    return true
+    
 end
-def newRequest4(data)
 
+
+def newRequest4(data)
+    @new_request = Userrequest.new
+    @new_request.request_id = 2 #code for changing password
+    
+    #We already know that the user exists since we function called validateUser4
+    @new_request.user_id = User.first(recovery_code: data[3]).id
+    
+    @new_request.request_data = data[1] #for the request we are entering desired password
+    @new_request.status = 0 #code for pending request
+
+    if @new_request.valid?
+        puts "New request is valid saving changes..."
+        @new_request.save_changes
+    else
+        puts "New request is invalid sth gone wrong."
+        #place holder for displaying error messages
+        #errors.add ....
+    end
     
 end

@@ -82,8 +82,12 @@
                   <label>New Email:</label><br>
                   <input type="email" name="new_email" placeholder="Enter your desired email here..."/><br><br>
 
+                  <label>Your current password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                   
                   <label>Recovery Code:</label><br>
                   <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                   
 
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                   <input hidden name="number" value="3"/>
@@ -103,9 +107,12 @@
                 <div id="displaypasswordbox" hidden>
 
                    <p>You have chosen to change your Password.</p>
+                    
+                   <label>Your current email:</label><br>
+                   <input type="email" name="email" placeholder="Enter your current email here..."/><br><br> 
 
                    <label>New Password:</label><br>
-                   <input type="password" name="password" placeholder="Enter your desired password here..."/><br><br>
+                   <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br><br>
 
                    <label>Repeat New Password:</label><br>
                    <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
