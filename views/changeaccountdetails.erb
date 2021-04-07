@@ -12,20 +12,30 @@
       <!--defines form that posts to changeaccountdetails.rb controller -->
       <!-- If you are logged in then you would be accessing this page from the profilecreate view so it would not ask you for your recovery code since you have proved that you are that user -->
       <div id="change_details_container">
-         <% if session[:logged_in] %>
+         <% if session[:loggedin] %>
+            <!--Here we are comming from the profile page--->
+            <!--LOGGED IN-->
             <form method="post" action="changeaccountdetails">
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a><br>
 
                <div id="displayemailbox" hidden>
-                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>
-                  <input type="email" name="email" placeholder="Enter your desired email here..."/><br>                
+                  <label>New Email:</label><br>
+                  <input type="email" name="email" placeholder="Enter your desired email here..."/><br>
+
+                  <label>Confirm with your password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>              
                </div>
 
                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
 
                <div id="displaypasswordbox" hidden>
-                  <input type="password" name="password" placeholder="Enter your current password here..."/><br> 
-                  <input type="password" name="password" placeholder="Enter your desired password here..."/><br>
+                  <label>Your current password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>
+
+                  <label>New password:</label><br> 
+                  <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br>
+
+                  <label>Repeat your new password:</label><br>
                   <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br> 
                </div>
 
@@ -37,6 +47,8 @@
 
          <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
          <% else %>
+            <!--Here we are comming from the login page--->
+            <!--NOT LOGGED IN-->
             <form method="post" action="changeaccountdetails">
 
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
@@ -49,7 +61,7 @@
                      <input type="email" name="email" placeholder="Enter your desired email here..."/><br><br>
 
                      <label>Recovery Code:</label><br>
-                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br> 
+                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
 
                   </div>
 
@@ -74,9 +86,8 @@
                      <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                   </div>
             </form>
-                  
-            <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
          <% end %>
+         <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
       </div>
    </body>
 </html>
