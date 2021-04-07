@@ -15,9 +15,10 @@
          <% if session[:loggedin] %>
             <!--Here we are comming from the profile page--->
             <!--LOGGED IN-->
+            <!--form no 1-->
             <form method="post" action="changeaccountdetails">
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
-               <!--form no 1-->
+               
                <div id="displayemailbox" hidden>
                    
                   <p>You have chosen to change your Email.</p> 
@@ -29,15 +30,18 @@
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
 
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
-                  <input hidden name="number" value="1"/>              
+                  <input hidden name="number" value="1"/>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                </div>
 
-               <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
-           
+               <!--<div id="displaychangesbutton" hidden>
+                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               </div>  --> 
             </form>  
                 
             <!--form no 2-->
             <form method="post" action="changeaccountdetails"> 
+                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
                 <div id="displaypasswordbox" hidden>
 
                    <p>You have chosen to change your Password.</p> 
@@ -53,11 +57,12 @@
 
                    <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                    <input hidden name="number" value="2"/> 
+                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                 </div>
 
-                <div id="displaychangesbutton" hidden>
+                <!--<div id="displaychangesbutton" hidden>
                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
-                </div> 
+               </div>  --> 
 
             </form>
 
@@ -65,10 +70,11 @@
          <% else %>
             <!--Here we are comming from the login page--->
             <!--NOT LOGGED IN-->
+            <!--form no 3-->
             <form method="post" action="changeaccountdetails">
 
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
-               <!--form no 3-->
+               
                <div id="displayemailbox" hidden>
 
                   <p>You have chosen to change your Email.</p>
@@ -81,14 +87,19 @@
 
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                   <input hidden name="number" value="3"/>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
 
-               </div>
-               <a onclick="desiredPassword()" id="change_password" class="button">My password</a>  
+               </div>  
+
+               <!--<div id="displaychangesbutton" hidden>
+                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               </div>  --> 
             
             </form>            
                
             <!--form no 4-->
             <form method="post" action="changeaccountdetails">
+                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>  
                 <div id="displaypasswordbox" hidden>
 
                    <p>You have chosen to change your Password.</p>
@@ -104,13 +115,13 @@
 
                    <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                    <input hidden name="number" value="4"/>
-
+                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                 </div>
-            </form>
 
-            <div id="displaychangesbutton" hidden>
-               <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
-            </div>
+                <!--<div id="displaychangesbutton" hidden>
+                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               </div>  -->
+            </form>
          <% end %>
          <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
       </div>
