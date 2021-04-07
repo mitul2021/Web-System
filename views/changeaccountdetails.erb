@@ -17,17 +17,21 @@
             <!--LOGGED IN-->
             <form method="post" action="changeaccountdetails">
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a><br>
-
+               <!--form no 1-->
                <div id="displayemailbox" hidden>
                   <label>New Email:</label><br>
                   <input type="email" name="email" placeholder="Enter your desired email here..."/><br>
 
                   <label>Confirm with your password:</label><br>
-                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>              
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>
+
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
+                  <input hidden name="number" value="1"/>              
                </div>
 
                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
-
+               
+               <!--form no 2-->
                <div id="displaypasswordbox" hidden>
                   <label>Your current password:</label><br>
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br>
@@ -36,7 +40,10 @@
                   <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br>
 
                   <label>Repeat your new password:</label><br>
-                  <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br> 
+                  <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br>
+
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
+                  <input hidden name="number" value="2"/> 
                </div>
 
                <div id="displaychangesbutton" hidden>
@@ -52,39 +59,46 @@
             <form method="post" action="changeaccountdetails">
 
                <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
+               <!--form no 3-->
+               <div id="displayemailbox" hidden>
 
-                  <div id="displayemailbox" hidden>
+                  <p>You have chosen to change your Email.</p>
 
-                     <p>You have chosen to change your Email.</p>
+                  <label>New Email:</label><br>
+                  <input type="email" name="email" placeholder="Enter your desired email here..."/><br><br>
 
-                     <label>New Email:</label><br>
-                     <input type="email" name="email" placeholder="Enter your desired email here..."/><br><br>
+                  <label>Recovery Code:</label><br>
+                  <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
 
-                     <label>Recovery Code:</label><br>
-                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
+                  <input hidden name="number" value="3"/>
 
-                  </div>
+               </div>
 
-                  <a onclick="desiredPassword()" id="change_password" class="button">My password</a> 
+               <a onclick="desiredPassword()" id="change_password" class="button">My password</a> 
+               
+               <!--form no 4-->
+               <div id="displaypasswordbox" hidden>
 
-                  <div id="displaypasswordbox" hidden>
+                  <p>You have chosen to change your Password.</p>
 
-                     <p>You have chosen to change your Password.</p>
+                  <label>New Password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your desired password here..."/><br><br>
 
-                     <label>New Password:</label><br>
-                     <input type="password" name="password" placeholder="Enter your desired password here..."/><br><br>
+                  <label>Repeat New Password:</label><br>
+                  <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
 
-                     <label>Repeat New Password:</label><br>
-                     <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
+                  <label>Recovery Code:</label><br>
+                  <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
 
-                     <label>Recovery Code:</label><br>
-                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
+                  <input hidden name="number" value="4"/>
 
-                  </div>
+               </div>
 
-                  <div id="displaychangesbutton" hidden>
-                     <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
-                  </div>
+               <div id="displaychangesbutton" hidden>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               </div>
             </form>
          <% end %>
          <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
