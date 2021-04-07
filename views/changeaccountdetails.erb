@@ -7,77 +7,76 @@
     
    <body>
       <h1>Change Account Details</h1>
-       
       <p id="changetext">What would you like to change?:</p>
        
       <!--defines form that posts to changeaccountdetails.rb controller -->
       <!-- If you are logged in then you would be accessing this page from the profilecreate view so it would not ask you for your recovery code since you have proved that you are that user -->
       <div id="change_details_container">
-          <% if session[:logged_in] %>
-              <form method="post" action="changeaccountdetails">
-                 <a onclick="desiredEmail()" id="change_email" class="button">My email</a><br>
+         <% if session[:logged_in] %>
+            <form method="post" action="changeaccountdetails">
+               <a onclick="desiredEmail()" id="change_email" class="button">My email</a><br>
 
-                 <div id="displayemailbox" hidden>
-                    <input type="password" name="password" placeholder="Enter your current password here..."/><br>
-                    <input type="email" name="email" placeholder="Enter your desired email here..."/><br>                
-                 </div>
+               <div id="displayemailbox" hidden>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br>
+                  <input type="email" name="email" placeholder="Enter your desired email here..."/><br>                
+               </div>
 
-                 <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
+               <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
 
-                 <div id="displaypasswordbox" hidden>
-                    <input type="password" name="password" placeholder="Enter your current password here..."/><br> 
-                    <input type="password" name="password" placeholder="Enter your desired password here..."/><br>
-                    <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br> 
-                 </div>
+               <div id="displaypasswordbox" hidden>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br> 
+                  <input type="password" name="password" placeholder="Enter your desired password here..."/><br>
+                  <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br> 
+               </div>
 
-                 <div id="displaychangesbutton" hidden>
-                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
-                 </div> 
+               <div id="displaychangesbutton" hidden>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               </div> 
 
-              </form>
+            </form>
 
-           <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
-           <% else %>
-              <form method="post" action="changeaccountdetails">
+         <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
+         <% else %>
+            <form method="post" action="changeaccountdetails">
 
-                     <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
+               <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
 
-                     <div id="displayemailbox" hidden>
+                  <div id="displayemailbox" hidden>
 
-                         <p>You have chosen to change your Email.</p>
+                     <p>You have chosen to change your Email.</p>
 
-                         <label>New Email:</label><br>
-                         <input type="email" name="email" placeholder="Enter your desired email here..."/><br><br>
+                     <label>New Email:</label><br>
+                     <input type="email" name="email" placeholder="Enter your desired email here..."/><br><br>
 
-                         <label>Recovery Code:</label><br>
-                         <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br> 
+                     <label>Recovery Code:</label><br>
+                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br> 
 
-                     </div>
+                  </div>
 
-                     <a onclick="desiredPassword()" id="change_password" class="button">My password</a> 
+                  <a onclick="desiredPassword()" id="change_password" class="button">My password</a> 
 
-                     <div id="displaypasswordbox" hidden>
+                  <div id="displaypasswordbox" hidden>
 
-                         <p>You have chosen to change your Password.</p>
+                     <p>You have chosen to change your Password.</p>
 
-                         <label>New Password:</label><br>
-                         <input type="password" name="password" placeholder="Enter your desired password here..."/><br><br>
+                     <label>New Password:</label><br>
+                     <input type="password" name="password" placeholder="Enter your desired password here..."/><br><br>
 
-                         <label>Repeat New Password:</label><br>
-                         <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
+                     <label>Repeat New Password:</label><br>
+                     <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
 
-                         <label>Recovery Code:</label><br>
-                         <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                     <label>Recovery Code:</label><br>
+                     <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
 
-                     </div>
+                  </div>
 
-                     <div id="displaychangesbutton" hidden>
-                        <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
-                     </div>
-              </form>
-                   
-              <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
-           <% end %>
+                  <div id="displaychangesbutton" hidden>
+                     <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+                  </div>
+            </form>
+                  
+            <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
+         <% end %>
       </div>
    </body>
 </html>
