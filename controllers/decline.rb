@@ -1,11 +1,15 @@
-get "/decline" do
+post "/decline" do
     puts "This is users's ID: #{session[:user_id]}"
     
-    if(session[:user_type].eql?("mentor") || session[:user_type].eql?("mentee"))
-        @pairID = params["id"].to_i #Retrieves the id from the params hash and sets it to pairID and converts to an integer
+    @pairID = params["pair_id"].to_i #Retrieves the id from the params hash and sets it to pairID and converts to an integer
+    @pair = Pair[@pairID]
+    
+    #If you are a mentee -AND- you are checking that it is the correct mentee_id OR you are a mentor -AND- you are checking that it is the correct mentor_id
+    #The second and fourth part of the if ensures that you cannot modify someone else's mentorship and vice versa
+    if ((session[:user_type].eql?("mentee") && (session[:user_id].eql?(@pair.mentee_id))) || (session[:user_type].eql?("mentor") && (session[:user_id].eql?(@pair.mentor_id))))
+                
         puts "User want to delete pair"
-        if Pair.id_exists?(@pairID)
-            @pair = Pair[@pairID]
+        if Pair.id_exists?(@pairID)            
             @pair.delete
             #@pair.save_changes(validate: false) maybe we don't need that
             response.set_cookie("decline-popup", value: 'true') if session[:user_type].eql?("mentee")
@@ -14,7 +18,6 @@ get "/decline" do
     end
     redirect "/index"
 end
-
 
 
     

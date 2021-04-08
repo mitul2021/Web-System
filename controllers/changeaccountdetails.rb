@@ -169,6 +169,8 @@ end
 
 def validateUser3(data)
     @user = User.first(recovery_code: data[2])
+    
+    #This is incase the user enters a recovery code that does not exist in the database
     return false if @user.nil?
     
     #Here we are checking that the users' recovery code and password match together in the database record

@@ -74,10 +74,10 @@
                      
                      
                         <label>First Name:</label><br>
-                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %>"/><br><br>
                      
                         <label>Surname:</label><br>
-                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "Not given" : (h @user.surname) %>"/><br><br>
                   
                         <%if @user.year_of_birth.nil?%>
                            <label>Year of Birth:</label><br>
@@ -106,7 +106,7 @@
                         </select><br><br>
                         
                         <label>Contact number:</label><br>
-                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %>"/><br><br>
                         
                         
                            <label>Your course:</label><br>
@@ -169,7 +169,7 @@
                         <br><br>
                          
                         <label>Other Notes:</label><br>
-                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
+                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
                         <br>
                         
                         <!--MENTOR -->
@@ -177,10 +177,10 @@
                      
                      
                         <label>First Name:</label><br>
-                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %>"/><br><br>
                      
                         <label>Surname:</label><br>
-                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "Not given" : (h @user.surname) %>"/><br><br>
                   
                         <%if @user.year_of_birth.nil?%>
                            <label>Year of Birth:</label><br>
@@ -210,10 +210,10 @@
                         
                         
                         <label>Contact number:</label><br>
-                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "" : (h @user.contact_number) %>"/><br><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %>"/><br><br>
                         
                         <label>Job title:</label><br>
-                        <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
+                        <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                   
 
                         <label>Interests:</label><br>
@@ -223,7 +223,7 @@
                                  <select name="<%="interest_id_#{i}"%>">
                                     <% Interest.all.each do |interest|%>
                                        <option value="<%= interest.interest_id %>"
-                                             <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %>>
+                                              <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %> -->
                                           <%= interest.description%>
                                        </option>
                                        
@@ -251,16 +251,16 @@
                         <br><br>
 
                         <label>Other Notes:</label><br>
-                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "" : (h @user.profile_text) %></textarea>
+                        <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
                         <br>
                                        
                      <% elsif @role.eql?("admin") %>
                      
                         <label>First Name:</label><br>
-                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "" : (h @user.first_name) %>"/><br><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %>"/><br><br>
                      
                         <label>Surname:</label><br>
-                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "" : (h @user.surname) %>"/><br><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "Not given" : (h @user.surname) %>"/><br><br>
                   
                         <%if @user.year_of_birth.nil?%>
                            <label>Year of Birth:</label><br>
@@ -368,7 +368,7 @@
                      <% end %>
                                                       
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
                   
                   <% elsif @role.eql?("mentor") %>
 
@@ -407,7 +407,7 @@
 
 
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
                   
                   <% elsif @role.eql?("admin") %>
                      
@@ -427,7 +427,7 @@
                      <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
              
                      <label>Other Notes:</label><br>
-                     <%= @user.profile_text.nil? ? "There aren't any" : (h @user.profile_text) %><br>
+                     <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
                   
                   <% else %>
                      <% redirect "/not_found" %>

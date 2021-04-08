@@ -119,7 +119,13 @@
                               <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="return cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                            
+                              </form>
                            </td>
                         </tr>
                      <% end %>
@@ -158,7 +164,13 @@
                               <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="return cancelRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Request</a>  
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return cancelRequest()" value="Cancel Request" name="cancel_request"/>
+                            
+                              </form> 
                            </td>
                         </tr>                  
                      <% end %>
@@ -205,7 +217,13 @@
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="return cancelMentorship()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Cancel Mentorship</a>  
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                            
+                              </form>   
                            </td>
                         </tr>
                      <% end %>
@@ -242,10 +260,24 @@
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                            <td>
-                              <a onclick="return acceptRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "accept?id=" + (h request.pair_id) %>>">Accept Request</a>  
+                              <!-- Goes to the accept.rb controller -->
+                              <form method="post" action="accept">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                            
+                              </form>
                            </td>
                            <td>
-                              <a onclick="return denyRequest()" href="<%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>  
+                              <!-- Goes to the decline.rb controller -->
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                            
+                              </form>                                                                                 
+                               
+<!--                               <a onclick="return denyRequest()" href="%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>   -->
                            </td>
                         </tr>
                      <% end %>
@@ -266,7 +298,63 @@
           
             <h1>User requests:</h1>
           
-            <p>Place holder for user request<p>
+            <% @userrequests = Userrequest.where(status: 0) %>
+            <% if(@userrequests.empty?) %>
+               <p>You haven't recieved any new user requests yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Request Type</th>
+                     <th>Request Data</th> 
+                  </tr>
+                  <% @userrequests.each do |userrequest| %>
+                     <% @user = User.first(id: userrequest.user_id) %>
+                     <%unless @user.nil?%>
+                        <tr>
+                           <td>
+                              <a href="profile/<%= (h userrequest.user_id) unless userrequest.user_id.nil? %>" > 
+                                 <%= (@user.first_name.nil?) ? ("Not given") : (h @user.first_name) %> 
+                                 <%= (@user.surname.nil?) ? ("Not given") : (h @user.surname) %>
+                              </a>
+                           </td>
+          
+                           <td>
+                              <%= (Request[userrequest.request_id].description.nil?) ? ("Not given") : (h Request[userrequest.request_id].description) %>
+                           </td>
+                            
+                           <td>
+                              <!-- If the user is requesting a change of password -->
+                              <% if (userrequest.request_id == 2) %>
+                                   ********
+                              <% else %> 
+                                  <%= (userrequest.request_data.nil?) ? ("Not given") : (h userrequest.request_data) %>
+                              <% end %> 
+                           </td> 
+                          
+                           <td>
+                              <!-- Goes to the accept.rb controller --> 
+                              <form method="post" action="accept">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                            
+                              </form>                                                                
+                           </td>
+                           <td>
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                            
+                              </form>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table><br>
+            <% end %>
             
 
             <h1>View pairings:</h1>
