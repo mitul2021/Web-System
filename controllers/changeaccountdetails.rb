@@ -25,9 +25,11 @@ post "/changeaccountdetails" do
     case type
     when 1,2
         #1, #2 redirecting to profile page, trigger the popup here
+        response.set_cookie("change-from-profile-popup", value: 'true')
         redirect "/profilecreate"
     when 3,4
         #3, #4 redirecting to login page, trigger the popup here
+        response.set_cookie("change-from-login-popup", value: 'true')
         redirect "/login"
     end
 end

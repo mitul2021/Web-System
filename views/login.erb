@@ -12,6 +12,10 @@
          <p>Your recovery code is: <%= @code%></p>
       </div>
        
+      <div class = "green_pop_up" <%="hidden" unless @changed_from_login%>>
+         <p>You have successfully requested changes to your account. Once an admin approves your request, you should be able to log in.</p>
+      </div> 
+       
       <div class = "red_pop_up" <%="hidden" unless @redirected%>>
          <p>You have been redirected because you have not logged in yet</p>
       </div>

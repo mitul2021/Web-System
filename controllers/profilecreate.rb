@@ -12,6 +12,10 @@ get "/profilecreate" do
         @usr_interests = Userinterest.where(user_id: @user_id)
         @numOfUserInterests = @usr_interests.count  #default
         puts "numOfUserInterests #{@numOfUserInterests}"
+        
+        cookie = request.cookies.fetch("change-from-profile-popup",0) #reading the cookie
+        @changed_from_profile = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("change-from-profile-popup") #deleting the cookie
 
         
         erb :profilecreate

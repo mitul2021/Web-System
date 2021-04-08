@@ -11,6 +11,10 @@ get "/login" do
     @redirected = true if cookie == "true" #used by view to display the message
     response.delete_cookie("redirected-popup") #deleting the cookie
     
+    cookie = request.cookies.fetch("change-from-login-popup",0) #reading the cookie
+    @changed_from_login = true if cookie == "true" #used by view to display the message
+    response.delete_cookie("change-from-login-popup") #deleting the cookie
+    
     erb :login
 
 end

@@ -56,7 +56,12 @@
       </nav>
       <% else %>
          ERROR: user_type is not correct
-      <% end %>
+      <% end %>      
+       
+      <div class = "green_pop_up" <%="hidden" unless @changed_from_profile%>>
+         <p>You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.</p>
+      </div> 
+       
        
       <div id="profilecreatebody">
          <h1>Your Profile</h1>
