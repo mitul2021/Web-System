@@ -1,17 +1,18 @@
-get "/request" do
+post "/request" do
     
     #retreives user id from session key, so it can be added as part of a unique pair in the db
     mentee_id = session[:user_id]
-    puts "This is mentee's ID: #{session[:user_id]}"
+    mentor_id = params["mentor_id"]
+    #puts "This is mentee's ID: #{mentee_id}"
     
-    if(session[:user_type].eql?("mentee"))
+    if(!mentee_id.nil? && User[mentor_id].user_type.eql?("mentor") && session[:user_type].eql?("mentee"))
         puts "User is a mentee."
-        @pair = Pair.new
-
-        puts "This is mentor's ID: #{params["id"]}"
+        
+        puts "This is mentor's ID: #{mentor_id}"
         #creates the mentor and mentee id of the pair in the db
-        @pair.mentor_id = params["id"]
+        @pair = Pair.new
         @pair.mentee_id = mentee_id
+        @pair.mentor_id = mentor_id
         @pair.status = 0 #every request is initially not accepted
         
         #updating DB with new request 
