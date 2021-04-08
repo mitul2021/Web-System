@@ -334,18 +334,18 @@
                           
                            <td>
                               <!-- Goes to the accept.rb controller --> 
-                              <form method="post" action="accept">
+                              <form method="post" action="accept-admin">
                                   
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
                                   <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
                             
                               </form>                                                                
                            </td>
                            <td>
                               <!-- Goes to the decline.rb controller --> 
-                              <form method="post" action="decline">
+                              <form method="post" action="decline-admin">
                                   
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
                                   <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
                             
                               </form>  

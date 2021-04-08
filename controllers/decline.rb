@@ -19,6 +19,22 @@ post "/decline" do
     redirect "/index"
 end
 
+post "/decline-admin" do #for user requests
+
+    @user_request = Userrequest[params["userrequest_id"]]
+
+    if(session[:user_type].eql?("admin"))
+        puts "we are admin"
+        unless (@user_request.nil?)
+            puts "request is not nil"
+            @user_request.delete
+        end
+
+    end
+
+    redirect "/index"
+
+end
 
     
     
