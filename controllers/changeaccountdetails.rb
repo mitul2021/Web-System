@@ -6,10 +6,18 @@ get "/changeaccountdetails" do
 
 end
 
-
 post "/changeaccountdetails" do
     type = params.fetch("number"," ").strip.to_i
     puts "Type of the form #{type}"
+
+    @errors = {
+        "email" => [],
+        "new_email" => [],
+        "password" => [],
+        "new_password" => [],
+        "repeat_password" => [],
+        "recovery_code" => []
+    }
 
     case type
     when 1 then handleType1(params)
@@ -20,33 +28,42 @@ post "/changeaccountdetails" do
         "You gave me #{type} -- I have no idea what to do with that."
     end
 
+    have_errors = false
 
-    #Redirecting and cookies
-    case type
-    when 1,2
-        #triggering the cookie that the message is displayed in /profilecreate page
-        response.set_cookie("change-from-profile-popup", value: 'true')
-        #1, #2 redirecting to profile page
-        redirect "/profilecreate"
-    when 3,4
-        #triggering the cookie that the message is displayed in /login page
-        response.set_cookie("change-from-login-popup", value: 'true')
-        #3, #4 redirecting to login page,
-        redirect "/login"
+    @errors.each do |k,v|
+        have_errors = true unless v.empty?
+    end
+
+    if have_errors #if there are any error maessages
+        @form_number = type
+        erb :changeaccountdetails
+    else #no errors
+
+        #Redirecting and cookies
+        case type
+        when 1,2
+            #triggering the cookie that the message is displayed in /profilecreate page
+            response.set_cookie("change-from-profile-popup", value: 'true')
+            #1, #2 redirecting to profile page
+            redirect "/profilecreate"
+        when 3,4
+            #triggering the cookie that the message is displayed in /login page
+            response.set_cookie("change-from-login-popup", value: 'true')
+            #3, #4 redirecting to login page,
+            redirect "/login"
+        end
     end
 end
+
 # ================
 # ==== TYPE 1 ====
 # ================
 
 def handleType1(params)
-    data = loadFormDataType1(params) #new_email,password
+    data = loadFormDataType1(params) 
     #validation
-    
-    return if !validateUser1(data)  #if the validation gone wrong don't go any further just return
-
+    return false if !validateUser1(data)  #if the validation gone wrong don't go any further
     newRequest1(data)
-
 end
 
 def loadFormDataType1(params)
@@ -57,18 +74,14 @@ def loadFormDataType1(params)
     return [new_email,password]
 end
 
-def validateUser1(data)
+def validateUser1(data) #new_email,password
 
-    #password check
-    if data[1]==User[session[:user_id]].password
-        puts "The password is correct"
-        return true
-    else
-        puts "The password is incorrect"
-        #possibly add cookie here, and try again or sth
-        return false
-    end
+    (@errors["password"] << "entered password is incorrect") unless data[1]==User[session[:user_id]].password
+    (@errors["password"] << "password cannot be empty") if data[1].empty?
+    (@errors["email"] << "your desired email cannot be empty") if data[0].nil? || data[0].empty?
+    (@errors["email"] << "someone already uses this email") unless User.first(email: data[0]).nil?
 
+    return  @errors["password"].empty? && @errors["email"].empty?
 end
 
 def newRequest1(data)

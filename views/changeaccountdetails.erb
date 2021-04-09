@@ -14,7 +14,6 @@
       <div id="change_details_container">
          
          <% case @form_number %>
-          
          <% when 1 %> 
             <!--Here we are comming from the profile page--->
             <!--LOGGED IN-->
@@ -28,14 +27,19 @@
                   <label>New Email:</label><br>
                   <input type="email" name="new_email" placeholder="Enter your desired email here..."/><br><br>
                    
-                  <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
-                      <% @user.errors["email"].each do |error| %>
+                  <%if !@errors.nil? && @errors.include?("email") %>
+                      <% @errors["email"].each do |error| %>
                           <p class="error"><strong><%= error %></strong></p>
                       <% end %>
                   <% end %> 
 
                   <label>Confirm with your password:</label><br>
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                  <%if !@errors.nil? && @errors.include?("password") %>
+                      <% @errors["password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
 
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                   <input hidden name="number" value="1"/>
