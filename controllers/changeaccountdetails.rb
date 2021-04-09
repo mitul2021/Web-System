@@ -12,14 +12,10 @@ post "/changeaccountdetails" do
     puts "Type of the form #{type}"
 
     case type
-    when 1 
-        handleType1(params)
-    when 2 
-        handleType2(params)    
-    when 3 
-        handleType3(params)
-    when 4 
-        handleType4(params)
+    when 1 then handleType1(params)
+    when 2 then handleType2(params)    
+    when 3 then handleType3(params)
+    when 4 then handleType4(params)
     else
         "You gave me #{type} -- I have no idea what to do with that."
     end
@@ -28,12 +24,14 @@ post "/changeaccountdetails" do
     #Redirecting and cookies
     case type
     when 1,2
-        #1, #2 redirecting to profile page, trigger the popup here
+        #triggering the cookie that the message is displayed in /profilecreate page
         response.set_cookie("change-from-profile-popup", value: 'true')
+        #1, #2 redirecting to profile page
         redirect "/profilecreate"
     when 3,4
-        #3, #4 redirecting to login page, trigger the popup here
+        #triggering the cookie that the message is displayed in /login page
         response.set_cookie("change-from-login-popup", value: 'true')
+        #3, #4 redirecting to login page,
         redirect "/login"
     end
 end
