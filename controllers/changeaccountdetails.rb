@@ -1,5 +1,9 @@
 get "/changeaccountdetails" do
+    
+    @form_number = params.fetch("form", " ").strip.to_i
+        
     erb :changeaccountdetails
+
 end
 
 

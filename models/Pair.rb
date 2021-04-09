@@ -15,8 +15,9 @@ class Pair < Sequel::Model
         
         if exist?
             errors.add("general", "there already exists such a request in DB") 
+            
             #we should here check if mentors_id is actually mentors
-        end 
+        end
          
         return errors.empty? #if there are no errors we are good to go, and returns true
     end

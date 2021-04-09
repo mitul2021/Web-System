@@ -12,19 +12,26 @@
       <!--defines form that posts to changeaccountdetails.rb controller -->
       <!-- If you are logged in then you would be accessing this page from the profilecreate view so it would not ask you for your recovery code since you have proved that you are that user -->
       <div id="change_details_container">
-         <% if session[:loggedin] %>
+         <!-- CASE doesn't seem to work (needs checking) -->
+         <!-- The case if the form number is 1 --> 
+         <% if @form_number == 1 %> 
             <!--Here we are comming from the profile page--->
             <!--LOGGED IN-->
-            <!--form no 1-->
+            <!--displaying contents of form 1-->            
             <form method="post" action="changeaccountdetails">
-               <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
                
-               <div id="displayemailbox" hidden>
+               <div id="displayemailbox">
                    
                   <p>You have chosen to change your Email.</p> 
                    
                   <label>New Email:</label><br>
                   <input type="email" name="new_email" placeholder="Enter your desired email here..."/><br><br>
+                   
+                  <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
+                      <% @user.errors["email"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
 
                   <label>Confirm with your password:</label><br>
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
@@ -35,20 +42,28 @@
                </div>
 
             </form>  
-                
+         <!-- The case for if the form number is 2 -->       
+         <% elsif @form_number == 2 %>
             <!--form no 2-->
+            <!-- displaying contents of form 2 -->
             <form method="post" action="changeaccountdetails"> 
-                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>
-                <div id="displaypasswordbox" hidden>
+                <div id="displaypasswordbox">
 
                    <p>You have chosen to change your Password.</p> 
 
                    <label>Your current password:</label><br>
                    <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
 
+                   
                    <label>New password:</label><br> 
                    <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br><br>
-
+                   
+                   <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("password") %>
+                       <% @user.errors["password"].each do |error| %>
+                           <p class="error"><strong><%= error %></strong></p>
+                       <% end %>
+                   <% end %> 
+                   
                    <label>Repeat your new password:</label><br>
                    <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
 
@@ -61,15 +76,14 @@
             </form>
 
          <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
-         <% else %>
+         <!-- The case for if the form number is 3 -->
+         <% elsif @form_number == 3 %>
             <!--Here we are comming from the login page--->
             <!--NOT LOGGED IN-->
-            <!--form no 3-->
+            <!--displaying the contents of form 3-->
             <form method="post" action="changeaccountdetails">
-
-               <a onclick="desiredEmail()" id="change_email" class="button">My email</a>
                
-               <div id="displayemailbox" hidden>
+               <div id="displayemailbox">
 
                   <p>You have chosen to change your Email.</p>
 
@@ -90,12 +104,13 @@
                </div>  
 
             
-            </form>            
-               
-            <!--form no 4-->
-            <form method="post" action="changeaccountdetails">
-                <a onclick="desiredPassword()" id="change_password" class="button">My password</a>  
-                <div id="displaypasswordbox" hidden>
+            </form>
+          
+         <!-- The case for if the form number is 4 -->    
+         <% elsif @form_number == 4 %> 
+            <!-- displaying the contents of form 4-->
+            <form method="post" action="changeaccountdetails"> 
+                <div id="displaypasswordbox">
 
                    <p>You have chosen to change your Password.</p>
                     
@@ -117,8 +132,32 @@
                 </div>
                 
             </form>
+          
+         <% else %>
+              <% if session[:loggedin] %>
+                  
+                  <!-- For form 1 -->
+                  <a href="changeaccountdetails?form=1" class="button" >Change Email</a>
+                  
+                  <!-- For form 2 -->
+                  <a href="changeaccountdetails?form=2" class="button" >Change Password</a>
+              
+              <% else %>
+                  
+                  <!-- For form 3 -->
+                  <a href="changeaccountdetails?form=3" class="button" >Change Email</a>
+                  
+                  <!-- For form 4 -->
+                  <a href="changeaccountdetails?form=4" class="button" >Change Password</a>
+              
+              <% end %>
+          
          <% end %>
+          
          <a href="javascript:history.back()" class="button" id="go_back">Go Back</a>
+      
       </div>
+   
    </body>
+
 </html>
