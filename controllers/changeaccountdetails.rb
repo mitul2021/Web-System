@@ -30,8 +30,8 @@ post "/changeaccountdetails" do
 
     have_errors = false
 
-    @errors.each do |k,v|
-        have_errors = true unless v.empty?
+    @errors.each do |key, value|
+        have_errors = true unless value.empty?
     end
 
     if have_errors #if there are any error maessages
@@ -123,24 +123,17 @@ def loadFormDataType2(params)
     return [password,new_password,repeat_password]
 end
 
-def validateUser2(data)
-    #password check
-    if data[0]==User[session[:user_id]].password
-        puts "The password is correct"
-    else
-        puts "The password is incorrect"
-        #possibly add cookie here, and try again or sth
-        return false
-    end
-    #check reapeat password
-    if data[1]==data[2]
-        puts "The passwords match"
-    else
-        puts "Passwords doesn't match"
-        return false
-    end
-
-    return true
+def validateUser2(data) #password, new_password, repeat_password
+    
+    (@errors["password"] << "entered password is incorrect") unless data[0]==User[session[:user_id]].password
+    (@errors["password"] << "password cannot be empty") if data[0].empty?
+    (@errors["new_password"] << "desired password cannot be empty") if data[1].empty?
+    (@errors["repeat_password"] << "repeated password cannot be empty") if data[2].empty?
+    (@errors["repeat_password"] << "repeated password does not match") if !(data[1].eql?(data[2]))
+    (@errors["new_password"] << "new password cannot be the same as your current password") if (data[0].eql?(data[1]))
+    (@errors["new_password"] << "new password should be at least 8 characters long") if data[0].length<8
+    
+    return  @errors["password"].empty? && @errors["new_password"].empty? && @errors["repeat_password"].empty?
     
 end
 
@@ -185,16 +178,17 @@ def loadFormDataType3(params)
 end
 
 def validateUser3(data)
-    @user = User.first(recovery_code: data[2])
     
-    #This is incase the user enters a recovery code that does not exist in the database
-    return false if @user.nil?
+    (@errors["new_email"] << "someone already uses this email") unless User.first(email: data[0]).nil?
+    (@errors["new_email"] << "your desired email cannot be empty") if data[0].nil? || data[0].empty?
+    (@errors["password"] << "entered password is incorrect") if User.first(recovery_code: data[2]).nil? || !(data[1]==User.first(recovery_code: data[2]).password)
+    (@errors["password"] << "password cannot be empty") if data[1].empty?
+    (@errors["recovery_code"] << "there is no user with this recovery code") if User.first(recovery_code: data[2]).nil?
+    (@errors["recovery_code"] << "the recovery code and your password do not match") if @user.nil? || !(@user.password.eql?(data[1]))
+    (@errors["recovery_code"] << "the recovery code cannot be empty") if data[2].empty?
     
-    #Here we are checking that the users' recovery code and password match together in the database record
-    return false unless @user.password.eql?(data[1])
-    
-    return true
-    
+    return  @errors["new_email"].empty? && @errors["password"].empty? && @errors["recovery_code"].empty? 
+                
 end
 
 def newRequest3(data)
@@ -242,16 +236,17 @@ end
 
 def validateUser4(data)
     
-    @user = User.first(recovery_code: data[3])
-    return false if @user.nil?
-    
-    #Here we are checking that the users' email and recovery code match together in the database record
-    return false unless @user.email.eql?(data[0])
-    
-    return false unless data[1] == data[2]
-    
-    return true
-    
+    (@errors["email"] << "entered email is incorrect") if data[0]==User.first(email: data[0]).nil?
+    (@errors["email"] << "your email cannot be empty") if data[0].nil? || data[0].empty?
+    (@errors["new_password"] << "new password should be at least 8 characters long") if data[0].length<8
+    (@errors["repeat_password"] << "repeated password does not match") if !(data[1].eql?(data[2]))
+    (@errors["repeat_password"] << "repeated password cannot be empty") if data[2].empty?
+    (@errors["recovery_code"] << "there is no user with this recovery code") if User.first(recovery_code: data[2]).nil?
+    (@errors["recovery_code"] << "the recovery code and your email do not match") if @user.nil? || !(@user.email.eql?(data[0]))
+    (@errors["recovery_code"] << "the recovery code cannot be empty") if data[3].empty?
+        
+    return  @errors["email"].empty? && @errors["new_password"].empty? && @errors["repeat_password"].empty? && @errors["recovery_code"].empty?    
+        
 end
 
 
