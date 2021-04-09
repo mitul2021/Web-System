@@ -12,9 +12,10 @@
       <!--defines form that posts to changeaccountdetails.rb controller -->
       <!-- If you are logged in then you would be accessing this page from the profilecreate view so it would not ask you for your recovery code since you have proved that you are that user -->
       <div id="change_details_container">
-         <!-- CASE doesn't seem to work (needs checking) -->
-         <!-- The case if the form number is 1 --> 
-         <% if @form_number == 1 %> 
+         
+         <% case @form_number %>
+          
+         <% when 1 %> 
             <!--Here we are comming from the profile page--->
             <!--LOGGED IN-->
             <!--displaying contents of form 1-->            
@@ -43,7 +44,7 @@
 
             </form>  
          <!-- The case for if the form number is 2 -->       
-         <% elsif @form_number == 2 %>
+         <% when 2 %>
             <!--form no 2-->
             <!-- displaying contents of form 2 -->
             <form method="post" action="changeaccountdetails"> 
@@ -77,7 +78,7 @@
 
          <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
          <!-- The case for if the form number is 3 -->
-         <% elsif @form_number == 3 %>
+         <% when 3 %>
             <!--Here we are comming from the login page--->
             <!--NOT LOGGED IN-->
             <!--displaying the contents of form 3-->
@@ -107,7 +108,7 @@
             </form>
           
          <!-- The case for if the form number is 4 -->    
-         <% elsif @form_number == 4 %> 
+         <% when 4 %> 
             <!-- displaying the contents of form 4-->
             <form method="post" action="changeaccountdetails"> 
                 <div id="displaypasswordbox">
