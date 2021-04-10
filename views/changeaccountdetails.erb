@@ -27,14 +27,16 @@
                   <label>New Email:</label><br>
                   <input type="email" name="new_email" placeholder="Enter your desired email here..."/><br><br>
                    
-                  <%if !@errors.nil? && @errors.include?("email") %>
-                      <% @errors["email"].each do |error| %>
+                  <%if !@errors.nil? && @errors.include?("new_email") %>
+                      <% @errors["new_email"].each do |error| %>
                           <p class="error"><strong><%= error %></strong></p>
                       <% end %>
                   <% end %> 
-
+                  
+                   
                   <label>Confirm with your password:</label><br>
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                  
                   <%if !@errors.nil? && @errors.include?("password") %>
                       <% @errors["password"].each do |error| %>
                           <p class="error"><strong><%= error %></strong></p>
@@ -44,6 +46,7 @@
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                   <input hidden name="number" value="1"/>
                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               
                </div>
 
             </form>  
@@ -58,20 +61,33 @@
 
                    <label>Your current password:</label><br>
                    <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
-
+                    
+                   <%if !@errors.nil? && @errors.include?("password") %>
+                      <% @errors["password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                   <% end %> 
                    
+                    
                    <label>New password:</label><br> 
                    <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br><br>
                    
-                   <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("password") %>
-                       <% @user.errors["password"].each do |error| %>
+                   <% if !@errors.nil? && @errors.include?("new_password") %>
+                       <% @errors["new_password"].each do |error| %>
                            <p class="error"><strong><%= error %></strong></p>
                        <% end %>
                    <% end %> 
                    
+                    
                    <label>Repeat your new password:</label><br>
                    <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
-
+                   
+                   <% if !@errors.nil? && @errors.include?("repeat_password") %>
+                       <% @errors["repeat_password"].each do |error| %>
+                           <p class="error"><strong><%= error %></strong></p>
+                       <% end %>
+                   <% end %>                    
+                    
                    <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                    <input hidden name="number" value="2"/> 
                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
@@ -94,12 +110,32 @@
 
                   <label>New Email:</label><br>
                   <input type="email" name="new_email" placeholder="Enter your desired email here..."/><br><br>
-
+                  
+                  <%if !@errors.nil? && @errors.include?("new_email") %>
+                      <% @errors["new_email"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                  
+                   
                   <label>Your current password:</label><br>
                   <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("password") %>
+                      <% @errors["password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                   
                    
                   <label>Recovery Code:</label><br>
                   <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("recovery_code") %>
+                      <% @errors["recovery_code"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
                    
 
                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
@@ -121,16 +157,44 @@
                     
                    <label>Your current email:</label><br>
                    <input type="email" name="email" placeholder="Enter your current email here..."/><br><br> 
-
+                   
+                   <%if !@errors.nil? && @errors.include?("email") %>
+                      <% @errors["email"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                   <% end %> 
+                    
+                    
                    <label>New Password:</label><br>
                    <input type="password" name="new_password" placeholder="Enter your desired password here..."/><br><br>
-
+                   
+                   <%if !@errors.nil? && @errors.include?("new_password") %>
+                      <% @errors["new_password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                   <% end %> 
+                    
+                    
                    <label>Repeat New Password:</label><br>
                    <input type="password" name="repeat_password" placeholder="Repeat your desired password here..."/><br><br>
-
+                   
+                   <%if !@errors.nil? && @errors.include?("repeat_password") %>
+                      <% @errors["repeat_password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                   <% end %> 
+                    
+                    
                    <label>Recovery Code:</label><br>
                    <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
-
+                   
+                   <%if !@errors.nil? && @errors.include?("recovery_code") %>
+                      <% @errors["recovery_code"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                   <% end %> 
+                    
+                    
                    <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
                    <input hidden name="number" value="4"/>
                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
