@@ -241,7 +241,6 @@ def validateUser4(data)
     (@errors["email"] << "your email cannot be empty") if data[0].nil? || data[0].empty?
     (@errors["new_password"] << "new password should be at least 8 characters long") if data[1].length<8
     (@errors["new_password"] << "your desired password cannot be empty") if data[1].empty?
-    #Needs fixing 
     (@errors["new_password"] << "old and new password must be different") if !(User.first(password: data[1]).nil?) 
     (@errors["repeat_password"] << "repeated password does not match") if !(data[1].eql?(data[2]))
     (@errors["repeat_password"] << "repeated password cannot be empty") if data[2].empty?
