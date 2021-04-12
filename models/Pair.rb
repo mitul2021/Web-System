@@ -1,7 +1,7 @@
 class Pair < Sequel::Model
     
     
-     def validate
+    def validate
         super
         
         if !(mentor_id.is_a? Integer)
@@ -15,8 +15,11 @@ class Pair < Sequel::Model
         
         if exist?
             errors.add("general", "there already exists such a request in DB") 
-            
-            #we should here check if mentors_id is actually mentors
+        end
+
+        #checking if the mentor already has 10 or more ongoing requests
+        if (Pair.where(mentor_id: mentor_id, status: 0).count()>=10) 
+            errors.add("tooManyRequests","this mentor has to many requests")
         end
          
         return errors.empty? #if there are no errors we are good to go, and returns true

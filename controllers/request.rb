@@ -5,7 +5,7 @@ post "/request" do
     mentor_id = params["mentor_id"]
     #puts "This is mentee's ID: #{mentee_id}"
     
-    if(!mentee_id.nil? && User[mentor_id].user_type.eql?("mentor") && session[:user_type].eql?("mentee"))
+    if(!mentee_id.nil? && !mentor_id.nil?  && User[mentor_id].user_type.eql?("mentor") && session[:user_type].eql?("mentee"))
         puts "User is a mentee."
         
         puts "This is mentor's ID: #{mentor_id}"
@@ -33,6 +33,10 @@ post "/request" do
             
             if @pair.errors.include?("mentee_id")
                 response.set_cookie("error-mentee_id-not-integer-popup", value: 'true')
+            end
+
+            if @pair.errors.include?("tooManyRequests")
+                response.set_cookie("error-too-many-requests-popup", value: 'true')
             end
             
             puts "Request is invalid."

@@ -38,7 +38,11 @@
        
       <div class = "red_pop_up" <%="hidden" unless @mentee_id_not_integer%>>
          <p>Unexpected error as mentee_id cannot be an integer.</p>
-      </div> 
+      </div>
+
+      <div class = "red_pop_up" <%="hidden" unless @too_many_requests%>>
+         <p>This mentor has too much ongoing requests try again later.</p>
+      </div>  
       
        
        
