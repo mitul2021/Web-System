@@ -23,6 +23,27 @@
          </ul>
       </nav>
       
+      <div class = "green_pop_up" <%="hidden" unless @successfully_suspended%>>
+         <p>You have successfully suspended this user.</p>
+      </div>
+      
+      <div class = "green_pop_up" <%="hidden" unless @successfully_restored%>>
+         <p>You have successfully restored this user.</p>
+      </div>
+       
+      <div class = "red_pop_up" <%="hidden" unless @status_is_nil%>>
+         <p>Unexpected error as the status field is nil.</p>
+      </div>
+       
+      <div class = "red_pop_up" <%="hidden" unless @user_nil%>>
+         <p>Unexpected error as the user is nil.</p>
+      </div>
+       
+      <div class = "red_pop_up" <%="hidden" unless @user_id_nil%>>
+         <p>Unexpected error as the user_id field is nil.</p>
+      </div> 
+       
+       
       <div id="changedetailsbody">
          
          <h1>Users:</h1>

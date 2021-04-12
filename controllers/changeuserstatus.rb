@@ -9,24 +9,35 @@ post "/changeuserstatus" do
             case @user.status
             when 1
                 @user.status = 0
-                puts "You have succesfully suspended user #{user_id}"
+                puts "You have successfully suspended user #{user_id}"
+                
+                response.set_cookie("successfully-suspended-popup", value: 'true')
+                
             when 0 
                 @user.status = 1
-                puts "You have succesfully restored user #{user_id}"
+                puts "You have successfully restored user #{user_id}"
+                
+                response.set_cookie("successfully-restored-popup", value: 'true')
+                
             else
-                puts "status is neither 0 nor 1"
-                #error @user.status is nill maybe trigger cookie here
+                puts "Status is neither 0 nor 1 so it is nil"
+
+                response.set_cookie("status-nil-popup", value: 'true')
+                
             end
 
                 @user.save_changes
         else
-            puts "user doesn't exist"
-            #trigger cookie that the was unexpected error (user doesn't exist)
+            puts "user doesn't exist since user is nil"
+
+            response.set_cookie("user-doesn't-exist-popup", value: 'true')
         end
 
     else
-        puts "user_id is nil"
-        #trigger cookie that the user id is nil and display it in userlist
+        puts "user_id doesn't exist since user is nil"
+
+        response.set_cookie("user_id-doesn't-exist-popup", value: 'true')
+        
 
     end
 
