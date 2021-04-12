@@ -19,6 +19,7 @@ class User < Sequel::Model
         self.password = params.fetch("password"," ").strip
         self.user_type = params.fetch("user_type"," ").strip
         self.recovery_code = generate_recovery_code()
+        self.status = 1
     end
     
     
