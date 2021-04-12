@@ -22,3 +22,13 @@ function denyRequest() {
 function requestMentorship() {
     return confirm("Are you sure you want to request a mentorship? This action cannot be undone.");
 }
+
+// For when a admin clicks on Suspend User
+function suspendUser() {
+    return confirm("Are you sure you want to suspend this user?");
+}
+
+// For when a admin clicks on Restore User
+function restoreUser() {
+    return confirm("Are you sure you want to restore this user?");
+}

@@ -2,6 +2,7 @@
    <head>
       <title>User List</title>
       <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+      <script src="popups.js" defer></script>
    </head>
     
    <body>
@@ -26,13 +27,14 @@
          
          <h1>Users:</h1>
          
-         
+         <!--MENTEE's-->
          <h2>Below is a list of Mentees that are currently enrolled in the system:</h2>
          <table>
             <tr>
                <th>Name</th>
                <th>Email</th>
                <th>Contact Number</th>
+               <th>Status</th>
             </tr>
             <% @mentees.each do |mentee| %>
                <% unless mentee.nil? %>
@@ -49,6 +51,36 @@
                      <td>
                          <%= (mentee.contact_number.nil?) ? ("Not given") : (h mentee.contact_number) %>
                      </td>
+                     <td>
+                         <%case mentee.status%>
+                         <%when 1%>
+                           <%="Active"%>
+                         <%when 0%>
+                           <%="Suspended"%>
+                         <%else%>
+                           <%="Not given"%>
+                         <%end%>
+                     </td>
+                     
+                     <%unless mentee.status.nil? %>
+                        <td>
+                           <!-- Goes to the changeuserstatus.rb controller --> 
+                           <form method="post" action="changeuserstatus">
+                                 
+                              <input hidden name="user_id" value="<%= mentee.id.nil? ? "" : (h mentee.id) %>"/>
+                              <%case mentee.status%>
+                              <%when 1%>
+                                 <!--Active-->
+                                 <input type="submit" onclick="return suspendUser()" value="Suspend User"/>
+                              <%when 0%>
+                                 <!--Suspended-->
+                                 <input type="submit" onclick="return restoreUser()" value="Restore User"/>
+                              <%end%>
+                              
+                           
+                           </form>
+                        </td>
+                     <%end%>
                      
                      <td>
                         <a href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
@@ -59,14 +91,15 @@
          </table>
          <br>
          
-         
+         <!--MENTOR's-->
          <h2>Below is a list of Mentors that are currently enrolled in the system:</h2> 
          <table>
             <tr>
                <th>Name</th>
                <th>Job Title</th>
                <th>Email</th>
-               <th>Contact Number</th> 
+               <th>Contact Number</th>
+               <th>Status</th>
             </tr>
             <% @mentors.each do |mentor| %>
             <tr>
@@ -86,7 +119,36 @@
                <td> 
                    <%= (mentor.contact_number.nil?) ? ("Not given") : (h mentor.contact_number) %>
                </td>
+               <td>
+                  <%case mentor.status%>
+                  <%when 1%>
+                  <%="Active"%>
+                  <%when 0%>
+                  <%="Suspended"%>
+                  <%else%>
+                  <%="Not given"%>
+                  <%end%>
+               </td>
                
+               <%unless mentor.status.nil? %>
+                  <td>
+                     <!-- Goes to the changeuserstatus.rb controller --> 
+                     <form method="post" action="changeuserstatus">
+                           
+                        <input hidden name="user_id" value="<%= mentor.id.nil? ? "" : (h mentor.id) %>"/>
+                        <%case mentor.status%>
+                        <%when 1%>
+                           <!--Active-->
+                           <input type="submit" onclick="return suspendUser()" value="Suspend User"/>
+                        <%when 0%>
+                           <!--Suspended-->
+                           <input type="submit" onclick="return restoreUser()" value="Restore User"/>
+                        <%end%>
+                        
+                     
+                     </form>
+                  </td>
+               <%end%>
                <td>    
                    <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                </td>
@@ -96,14 +158,15 @@
          </table>
          <br>
           
-          
-          <h2>Below is a list of Admins that are currently enrolled in the system:</h2> 
+         <!--ADMIN's--> 
+         <h2>Below is a list of Admins that are currently enrolled in the system:</h2> 
          <table>
             <tr>
                <th>Name</th>
                <th>Job Title</th>
                <th>Email</th>
-               <th>Contact Number</th> 
+               <th>Contact Number</th>
+               <th>Status</th>
             </tr>
             <% @admins.each do |admin| %>
             <tr>
@@ -122,6 +185,17 @@
                
                <td>
                    <%= (admin.contact_number.nil?) ? ("Not given") : (h admin.contact_number) %>
+               </td>
+
+               <td>
+                  <%case admin.status%>
+                  <%when 1%>
+                  <%="Active"%>
+                  <%when 0%>
+                  <%="Suspended"%>
+                  <%else%>
+                  <%="Not given"%>
+                  <%end%>
                </td> 
                 
                <td>
