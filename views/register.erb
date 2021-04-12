@@ -10,7 +10,7 @@
         <form method="post" action="/register">
             
             <label>Enter Username:</label><br>
-            <input type="text" name="username" value="<%= h @user.email unless @user.nil? %>"/><br>
+            <input type="text" name="username" value="<%= h @user.username unless @user.nil? %>"/><br>
             <% if !@user.nil? &&  !@user.errors.nil? && @user.errors.include?("username") %>
                 <% @user.errors["username"].each do |error| %>
                     <p class="error"><strong><%= error %></strong></p>
