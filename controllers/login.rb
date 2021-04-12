@@ -25,9 +25,19 @@ post "/login" do
     @user.load_login(params) #passes the params from the form straight to the model
     if @user.valid_login?
         session[:loggedin] = true
+        puts "This is email: #{@user.email}"
+             
         
-        @user = User.first(email: @user.email)
+        # Checking if there is a record with that username that was entered. If it is nil, it goes to the next line
+        @DB_user = User.first(username: @user.username)
+        
+        @DB_user = User.first(email: @user.email) if @DB_user.nil?
+
+        @user = @DB_user
+        puts "Is the user nil? #{@user.nil?}"
+        
         session[:user_id] = @user.id
+       
         puts "THIS IS MY USER'S ID: #{session[:user_id]}"
         session[:user_type] = @user.user_type
         

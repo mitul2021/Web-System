@@ -24,16 +24,29 @@
        
       <!--defines form that posts to login.rb controller -->
       <form method="post" action="login">
-         <label>Email:</label><br>
-         <input name="email" placeholder="enter your email here..." value="<%= (h @user.email) unless @user.nil? %>"/><br>
+         <label>Email or Username:</label><br>
+         <input name="text" placeholder="enter your email or username here..." value="<%= (h @user.email) unless @user.nil? %>"/><br>
           
-         <!-- uses methods from the User model to print errors with email (eg: missing @)-->
          <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
             <% @user.errors["email"].each do |error| %>
                <p class="error"><strong><%= error %></strong></p>
             <% end %>
          <% end %>
-         <br>
+         
+         <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("username") %>
+            <% @user.errors["username"].each do |error| %>
+               <p class="error"><strong><%= error %></strong></p>
+            <% end %>
+         <% end %>
+          
+         <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("text") %>
+            <% @user.errors["text"].each do |error| %>
+               <p class="error"><strong><%= error %></strong></p>
+            <% end %>
+         <% end %> 
+         <br> 
+          
+          
          <label>Password:</label><br>
          <input type="password"  name="password" placeholder="enter your password here..." value="<%= (h @user.password) unless @user.nil? %>"/>
           

@@ -15,6 +15,7 @@ class User < Sequel::Model
     
     def load_register(params)
         self.email = params.fetch("email"," ").strip
+        self.username = params.fetch("username"," ").strip
         self.password = params.fetch("password"," ").strip
         self.user_type = params.fetch("user_type"," ").strip
         self.recovery_code = generate_recovery_code()
@@ -22,8 +23,15 @@ class User < Sequel::Model
     
     
     def load_login(params)
-        self.email = params.fetch("email"," ").strip
-        self.password = params.fetch("password"," ").strip
+        text = params.fetch("text", " ").strip
+        if text.include?("@")
+            self.email = text
+            self.username = " ".strip
+        else
+            self.username = text
+            self.email = " ".strip
+        end
+        self.password = params.fetch("password"," ").strip        
     end
     
     
@@ -81,9 +89,20 @@ class User < Sequel::Model
     end
     
     def valid_login? #for the login
-        errors.add("email", "Combination of email and password does not match") if !self.exist_login?
+        
+        # If the user has entered email instead of username
+        if (self.username.empty? && !(self.email.empty?))
+            errors.add("email", "Combination of email and password does not match") if !self.exist_login?
+        # If the user has entered username instead of email
+        elsif (!(self.username.empty?) && (self.email.empty?))        
+            errors.add("username", "Combination of username and password does not match") if !self.exist_login?
+        else # If the user entered nothing
+            errors.add("text", "Your Email or Username cannot be empty") if self.username.empty? && self.password.empty?
+        end
+        
+        # If the user didn't enter their password
         errors.add("password", "The password cannot be empty") if self.password.empty?
-        errors.add("email", "The email cannot be empty") if self.email.empty?
+        
         
         return errors.empty? #if there are no errors we are good to go, and returns true
     end
@@ -92,25 +111,35 @@ class User < Sequel::Model
         validate
         errors.add("email", "email cannot be empty") if email.empty?
         errors.add("password", "password cannot be empty") if password.empty?
+        errors.add("username", "username cannot be empty") if username.empty?
         errors.add("password_repeat", "password repeat cannot be empty") if @password_repeat.empty?
         errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
         errors.add("password", "password must be at least 8 characters long") if password.length<8
-        errors.add("email", "there exist user with such email address") if exist?
+        errors.add("email", "there exist user with such email address") if exist_register?
+        errors.add("username", "there exists a user with such a username") if exist_register?
       
         return errors.empty? #if there are no errors we are good to go, and returns true
         
     end
     
-    def exist? #for the register
-        db_user = User.first(email: email)
+    
+    #Check if it has to be modified now that there is a username field
+    
+    def exist_register? #for the register
+        db_user_email = User.first(email: email)
         
         #if user is nil return false, if db_user exists and it has the same password return true
-        return !db_user.nil?
+        return (!db_user_email.nil?)
     end
     
     def exist_login? #for the login
-        db_user = User.first(email: email)
-        return !db_user.nil? && db_user.password == self.password
+        db_user_email = User.first(email: email)
+        db_user_username = User.first(username: username)
+        puts "Is the email nil? #{db_user_email.nil?}"
+        puts "Is the username nil? #{db_user_username.nil?}"
+        puts "Email: #{self.email}"
+        puts "Username: #{self.username}"
+        return ((!db_user_email.nil? && db_user_email.password == self.password) || (!db_user_username.nil? && db_user_username.password == self.password))
     end
   
     def generate_recovery_code
