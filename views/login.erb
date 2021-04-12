@@ -29,8 +29,7 @@
       <!--defines form that posts to login.rb controller -->
       <form method="post" action="login">
          <label>Email or Username:</label><br>
-         <input name="text" placeholder="enter your email or username here..." value="<%= (h @user.email) unless @user.nil? %>"/><br>
-          
+         <input name="text" placeholder="enter your email or username here..." value="<%= params["text"].nil? ? "" : (h params["text"].to_s)%>"/><br> 
          <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
             <% @user.errors["email"].each do |error| %>
                <p class="error"><strong><%= error %></strong></p>
