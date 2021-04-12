@@ -100,6 +100,7 @@ class User < Sequel::Model
             errors.add("text", "Your Email or Username cannot be empty") if self.username.empty? && self.password.empty?
         end
         
+
         # If the user didn't enter their password
         errors.add("password", "The password cannot be empty") if self.password.empty?
         

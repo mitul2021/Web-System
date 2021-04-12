@@ -19,6 +19,10 @@
       <div class = "red_pop_up" <%="hidden" unless @redirected%>>
          <p>You have been redirected because you have not logged in yet</p>
       </div>
+
+      <div class = "red_pop_up" <%="hidden" unless @suspended_user%>>
+         <p>You have been suspended. Contact with the system administrator for more details.</p>
+      </div>
        
       <p>Login with your credentials below:</p>
        

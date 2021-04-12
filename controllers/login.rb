@@ -14,6 +14,10 @@ get "/login" do
     cookie = request.cookies.fetch("change-from-login-popup",0) #reading the cookie
     @changed_from_login = true if cookie == "true" #used by view to display the message
     response.delete_cookie("change-from-login-popup") #deleting the cookie
+
+    cookie = request.cookies.fetch("suspended-user-login-popup",0) #reading the cookie
+    @suspended_user = true if cookie == "true" #used by view to display the message
+    response.delete_cookie("suspended-user-login-popup") #deleting the cookie
     
     erb :login
 
@@ -24,7 +28,7 @@ post "/login" do
     @user = User.new
     @user.load_login(params) #passes the params from the form straight to the model
     if @user.valid_login?
-        session[:loggedin] = true
+        
         puts "This is email: #{@user.email}"
              
         
@@ -35,12 +39,17 @@ post "/login" do
 
         @user = @DB_user
         puts "Is the user nil? #{@user.nil?}"
+
+        if(@user.status==0)
+            response.set_cookie("suspended-user-login-popup", value: 'true')
+            redirect "/login"
+        end
         
         session[:user_id] = @user.id
        
         puts "THIS IS MY USER'S ID: #{session[:user_id]}"
         session[:user_type] = @user.user_type
-        
+        session[:loggedin] = true
         
         
         puts "Login successful"
