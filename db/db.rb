@@ -6,7 +6,7 @@ require "sqlite3"
 # ensuring that you are using the users.sqlite3 database for production
 
 #name = ENV.fetch("APP_ENV", "users") #if not set to "test" by spec-helper, will default to "users"
-name = ENV.fetch("APP_ENV", "database")
+name = ENV.fetch("APP_ENV", "production")
 #name = session[:env]
 
 
