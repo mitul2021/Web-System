@@ -21,6 +21,11 @@ get "/mentorlist" do
         @more_than_one_mentor = true if cookie == "true" #used by view to display the message
         response.delete_cookie("error-more-than-one-mentor") #deleting the cookie
         
+        cookie = request.cookies.fetch("error-too-many-requests-popup",0) #reading the cookie
+        @too_many_requests = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("error-too-many-requests-popup") #deleting the cookie
+        
+        
         @mentors = User.where(user_type: "mentor")
         erb :mentorlist
     else
