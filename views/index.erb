@@ -6,6 +6,7 @@
    </head>
 
    <body>
+      <!--NAV-->
       <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
          <nav>
             <ul>
@@ -56,6 +57,7 @@
          </nav> 
       <% end %>
 
+      <!--POPUPS-->
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
          <p>Login successful</p>
       </div>
@@ -72,7 +74,7 @@
          <p>You have successfully accepted your mentorship.</p>
       </div>
 
-
+      <!--MAIN CONTAINER-->
       <div id="changedetailsbody">
          <!-- propably repetion of the id selectors pls fix --> 
          <h1> Home</h1>
@@ -276,8 +278,6 @@
                                   <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
                             
                               </form>                                                                                 
-                               
-<!--                               <a onclick="return denyRequest()" href="%= request.pair_id.nil? ? "/not_found" : "decline?id=" + (h request.pair_id) %>">Decline Request</a>   -->
                            </td>
                         </tr>
                      <% end %>
