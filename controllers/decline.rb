@@ -29,6 +29,8 @@ post "/decline-admin" do #for user requests
         unless (@user_request.nil?)
             puts "request is not nil"
             @user_request.delete
+
+            response.set_cookie("decline-admin", value: 'true')
         end
 
     end
