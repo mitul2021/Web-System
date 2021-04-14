@@ -25,8 +25,8 @@ end
 post "/accept-admin" do #for user requests
 
     @user_request = Userrequest[params["userrequest_id"]]
-
-    if(session[:user_type].eql?("admin")) && (!@user_request.nil?)
+    role = session[:user_type]
+    if(role.eql?("admin") || role.eql?("adminmentor")) && (!@user_request.nil?)
         puts "we are admin, and the user request is not nil"
 
         type = @user_request.request_id

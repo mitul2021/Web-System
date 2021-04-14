@@ -22,8 +22,8 @@ end
 post "/decline-admin" do #for user requests
 
     @user_request = Userrequest[params["userrequest_id"]]
-
-    if(session[:user_type].eql?("admin"))
+    role = session[:user_type]
+    if(role.eql?("admin") || role.eql?("adminmentor"))
         puts "we are admin"
         unless (@user_request.nil?)
             puts "request is not nil"
