@@ -40,7 +40,8 @@
             </ul>
          </nav>
       
-      <% elsif @user_type.eql?("admin") %> 
+      <!-- Admins and AdminMentors share the same navigation as an admin already has the same nav elements as a mentor on top of having a User List page too --> 
+      <% elsif @user_type.eql?("admin") || @user_type.eql?("adminmentor") %> 
          <nav>
             <ul>
                <li>
@@ -57,10 +58,8 @@
                </li>
             </ul>
          </nav>
-      
-<!--       <% elsif @user_type.eql?("adminmentor") %>
        
-      <% end %> -->
+      <% end %>
 
       <!--POPUPS-->
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
@@ -410,7 +409,216 @@
                   <% end %>
                </table><br>
             <% end %> 
-
+          
+         <% elsif @user_type.eql?("adminmentor") %>
+            <p>Placeholder for text for an AdminMentor</p>
+              
+            <% @userrequests = Userrequest.where(status: 0) %>
+            <% if(@userrequests.empty?) %>
+               <p>You haven't recieved any new user requests yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Request Type</th>
+                     <th>Request Data</th> 
+                  </tr>
+                  <% @userrequests.each do |userrequest| %>
+                     <% @user = User.first(id: userrequest.user_id) %>
+                     <%unless @user.nil?%>
+                        <tr>
+                           <td>
+                              <a href="profile/<%= (h userrequest.user_id) unless userrequest.user_id.nil? %>" > 
+                                 <%= (@user.first_name.nil?) ? ("Not given") : (h @user.first_name) %> 
+                                 <%= (@user.surname.nil?) ? ("Not given") : (h @user.surname) %>
+                              </a>
+                           </td>
+          
+                           <td>
+                              <%= (Request[userrequest.request_id].description.nil?) ? ("Not given") : (h Request[userrequest.request_id].description) %>
+                           </td>
+                            
+                           <td>
+                              <!-- If the user is requesting a change of password -->
+                              <% if (userrequest.request_id == 2) %>
+                                   ********
+                              <% else %> 
+                                  <%= (userrequest.request_data.nil?) ? ("Not given") : (h userrequest.request_data) %>
+                              <% end %> 
+                           </td> 
+                          
+                           <td>
+                              <!-- Goes to the accept.rb controller --> 
+                              <form method="post" action="accept-admin">
+                                  
+                                  <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
+                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                            
+                              </form>                                                                
+                           </td>
+                           <td>
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline-admin">
+                                  
+                                  <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
+                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                            
+                              </form>  
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table><br>
+            <% end %>
+  
+            
+            <h1>View pairings:</h1>
+            <% @pairs = Pair.all %>
+            <% if(@pairs.empty?) %>
+               <p>There are no current pairs between mentees and mentors.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Mentor</th>
+                     <th>Mentee</th>
+                     <th>Status</th>
+                  </tr>
+                  <% @pairs.each do |pair| %>
+                     <% @mentor = User[pair.mentor_id] %>
+                     <% @mentee = User[pair.mentee_id] %>
+                     <tr>
+                        <% unless @mentor.nil? %>
+                           <td>
+                              <a href="profile/<%= (h pair.mentor_id) unless pair.mentor_id.nil? %>" > 
+                                 <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
+                                 <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
+                              </a>  
+                           </td>
+                        <%end%>
+                        <% unless @mentee.nil? %>
+                           <td>
+                              <a href="profile/<%= (h pair.mentee_id) unless pair.mentee_id.nil? %>">
+                                 <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                                 <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                              </a>
+                           </td> 
+                        <%end%>
+                        <td>
+                           <% if !pair.status.nil? %>     
+                              <% if pair.status == 1 %>
+                                 <%= "Accepted" %>
+                              <% elsif pair.status == 0 %>
+                                 <%= "Currently being reviewed" %>
+                              <% else %>
+                                 <%= "Status unknown" %>
+                              <% end %>
+                           <% else %>
+                              <%= "Does not exist" %>
+                           <% end %> 
+                        </td> 
+                     </tr>
+                  <% end %>
+               </table><br>
+            <% end %>  
+            
+          
+            <h1>Your mentees:</h1>
+            <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
+            <% if(@requests.empty?) %>
+               <p>You haven't accepted any mentees yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentee = User.first(id: request.mentee_id) %>
+                     <%unless @mentee.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <!-- Goes to the decline.rb controller --> 
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                            
+                              </form>   
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table>
+            <% end %>
+            
+          
+            <h1>Incoming requests:</h1>
+            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
+            <% if(@requests.empty?) %>
+               <p>You haven't recieved any new mentorship requests yet.</p>
+            <% else %>
+               <table>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Contact Number</th>
+                  </tr>
+                  <% @requests.each do |request| %>
+                     <% @mentee = User.first(id: request.mentee_id) %>
+                     <%unless @mentee.nil?%>
+                        <tr>
+                           <td>
+                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
+                           </td>
+                           <td>
+                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
+                           </td>
+                           <td>
+                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                           </td>
+                           <td>
+                              <!-- Goes to the accept.rb controller -->
+                              <form method="post" action="accept">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                            
+                              </form>
+                           </td>
+                           <td>
+                              <!-- Goes to the decline.rb controller -->
+                              <form method="post" action="decline">
+                                  
+                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
+                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                            
+                              </form>                                                                                 
+                           </td>
+                        </tr>
+                     <% end %>
+                  <% end %>
+               </table><br>
+            <% end %>
+         
+          
          <!--ERROR-->
          <% else %>
             <p>error with retrieving user type, please try again at another time</p>
