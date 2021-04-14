@@ -412,7 +412,8 @@
           
          <% elsif @user_type.eql?("adminmentor") %>
             <p>Placeholder for text for an AdminMentor</p>
-              
+            
+            <h1>User Requests:</h1>
             <% @userrequests = Userrequest.where(status: 0) %>
             <% if(@userrequests.empty?) %>
                <p>You haven't recieved any new user requests yet.</p>
