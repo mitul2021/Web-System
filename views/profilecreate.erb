@@ -67,7 +67,21 @@
          <h1>Your Profile</h1>
          <div id="displayflex">
             <div>
-               <input type="submit" value="Profile Picture" class="button" name="profile_picture"/><br>
+               <!-- The Profile Picture button would apply to any user type --> 
+               <input type="submit" value="Profile Picture" class="button" name="profile_picture"/><br> 
+               
+               <!-- Here we are displaying the buttons specific to whether you are an admin or an adminmentor to switch roles accordingly --> 
+               <% if @role.eql?("admin") %>
+                   <form method="post" action="switchadminroles">
+                       <input type="submit" value="Become a Mentor too" class="button" name="admin_to_adminmentor"/><br>
+                   </form>
+                   
+               <% elsif @role.eql?("adminmentor") %>
+                   <form method="post" action="switchadminroles">
+                       <input type="submit" value="Revoke your Mentor role and become an Admin only" class="button" name="adminmentor_to_admin"/><br>
+                   </form>
+               <% end %>
+                
             </div>
 
             <%if @change%> 
@@ -301,7 +315,8 @@
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50" maxwidth="100"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
                         <br>
-                     
+                      
+                      
                      <% else %>
                         <p>ERROR</p>
                      

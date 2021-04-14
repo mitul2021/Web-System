@@ -21,7 +21,8 @@
                </li>
             </ul>
          </nav>
-      <% elsif @user_type.eql?("mentee") %>
+      
+       <% elsif @user_type.eql?("mentee") %>
          <nav>
             <ul>
                <li>
@@ -38,6 +39,7 @@
                </li>
             </ul>
          </nav>
+      
       <% elsif @user_type.eql?("admin") %> 
          <nav>
             <ul>
@@ -54,8 +56,11 @@
                   <a href="logout">Logout</a>
                </li>
             </ul>
-         </nav> 
-      <% end %>
+         </nav>
+      
+<!--       <% elsif @user_type.eql?("adminmentor") %>
+       
+      <% end %> -->
 
       <!--POPUPS-->
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
