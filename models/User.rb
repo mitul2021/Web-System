@@ -112,14 +112,14 @@ class User < Sequel::Model
     def valid_register? #for the register
         validate
         errors.add("email", "email cannot be empty") if email.empty?
+        errors.add("email", "there exist user with such email address") if exist_register?
         errors.add("password", "password cannot be empty") if password.empty?
+        errors.add("password", "password must be at least 8 characters long") if password.length<8
         errors.add("username", "username cannot be empty") if username.empty?
+        errors.add("username", "there exists a user with such a username") if exist_register?
         errors.add("password_repeat", "password repeat cannot be empty") if @password_repeat.empty?
         errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
-        errors.add("password", "password must be at least 8 characters long") if password.length<8
-        errors.add("email", "there exist user with such email address") if exist_register?
-        errors.add("username", "there exists a user with such a username") if exist_register?
-      
+    
         return errors.empty? #if there are no errors we are good to go, and returns true
         
     end
