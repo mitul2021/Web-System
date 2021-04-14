@@ -3,6 +3,7 @@ get "/userlist" do
         @mentees = User.where(user_type: "mentee")
         @mentors = User.where(user_type: "mentor")
         @admins = User.where(user_type: "admin")
+        @adminmentors = User.where(user_type: "adminmentor")
         
         cookie = request.cookies.fetch("successfully-suspended-popup", 0) #reading the cookie
         @successfully_suspended = true if cookie == "true" #used by view to display the message

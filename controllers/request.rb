@@ -3,9 +3,16 @@ post "/request" do
     #retreives user id from session key, so it can be added as part of a unique pair in the db
     mentee_id = session[:user_id]
     mentor_id = params["mentor_id"]
-    #puts "This is mentee's ID: #{mentee_id}"
+    puts "This is mentee's ID: #{mentee_id}"
     
-    if(!mentee_id.nil? && !mentor_id.nil?  && User[mentor_id].user_type.eql?("mentor") && session[:user_type].eql?("mentee"))
+    puts "Mentee id nil? #{mentee_id.nil?}"
+    puts "Mentor id nil? #{mentor_id.nil?}"
+    puts User[mentor_id].user_type.eql?("mentor")
+    puts User[mentor_id].user_type.eql?("adminmentor")
+    puts "I am logged in as a mentee? #{session[:user_type].eql?("mentee")}"
+    
+    
+    if(!mentee_id.nil? && !mentor_id.nil? && (User[mentor_id].user_type.eql?("mentor") || User[mentor_id].user_type.eql?("adminmentor")) && session[:user_type].eql?("mentee"))
         puts "User is a mentee."
         
         puts "This is mentor's ID: #{mentor_id}"

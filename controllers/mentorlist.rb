@@ -27,6 +27,7 @@ get "/mentorlist" do
         
         
         @mentors = User.where(user_type: "mentor")
+        @adminmentors = User.where(user_type: "adminmentor")
         erb :mentorlist
     else
         response.set_cookie("redirected-popup", value: 'true')

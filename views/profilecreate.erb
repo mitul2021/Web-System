@@ -327,6 +327,9 @@
                         
                         <label>Contact number:</label><br>
                         <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %>"/><br><br>
+                      
+                        <label>Job title:</label><br>
+                        <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                         
                         <label>Other Notes:</label><br>
                         <textarea type="text" name="profile_text" rows="5" cols="50" maxwidth="100"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
@@ -370,7 +373,9 @@
                         
                         <label>Contact number:</label><br>
                         <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %>"/><br><br>
-                      
+                        
+                        <label>Job title:</label><br>
+                        <input type="text" name="job_deg_cosmetic_name" value="<%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %>"/><br><br>
                           
                         <label>Interests:</label><br>
                         <div id="dropdowns">
@@ -540,6 +545,9 @@
                      
                      <label>Contact number:</label><br>
                      <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
+                   
+                     <label>Job title:</label><br>
+                     <%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %><br><br>
              
                      <label>Other Notes:</label><br>
                      <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
@@ -561,10 +569,10 @@
                      
                      <label>Contact number:</label><br>
                      <%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
-             
-                     <label>Other Notes:</label><br>
-                     <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
                    
+                     <label>Job title:</label><br>
+                     <%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %><br><br>
+                      
                      <label>Interests:</label><br>
                      <% @usr_interests = Userinterest.where(user_id: @user_id) %>
                      <%if @usr_interests.empty?%>
@@ -578,7 +586,10 @@
                               </li>
                            <% end %>
                         </ul>
-                     <% end %>
+                     <% end %>  
+                   
+                     <label>Other Notes:</label><br>
+                     <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
                    
                   <% else %>
                      <% redirect "/not_found" %>

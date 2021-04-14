@@ -7,7 +7,7 @@ post "/accept" do
     
     #If you are a mentor AND if your id is equal to the id that exists in a record in the pairs table
     #The second part of the if ensures that you cannot modify someone else's mentorship and vice versa
-    if(session[:user_type].eql?("mentor")) && (session[:user_id].eql?(@pair.mentor_id))
+    if((session[:user_type].eql?("mentor") || session[:user_type].eql?("adminmentor")) && (session[:user_id].eql?(@pair.mentor_id)))
         
         puts "Mentor entered"
         
@@ -25,8 +25,8 @@ end
 post "/accept-admin" do #for user requests
 
     @user_request = Userrequest[params["userrequest_id"]]
-
-    if(session[:user_type].eql?("admin")) && (!@user_request.nil?)
+    role = session[:user_type]
+    if(role.eql?("admin") || role.eql?("adminmentor")) && (!@user_request.nil?)
         puts "we are admin, and the user request is not nil"
 
         type = @user_request.request_id

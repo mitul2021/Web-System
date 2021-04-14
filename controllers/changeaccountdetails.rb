@@ -92,7 +92,8 @@ def validateUser1(data) #new_email,password
     #we need to check if similar unresolved request is already in the data base
     #request_id is request type here we are changing email so is 1, status 0, for unresolved requests
     # and we are fetching current user_id
-    unless Userrequest.where(request_id: 1,status: 0,user_id: session[:user_id]).nil?
+ 
+    unless Userrequest.where(request_id: 1,status: 0,user_id: session[:user_id]).empty?
         @errors["popup_error"] << "1"
         puts "Same email request detected"
     end
@@ -153,7 +154,7 @@ def validateUser2(data) #password, new_password, repeat_password
     #we need to check if similar unresolved request is already in the data base
     #request_id is request type here we are changing password so is 1, status 0, for unresolved requests
     # and we are fetching current user_id
-    unless Userrequest.where(request_id: 2, status: 0, user_id: session[:user_id]).nil?
+    unless Userrequest.where(request_id: 2, status: 0, user_id: session[:user_id]).empty?
         @errors["popup_error"] << "2"
         puts "Same password request detected"
     end
@@ -216,7 +217,7 @@ def validateUser3(data) #new_email, password, recovery_code
     #we need to check if similar unresolved request is already in the data base
     #request_id is request type here we are changing email so is 1, status 0, for unresolved requests
     # and we are fetching current user_id
-    if !user.nil? && !Userrequest.where(request_id: 1,status: 0,user_id: user.id).nil?
+    if !user.nil? && !Userrequest.where(request_id: 1,status: 0,user_id: user.id).empty?
         @errors["popup_error"] << "1"
         puts "Same email request detected"
     end
@@ -287,7 +288,7 @@ def validateUser4(data) #email, new_password, repeat_password, recovery_code
     #we need to check if similar unresolved request is already in the data base
     #request_id is request type here we are changing password so is 2, status 0, for unresolved requests
     # and we are fetching current user_id
-    if !user.nil? && !Userrequest.where(request_id: 2,status: 0,user_id: user.id).nil?
+    if !user.nil? && !Userrequest.where(request_id: 2,status: 0,user_id: user.id).empty?
         @errors["popup_error"] << "2"
         puts "Same password request detected"
     end

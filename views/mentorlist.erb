@@ -56,37 +56,69 @@
                <th>Main Interest</th>
             </tr>
             <% @mentors.each do |mentor| %>
-            <tr>
-               <td>
-                   <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
-                   <%= mentor.surname.nil? ? "Not given" : (h mentor.surname) %>
-               </td>
-               
-               <td>
-                   <%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %>
-               </td>
-               
-               <td>
-                   <%= Userinterest.first(user_id: mentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: mentor.id).interest_id].description %>
-               </td>
-               
-               <td>
-                   <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
-               </td>
-               
-               <td>
-                   <!-- Goes to the request.rb controller --> 
-                   <form method="post" action="request">
-                         
-                         <input hidden name="mentor_id" value="<%= mentor.id.nil? ? "" : (h mentor.id) %>"/>
-                         <input type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
-                   
-                   </form>
-              </td>
-            </tr>
+                <tr>
+                   <td>
+                       <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
+                       <%= mentor.surname.nil? ? "Not given" : (h mentor.surname) %>
+                   </td>
+
+                   <td>
+                       <%= mentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h mentor.job_deg_cosmetic_name.capitalize()) %>
+                   </td>
+
+                   <td>
+                       <%= Userinterest.first(user_id: mentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: mentor.id).interest_id].description %>
+                   </td>
+
+                   <td>
+                       <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+                   </td>
+
+                   <td>
+                       <!-- Goes to the request.rb controller --> 
+                       <form method="post" action="request">
+
+                             <input hidden name="mentor_id" value="<%= mentor.id.nil? ? "" : (h mentor.id) %>"/>
+                             <input type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
+
+                       </form>
+                  </td>
+                </tr>
+            <% end %>
+             
+            <!-- Displaying adminmentors -->
+
+            <% @adminmentors.each do |adminmentor| %>
+                <tr>
+                   <td>
+                       <%= adminmentor.first_name.nil? ? "Not given" : (h adminmentor.first_name) %>
+                       <%= adminmentor.surname.nil? ? "Not given" : (h adminmentor.surname) %>
+                   </td>
+                    
+                   <td>
+                       <%= adminmentor.job_deg_cosmetic_name.nil? ? "No occupation" : (h adminmentor.job_deg_cosmetic_name.capitalize()) %>
+                   </td> 
+
+                   <td>
+                       <%= Userinterest.first(user_id: adminmentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: adminmentor.id).interest_id].description %>
+                   </td>
+
+                   <td>
+                       <a href="<%= adminmentor.id.nil? ? "/not_found" : "profile/" + (h adminmentor.id) %>">Profile</a>
+                   </td>
+
+                   <td>
+                       <!-- Goes to the request.rb controller --> 
+                       <form method="post" action="request">
+
+                             <input hidden name="mentor_id" value="<%= adminmentor.id.nil? ? "" : (h adminmentor.id) %>"/>
+                             <input type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
+
+                       </form>
+                  </td>
+                </tr>
             <% end %>
          </table><br>
-      </div>
-       
+      </div> 
    </body>
 </html>
