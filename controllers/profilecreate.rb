@@ -13,9 +13,26 @@ get "/profilecreate" do
         @numOfUserInterests = @usr_interests.count  #default
         puts "numOfUserInterests #{@numOfUserInterests}"
         
+        #COOKIES READING
         cookie = request.cookies.fetch("change-from-profile-popup",0) #reading the cookie
         @changed_from_profile = true if cookie == "true" #used by view to display the message
         response.delete_cookie("change-from-profile-popup") #deleting the cookie
+
+        cookie = request.cookies.fetch("admin-to-adminmentor-success",0) #reading the cookie
+        @admin_to_adminmentor_success = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("admin-to-adminmentor-success") #deleting the cookie
+
+        cookie = request.cookies.fetch("admin-to-adminmentor-failure",0) #reading the cookie
+        @admin_to_adminmentor_failure = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("admin-to-adminmentor-failure") #deleting the cookie
+
+        cookie = request.cookies.fetch("adminmentor-to-admin-success",0) #reading the cookie
+        @adminmentor_to_admin_success = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("adminmentor-to-admin-success") #deleting the cookie
+
+        cookie = request.cookies.fetch("adminmentor-to-admin-failure",0) #reading the cookie
+        @adminmentor_to_admin_failures = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("adminmentor-to-admin-failure") #deleting the cookie
 
         
         erb :profilecreate
