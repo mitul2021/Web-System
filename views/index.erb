@@ -85,9 +85,13 @@
       <div class = "green_pop_up" <%="hidden" unless @accept_admin_password%>>
          <p>You have successfuly changed user's password.</p>
       </div>
+       
+      <div class = "green_pop_up" <%="hidden" unless @accept_admin_username%>>
+         <p>You have successfuly changed user's username.</p>
+       </div>    
 
       <div class = "green_pop_up" <%="hidden" unless @decline_admin%>>
-         <p>You have successfuly changed user's password.</p>
+         <p>You have successfuly declined user's request.</p>
       </div>
 
       <!--MAIN CONTAINER-->

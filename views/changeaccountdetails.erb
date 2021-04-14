@@ -50,17 +50,56 @@
                       <% end %>
                   <% end %> 
 
-                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
                   <input hidden name="number" value="1"/>
                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                
                </div>
 
-            </form>  
-         <!-- The case for if the form number is 2 -->       
-         <% when 2 %>
-            <!--form no 2-->
-            <!-- displaying contents of form 2 -->
+            </form>
+          
+         <!-- The case for if the form number is 2 --> 
+         <% when 2 %> 
+            <!--Here we are coming from the profile page--->
+            <!--displaying contents of form 2-->            
+            <form method="post" action="changeaccountdetails">
+               
+               <div id="displayemailbox">
+                   
+                  <p>You have chosen to change your Username.</p> 
+                   
+                  <label>New Username:</label><br>
+                  <input type="text" name="new_username" placeholder="Enter your desired username here..."/><br><br>
+                   
+                  <%if !@errors.nil? && @errors.include?("new_username") %>
+                      <% @errors["new_username"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                  
+                   
+                  <label>Confirm with your password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("password") %>
+                      <% @errors["password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
+                  <input hidden name="number" value="2"/>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+               
+               </div>
+
+            </form>          
+          
+          
+         <!-- The case for if the form number is 3 -->       
+         <% when 3 %>
+            <!--form no 3-->
+            <!-- displaying contents of form 3 -->
             <form method="post" action="changeaccountdetails"> 
                 <div id="displaypasswordbox">
 
@@ -95,8 +134,8 @@
                        <% end %>
                    <% end %>                    
                     
-                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
-                   <input hidden name="number" value="2"/> 
+                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
+                   <input hidden name="number" value="3"/> 
                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                 </div>
 
@@ -104,11 +143,11 @@
             </form>
 
          <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
-         <!-- The case for if the form number is 3 -->
-         <% when 3 %>
-            <!--Here we are comming from the login page--->
+         <!-- The case for if the form number is 4 -->
+         <% when 4 %>
+            <!--Here we are coming from the login page--->
             <!--NOT LOGGED IN-->
-            <!--displaying the contents of form 3-->
+            <!--displaying the contents of form 4-->
             <form method="post" action="changeaccountdetails">
                
                <div id="displayemailbox">
@@ -145,8 +184,8 @@
                   <% end %> 
                    
 
-                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
-                  <input hidden name="number" value="3"/>
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
+                  <input hidden name="number" value="4"/>
                   <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
 
                </div>  
@@ -154,9 +193,62 @@
             
             </form>
           
-         <!-- The case for if the form number is 4 -->    
-         <% when 4 %> 
-            <!-- displaying the contents of form 4-->
+          
+         <!-- If you are not logged in then you would be accessing this page from the login view so it would ask you for your recovery code since you have not proved that you are that user -->
+         <!-- The case for if the form number is 5 -->
+         <% when 5 %>
+            <!--Here we are coming from the login page--->
+            <!--NOT LOGGED IN-->
+            <!--displaying the contents of form 5-->
+            <form method="post" action="changeaccountdetails">
+               
+               <div id="displayemailbox">
+
+                  <p>You have chosen to change your Username.</p>
+
+                  <label>New Username:</label><br>
+                  <input type="text" name="new_username" placeholder="Enter your desired username here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("new_username") %>
+                      <% @errors["new_username"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                  
+                   
+                  <label>Your current password:</label><br>
+                  <input type="password" name="password" placeholder="Enter your current password here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("password") %>
+                      <% @errors["password"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                   
+                   
+                  <label>Recovery Code:</label><br>
+                  <input type="text" name="recovery_code" placeholder="Enter your recovery code here..."/><br><br>
+                  
+                  <%if !@errors.nil? && @errors.include?("recovery_code") %>
+                      <% @errors["recovery_code"].each do |error| %>
+                          <p class="error"><strong><%= error %></strong></p>
+                      <% end %>
+                  <% end %> 
+                   
+
+                  <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
+                  <input hidden name="number" value="5"/>
+                  <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
+
+               </div>  
+
+            
+            </form> 
+             
+          
+         <!-- The case for if the form number is 6 -->    
+         <% when 6 %> 
+            <!-- displaying the contents of form 6-->
             <form method="post" action="changeaccountdetails"> 
                 <div id="displaypasswordbox">
 
@@ -202,8 +294,8 @@
                    <% end %> 
                     
                     
-                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4-->
-                   <input hidden name="number" value="4"/>
+                   <!--hidden input type to pass to the controller information, which form is passed 1/2/3/4/5/6-->
+                   <input hidden name="number" value="6"/>
                    <input type="submit" value="Request Changes" class="button" name="submit_changes"/><br><br>
                 </div>
                 
@@ -216,15 +308,21 @@
                   <a href="changeaccountdetails?form=1" class="button" >Change Email</a>
                   
                   <!-- For form 2 -->
-                  <a href="changeaccountdetails?form=2" class="button" >Change Password</a>
+                  <a href="changeaccountdetails?form=2" class="button" >Change Username</a>
+          
+                  <!-- For form 3 -->                 
+                  <a href="changeaccountdetails?form=3" class="button" >Change Password</a>
               
               <% else %>
                   
-                  <!-- For form 3 -->
-                  <a href="changeaccountdetails?form=3" class="button" >Change Email</a>
-                  
                   <!-- For form 4 -->
-                  <a href="changeaccountdetails?form=4" class="button" >Change Password</a>
+                  <a href="changeaccountdetails?form=4" class="button" >Change Email</a>
+                  
+                  <!-- For form 5 -->
+                  <a href="changeaccountdetails?form=5" class="button" >Change Username</a>
+          
+                  <!-- For form 6 -->
+                  <a href="changeaccountdetails?form=6" class="button" >Change Password</a>
               
               <% end %>
           

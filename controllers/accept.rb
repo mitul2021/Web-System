@@ -39,8 +39,14 @@ post "/accept-admin" do #for user requests
             response.set_cookie("accept-admin-email", value: 'true')
         when 2 
             handleChangePassword(@user_request) #changing password
+            
             #cookie trigger here nforming admin that he change the user password succesfully
             response.set_cookie("accept-admin-password", value: 'true')
+        when 3
+            handleChangeUsername(@user_request) #changing username
+            
+            #cookie trigger here nforming admin that he change the user password succesfully
+            response.set_cookie("accept-admin-username", value: 'true')           
         else
             "You gave me #{type} -- I have no idea what to do with that."
         end
@@ -73,7 +79,7 @@ def handleChangeEmail(user_request)
         user_request.status = 1
         user_request.save_changes
     else
-        puts "Validation faild in handling email change"
+        puts "Validation failed in handling email change"
     end
 end
 
@@ -86,7 +92,20 @@ def handleChangePassword(user_request)
         user_request.status = 1
         user_request.save_changes
     else
-        puts "Validation faild in handling password change"
+        puts "Validation failed in handling password change"
     end
 
+end
+
+def handleChangeUsername(user_request)
+    
+    if(validation(user_request))
+        @user.username = user_request.request_data
+        @user.save_changes
+
+        user_request.status = 1
+        user_request.save_changes
+    else
+        puts "Validation failed in handling username change"
+    end
 end

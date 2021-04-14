@@ -35,6 +35,10 @@ get "/index" do
         cookie = request.cookies.fetch("accept-admin-password",0) #reading the cookie
         @accept_admin_password = true if cookie == "true" #used by view to display the message
         response.delete_cookie("accept-admin-password") #deleting the cookie
+        
+        cookie = request.cookies.fetch("accept-admin-username",0) #reading the cookie
+        @accept_admin_username = true if cookie == "true" #used by view to display the message
+        response.delete_cookie("accept-admin-username") #deleting the cookie
 
         cookie = request.cookies.fetch("decline-admin",0) #reading the cookie
         @decline_admin = true if cookie == "true" #used by view to display the message
