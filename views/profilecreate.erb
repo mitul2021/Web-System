@@ -316,6 +316,85 @@
                         <textarea type="text" name="profile_text" rows="5" cols="50" maxwidth="100"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
                         <br>
                       
+                     <% elsif @role.eql?("adminmentor") %>
+                      
+                        <label>First Name:</label><br>
+                        <input type="text" name="first_name" value="<%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %>"/><br><br>
+                     
+                        <label>Surname:</label><br>
+                        <input type="text" name="surname" value="<%= @user.surname.nil? ? "Not given" : (h @user.surname) %>"/><br><br>
+                  
+                        <%if @user.year_of_birth.nil?%>
+                           <label>Year of Birth:</label><br>
+                           <select name="year_of_birth">
+                              <% (1900..2021).each do |i| %>
+                                 <%= "<option value=\"#{i}\">#{i}</option>" %>
+                              <% end %>
+                           </select>
+                        <% else %>
+                           <label>Year of Birth: <%= @user.year_of_birth%></label><br>
+                           <select name="year_of_birth" hidden>
+                                 <option value="<%= @user.year_of_birth%>"> </option>
+                           </select>
+                        <br>
+                        <% end %>
+                        
+                        <label>Gender:</label><br>
+
+                        <% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+                        <% if !@user.gender.nil?%>
+                           <% gender[@user.gender] = true %>
+                        <%end%> 
+                        <select name="gender">
+                           <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+                           <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+                           <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+                        </select><br>
+                        <br>
+                        
+                        <label>Contact number:</label><br>
+                        <input type="text" name="contact_number" value="<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %>"/><br><br>
+                      
+                          
+                        <label>Interests:</label><br>
+                        <div id="dropdowns">
+                           <!-- for visible interest dropdown lists-->
+                           <%@usr_interests.each_with_index do |usr_interest, i|%>
+                                 <select name="<%="interest_id_#{i}"%>">
+                                    <% Interest.all.each do |interest|%>
+                                       <option value="<%= interest.interest_id %>"
+                                              <%= usr_interest.interest_id.eql?(interest.interest_id)? "selected" : "" %> -->
+                                          <%= interest.description%>
+                                       </option>
+                                       
+                                    <%end%>
+                                    <option value="none">none</option>
+                                 </select>
+                           <%end%>
+                           <!-- for hidden interest dropdown lists-->
+                           <% for i in @numOfUserInterests...@numOfInterests%>
+                              <select name="<%="interest_id_#{i}"%>" hidden="true">
+                                    <% Interest.all.each do |interest|%>
+
+
+                                       <option value="<%= interest.interest_id %>">
+                                          <%= interest.description%>
+                                       </option>
+                                    <%end%>
+                                    <option value="none" selected>none</option>
+                              </select>
+                           <% end %>
+                        </div>
+                        <button type="button" id="btn_show">Add Interest</button> 
+                        <button type="button" id="btn_hide">Remove Interest</button>
+                        <!--type="button" prevents the page from refreshing-->
+                        <br><br>                    
+                      
+                        
+                        <label>Other Notes:</label><br>
+                        <textarea type="text" name="profile_text" rows="5" cols="50" maxwidth="100"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
+                        <br>
+                      
                       
                      <% else %>
                         <p>ERROR</p>
