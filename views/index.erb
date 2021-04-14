@@ -78,6 +78,14 @@
          <p>You have successfully accepted your mentorship.</p>
       </div>
 
+      <div class = "green_pop_up" <%="hidden" unless @accept_admin_email%>>
+         <p>You have successfuly changed user's email.</p>
+      </div>
+
+      <div class = "green_pop_up" <%="hidden" unless @accept_admin_password%>>
+         <p>You have successfuly changed user's password.</p>
+      </div>
+
       <!--MAIN CONTAINER-->
       <div id="changedetailsbody">
          <!-- propably repetion of the id selectors pls fix --> 
