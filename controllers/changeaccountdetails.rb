@@ -16,7 +16,8 @@ post "/changeaccountdetails" do
         "password" => [],
         "new_password" => [],
         "repeat_password" => [],
-        "recovery_code" => []
+        "recovery_code" => [],
+        "popup_error" => []
     }
 
     case type
@@ -28,15 +29,15 @@ post "/changeaccountdetails" do
         "You gave me #{type} -- I have no idea what to do with that."
     end
 
-    have_errors = false
 
-    @errors.each do |key, value|
-        have_errors = true unless value.empty?
-    end
-
-    if have_errors #if there are any error maessages
+    if any_errors?() #if there are any error maessages
         @form_number = type
-        erb :changeaccountdetails
+        @errors["popup_error"].each do |error|
+            @same_email_request = true if error.eql?("1")
+            @same_password_request = true if error.eql?("2")
+        end
+        
+        erb :changeaccountdetails #display the page with erormessages
     else #no errors
 
         #Redirecting and cookies
@@ -53,6 +54,13 @@ post "/changeaccountdetails" do
             redirect "/login"
         end
     end
+end
+
+def any_errors?() #this function will return true if we have any errors, if no errors are found return false
+    @errors.each do |key, value|
+        return true if value.any?
+    end
+    false
 end
 
 # ================
@@ -80,8 +88,16 @@ def validateUser1(data) #new_email,password
     (@errors["password"] << "password cannot be empty") if data[1].empty?
     (@errors["new_email"] << "your desired email cannot be empty") if data[0].nil? || data[0].empty?
     (@errors["new_email"] << "someone already uses this email") unless User.first(email: data[0]).nil?
-
-    return  @errors["password"].empty? && @errors["new_email"].empty?
+    
+    #we need to check if similar unresolved request is already in the data base
+    #request_id is request type here we are changing email so is 1, status 0, for unresolved requests
+    # and we are fetching current user_id
+    unless Userrequest.where(request_id: 1,status: 0,user_id: session[:user_id]).nil?
+        @errors["popup_error"] << "1"
+        puts "Same email request detected"
+    end
+    
+    return !any_errors?() #if we dont have any errors return true
 end
 
 def newRequest1(data)
@@ -133,9 +149,16 @@ def validateUser2(data) #password, new_password, repeat_password
     (@errors["new_password"] << "new password cannot be the same as your current password") if (data[0].eql?(data[1]))
     (@errors["new_password"] << "new password should be at least 8 characters long") if data[1].length<8
     (@errors["new_password"] << "new password cannot be empty") if data[1].empty?
+
+    #we need to check if similar unresolved request is already in the data base
+    #request_id is request type here we are changing password so is 1, status 0, for unresolved requests
+    # and we are fetching current user_id
+    unless Userrequest.where(request_id: 2, status: 0, user_id: session[:user_id]).nil?
+        @errors["popup_error"] << "2"
+        puts "Same password request detected"
+    end
     
-    return  @errors["password"].empty? && @errors["new_password"].empty? && @errors["repeat_password"].empty?
-    
+    return !any_errors?() #if we dont have any errors return true
 end
 
 def newRequest2(data)
@@ -178,17 +201,28 @@ def loadFormDataType3(params)
     return [new_email, password, recovery_code]
 end
 
-def validateUser3(data)
+def validateUser3(data) #new_email, password, recovery_code
     
     (@errors["new_email"] << "someone already uses this email") unless User.first(email: data[0]).nil?
     (@errors["new_email"] << "your desired email cannot be empty") if data[0].nil? || data[0].empty?
     (@errors["password"] << "entered password is incorrect") if User.first(password: data[1]).nil? 
     (@errors["password"] << "password cannot be empty") if data[1].empty?
-    (@errors["recovery_code"] << "there is no user with this recovery code") if User.first(recovery_code: data[2]).nil?
-    (@errors["recovery_code"] << "the recovery code and your password do not match") if User.first(recovery_code: data[2]).nil? || !(User.first(recovery_code: data[2]).password.eql?(data[1]))
+
+    user = User.first(recovery_code: data[2])
+    (@errors["recovery_code"] << "there is no user with this recovery code") if user.nil?
+    (@errors["recovery_code"] << "the recovery code and your password do not match") if user.nil? || !(user.password.eql?(data[1]))
     (@errors["recovery_code"] << "the recovery code cannot be empty") if data[2].empty?
     
-    return  @errors["new_email"].empty? && @errors["password"].empty? && @errors["recovery_code"].empty? 
+    #we need to check if similar unresolved request is already in the data base
+    #request_id is request type here we are changing email so is 1, status 0, for unresolved requests
+    # and we are fetching current user_id
+    if !user.nil? && !Userrequest.where(request_id: 1,status: 0,user_id: user.id).nil?
+        @errors["popup_error"] << "1"
+        puts "Same email request detected"
+    end
+
+
+    return !any_errors?() #if we dont have any errors return true
                 
 end
 
@@ -235,7 +269,7 @@ def loadFormDataType4(params)
 end
 
 
-def validateUser4(data)
+def validateUser4(data) #email, new_password, repeat_password, recovery_code
     
     (@errors["email"] << "entered email is incorrect") if data[0]==User.first(email: data[0]).nil?
     (@errors["email"] << "your email cannot be empty") if data[0].nil? || data[0].empty?
@@ -244,11 +278,21 @@ def validateUser4(data)
     (@errors["new_password"] << "old and new password must be different") if !(User.first(password: data[1]).nil?) 
     (@errors["repeat_password"] << "repeated password does not match") if !(data[1].eql?(data[2]))
     (@errors["repeat_password"] << "repeated password cannot be empty") if data[2].empty?
-    (@errors["recovery_code"] << "there is no user with this recovery code") if User.first(recovery_code: data[3]).nil?
-    (@errors["recovery_code"] << "the recovery code and your email do not match") if (User.first(recovery_code: data[3]).nil?) || !(User.first(recovery_code: data[3]).email.eql?(data[0]))
+
+    user = User.first(recovery_code: data[3])
+    (@errors["recovery_code"] << "there is no user with this recovery code") if user.nil?
+    (@errors["recovery_code"] << "the recovery code and your email do not match") if user.nil? || !(user.email.eql?(data[0]))
     (@errors["recovery_code"] << "the recovery code cannot be empty") if data[3].empty?
+
+    #we need to check if similar unresolved request is already in the data base
+    #request_id is request type here we are changing password so is 2, status 0, for unresolved requests
+    # and we are fetching current user_id
+    if !user.nil? && !Userrequest.where(request_id: 2,status: 0,user_id: user.id).nil?
+        @errors["popup_error"] << "2"
+        puts "Same password request detected"
+    end
         
-    return  @errors["email"].empty? && @errors["new_password"].empty? && @errors["repeat_password"].empty? && @errors["recovery_code"].empty?    
+    return !any_errors?() #if we dont have any errors return true
         
 end
 
