@@ -1,44 +1,45 @@
 body {
-  color: DarkSlateGray;
-  background-color: rgb(225, 226, 234);
+  color: Black;
   font-family: "Helvetica", sans-serif;
+  background-color:#f3f2ee; 
   line-height: 1.1;
   margin: 0;
   margin-bottom: 30vh;
   font-size: 30px;
-  padding: 5px;
 }
 
 nav ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    justify-content: space-evenly;  
+    justify-content: space-evenly;
+    background-color:#0066b3;
+    border-radius:100px;
 }
 
 nav ul li {
 /*     display: inline-block; */
     text-align: center;
     margin: 25px;
-    border: solid black 5px;
     padding: 8px;
-    font-size: 45px;
-    font-family: "Helvetica", sans-serif;
-    border-radius: 20px;
+    font-size: 48px;
+    font-family: "Times New Roman", serif;
 }
- 
+
+
+
 a:link {
     text-decoration:none;
-    color: rgb(100,100,0);
+    color: #f3f2ee;
     font-weight: bold;
     
 }
- 
+
 a:visited {
-    color: rgb(100,100,0);
+    color: #f3f2ee;
 }
 a:hover {
-    color: seagreen;
+    color: silver;
 }
  
 /* button on sign in and register page */
@@ -65,25 +66,51 @@ a:hover {
     align-content: flex-start;
 }
 
+h1 {
+    color:#0066b3;
+    font-size: 50px;
+}
+
 /* Bold the Labels */
 label {
     font-weight: bold;
 }
  
 /*Style the table in mentorlist page */
+
 th {
     text-align: left;
     background: #bcbcbc;
 }
  
 td {
-    background: #efefef;
+    background: #efefef;  
+
 }
  
 th, td {
-    padding: 5px;
+    padding: 4px;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-collapse:collapse;
 }
  
+#profilelinks {
+    color:#0066b3;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+#requestbutton {
+    color:#0066b3;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight:bold;
+    
+}
 /* appropriate coloring for successful / unsuccessful messages */
  
 #logoutsuccessful, #logoutunsuccessful {
@@ -163,6 +190,17 @@ th, td {
 #container {
     display: flex;
     justify-content: center;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    margin-top:auto; 
+    padding:0px;
+    background-color:#0066b3;
+    font-size: 20px;
+    font-style:italic; 
+    margin-top: 150px;
 }
 
 /* Styling the popups */

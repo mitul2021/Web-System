@@ -71,7 +71,7 @@
                    </td>
 
                    <td>
-                       <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+                       <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
 
                    <td>
@@ -79,7 +79,7 @@
                        <form method="post" action="request">
 
                              <input hidden name="mentor_id" value="<%= mentor.id.nil? ? "" : (h mentor.id) %>"/>
-                             <input type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
+                             <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
 
                        </form>
                   </td>
@@ -104,7 +104,7 @@
                    </td>
 
                    <td>
-                       <a href="<%= adminmentor.id.nil? ? "/not_found" : "profile/" + (h adminmentor.id) %>">Profile</a>
+                       <a id="profilelinks" href="<%= adminmentor.id.nil? ? "/not_found" : "profile/" + (h adminmentor.id) %>">Profile</a>
                    </td>
 
                    <td>
@@ -112,7 +112,7 @@
                        <form method="post" action="request">
 
                              <input hidden name="mentor_id" value="<%= adminmentor.id.nil? ? "" : (h adminmentor.id) %>"/>
-                             <input type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
+                             <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
 
                        </form>
                   </td>
