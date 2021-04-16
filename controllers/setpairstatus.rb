@@ -17,9 +17,11 @@ post "/setpairstatus" do
         if new_pair.valid? #when status zero there shouldnt be any records in the db for that mentor
             puts "Newly created pair with status 0 is valid"
             new_pair.save_changes
+            #trigger cookie here informing that we have setup new relations ship
         else
             puts "Newly created pair with status 0 is NOT valid"
             puts pair.errors
+            #trigger cookie here infroming that sths wrong
         end
 
     when 1,2,3,4,5,6
@@ -31,9 +33,13 @@ post "/setpairstatus" do
         if pair.valid? #when status > zero there should be only one pair in the DB
             puts "Pair after changing its status to #{status} is valid."
             pair.save_changes
+            #trigger cookie here informing that we have change our relation ship status
+            #we can even pass the status in the cookie sth like response.set_cookie(value: #{status})
+            #and then read it accordingly
         else
             puts "Pair after changing its status to #{status} is NOT valid."
             puts pair.errors
+            #trigger cookie here infroming that sths wrong
         end
 
     else
