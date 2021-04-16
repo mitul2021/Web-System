@@ -26,9 +26,14 @@ class Pair < Sequel::Model
 
         errors.add(:mentee_id, 'is nil') if !mentee_id || mentee_id.nil? 
         errors.add(:mentee_id, 'mentee id cannot be negative') if mentee_id<=0
+        errors.add(:mentee_id, 'user using mentee_id is not mentee') if !(User[mentee_id].user_type.eql?("mentee"))
+        
 
         errors.add(:mentor_id, 'is nil') if !mentor_id || mentor_id.nil? 
         errors.add(:mentor_id, 'mentor id cannot be negative') if mentor_id<=0
+
+        user_type = User[mentor_id].user_type
+        errors.add(:mentor_id, 'user using mentor_id is neither mentor nor adminmentor') if !(user_type.eql?("mentor") || user_type.eql?("adminmentor"))
         
         errors.add(:status, 'status can only be integer in range [0,6]') if !(status.between?(0,6))
 
