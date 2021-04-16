@@ -20,7 +20,7 @@ post "/setpairstatus" do
             #trigger cookie here informing that we have setup new relations ship
         else
             puts "Newly created pair with status 0 is NOT valid"
-            puts pair.errors
+            puts new_pair.errors
             #trigger cookie here infroming that sths wrong
         end
 

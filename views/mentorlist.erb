@@ -84,7 +84,7 @@
                            <input hidden name="path" value="/mentorlist" />
                            <input hidden name="mentee_id" value="<%= session[:user_id].nil? ? "" : (h session[:user_id]) %>" />
                            <input hidden name="mentor_id" value="<%= mentor.id.nil? ? "" : (h mentor.id) %>" />
-                           <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Meeting" name="request_mentorship"/>
+                           <input id="requestbutton" type="submit" onclick="return requestMeeting()" value="Request Meeting" name="request_meeting"/>
 
                        </form>
                   </td>
@@ -122,7 +122,7 @@
                            <input hidden name="path" value="/mentorlist" />
                            <input hidden name="mentee_id" value="<%= session[:user_id].nil? ? "" : (h session[:user_id]) %>" />
                            <input hidden name="mentor_id" value="<%= adminmentor.id.nil? ? "" : (h adminmentor.id) %>" />
-                           <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Meeting" name="request_mentorship"/>
+                           <input id="requestbutton" type="submit" onclick="return requestMeeting()" value="Request Meeting" name="request_meeting"/>
 
                        </form>
                   </td>
