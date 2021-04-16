@@ -1,3 +1,9 @@
+// For when a mentee clicks on Request Meeting
+function requestMeeting() {
+    return confirm("Are you sure you want to request a meeting with this mentor?");
+}
+
+
 // For when a mentee or mentor clicks on Cancel Mentorship
 function cancelMentorship() {
     return confirm("Are you sure you want to cancel mentorship? This action cannot be undone.");
