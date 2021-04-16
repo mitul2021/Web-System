@@ -17,8 +17,8 @@ class Pair < Sequel::Model
         errors.add(:status, 'status can only be integer in range [0,6]') if !(status.between?(0,6))
 
         #general
-        errors.add(:pair_id, 'by status 0 number of pairs for one mentee should be 0') if (status==0 && numOfPairs!=0)
-        errors.add(:pair_id, 'by status in range [1,6] number of pairs for one mentee should be 1') if (status.between?(1,6) && numOfPairs!=1)
+        errors.add(:pair_id, 'by status 0 number of pairs for one mentee should be 0') if (status==0 && numOfPairsMentee!=0)
+        errors.add(:pair_id, 'by status in range [1,6] number of pairs for one mentee should be 1') if (status.between?(1,6) && numOfPairsMentee!=1)
         
         #checking if the mentor already has 10 or more ongoing requests
         errors.add(:pair_id,"mentor with id #{mentor_id} has to many requests") if (numOfPairsMentor>=10)
