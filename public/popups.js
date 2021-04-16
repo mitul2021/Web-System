@@ -3,6 +3,11 @@ function requestMeeting() {
     return confirm("Are you sure you want to request a meeting with this mentor?");
 }
 
+// For when a mentee has to agree on cancelling their mentorship with the mentor
+function agreeOnCancelling() {
+    return confirm("Do you agree to cancelling your mentorship with this mentor?")
+}
+
 // For when a mentee wants to cancel their ongoing Meeting Request
 function cancelMeetingRequest() {
     return confirm("Are you sure you want to cancel your meeting request with this mentor?")

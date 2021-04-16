@@ -149,7 +149,7 @@
                                     <input hidden name="status" value="4" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="request_mentorship"/>
+                                    <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
                                  </form>
                               </td>
                               
@@ -395,7 +395,7 @@
                               <form method="post" action="decline-admin">
                                   
                                   <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
-                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                                  <input type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
                             
                               </form>  
                            </td>
