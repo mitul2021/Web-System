@@ -110,21 +110,22 @@
                You may logout at any time by pressing the 'Logout' button.
             </p>
 
-            <h1>Your mentor:</h1>
-            <!-- Retrieving all the pairs with a status of 1 (status 1 means that they are in a relationship) -->
-            <% @requests = Pair.where(mentee_id: @user_id, status: 1) %>
-            <% if(@requests.empty?) %>
-               <p>You don't have a mentor at the moment.</p>
+            <h1>Your relationships:</h1>
+            <!-- Retrieving all the pairs -->
+            <% @pairs = Pair.where(mentee_id: @user_id) %>
+            <% if(@pairs.empty?) %>
+               <p>You don't have any relationships at the moment.</p>
             <% else %>
                <table>
                   <tr>
                      <th>Name</th>
                      <th>Email</th>
                      <th>Contact Number</th>
+                     <th>Status</th>
                   </tr>
-                  <% @requests.each do |request| %>
+                  <% @pairs.each do |pair| %>
                      <!-- Reading from the database, in each iteration, we are getting a mentor whos id is request.mentor_id (the mentor that accepted your request) -->
-                     <% @mentor = User.first(id: request.mentor_id) %>
+                     <% @mentor = User.first(id: pair.mentor_id) %>
                      <%unless @mentor.nil?%>
                         <tr>
                            <td>
@@ -137,17 +138,91 @@
                            <td>
                               <%= (@mentor.contact_number.nil?) ? ("Not given") : (h @mentor.contact_number) %>
                            </td>
+                           <%case pair.status%>
+                           <%when 0%>
+                              <td>
+                                 <%="You requested a meeting with this mentor. Wait for his reply"%>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 4-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="4" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
+                                 </form>
+                              </td>
+                              
+                           <%when 1%>
+                              <td>
+                                 <%= "Mentor agreed for a meeting with you. After after meeting decide if you want to request mentorship or cancell this relationship"%>
+                              </td>
+                              <td>
+                                 <!--requesting mentorship going to status 2-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="2" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 4-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="4" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 2%>
+                              <td>
+                                 <%="You requested a mentorship with this mentor. Wait for his reply"%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 3%>
+                              <td>
+                                 <%="Active Mentorship"%>
+                              </td>
+                              <!--cancelling relation ship moving to status 4-->
+                              <td>
+                                 <!--cancelling relation ship moving to status 4-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="4" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 4%>
+                              <td>
+                                 <%= "You have cancelled relationship with this mentor"%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 5%>
+                              <td>
+                                 <%= "Mentor whats to cancel this mentorship."%>
+                              </td>
+                              <!--agree on cancelling the relationship moving to status 5-->
+                              <td>
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="6" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return agreeOnCancelling()" value="Agree on cancelling" name="agree_on_cancelling"/>
+                                 </form>
+                              </td>
+
+                           <%when 6%>
+                              <td>
+                                 <%= "This relationship was canceled by mentor."%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <% else %>
+                              <%= "ERROR Unhandled status type"%>
+                           <% end %>
                            <td>
                               <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller --> 
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
-                            
-                              </form>
                            </td>
                         </tr>
                      <% end %>
@@ -155,52 +230,6 @@
                </table>
             <% end %>
 
-
-            <h1>Your mentorship requests:</h1>
-            <% @requests = Pair.where(mentee_id: @user_id, status: 0) %>
-            <% if(@requests.empty?) %>
-               <p>You don't have any ongoing requests.</p>
-            <% else %>
-               <table>
-                  <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Contact Number</th>
-                  </tr>
-
-                  <% @requests.each do |request| %>
-                     <% @mentor = User.first(id: request.mentor_id) %>
-                     <%unless @mentor.nil?%>
-                        <tr>
-                           <td>
-                              <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
-                              <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
-                           </td>
-                           <td>
-                              <%= (@mentor.email.nil?) ? ("Not given") : (h @mentor.email) %>
-                           </td>
-                           <td>
-                              <%= (@mentor.contact_number.nil?) ? ("Not given") : (h @mentor.contact_number) %>
-                           </td>
-                           <td>
-                              <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller --> 
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return cancelRequest()" value="Cancel Request" name="cancel_request"/>
-                            
-                              </form> 
-                           </td>
-                        </tr>                  
-                     <% end %>
-                  <% end %>
-               </table> <br>
-            <% end %>
-            
-               
          <!--MENTOR-->
          <% elsif @user_type.eql?("mentor") %>
             <p>
@@ -210,9 +239,9 @@
                where you can accept or deny requests.
             </p>
 
-            <h1>Your mentees:</h1>
-            <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
-            <% if(@requests.empty?) %>
+            <h1>Your relationships:</h1>
+            <% @pairs = Pair.where(mentor_id: @user_id) %>
+            <% if(@pairs.empty?) %>
                <p>You haven't accepted any mentees yet.</p>
             <% else %>
                <table>
@@ -220,9 +249,10 @@
                      <th>Name</th>
                      <th>Email</th>
                      <th>Contact Number</th>
+                     <th>Status</th>
                   </tr>
-                  <% @requests.each do |request| %>
-                     <% @mentee = User.first(id: request.mentee_id) %>
+                  <% @pairs.each do |pair| %>
+                     <% @mentee = User.first(id: pair.mentee_id) %>
                      <%unless @mentee.nil?%>
                         <tr>
                            <td>
@@ -235,77 +265,104 @@
                            <td>
                               <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
                            </td>
+                           <%case pair.status%>
+                           <%when 0%>
+                              <td>
+                                 <%="This mentee requested a meeting with you."%>
+                              </td>
+                              <td>
+                                 <!--accepting meeting moving to status 1-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="1" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return acceptMeetingRequest()" value="Accept Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="6" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              
+                           <%when 1%>
+                              <td>
+                                 <%= "You have agreed on a meeting with mentee. Expect mentorship request soon."%>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="6" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 2%>
+                              <td>
+                                 <%="Mentee wants to have you as their mentor."%>
+                              </td>
+                              <td>
+                                 <!--accepting mentorship moving to status 3-->
+                                 <form method="post" action="setpairstatus">
+                                       <input hidden name="status" value="3" />
+                                       <input hidden name="path" value="/index" />
+                                       <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                       <input id="requestbutton" type="submit" onclick="return acceptMentorshipRequest()" value="Accept Mentorship Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                       <input hidden name="status" value="6" />
+                                       <input hidden name="path" value="/index" />
+                                       <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                       <input id="requestbutton" type="submit" onclick="return declineMentorshipRequest()" value="Decline Mentorship Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 3%>
+                              <td>
+                                 <%="Active Mentorship"%>
+                              </td>
+                              <td>
+                                 <!--request cancelling  moving to status 5-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="5" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return cancelRelationship()" value="Cancel Mentorship" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 4%>
+                              <td>
+                                 <%= "Relation ship cancelled by mentee."%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 5%>
+                              <td>
+                                 <%= "You want to cancell this mentorship, wait for mentee's reply"%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 6%>
+                              <td>
+                                 <%= "This relationship was canceled by you."%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <% else %>
+                              <%= "ERROR Unhandled status type"%>
+                           <% end %>   
                            <td>
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller --> 
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
-                            
-                              </form>   
                            </td>
                         </tr>
                      <% end %>
                   <% end %>
                </table>
             <% end %>
-
-            <h1>Incoming requests:</h1>
-            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
-            <% if(@requests.empty?) %>
-               <p>You haven't recieved any new mentorship requests yet.</p>
-            <% else %>
-               <table>
-                  <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Contact Number</th>
-                  </tr>
-                  <% @requests.each do |request| %>
-                     <% @mentee = User.first(id: request.mentee_id) %>
-                     <%unless @mentee.nil?%>
-                        <tr>
-                           <td>
-                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
-                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
-                           </td>
-                           <td>
-                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the accept.rb controller -->
-                              <form method="post" action="accept">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
-                            
-                              </form>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller -->
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
-                            
-                              </form>                                                                                 
-                           </td>
-                        </tr>
-                     <% end %>
-                  <% end %>
-               </table><br>
-            <% end %>
-
-
             <!--ADMIN-->
          <% elsif @user_type.eql?("admin") %>
 
@@ -366,7 +423,7 @@
                               <form method="post" action="decline-admin">
                                   
                                   <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
-                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                                  <input type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
                             
                               </form>  
                            </td>
@@ -478,7 +535,7 @@
                               <form method="post" action="decline-admin">
                                   
                                   <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
-                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
+                                  <input type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
                             
                               </form>  
                            </td>
@@ -539,9 +596,9 @@
             <% end %>  
             
           
-            <h1>Your mentees:</h1>
-            <% @requests = Pair.where(mentor_id: @user_id, status: 1) %>
-            <% if(@requests.empty?) %>
+            <h1>Your relationships:</h1>
+            <% @pairs = Pair.where(mentor_id: @user_id) %>
+            <% if(@pairs.empty?) %>
                <p>You haven't accepted any mentees yet.</p>
             <% else %>
                <table>
@@ -549,9 +606,10 @@
                      <th>Name</th>
                      <th>Email</th>
                      <th>Contact Number</th>
+                     <th>Status</th>
                   </tr>
-                  <% @requests.each do |request| %>
-                     <% @mentee = User.first(id: request.mentee_id) %>
+                  <% @pairs.each do |pair| %>
+                     <% @mentee = User.first(id: pair.mentee_id) %>
                      <%unless @mentee.nil?%>
                         <tr>
                            <td>
@@ -564,78 +622,104 @@
                            <td>
                               <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
                            </td>
+                           <%case pair.status%>
+                           <%when 0%>
+                              <td>
+                                 <%="This mentee requested a meeting with you."%>
+                              </td>
+                              <td>
+                                 <!--accepting meeting moving to status 1-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="1" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return acceptMeetingRequest()" value="Accept Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="6" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              
+                           <%when 1%>
+                              <td>
+                                 <%= "You have agreed on a meeting with mentee. Expect mentorship request soon."%>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="6" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 2%>
+                              <td>
+                                 <%="Mentee wants to have you as their mentor."%>
+                              </td>
+                              <td>
+                                 <!--accepting mentorship moving to status 3-->
+                                 <form method="post" action="setpairstatus">
+                                       <input hidden name="status" value="3" />
+                                       <input hidden name="path" value="/index" />
+                                       <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                       <input id="requestbutton" type="submit" onclick="return acceptMentorshipRequest()" value="Accept Mentorship Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                              <td>
+                                 <!--cancelling relation ship moving to status 6-->
+                                 <form method="post" action="setpairstatus">
+                                       <input hidden name="status" value="6" />
+                                       <input hidden name="path" value="/index" />
+                                       <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                       <input id="requestbutton" type="submit" onclick="return declineMentorshipRequest()" value="Decline Mentorship Request" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 3%>
+                              <td>
+                                 <%="Active Mentorship"%>
+                              </td>
+                              <td>
+                                 <!--request cancelling  moving to status 5-->
+                                 <form method="post" action="setpairstatus">
+                                    <input hidden name="status" value="5" />
+                                    <input hidden name="path" value="/index" />
+                                    <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
+                                    <input id="requestbutton" type="submit" onclick="return cancelRelationship()" value="Cancel Mentorship" name="request_mentorship"/>
+                                 </form>
+                              </td>
+                           <%when 4%>
+                              <td>
+                                 <%= "Relation ship cancelled by mentee."%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 5%>
+                              <td>
+                                 <%= "You want to cancell this mentorship, wait for mentee's reply"%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <%when 6%>
+                              <td>
+                                 <%= "This relationship was canceled by you."%>
+                              </td>
+                              <!--No actions avaliable-->
+                           <% else %>
+                              <%= "ERROR Unhandled status type"%>
+                           <% end %>   
                            <td>
                               <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller --> 
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
-                            
-                              </form>   
                            </td>
                         </tr>
                      <% end %>
                   <% end %>
                </table>
             <% end %>
-            
-          
-            <h1>Incoming requests:</h1>
-            <% @requests = Pair.where(mentor_id: @user_id, status: 0) %>
-            <% if(@requests.empty?) %>
-               <p>You haven't recieved any new mentorship requests yet.</p>
-            <% else %>
-               <table>
-                  <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Contact Number</th>
-                  </tr>
-                  <% @requests.each do |request| %>
-                     <% @mentee = User.first(id: request.mentee_id) %>
-                     <%unless @mentee.nil?%>
-                        <tr>
-                           <td>
-                              <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
-                              <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.email.nil?) ? ("Not given") : (h @mentee.email) %>
-                           </td>
-                           <td>
-                              <%= (@mentee.contact_number.nil?) ? ("Not given") : (h @mentee.contact_number) %>
-                           </td>
-                           <td>
-                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
-                           </td>
-                           <td>
-                              <!-- Goes to the accept.rb controller -->
-                              <form method="post" action="accept">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
-                            
-                              </form>
-                           </td>
-                           <td>
-                              <!-- Goes to the decline.rb controller -->
-                              <form method="post" action="decline">
-                                  
-                                  <input hidden name="pair_id" value="<%= request.pair_id %>"/>
-                                  <input type="submit" onclick="return denyRequest()" value="Decline Request" name="decline_request"/>
-                            
-                              </form>                                                                                 
-                           </td>
-                        </tr>
-                     <% end %>
-                  <% end %>
-               </table><br>
-            <% end %>
-         
-          
          <!--ERROR-->
          <% else %>
             <p>error with retrieving user type, please try again at another time</p>
