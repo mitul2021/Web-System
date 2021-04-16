@@ -3,6 +3,10 @@ function requestMeeting() {
     return confirm("Are you sure you want to request a meeting with this mentor?");
 }
 
+// For when a mentee wants to cancel their ongoing Meeting Request
+function cancelMeetingRequest() {
+    return confirm("Are you sure you want to cancel your meeting request with this mentor?")
+}
 
 // For when a mentee or mentor clicks on Cancel Mentorship
 function cancelMentorship() {
@@ -19,9 +23,9 @@ function acceptRequest() {
     return confirm("Are you sure you want to accept this request? This action cannot be undone.");
 }
 
-// For when a mentor clicks on Deny Request from a mentee
-function denyRequest() {
-    return confirm("Are you sure you want to deny this request? This action cannot be undone.");
+// For when a mentor clicks on Decline Request from a mentee
+function declineRequest() {
+    return confirm("Are you sure you want to decline this request? This action cannot be undone.");
 }
 
 // For when a mentee clicks on Request Mentorship
