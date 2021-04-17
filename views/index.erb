@@ -518,11 +518,24 @@
                            </td> 
                         <%end%>
                         <td>
-                           <% if !pair.status.nil? %>     
-                              <% if pair.status == 1 %>
-                                 <%= "Accepted" %>
-                              <% elsif pair.status == 0 %>
-                                 <%= "Currently being reviewed" %>
+                           <% if !pair.status.nil? %>
+                              <% case pair.status %>                           
+                              <% when 0 %>
+                                 <%= "The mentee has requested a meeting with the mentor." %>
+                              <% when 1 %>
+                                 <%= "The mentor has agreed to a meeting with the mentee." %>
+                              <% when 2 %>
+                                 <%= "The mentee has requested a mentorship with the mentor." %>
+                              <% when 3 %>
+                                 <%= "The mentor has accepted the mentorship with the mentee." %>
+                              <% when 4 %>
+                                 <%= "The mentee has requested to cancel the mentorship with the mentor." %>
+                              <% when 5 %>
+                                 <%= "The mentee has cancelled the relationship with the mentor." %>
+                              <% when 6 %>
+                                 <%= "The mentor has requested to cancel the mentorship with the mentee." %>
+                              <% when 7 %>
+                                 <%= "The mentor has cancelled the relationship with the mentee." %>    
                               <% else %>
                                  <%= "Status unknown" %>
                               <% end %>
@@ -633,11 +646,24 @@
                            </td> 
                         <%end%>
                         <td>
-                           <% if !pair.status.nil? %>     
-                              <% if pair.status == 1 %>
-                                 <%= "Accepted" %>
-                              <% elsif pair.status == 0 %>
-                                 <%= "Currently being reviewed" %>
+                           <% if !pair.status.nil? %>
+                              <% case pair.status %>                            
+                              <% when 0 %>
+                                 <%= "The mentee has requested a meeting with the mentor." %>
+                              <% when 1 %>
+                                 <%= "The mentor has agreed to a meeting with the mentee." %>
+                              <% when 2 %>
+                                 <%= "The mentee has requested a mentorship with the mentor." %>
+                              <% when 3 %>
+                                 <%= "The mentor has accepted the mentorship with the mentee." %>
+                              <% when 4 %>
+                                 <%= "The mentee has requested to cancel the mentorship with the mentor." %>
+                              <% when 5 %>
+                                 <%= "The mentee has cancelled the relationship with the mentor." %>
+                              <% when 6 %>
+                                 <%= "The mentor has requested to cancel the mentorship with the mentee." %>
+                              <% when 7 %>
+                                 <%= "The mentor has cancelled the relationship with the mentee." %>     
                               <% else %>
                                  <%= "Status unknown" %>
                               <% end %>
