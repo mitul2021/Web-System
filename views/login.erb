@@ -29,7 +29,7 @@
       <!--defines form that posts to login.rb controller -->
       <form method="post" action="login">
          <label>Email or Username:</label><br>
-         <input name="text" placeholder="enter your email or username here..." value="<%= params["text"].nil? ? "" : (h params["text"].to_s)%>"/><br> 
+         <input id="logininput" name="text" placeholder="enter your email or username here..." value="<%= params["text"].nil? ? "" : (h params["text"].to_s)%>"/><br> 
          <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("email") %>
             <% @user.errors["email"].each do |error| %>
                <p class="error"><strong><%= error %></strong></p>
@@ -51,7 +51,7 @@
           
           
          <label>Password:</label><br>
-         <input type="password"  name="password" placeholder="enter your password here..." value="<%= (h @user.password) unless @user.nil? %>"/>
+         <input id="logininput" type="password"  name="password" placeholder="enter your password here..." value="<%= (h @user.password) unless @user.nil? %>"/>
           
          <!-- uses User model to print errors with password (eg: too short)-->
          <% if !@user.nil? && !@user.errors.nil? && @user.errors.include?("password") %>
