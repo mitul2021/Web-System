@@ -332,7 +332,7 @@
                                     <input hidden name="status" value="6" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Cancel Meeting Request" name="decline_meeting_request"/>
+                                    <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
                                  </form>
                               </td>
                            <%when 2%>
@@ -749,7 +749,7 @@
                                     <input hidden name="status" value="6" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Cancel Meeting Request" name="decline_meeting_request"/>
+                                    <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
                                  </form>
                               </td>
                            <%when 2%>
