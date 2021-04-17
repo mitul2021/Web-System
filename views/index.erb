@@ -155,7 +155,7 @@
                               
                            <%when 1%>
                               <td>
-                                 <%= "#{@mentor.first_name} #{@mentor.surname} has agreed for a meeting with you. After the meeting, decide if you want to request a mentorship or cancel this relationship"%>
+                                 <%= "#{@mentor.first_name} #{@mentor.surname} has agreed for a meeting with you. After the meeting, decide if you want to request a mentorship or cancel this relationship."%>
                               </td>
                               <td>
                                  <!--Status 2 if a Mentee wants to Request a Mentorship-->
@@ -172,7 +172,7 @@
                                     <input hidden name="status" value="4" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
+                                    <input id="requestbutton" type="submit" onclick="return cancelApplication()" value="Cancel Application" name="cancel_application"/>
                                  </form>
                               </td>
 
@@ -186,7 +186,7 @@
                                     <input hidden name="status" value="4" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship Request" name="cancel_mentorship"/>
+                                    <input id="requestbutton" type="submit" onclick="return cancelMentorshipRequest()" value="Cancel Mentorship Request" name="cancel_mentorship_request"/>
                                  </form>
                               </td>
 
@@ -206,7 +206,7 @@
                               </td>
                            <%when 4%>
                               <td>
-                                 <%= "You have requested to cancel your Menteeship with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
+                                 <%= "You have requested to cancel your Mentorship with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
                               </td>
                               <td>
                                  <!--Status 3 if a user calls off their request-->
@@ -324,7 +324,7 @@
                                     <input hidden name="status" value="6" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="decline_meeting_request"/>
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Cancel Meeting Request" name="decline_meeting_request"/>
                                  </form>
                               </td>
                            <%when 2%>
@@ -737,7 +737,7 @@
                                     <input hidden name="status" value="6" />
                                     <input hidden name="path" value="/index" />
                                     <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="decline_meeting_request"/>
+                                    <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Cancel Meeting Request" name="decline_meeting_request"/>
                                  </form>
                               </td>
                            <%when 2%>
