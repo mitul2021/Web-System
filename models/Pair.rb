@@ -14,11 +14,11 @@ class Pair < Sequel::Model
         user_type = User[mentor_id].user_type
         errors.add(:mentor_id, 'user using mentor_id is neither mentor nor adminmentor') if !(user_type.eql?("mentor") || user_type.eql?("adminmentor"))
         
-        errors.add(:status, 'status can only be integer in range [0,6]') if !(status.between?(0,6))
+        errors.add(:status, 'status can only be integer in range [0,7]') if !(status.between?(0,7))
 
         #general
         errors.add(:pair_id, 'by status 0 number of pairs for one mentee should be 0') if (status==0 && numOfPairsMentee!=0)
-        errors.add(:pair_id, 'by status in range [1,6] number of pairs for one mentee should be 1') if (status.between?(1,6) && numOfPairsMentee!=1)
+        errors.add(:pair_id, 'by status in range [1,7] number of pairs for one mentee should be 1') if (status.between?(1,7) && numOfPairsMentee > 1)
         
         #checking if the mentor already has 10 or more ongoing requests
         errors.add(:pair_id,"mentor with id #{mentor_id} has to many requests") if (numOfPairsMentor>=10)
@@ -40,22 +40,22 @@ class Pair < Sequel::Model
 
     #this function returns number of relationships of one mentee
     #should be equal to 0 if current status is 0,
-    #should be equal to 1 if current status is [1,6]
+    #should be equal to 1 if current status is [1,7]
     def numOfPairsMentee #for one mentee, doesnt count cancelled ones
         count = 0
 
         Pair.all.each do |pair|
-            count +=1 if ((pair.mentee_id == self.mentee_id) && !(pair.status == 4 || pair.status == 6))
+            count +=1 if ((pair.mentee_id == self.mentee_id) && !(pair.status > 3))
         end
 
         count
     end
-    def numOfPairsMentor #for one mentee, doesnt count cancelled ones
+    def numOfPairsMentor #for one mentor, doesnt count cancelled ones
 
         count = 0
 
         Pair.all.each do |pair|
-            count +=1 if ((pair.mentor_id == self.mentor_id) && !(pair.status == 4 || pair.status == 6))
+            count +=1 if ((pair.mentor_id == self.mentor_id) && !(pair.status > 3))
         end
 
         count

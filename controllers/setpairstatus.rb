@@ -24,7 +24,7 @@ post "/setpairstatus" do
             #trigger cookie here infroming that sths wrong
         end
 
-    when 1,2,3,4,5,6
+    when 1,2,3,4,5,6,7
         #pair already exists
         pair_id = params.fetch("pair_id","").strip.to_i
         pair = Pair[pair_id]
@@ -43,7 +43,7 @@ post "/setpairstatus" do
         end
 
     else
-        puts "Retrieved unhadled status."
+        puts "Retrieved unhandled status."
     end
 
 
