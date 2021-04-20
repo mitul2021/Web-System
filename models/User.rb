@@ -158,7 +158,7 @@ class User < Sequel::Model
         false
     end
     
-    def get_faculty
+    def get_faculty()
         course = Course.load_id(self.deg_id)
         faculty = course.get_faculty()
         return faculty
