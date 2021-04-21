@@ -25,4 +25,10 @@ def similarityScore(mentee, mentor)
 end
 
 #need to figure out how to write hash, need to write parseMentoList
-    
+
+#due to db refactoring we need to write a method to get all interests of a user.
+def getMajorInterest(id)
+    return Userinterest.first(user_id: mentee_id)
+
+def getInterests(id)
+    return Interest[Userinterest.all(user_id: id).interest_id]
