@@ -90,11 +90,13 @@ td {
  
 th, td {
     padding: 4px;
+    border-top: 2px solid black;
     border-bottom: 2px solid black;
-    border-left: none;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     border-collapse:collapse;
 }
- 
+
 #profilelinks {
     color:#0066b3;
     border: 2px solid black;
@@ -228,8 +230,9 @@ th, td {
 }
 
 #logininput {
-    width: 250px;
-    height: 25px;
+    width: 300px;
+    height: 35px;
     margin: 5px;
+    border-radius: 20px;
 }
 
