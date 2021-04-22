@@ -154,6 +154,26 @@ th, td {
     margin: 0px;
     width: auto;
 }
+
+/*Style the boxes and buttons of the Change Profile Details page */
+#displayflex textarea{
+    border-radius: 14px;
+}
+
+#btn_show{
+    border: 5px ridge black;
+    width : 140px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+
+#btn_hide{
+    border: 5px ridge black;
+    width : 140px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+
 /*Display of the Change Details page */
 #flexcontainer, #displayflex{
     display: flex;
@@ -194,6 +214,7 @@ th, td {
     justify-content: center;
 }
 
+/*Styling the footer */
 #footer {
     display: flex;
     justify-content: center;
