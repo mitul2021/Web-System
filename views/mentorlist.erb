@@ -80,7 +80,7 @@
                        <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
                    #<td>
-                   #    <%= similarityScore.nil ? "Error" : "Similarity: " + similarityScore %>
+                   #    <%= similarityScore.nil ? "" : "Similarity: " + similarityScore %>
                    #</td>
 
                    <td>
