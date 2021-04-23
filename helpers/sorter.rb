@@ -19,7 +19,7 @@ def similarityScore(mentee, mentor)
     score = 0
     if ((mentee.deg_id == mentor.deg_id) and (mentee.getfaculty() == mentor.getfaculty()))
         score += 1
-    elsif (mentee.getfaculty() == mentor.getfaculty())
+    elsif (mentee.get_faculty() == mentor.getfaculty())
         score += 0.5
     end
     return score
@@ -31,6 +31,8 @@ end
 #due to db refactoring we need to write a method to get all interests of a user.
 def getMajorInterest(id)
     return Userinterest.first(user_id: mentee_id)
+end
 
 def getInterests(id)
     return Interest[Userinterest.all(user_id: id).interest_id]
+end

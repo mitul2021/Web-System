@@ -54,7 +54,8 @@
                <th>Job Title</th>
                <th>Main Interest</th>
             </tr>
-            <% similaritySort().each do |mentor| %>
+      
+            <% similaritySort(@mentee).each do |mentor| %>
                 <% similarityScore = mentor[score] %>
                 <% mentor = User[mentor[mentor_id]] %>
                 <tr>

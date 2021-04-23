@@ -28,6 +28,7 @@ get "/mentorlist" do
         
         @mentors = User.where(user_type: "mentor")
         @adminmentors = User.where(user_type: "adminmentor")
+        @mentee = User[session[:user_id]]
         erb :mentorlist
     else
         response.set_cookie("redirected-popup", value: 'true')
