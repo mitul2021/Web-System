@@ -60,6 +60,7 @@
             <% @mentors.each do |mentor| %>
             # New Sorting algorithm - untested
             # <% similaritySort().each do |mentor| %>
+               # <% similarityScore = mentor[score] %>
                # <% mentor = User[mentor[mentor_id]] %>
                 <tr>
                    <td>
@@ -78,6 +79,9 @@
                    <td>
                        <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
+                   #<td>
+                   #    <%= similarityScore.nil ? "Error" : "Similarity: " + similarityScore %>
+                   #</td>
 
                    <td>
                        <!-- Goes to the setpairstatus.rb controller --> 
