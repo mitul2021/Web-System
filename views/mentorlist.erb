@@ -1,3 +1,4 @@
+<% require_relative '../helpers/sorter.rb' %>
 <html lang="en">
    <head>
       <title>Mentors</title>
@@ -53,7 +54,9 @@
                <th>Job Title</th>
                <th>Main Interest</th>
             </tr>
-            <% @mentors.each do |mentor| %>
+            <% similaritySort().each do |mentor| %>
+                <% similarityScore = mentor[score] %>
+                <% mentor = User[mentor[mentor_id]] %>
                 <tr>
                    <td>
                        <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
@@ -71,7 +74,9 @@
                    <td>
                        <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
-
+                   <td>
+                       <%= similarityScore.nil ? "" : "Similarity: " + similarityScore %>
+                   </td>
                    <td>
                        <!-- Goes to the setpairstatus.rb controller --> 
                        <!-- Creating a new pair and setting its status to 0 --> 
