@@ -1,4 +1,3 @@
-<% require_relative '../helpers/sorter.rb' %>
 <html lang="en">
    <head>
       <title>Mentors</title>
@@ -45,6 +44,8 @@
          <p>This mentor has too much ongoing requests try again later.</p>
       </div>  
       
+       
+       
       <div id="changedetailsbody">
          <h1>Mentors</h1>
          <h2>Below is a list of mentors that are currently available:</h2>
@@ -54,9 +55,7 @@
                <th>Job Title</th>
                <th>Main Interest</th>
             </tr>
-            <% similaritySort().each do |mentor| %>
-                <% similarityScore = mentor[score] %>
-                <% mentor = User[mentor[mentor_id]] %>
+            <% @mentors.each do |mentor| %>
                 <tr>
                    <td>
                        <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
@@ -74,9 +73,7 @@
                    <td>
                        <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
-                   <td>
-                       <%= similarityScore.nil ? "" : "Similarity: " + similarityScore %>
-                   </td>
+
                    <td>
                        <!-- Goes to the setpairstatus.rb controller --> 
                        <!-- Creating a new pair and setting its status to 0 --> 
