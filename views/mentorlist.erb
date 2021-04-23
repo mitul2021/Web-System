@@ -1,3 +1,4 @@
+<%require_relative '../helpers/sorter.rb'%>
 <html lang="en">
    <head>
       <title>Mentors</title>
@@ -55,8 +56,11 @@
                <th>Job Title</th>
                <th>Main Interest</th>
             </tr>
-            # Needs rewriting to accomodate new sorting algorithm
+            # Replace this line:
             <% @mentors.each do |mentor| %>
+            # New Sorting algorithm - untested
+            # <% similaritySort().each do |mentor| %>
+               # <% mentor = User[mentor[mentor_id]] %>
                 <tr>
                    <td>
                        <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
