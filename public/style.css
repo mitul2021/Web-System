@@ -253,6 +253,10 @@ th, td {
     border-radius: 20px;
 }
 
+input#requestbutton {
+    cursor:pointer;
+}
+
 /*Styling the footer */
 #footer {
     display: flex;
