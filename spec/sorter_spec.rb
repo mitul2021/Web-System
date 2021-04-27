@@ -16,5 +16,5 @@ RSpec.describe "Login Page" do
       @mentors = User.where(user_type: "mentor")
   end
     
-    
+end
 #@user = User[id_num]
