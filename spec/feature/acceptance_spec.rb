@@ -203,15 +203,15 @@ end
 describe "mentor-mentee pairing" do
   it "allows a mentee request a mentor" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     clear_database
   end
   
   it "shows a requested mentor on the home page" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     visit "/index"
     expect(page.has_link?("Cancel request"))
     clear_database
@@ -219,18 +219,22 @@ describe "mentor-mentee pairing" do
   
   it "allows a mentee to cancel a request " do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     visit "/index"
-    click_link "Cancel Request"
+    accept_confirm do
+      find('input[name="cancel_meeting_request"]').click
+    end
+    #click_button "Cancel Meeting Request"
+    save_page
     expect(page).to have_content "You don't have any ongoing requests."
     clear_database
   end
   
   it "shows mentors requested mentees" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     expect(page).to have_content "Accept Request"
     clear_database
@@ -238,8 +242,8 @@ describe "mentor-mentee pairing" do
   
   it "allows mentors to decline mentees" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     click_link "Decline Request"
     expect(page).to have_content "You haven't recieved any new mentorship requests yet."
@@ -248,8 +252,8 @@ describe "mentor-mentee pairing" do
   
   it "allows mentors to accept mentees" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     click_link "Accept Request"
     expect(page).to have_content "Cancel Mentorship"
@@ -258,8 +262,8 @@ describe "mentor-mentee pairing" do
   
   it "allows mentors to cancel a mentorship" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     click_link "Accept Request"
     click_link "Cancel Mentorship"
@@ -269,8 +273,8 @@ describe "mentor-mentee pairing" do
   
   it "shows mentees their mentor" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     click_link "Accept Request"
     sign_in("mentee")
@@ -280,8 +284,8 @@ describe "mentor-mentee pairing" do
   
   it "allows mentees to cancel their mentorship" do
     add_mentor_mentee
-    click_link "Mentor List"
-    click_link "Request Mentorship"
+    visit "/mentorlist"
+    click_button "Request Meeting"
     sign_in("mentor")
     click_link "Accept Request"
     sign_in("mentee")
