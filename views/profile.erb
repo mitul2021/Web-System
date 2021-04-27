@@ -16,14 +16,15 @@
             <h1 id="profile_header">
                 <%= @user.first_name.nil? ? "Unknown" : (h @user.first_name)%>
                 <%= @user.surname.nil? ? "Unknown" : (h @user.surname) %>
-                <%= @user.user_type.nil? ? "" : "- " + (h @user.user_type.capitalize()) %>
+                <p></p>
+                <%= @user.user_type.nil? ? "" : + (h @user.user_type.capitalize()) %>
             </h1>
             
 
             <div id="profileinfo">
                 #university name needed
                 <h2>
-                    <%= @user.job_deg_cosmetic_name.nil? ? "No occupation" : (h @user.job_deg_cosmetic_name.capitalize()) %>
+                    <p>Job title: <%= @user.job_deg_cosmetic_name.nil? ? "No occupation" : (h @user.job_deg_cosmetic_name.capitalize()) %></p>              
                 </h2>
                 <p>
                     <%= @user.profile_text.nil? ? "No profile text given" : (h @user.profile_text) %>
