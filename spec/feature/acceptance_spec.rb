@@ -5,12 +5,14 @@ describe "the register page" do
     visit "/login"
     click_link "Create an account"
     expect(page).to have_content "Register"
+    clear_database
   end
   
   it "will not add a user with no details" do
     visit "/register"
     click_button "submit_register"
     expect(page).to have_content "email cannot be empty"
+    clear_database
   end
   
   it "will not add a user with no password" do
@@ -18,6 +20,7 @@ describe "the register page" do
     fill_in "email", with: "test@sheffield.ac.uk"
     click_button "submit_register"
     expect(page).to have_content "password cannot be empty"
+    clear_database
   end
   
   it "will not add a user without matching passwords" do
@@ -27,6 +30,7 @@ describe "the register page" do
     fill_in "password_repeat", with: "test12345"
     click_button "submit_register"
     expect(page).to have_content "not the same"
+    clear_database
   end
   
   it "will not add a user with short password (less than 8 characters)" do
@@ -36,12 +40,12 @@ describe "the register page" do
     fill_in "password_repeat", with: "test1"
     click_button "submit_register"
     expect(page).to have_content "must be at least"
+    clear_database
   end
   
   it "will add a user when all details are entered" do
     visit "/register"
     add_user("mentee")
-    save_page
     expect(page).to have_content "You have registered successfully"
     clear_database
   end
@@ -67,15 +71,17 @@ describe "the login page" do
   it "will not login a user with no details" do
     visit "/login"
     click_button "submit_login"
-    expect(page).to have_content "does not match"
+    expect(page).to have_content "Your Email or Username cannot be empty"
+    clear_database
   end
   
   it "will not login a user with incorrect details" do
     visit "/login"
-    fill_in "email", with: "bad@sheffield.ac.uk"
+    fill_in "text", with: "bad@sheffield.ac.uk"
     fill_in "password", with: "badd1234"
     click_button "submit_login"
     expect(page).to have_content "does not match"
+    clear_database
   end
 end
 
@@ -104,7 +110,7 @@ describe "the home page" do
   it "will show if I have no mentor as a mentee" do
     add_user("mentee")
     sign_in("mentee")
-    expect(page).to have_content "You don't have a mentor at the moment."
+    expect(page).to have_content "You don't have any relationships at the moment."
     clear_database
   end
   
@@ -188,8 +194,8 @@ describe "the mentor list page" do
   
   it "contains list of available mentors" do
     add_mentor_mentee
-    click_link "Mentor List"
-    expect(page).to have_content "Request Mentorship"
+    visit "/mentorlist"
+    expect(page).to have_content "Mentors"
     clear_database
   end
 end

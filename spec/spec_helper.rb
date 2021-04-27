@@ -48,7 +48,7 @@ end
 
 def add_user(type)
   visit "/register"
-  fill_in "username", with: "Test User"
+  fill_in "username", with: "Test #{type}"
   fill_in "email", with: "#{type}@sheffield.ac.uk"
   fill_in "password", with: "test12345"
   fill_in "password_repeat", with: "test12345"
