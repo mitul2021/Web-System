@@ -3,13 +3,13 @@ require "sequel"
 require "sqlite3"
 
 
-# ensuring that you are using the users.sqlite3 database for production
+# ensuring that you are using the production.sqlite3 database for production
 
 #name = ENV.fetch("APP_ENV", "users") #if not set to "test" by spec-helper, will default to "users"
 name = ENV.fetch("APP_ENV", "production")
 #name = session[:env]
 
-
+puts name
 # find the path to the database
 db_dir_path = File.dirname(__FILE__)
 db_path = "#{db_dir_path}/#{name}.sqlite3"

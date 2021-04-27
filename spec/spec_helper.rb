@@ -1,4 +1,4 @@
-ENV["APP_ENV"] = "acceptance_test"
+ENV["APP_ENV"] = "testing"
 
 require "simplecov"
 SimpleCov.start do
