@@ -55,9 +55,8 @@
                <th>Main Interest</th>
             </tr>
       
-            <% similaritySort(@mentee).each do |mentor| %>
-                <% similarityScore = mentor[score] %>
-                <% mentor = User[mentor[mentor_id]] %>
+            <% similaritySort(User[session[:user_id]]).each do |mentorid, similarityScore| %>
+                <% mentor = User[mentorid] %>
                 <tr>
                    <td>
                        <%= mentor.first_name.nil? ? "Not given" : (h mentor.first_name) %>
@@ -76,7 +75,7 @@
                        <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                    </td>
                    <td>
-                       <%= similarityScore.nil ? "" : "Similarity: " + similarityScore %>
+                       <%= "Similarity: " + similarityScore.to_s %>
                    </td>
                    <td>
                        <!-- Goes to the setpairstatus.rb controller --> 

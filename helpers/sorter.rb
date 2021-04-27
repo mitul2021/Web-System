@@ -1,12 +1,11 @@
 def similaritySort(mentee) #requires metee as User object
-    mentorScores = []
+    mentorScores = {}
     @mentors.each do |mentor| #@mentors is a global object
         score = similarityScore(mentee, mentor)
         #write to hash {mentor ==> score}
-        mentorHash = {mentor_id: mentor.user_id, score: similarityScore}
-        mentorScores << mentorHash
+        mentorScores["#{mentor.id}"] = score
     end
-    mentorScores.sort_by { |k, v| v[:score] }
+    mentorScores.sort_by { |k, v| v}
     return mentorScores
     #returns sorted list of hashes {mentor_id, score}
 end
@@ -17,9 +16,9 @@ def similarityScore(mentee, mentor)
     #if deg_name_functional are the same (meaning same deg_id, so no need to make a getter for d_g_f), and faculty are same, add +1
     #elsif faculty same, add +0.5
     score = 0
-    if ((mentee.deg_id == mentor.deg_id) and (mentee.getfaculty() == mentor.getfaculty()))
+    if ((mentee.deg_id == mentor.deg_id) and (Course[mentee.id].faculty == Course[mentor.id].faculty))
         score += 1
-    elsif (mentee.get_faculty() == mentor.getfaculty())
+    elsif (Course[mentee.id].faculty == Course[mentor.id].faculty)
         score += 0.5
     end
     return score
