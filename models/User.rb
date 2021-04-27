@@ -43,6 +43,7 @@ class User < Sequel::Model
     end
     
     
+    
     def load_details_mentee(params)
 
         
@@ -83,7 +84,9 @@ class User < Sequel::Model
         self.profile_text = params.fetch("profile_text"," ").strip
     
     end
-  
+    
+    
+    
     def valid_details?
         validate
         return true

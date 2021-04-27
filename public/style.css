@@ -6,6 +6,7 @@ body {
   margin: 0;
   margin-bottom: 30vh;
   font-size: 30px;
+  padding:5px;
 }
 
 nav ul {
@@ -23,7 +24,7 @@ nav ul li {
     margin: 25px;
     padding: 8px;
     font-size: 48px;
-    font-family: "Times New Roman", serif;
+    font-family: "Verdana", sans-serif;
 }
 
 
@@ -43,7 +44,7 @@ a:hover {
 }
  
 /* button on sign in and register page */
-.button {
+.button, #displayemailbox .button {
     display: inline-block;
     background-color: rgb(128, 170, 255);
     border-radius: 10px;
@@ -90,11 +91,13 @@ td {
  
 th, td {
     padding: 4px;
+    border-top: 2px solid black;
     border-bottom: 2px solid black;
-    border-left: none;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     border-collapse:collapse;
 }
- 
+
 #profilelinks {
     color:#0066b3;
     border: 2px solid black;
@@ -152,6 +155,7 @@ th, td {
     margin: 0px;
     width: auto;
 }
+
 /*Display of the Change Details page */
 #flexcontainer, #displayflex{
     display: flex;
@@ -192,16 +196,31 @@ th, td {
     justify-content: center;
 }
 
-#footer {
-    display: flex;
-    justify-content: center;
-    margin-top:auto; 
-    padding:0px;
-    background-color:#0066b3;
-    font-size: 20px;
-    font-style:italic; 
-    margin-top: 150px;
+/*Style the boxes and buttons of the Change Profile Details page */
+#displayflex textarea{
+    border-radius: 14px;
 }
+
+#btn_show{
+    border: 5px ridge black;
+    width : 140px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+
+#btn_hide{
+    border: 5px ridge black;
+    width : 140px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+
+/*Style the boxes of the Change Account Details page */
+#displayemailbox input{
+    border-radius: 20px;
+    width: 230px;
+}
+
 
 /* Styling the popups */
 
@@ -228,8 +247,24 @@ th, td {
 }
 
 #logininput {
-    width: 250px;
-    height: 25px;
+    width: 300px;
+    height: 35px;
     margin: 5px;
+    border-radius: 20px;
 }
 
+input#requestbutton {
+    cursor:pointer;
+}
+
+/*Styling the footer */
+#footer {
+    display: flex;
+    justify-content: center;
+    margin-top:auto; 
+    padding:0px;
+    background-color:#0066b3;
+    font-size: 20px;
+    font-style:italic; 
+    margin-top: 150px;
+}

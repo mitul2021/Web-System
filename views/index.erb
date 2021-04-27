@@ -253,7 +253,7 @@
                               <%= "ERROR Unhandled status type"%>
                            <% end %>
                            <td>
-                              <a href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
+                              <a id="profilelinks" href="<%= @mentor.id.nil? ? "/not_found" : "profile/" + (h @mentor.id) %>">Profile</a>
                            </td>
                         </tr>
                      <% end %>
@@ -418,7 +418,7 @@
                               <%= "ERROR Unhandled status type"%>
                            <% end %>   
                            <td>
-                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                              <a id="profilelinks" href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                         </tr>
                      <% end %>
@@ -836,7 +836,7 @@
                               <%= "ERROR Unhandled status type"%>
                            <% end %>   
                            <td>
-                              <a href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
+                              <a id="profilelinks" href="<%= @mentee.id.nil? ? "/not_found" : "profile/" + (h @mentee.id) %>">Profile</a>
                            </td>
                         </tr>
                      <% end %>

@@ -1,13 +1,14 @@
-def similaritySort(mentee) #requires User object
-    @mentors.each do |mentor|
+def similaritySort(mentee) #requires metee as User object
+    mentorScores = []
+    @mentors.each do |mentor| #@mentors is a global object
         score = similarityScore(mentee, mentor)
         #write to hash {mentor ==> score}
+        mentorHash = {mentor_id: mentor.user_id, score: similarityScore}
+        mentorScores << mentorHash
     end
-end
-
-    
-#takes in the list of hashes of mentors with their similarities, and returns a sorted list of mentors based on highest similarity
-def parseMentorList(mentorList)
+    mentorScores.sort_by { |k, v| v[:score] }
+    return mentorScores
+    #returns sorted list of hashes {mentor_id, score}
 end
 
     
@@ -21,8 +22,15 @@ def similarityScore(mentee, mentor)
     elsif (mentee.getfaculty() == mentor.getfaculty())
         score += 0.5
     end
+    return score
     
 end
 
 #need to figure out how to write hash, need to write parseMentoList
-    
+
+#due to db refactoring we need to write a method to get all interests of a user.
+def getMajorInterest(id)
+    return Userinterest.first(user_id: mentee_id)
+
+def getInterests(id)
+    return Interest[Userinterest.all(user_id: id).interest_id]
