@@ -44,7 +44,7 @@ end
 
 def add_user(type)
   visit "/register"
-  fill_in "email", with: "#{type}@email.com"
+  fill_in "email", with: "#{type}@sheffield.ac.uk"
   fill_in "password", with: "test12345"
   fill_in "password_repeat", with: "test12345"
   choose "#{type}"
@@ -54,7 +54,7 @@ end
 #signs in as the user given in type parameter 
 def sign_in(type) #test email is eg: mentee@email.com/mentor@email.com/admin@email.com
   visit "/login"
-  fill_in "email", with: "#{type}@email.com"
+  fill_in "email", with: "#{type}@sheffield.ac.uk"
   fill_in "password", with: "test12345"
   click_button "submit_login"
 end

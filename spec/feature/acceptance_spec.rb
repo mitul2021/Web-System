@@ -15,14 +15,14 @@ describe "the register page" do
   
   it "will not add a user with no password" do
     visit "/register"
-    fill_in "email", with: "test@email.com"
+    fill_in "email", with: "test@sheffield.ac.uk"
     click_button "submit_register"
     expect(page).to have_content "password cannot be empty"
   end
   
   it "will not add a user without matching passwords" do
     visit "/register"
-    fill_in "email", with: "test@email.com"
+    fill_in "email", with: "test@sheffield.ac.uk"
     fill_in "password", with: "test1234"
     fill_in "password_repeat", with: "test12345"
     click_button "submit_register"
@@ -31,7 +31,7 @@ describe "the register page" do
   
   it "will not add a user with short password (less than 8 characters)" do
     visit "/register"
-    fill_in "email", with: "test@email.com"
+    fill_in "email", with: "test@sheffield.ac.uk"
     fill_in "password", with: "test1"
     fill_in "password_repeat", with: "test1"
     click_button "submit_register"
@@ -41,6 +41,7 @@ describe "the register page" do
   it "will add a user when all details are entered" do
     visit "/register"
     add_user("mentee")
+    save_page
     expect(page).to have_content "You have registered successfully"
     clear_database
   end
@@ -71,7 +72,7 @@ describe "the login page" do
   
   it "will not login a user with incorrect details" do
     visit "/login"
-    fill_in "email", with: "bad@email.com"
+    fill_in "email", with: "bad@sheffield.ac.uk"
     fill_in "password", with: "badd1234"
     click_button "submit_login"
     expect(page).to have_content "does not match"
