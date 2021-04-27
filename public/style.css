@@ -139,15 +139,18 @@ th, td {
 }
  
 /* Draw a border for the contents of the profile of mentor */
-#profileinfo {
-    border: 3px ridge black;
-    padding: 10px 10px 50px 10px;
-    margin: 0px 55px 30px 55px;
-    display: inline-flex;
+#profileinfo{
+    border: 24px ridge black;
     position: relative;
     flex-direction: column;
-    
+    width: 500px;
 }
+
+#presentationOfDetails{
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}
+
 #go_back, #profile_header {
     margin: 0px 55px 30px 55px;
 }
