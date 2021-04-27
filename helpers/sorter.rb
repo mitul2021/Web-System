@@ -5,7 +5,7 @@ def similaritySort(mentee) #requires metee as User object
         #write to hash {mentor ==> score}
         mentorScores["#{mentor.id}"] = score
     end
-    mentorScores.sort_by { |k, v| v}
+    mentorScores = mentorScores.sort_by{|k, v| [-v]}
     return mentorScores
     #returns sorted list of hashes {mentor_id, score}
 end

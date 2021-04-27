@@ -54,7 +54,6 @@
                <th>Job Title</th>
                <th>Main Interest</th>
             </tr>
-      
             <% similaritySort(User[session[:user_id]]).each do |mentorid, similarityScore| %>
                 <% mentor = User[mentorid] %>
                 <tr>
