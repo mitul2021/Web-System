@@ -101,7 +101,7 @@
             </div>
 
             <%if @change%> 
-               <div>
+               <div id="profileinfo">
                   <!-- CHANGING DETAILS-->
                   <form method="post" action="profilecreate">
                      <% @user=User.first(id: @user_id) %>
@@ -429,7 +429,7 @@
                   
                </div>
             <% else %>
-               <div>
+               <div id="presentationOfDetails">
                   <!-- PRESENTING DETAILS-->
                   <% @user=User.first(id: @user_id) %>
                   <% if @role.eql?("mentee") %>
