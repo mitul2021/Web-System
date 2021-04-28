@@ -155,8 +155,8 @@
                            </select><br><br>
                         
                         <label>Degree year:</label><br>
-                        <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
-                        <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+                        <% keys = [" ","foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+                        <% values = [" ","Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
                         <% selected = Array.new(keys.length) {false}%>
                         <% if !@user.deg_year.nil?%>
                            <% keys.each_with_index do |key, i| %>
@@ -459,8 +459,8 @@
                            <% end %><br><br>
                      
                      <label>Degree year:</label><br>
-                     <% keys = ["foundation_year","1","2","3","year_in_industry","masters","phd"] %>
-                     <% values = ["Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+                     <% keys = [" ","foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+                     <% values = [" ","Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
                      <% selected = Array.new(keys.length) {false}%>
                      <% if !@user.deg_year.nil?%>
                         <% keys.each_with_index do |key, i| %>

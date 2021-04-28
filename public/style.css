@@ -72,6 +72,7 @@ h1 {
     font-size: 50px;
 }
 
+
 /* Bold the Labels */
 label {
     font-weight: bold;
@@ -143,6 +144,10 @@ th, td {
     border: 24px ridge black;
     position: relative;
     flex-direction: column;
+<<<<<<< HEAD
+}
+
+=======
     width: 500px;
 }
 
@@ -151,6 +156,7 @@ th, td {
     border-right: 5px solid black;
 }
 
+>>>>>>> 6e9ee35fce5dd7edca7ef2d3824475d3d8011374
 #go_back, #profile_header {
     margin: 0px 55px 30px 55px;
 }
