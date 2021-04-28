@@ -144,6 +144,7 @@ th, td {
     border: 12px ridge black;
     position: relative;
     flex-direction: column;
+    width: 500px;
 }
 
 
