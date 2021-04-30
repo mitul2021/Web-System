@@ -6,57 +6,8 @@
    </head>
     
    <body>
-      <% if @role.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
-      <% elsif @role.eql?("mentee") %>
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>              
-            </li>
-            <li>
-               <a href="mentorlist">Mentor List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
-      <% elsif @role.eql?("admin") || @role.eql?("adminmentor") %>
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>              
-            </li>
-            <li>
-               <a href="userlist">User List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
-      <% else %>
-         ERROR: user_type is not correct
-      <% end %>      
+      <!--NAV BAR-->
+      <%= erb :"common/nav"%>
        
       <div class = "green_pop_up" <%="hidden" unless @changed_from_profile%>>
          <p>You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.</p>

@@ -44,7 +44,6 @@ get "/index" do
         @decline_admin = true if cookie == "true" #used by view to display the message
         response.delete_cookie("decline-admin") #deleting the cookie
         
-        @user_type = session[:user_type]
         @user_id = session[:user_id]
         puts @user_id
         erb :index

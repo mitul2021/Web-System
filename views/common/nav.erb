@@ -1,0 +1,9 @@
+<!--NAV-->
+<% case session[:user_type] %>
+<%when "mentor"%>
+    <%= erb :"common/nav/mentor"%>
+<%when "mentee"%>
+    <%= erb :"common/nav/mentee"%>
+<%when "admin","adminmentor"%>
+    <%= erb :"common/nav/admin"%>
+<% end %>

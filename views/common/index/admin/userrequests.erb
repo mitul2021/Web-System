@@ -1,0 +1,58 @@
+<h1>User Requests:</h1>
+<% @userrequests = Userrequest.where(status: 0) %>
+<% if(@userrequests.empty?) %>
+    <p>You haven't recieved any new user requests yet.</p>
+<% else %>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Request Type</th>
+            <th>Request Data</th> 
+        </tr>
+        <% @userrequests.each do |userrequest| %>
+            <% @user = User.first(id: userrequest.user_id) %>
+            <%unless @user.nil?%>
+            <tr>
+                <td>
+                    <a href="profile/<%= (h userrequest.user_id) unless userrequest.user_id.nil? %>" > 
+                        <%= (@user.first_name.nil?) ? ("Not given") : (h @user.first_name) %> 
+                        <%= (@user.surname.nil?) ? ("Not given") : (h @user.surname) %>
+                    </a>
+                </td>
+
+                <td>
+                    <%= (Request[userrequest.request_id].description.nil?) ? ("Not given") : (h Request[userrequest.request_id].description) %>
+                </td>
+                
+                <td>
+                    <!-- If the user is requesting a change of password -->
+                    <% if (userrequest.request_id == 2) %>
+                        ********
+                    <% else %> 
+                        <%= (userrequest.request_data.nil?) ? ("Not given") : (h userrequest.request_data) %>
+                    <% end %> 
+                </td> 
+                
+                <td>
+                    <!-- Goes to the accept.rb controller --> 
+                    <form method="post" action="accept-admin">
+                        
+                        <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
+                        <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                
+                    </form>                                                                
+                </td>
+                <td>
+                    <!-- Goes to the decline.rb controller --> 
+                    <form method="post" action="decline-admin">
+                        
+                        <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
+                        <input type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
+                
+                    </form>  
+                </td>
+            </tr>
+            <% end %>
+        <% end %>
+    </table><br>
+<% end %>
