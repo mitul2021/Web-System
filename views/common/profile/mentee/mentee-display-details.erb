@@ -1,0 +1,56 @@
+<label>First Name:</label><br>
+<%= @user.first_name.nil? ? "Not given" : (h @user.first_name) %><br><br>
+
+<label>Surname:</label><br>
+<%= @user.surname.nil? ? "Not given" : (h @user.surname) %><br><br>
+
+<label>Year of Birth:</label><br>
+<%= @user.year_of_birth.nil? ? "Not given" : (h @user.year_of_birth) %><br><br>
+
+
+<label>Gender:</label><br>
+<%= @user.gender.nil? ? "Not given" : (h @user.gender) %><br><br>
+
+<label>Contact number:</label><br>
+<%= @user.contact_number.nil? ? "Not given" : (h @user.contact_number) %><br><br>
+
+
+<label>Your course:</label><br>
+   <% @courses = Course.all %>
+   <% @courses.each_with_index do |course, index| %>
+      <%if index+1==@user.deg_id%>
+         <%=course.deg_name_functional%>
+      <% end %>
+   <% end %><br><br>
+
+<label>Degree year:</label><br>
+<% keys = [" ","foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+<% values = [" ","Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+<% selected = Array.new(keys.length) {false}%>
+<% if !@user.deg_year.nil?%>
+<% keys.each_with_index do |key, i| %>
+      <% selected[i]=true if key==@user.deg_year %>
+<% end %>
+<% end %> 
+<% for i in 0...keys.length do %>
+<%=values[i] if selected[i]%>
+<% end %><br><br> 
+
+
+<label>Interests:</label><br>
+<% @usr_interests = Userinterest.where(user_id: @user_id) %>
+<%if @usr_interests.empty?%>
+<p>You didn't enter any details about interests yet.</p>
+<% else %>
+<ul>
+   <% @usr_interests.each do | usr_interest |%>
+      <li>
+         <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+         <%=  @interest.description %>
+      </li>
+   <% end %>
+</ul>
+<% end %>
+
+<label>Other Notes:</label><br>
+<%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>
