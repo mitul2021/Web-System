@@ -6,22 +6,8 @@
    </head>
     
    <body>
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>
-            </li>
-            <li>
-               <a href="mentorlist">Mentor List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
+      <!--NAV BAR-->
+      <%= erb :"common/nav"%>
       
       <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
          <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>

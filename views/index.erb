@@ -6,61 +6,10 @@
    </head>
 
    <body>
-      <!--NAV-->
-      <% if @user_type.eql?("mentor") %> <!-- If you are a mentor, mentor list will not be displayed -->
-         <nav>
-            <ul>
-               <li>
-                  <a href="index">Home</a>
-               </li>
-               <li>
-                  <a href="profilecreate">Profile</a>
-               </li>
-               <li>
-                  <a href="logout">Logout</a>
-               </li>
-            </ul>
-         </nav>
-      
-       <% elsif @user_type.eql?("mentee") %>
-         <nav>
-            <ul>
-               <li>
-                  <a href="index">Home</a>
-               </li>
-               <li>
-                  <a href="profilecreate">Profile</a>              
-               </li>
-               <li>
-                  <a href="mentorlist">Mentor List</a>
-               </li>
-               <li>
-                  <a href="logout">Logout</a>
-               </li>
-            </ul>
-         </nav>
-      
-      <!-- Admins and AdminMentors share the same navigation as an admin already has the same nav elements as a mentor on top of having a User List page too --> 
-      <% elsif @user_type.eql?("admin") || @user_type.eql?("adminmentor") %> 
-         <nav>
-            <ul>
-               <li>
-                  <a href="index">Home</a>
-               </li>
-               <li>
-                  <a href="profilecreate">Profile</a>              
-               </li>
-               <li>
-                  <a href="userlist">User List</a>
-               </li>
-               <li>
-                  <a href="logout">Logout</a>
-               </li>
-            </ul>
-         </nav>
-       
-      <% end %>
 
+      <!--NAV BAR-->
+      <%= erb :"common/nav"%>
+      
       <!--POPUPS-->
       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
          <p>Login successful</p>

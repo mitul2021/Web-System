@@ -6,22 +6,8 @@
    </head>
     
    <body>
-      <nav>
-         <ul>
-            <li>
-               <a href="index">Home</a>
-            </li>
-            <li>
-               <a href="profilecreate">Profile</a>
-            </li>
-            <li>
-               <a href="userlist">User List</a>
-            </li>
-            <li>
-               <a href="logout">Logout</a>
-            </li>
-         </ul>
-      </nav>
+      <!--NAV BAR-->
+      <%= erb :"common/nav"%>
       
       <div class = "green_pop_up" <%="hidden" unless @successfully_suspended%>>
          <p>You have successfully suspended this user.</p>
