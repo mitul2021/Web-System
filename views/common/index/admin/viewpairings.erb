@@ -1,0 +1,61 @@
+<h1>View Pairings:</h1>
+<% @pairs = Pair.all %>
+<% if(@pairs.empty?) %>
+    <p>There are no current pairs between mentees and mentors.</p>
+<% else %>
+    <table>
+        <tr>
+            <th>Mentor</th>
+            <th>Mentee</th>
+            <th>Status</th>
+        </tr>
+        <% @pairs.each do |pair| %>
+            <% @mentor = User[pair.mentor_id] %>
+            <% @mentee = User[pair.mentee_id] %>
+            <tr>
+            <% unless @mentor.nil? %>
+                <td>
+                    <a href="profile/<%= (h pair.mentor_id) unless pair.mentor_id.nil? %>" > 
+                        <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
+                        <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
+                    </a>  
+                </td>
+            <%end%>
+            <% unless @mentee.nil? %>
+                <td>
+                    <a href="profile/<%= (h pair.mentee_id) unless pair.mentee_id.nil? %>">
+                        <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
+                        <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
+                    </a>
+                </td> 
+            <%end%>
+            <td>
+                <% if !pair.status.nil? %>
+                    <% case pair.status %>                           
+                    <% when 0 %>
+                        <%= "The mentee has requested a meeting with the mentor." %>
+                    <% when 1 %>
+                        <%= "The mentor has agreed to a meeting with the mentee." %>
+                    <% when 2 %>
+                        <%= "The mentee has requested a mentorship with the mentor." %>
+                    <% when 3 %>
+                        <%= "The mentor has accepted the mentorship with the mentee." %>
+                    <% when 4 %>
+                        <%= "The mentee has requested to cancel the mentorship with the mentor." %>
+                    <% when 5 %>
+                        <%= "The mentee has cancelled the relationship with the mentor." %>
+                    <% when 6 %>
+                        <%= "The mentor has requested to cancel the mentorship with the mentee." %>
+                    <% when 7 %>
+                        <%= "The mentor has cancelled the relationship with the mentee." %>    
+                    <% else %>
+                        <%= "Status unknown" %>
+                    <% end %>
+                <% else %>
+                    <%= "Does not exist" %>
+                <% end %> 
+            </td> 
+            </tr>
+        <% end %>
+    </table><br>
+<% end %> 
