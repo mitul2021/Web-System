@@ -55,49 +55,43 @@
                <div id="profileinfo">
                   <!-- CHANGING DETAILS-->
                   <form method="post" action="profilecreate">
-                     <% @user=User.first(id: @user_id) %>
+										<% @user=User.first(id: @user_id) %>
                      
-                        <!--MENTEE-->
-                     <% if @role.eql?("mentee") %> <!-- If you are a mentee, then it will display the relevant fields for a mentee -->
-                         <%= erb :"common/profile/mentee/mentee-change-details" %>    
-                        
-                        <!-- MENTOR OR ADMINMENTOR -->
-                     <% elsif @role.eql?("mentor") || @role.eql?("adminmentor") %> <!-- If you are a mentor or adminmentor, then it will display the relevant fields for a mentor or adminmentor -->
+										<!--Displaying diffrent fields depending on user type-->
+                    <% case session[:user_type]%> 
+										<% when "mentee"%>
+                         <%= erb :"common/profile/mentee/mentee-change-details" %>   
+										
+                    <% when "mentor","adminmentor"%> 
                          <%= erb :"common/profile/mentor-or-adminmentor/mentor-adminmentor-change-details" %>                    
-                        
-                        <!-- ADMIN -->              
-                     <% elsif @role.eql?("admin") %> <!-- If you are an admin, then it will display the relevant fields for an admin -->
+                                     
+                    <%when "admin"%>
                          <%= erb :"common/profile/admin/admin-change-details" %>                
-                      
-                     <% else %>
-                        <p>ERROR</p>
-                     
-                     <!-- redirect to the home page "/index" -->
-                     <% end %>
-                     <br>
-                     <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
-                     <br>
+
+                    <%end%>
+                    <br>
+                    <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
+                    <br>
                   </form>
                   
                </div>
             <% else %>
                <div id="presentationOfDetails">
+								 
                   <!-- PRESENTING DETAILS-->
-                  <% @user=User.first(id: @user_id) %>
+                 <% @user=User.first(id: @user_id) %>
                   
-                   <% if @role.eql?("mentee") %>
+							<!--Displaying diffrent fields depending on user type-->
+                 <% case session[:user_type]%> 
+								 <% when "mentee"%>
                      <%= erb :"common/profile/mentee/mentee-display-details" %>
                   
-                  <% elsif @role.eql?("mentor") || @role.eql?("adminmentor") %>
+                 <%when "mentor","adminmentor"%> 
                      <%= erb :"common/profile/mentor-or-adminmentor/mentor-adminmentor-display-details" %>
                      
-                  
-                  <% elsif @role.eql?("admin") %>
+                 <%when "admin"%>
                      <%= erb :"common/profile/admin/admin-display-details" %>
-                   
-                  <% else %>
-                     <% redirect "/not_found" %>
-                  <%end%>
+                 <%end%>
                </div>
                <div>
                   <a href="profilecreate?change=true" class="button">Change Profile Details</a><br>
