@@ -59,14 +59,11 @@
                      
 										<!--Displaying diffrent fields depending on user type-->
                     <% case session[:user_type]%> 
-										<% when "mentee"%>
+					<% when "mentee"%>
                          <%= erb :"common/profile/mentee/mentee-change-details" %>   
 										
-                    <% when "mentor","adminmentor"%> 
-                         <%= erb :"common/profile/mentor-or-adminmentor/mentor-adminmentor-change-details" %>                    
-                                     
-                    <%when "admin"%>
-                         <%= erb :"common/profile/admin/admin-change-details" %>                
+                    <% when "mentor","adminmentor","admin"%> 
+                         <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-change-details" %>                                   
 
                     <%end%>
                     <br>
@@ -86,11 +83,9 @@
 								 <% when "mentee"%>
                      <%= erb :"common/profile/mentee/mentee-display-details" %>
                   
-                 <%when "mentor","adminmentor"%> 
-                     <%= erb :"common/profile/mentor-or-adminmentor/mentor-adminmentor-display-details" %>
+                 <%when "mentor","adminmentor","admin"%> 
+                     <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-display-details" %>
                      
-                 <%when "admin"%>
-                     <%= erb :"common/profile/admin/admin-display-details" %>
                  <%end%>
                </div>
                <div>
