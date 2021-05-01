@@ -59,9 +59,15 @@ post "/profilecreate" do
         load_userinterest(params, @user_id,i)
     end
 
-    @user.load_details_mentee(params) if session[:user_type].eql?("mentee")
-    @user.load_details_mentor(params) if session[:user_type].eql?("mentor")
-    @user.load_details_admin(params) if session[:user_type].eql?("admin")
+    case session[:user_type]
+    when "mentee"
+        @user.load_details_mentee(params)
+    when "mentor", "adminmentor"
+        @user.load_details_mentor(params)
+    when "admin"    
+        @user.load_details_admin(params) 
+    end    
+    
     
     if @user.valid_details?
        @user.save_changes
