@@ -1,0 +1,13 @@
+<%if @user.year_of_birth.nil?%>
+   <label>Year of Birth:</label><br>
+   <select name="year_of_birth">
+      <% (1900..2021).each do |i| %>
+         <%= "<option value=\"#{i}\">#{i}</option>" %>
+      <% end %>
+   </select><br>
+<% else %>
+   <label>Year of Birth: <%= @user.year_of_birth%></label><br>
+   <select name="year_of_birth" hidden>
+   <option value="<%= @user.year_of_birth%>"> </option>
+   </select><br> 
+<% end %>

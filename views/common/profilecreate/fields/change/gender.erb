@@ -1,0 +1,11 @@
+<label>Gender:</label><br>
+
+<% gender = {"Male" => false, "Female" => false, "Other" => false} %> 
+<% if !@user.gender.nil?%>
+   <% gender[@user.gender] = true %>
+<%end%> 
+<select name="gender">
+   <option value="Male" <%="selected" if gender["Male"]%>> <%= "Male"%></option>
+   <option value="Female" <%="selected" if gender["Female"]%>> <%= "Female"%> </option>
+   <option value="Other" <%="selected" if gender["Other"]%>> <%= "Other"%> </option>
+</select><br><br>
