@@ -59,11 +59,11 @@
                      
 										<!--Displaying diffrent fields depending on user type-->
                     <% case session[:user_type]%> 
-					<% when "mentee"%>
-                         <%= erb :"common/profile/mentee/mentee-change-details" %>   
+										<% when "mentee"%>
+                         <%= erb :"common/profilecreate/change/mentee" %>   
 										
-                    <% when "mentor","adminmentor","admin"%> 
-                         <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-change-details" %>                                   
+                    <% else %> 
+                         <%= erb :"common/profilecreate/change/other" %>                                   
 
                     <%end%>
                     <br>
@@ -75,17 +75,16 @@
             <% else %>
                <div id="presentationOfDetails">
 								 
-                  <!-- PRESENTING DETAILS-->
+                 <!-- PRESENTING DETAILS-->
                  <% @user=User.first(id: @user_id) %>
                   
-							<!--Displaying diffrent fields depending on user type-->
+								 <!--Displaying diffrent fields depending on user type-->
                  <% case session[:user_type]%> 
 								 <% when "mentee"%>
-                     <%= erb :"common/profile/mentee/mentee-display-details" %>
+                     <%= erb :"common/profilecreate/display/mentee" %>
                   
-                 <%when "mentor","adminmentor","admin"%> 
-                     <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-display-details" %>
-                     
+                 <% else %> 
+                     <%= erb :"common/profilecreate/display/other" %> 
                  <%end%>
                </div>
                <div>
