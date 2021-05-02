@@ -8,7 +8,7 @@ class CookieReader
 		
 	}
 	
-	def readCookie(name)
+	def self.readCookie(name)
 		
 		value = request.cookies.fetch(name, 0) #if there is no value assigned to the cookie it will become 0
  		return if(value==0) #No cookie found, CookieReader return nothing.

@@ -11,9 +11,15 @@
       <%= erb :"common/nav"%>
       
       <!--POPUPS-->
-      <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
+      <div class = "green_pop_up">
+          <%= CookieReader.readCookie("make-login-popup") %>
+      </div> 
+       
+       
+       
+<!--       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
          <p>Login successful</p>
-      </div>
+      </div> -->
 
       <div class = "green_pop_up" <%="hidden" unless @just_declined%>>
          <p>You have successfully changed the status of your mentorship.</p>

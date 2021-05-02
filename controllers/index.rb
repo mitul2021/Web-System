@@ -12,9 +12,9 @@ get "/index" do
     
     if session[:loggedin]
         
-        cookie = request.cookies.fetch("make-login-popup",0) #reading the cookie
-        @just_logged_in = true if cookie == "true" #used by view to display the message
-        response.delete_cookie("make-login-popup") #deleting the cookie
+#         cookie = request.cookies.fetch("make-login-popup",0) #reading the cookie
+#         @just_logged_in = true if cookie == "true" #used by view to display the message
+#         response.delete_cookie("make-login-popup") #deleting the cookie
         
         cookie = request.cookies.fetch("decline-popup",0) #reading the cookie
         @just_declined = true if cookie == "true" #used by view to display the message
