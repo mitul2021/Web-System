@@ -121,13 +121,8 @@ class User < Sequel::Model
         return faculty
     end
     
-    def load_details_mentee(params)
-    end
-    
-    def load_details_mentor(params)
-    end
-    
-    def load_details_admin(params)
+    def get_deg_id()
+        return self.deg_id
     end
     
 end
