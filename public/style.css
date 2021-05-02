@@ -132,6 +132,13 @@ th, td {
   padding: 40px;
 }
  
+/*Make the name links visibile in the tables for User Requests and View Pairings in the Admin Home Page*/
+#userrequestlink{
+    color:#0066b3;
+    padding: 5px;
+    border-radius: 20px;
+}
+
 /* Draw a border for the contents of the page */
 #changedetailsbody, #profilecreatebody {
     border: 10px solid black;
