@@ -78,7 +78,7 @@
                               <%case mentee.status%>
                               <%when 1%>
                                  <!--Active-->
-                                 <input type="submit" onclick="return suspendUser()" value="Suspend User"/>
+                                 <input id="requestbutton" type="submit" onclick="return suspendUser()" value="Suspend User"/>
                               <%when 0%>
                                  <!--Suspended-->
                                  <input type="submit" onclick="return restoreUser()" value="Restore User"/>
@@ -90,7 +90,7 @@
                      <%end%>
                      
                      <td>
-                        <a href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
+                        <a id="profilelinks" href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
                      </td>
                   </tr>
                <% end %>
@@ -146,7 +146,7 @@
                         <%case mentor.status%>
                         <%when 1%>
                            <!--Active-->
-                           <input type="submit" onclick="return suspendUser()" value="Suspend User"/>
+                           <input id="requestbutton" type="submit" onclick="return suspendUser()" value="Suspend User"/>
                         <%when 0%>
                            <!--Suspended-->
                            <input type="submit" onclick="return restoreUser()" value="Restore User"/>
@@ -157,7 +157,7 @@
                   </td>
                <%end%>
                <td>    
-                   <a href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
+                   <a id="profilelinks" href="<%= mentor.id.nil? ? "/not_found" : "profile/" + (h mentor.id) %>">Profile</a>
                </td>
             
             </tr>
@@ -206,7 +206,7 @@
                </td> 
                 
                <td>
-                   <a href="<%= admin.id.nil? ? "/not_found" : "profile/" + (h admin.id) %>">Profile</a>
+                   <a id="profilelinks" href="<%= admin.id.nil? ? "/not_found" : "profile/" + (h admin.id) %>">Profile</a>
                </td>
             </tr>
             <% end %>
