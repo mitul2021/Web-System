@@ -38,7 +38,7 @@
                     <form method="post" action="accept-admin">
                         
                         <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
-                        <input type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
+                        <input id="requestbutton" type="submit" onclick="return acceptRequest()" value="Accept Request" name="accept_request"/>
                 
                     </form>                                                                
                 </td>
@@ -47,7 +47,7 @@
                     <form method="post" action="decline-admin">
                         
                         <input hidden name="userrequest_id" value="<%= userrequest.userrequest_id.nil? ? "" : (h userrequest.userrequest_id) %>"/>
-                        <input type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
+                        <input id="requestbutton" type="submit" onclick="return declineRequest()" value="Decline Request" name="decline_request"/>
                 
                     </form>  
                 </td>
