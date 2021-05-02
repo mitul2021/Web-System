@@ -15,7 +15,7 @@
             <tr>
             <% unless @mentor.nil? %>
                 <td>
-                    <a href="profile/<%= (h pair.mentor_id) unless pair.mentor_id.nil? %>" > 
+                    <a id="userrequestlink" href="profile/<%= (h pair.mentor_id) unless pair.mentor_id.nil? %>" > 
                         <%= (@mentor.first_name.nil?) ? ("Not given") : (h @mentor.first_name) %> 
                         <%= (@mentor.surname.nil?) ? ("Not given") : (h @mentor.surname) %>
                     </a>  
@@ -23,7 +23,7 @@
             <%end%>
             <% unless @mentee.nil? %>
                 <td>
-                    <a href="profile/<%= (h pair.mentee_id) unless pair.mentee_id.nil? %>">
+                    <a id="userrequestlink" href="profile/<%= (h pair.mentee_id) unless pair.mentee_id.nil? %>">
                         <%= (@mentee.first_name.nil?) ? ("Not given") : (h @mentee.first_name) %> 
                         <%= (@mentee.surname.nil?) ? ("Not given") : (h @mentee.surname) %>
                     </a>

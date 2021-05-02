@@ -14,7 +14,7 @@
             <%unless @user.nil?%>
             <tr>
                 <td>
-                    <a id="profilelinks" href="profile/<%= (h userrequest.user_id) unless userrequest.user_id.nil? %>" > 
+                    <a id="userrequestlink" href="profile/<%= (h userrequest.user_id) unless userrequest.user_id.nil? %>" > 
                         <%= (@user.first_name.nil?) ? ("Not given") : (h @user.first_name) %> 
                         <%= (@user.surname.nil?) ? ("Not given") : (h @user.surname) %>
                     </a>
