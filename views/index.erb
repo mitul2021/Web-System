@@ -10,44 +10,51 @@
       <!--NAV BAR-->
       <%= erb :"common/nav"%>
       
-      <!--POPUPS-->
-      <div class = "green_pop_up">
-          <%= CookieReader.readCookie("make-login-popup") %>
+<!--       <!--POPUPS-->
+      <!--<div class = "pop_up"> -->
+         <div class = "green_pop_up">
+             <!-- <p <%="hidden" unless @just_logged_in%> >Login successful</p> -->
+             <p <%="hidden" unless @just_declined%> >You have successfully changed the status of your mentorship.</p>
+             <p <%="hidden" unless @just_cancelled%> >You have successfully cancelled your mentorship.</p>
+             <p <%="hidden" unless @just_accepted%> >You have successfully accepted your mentorship.</p>
+             <p <%="hidden" unless @accept_admin_email%> >You have successfuly changed user's email.</p>
+             <p <%="hidden" unless @accept_admin_password%> >You have successfuly changed user's password.</p>
+             <p <%="hidden" unless @accept_admin_username%> >You have successfuly changed user's username.</p>
+             <p <%="hidden" unless @decline_admin%>>You have successfuly declined user's request.</p>
+         </div> 
+      <!-- </div>   -->
+
+      <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
+         <p>Login successful</p>
       </div> 
        
-       
-       
-<!--       <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
-         <p>Login successful</p>
-      </div> -->
-
-      <div class = "green_pop_up" <%="hidden" unless @just_declined%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfully changed the status of your mentorship.</p>
       </div>
 
-      <div class = "green_pop_up" <%="hidden" unless @just_cancelled%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfully cancelled your mentorship.</p>
-      </div>
+      </div> -->
 
-      <div class = "green_pop_up" <%="hidden" unless @just_accepted%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfully accepted your mentorship.</p>
-      </div>
+      </div> -->
 
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_email%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfuly changed user's email.</p>
-      </div>
+      </div> -->
 
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_password%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfuly changed user's password.</p>
-      </div>
+      </div> -->
        
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_username%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfuly changed user's username.</p>
-       </div>    
+       </div>     -->
 
-      <div class = "green_pop_up" <%="hidden" unless @decline_admin%>>
+<!--       <div class = "green_pop_up" >
          <p>You have successfuly declined user's request.</p>
-      </div>
+      </div> -->
 
       <!--MAIN CONTAINER-->
       <div id="changedetailsbody">
