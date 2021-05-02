@@ -8,15 +8,18 @@ class CookieReader
 		
 	}
 	
-	def self.readCookie(name)
+	def readCookie(name)
 		
-		value = request.cookies.fetch(name,0) #if there is no value assigned to the cookie it will become 0
-		if(value==0) then return #No cookie found, CookieReader return nothing.
+		value = request.cookies.fetch(name, 0) #if there is no value assigned to the cookie it will become 0
+ 		return if(value==0) #No cookie found, CookieReader return nothing.
 		
-		response.delete_cookie(name) #deleting the cookie to prevent triggering when page is refreshed
+		response.delete_cookie(name) #Deleting the cookie to prevent displaying the message again when page is refreshed
 		
-		if(value.eql?("true")) then return COOKIE_HASH[name] #if cookie is triggered return its message
-		return COOKIE_HASH[name] + value #for cookies that have other value rather than true
-
-	end
+		return COOKIE_HASH[name] if(value.eql?("true")) #Returns the corresponding message from the cookie if the value is true
+		
+        #for cookies that have other value rather than true, it returns the message with the value
+        return COOKIE_HASH[name] + value 
+	
+    end
+    
 end
