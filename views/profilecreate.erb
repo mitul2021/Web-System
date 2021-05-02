@@ -45,7 +45,9 @@
                    
                <% elsif @role.eql?("adminmentor") %>
                    <form method="post" action="switchadminroles">
-                       <input type="submit" value="Revoke your Mentor role and become an Admin only" class="button" name="adminmentor_to_admin"/><br>
+                       <span>
+                       <input id="button2" type="submit" value="Revoke your Mentor role &#10 and become an Admin only" class="button" name="adminmentor_to_admin"/><br>
+                           </span>
                    </form>
                <% end %>
                 
