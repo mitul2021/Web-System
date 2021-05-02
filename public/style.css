@@ -9,6 +9,7 @@ body {
   padding:5px;
 }
 
+/*Style the navigation bar*/
 nav ul {
     display: flex;
     flex-direction: row;
@@ -27,8 +28,7 @@ nav ul li {
     font-family: "Verdana", sans-serif;
 }
 
-
-
+/*Style the links in the website*/
 a:link {
     text-decoration:none;
     color: #f3f2ee;
@@ -78,7 +78,7 @@ label {
     font-weight: bold;
 }
  
-/*Style the table in mentorlist page */
+/*Style the tables */
 
 th {
     text-align: left;
@@ -115,6 +115,7 @@ th, td {
     font-weight:bold;
     
 }
+
 /* appropriate coloring for successful / unsuccessful messages */
  
 #logoutsuccessful, #logoutunsuccessful {
