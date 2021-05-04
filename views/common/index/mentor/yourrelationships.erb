@@ -39,9 +39,9 @@
                         <input id="requestbutton" type="submit" onclick="return acceptMeetingRequest()" value="Accept Meeting Request" name="accept_meeting_request"/>
                         </form>
                     
-                        <!--cancelling relation ship moving to status 6-->
+                        <!--cancelling relation ship moving to status 8-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="6" />
+                        <input hidden name="status" value="8" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="decline_meeting_request"/>
@@ -53,7 +53,7 @@
                         <%= "You have agreed on a meeting with #{@mentee.first_name} #{@mentee.surname}. After the meeting, expect a mentorship request soon."%>
                     </td>
                     <td>
-                        <!--cancelling relation ship moving to status 6-->
+                        <!--cancelling relation ship moving to status 8-->
                         <form method="post" action="setpairstatus">
                         <input hidden name="status" value="6" />
                         <input hidden name="path" value="/index" />
@@ -74,9 +74,9 @@
                             <input id="requestbutton" type="submit" onclick="return acceptMentorshipRequest()" value="Accept Mentorship Request" name="accept_mentorship_request"/>
                         </form>
                     
-                        <!--cancelling relation ship moving to status 6-->
+                        <!--cancelling relation ship moving to status 8-->
                         <form method="post" action="setpairstatus">
-                            <input hidden name="status" value="6" />
+                            <input hidden name="status" value="8" />
                             <input hidden name="path" value="/index" />
                             <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                             <input id="requestbutton" type="submit" onclick="return declineMentorshipRequest()" value="Decline Mentorship Request" name="decline_mentorship_request"/>

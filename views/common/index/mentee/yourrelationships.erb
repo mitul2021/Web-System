@@ -33,9 +33,9 @@
                         <%="You have requested a meeting with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
                     </td>
                     <td>
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
+                        <input hidden name="status" value="8" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
@@ -55,9 +55,9 @@
                         <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
                         </form>
 
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
+                        <input hidden name="status" value="8" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelApplication()" value="Cancel Application" name="cancel_application"/>
@@ -69,9 +69,9 @@
                         <%="You have requested a mentorship with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
                     </td>
                     <td>
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
+                        <input hidden name="status" value="8" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMentorshipRequest()" value="Cancel Mentorship Request" name="cancel_mentorship_request"/>
