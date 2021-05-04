@@ -1,26 +1,5 @@
 get "/login" do
-    cookie = request.cookies.fetch("make-register-popup",0)
-    unless cookie.eql?(0)
-      @registered = true
-      @code = cookie
-      puts "This is code after reading cookie #{@code}"
-    end
-    response.delete_cookie("make-register-popup")
-    
-    cookie = request.cookies.fetch("redirected-popup",0) #reading the cookie
-    @redirected = true if cookie == "true" #used by view to display the message
-    response.delete_cookie("redirected-popup") #deleting the cookie
-    
-    cookie = request.cookies.fetch("change-from-login-popup",0) #reading the cookie
-    @changed_from_login = true if cookie == "true" #used by view to display the message
-    response.delete_cookie("change-from-login-popup") #deleting the cookie
-
-    cookie = request.cookies.fetch("suspended-user-login-popup",0) #reading the cookie
-    @suspended_user = true if cookie == "true" #used by view to display the message
-    response.delete_cookie("suspended-user-login-popup") #deleting the cookie
-    
     erb :login
-
 end
 
 post "/login" do

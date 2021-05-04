@@ -14,7 +14,12 @@ class CookieReader
 	
     end
 	COOKIE_HASH = { #maps the cookie name to its corresponding message 
-		
+		#profile create
+		"change-from-profile-popup" => "You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.",
+		"admin-to-adminmentor-success" => "Now you have capabilities of mentor as well.",
+		"admin-to-adminmentor-failure" => "Unexpected error in switching from admin to adminmentor.",
+		"adminmentor-to-admin-success" => "You revoked your mentor role successfully.",
+		"adminmentor-to-admin-failure" => "Unexpected error in switching from adminmentor to admin.",
 		#login
 		"make-register-popup" => "You have registered successfully. Your recovery code is: ",
 		"change-from-login-popup" => "You have successfully requested changes to your account. Once an admin approves your request, you should be able to log in.",
