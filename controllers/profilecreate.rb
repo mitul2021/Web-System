@@ -2,6 +2,8 @@ get "/profilecreate" do
     if session[:loggedin]
         @role = session[:user_type]
         @user_id = session[:user_id]
+			  @user = User.first(id: @user_id)
+			
         @change = false
         @change = true if params["change"].eql?("true")
 

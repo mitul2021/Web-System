@@ -6,23 +6,14 @@
     
    <body>
       <h1>Login</h1>
-       
-      <div class = "green_pop_up" <%="hidden" unless @registered%>>
-         <p>You have registered successfully</p>
-         <p>Your recovery code is: <%= @code%></p>
-      </div>
-       
-      <div class = "green_pop_up" <%="hidden" unless @changed_from_login%>>
-         <p>You have successfully requested changes to your account. Once an admin approves your request, you should be able to log in.</p>
-      </div> 
-       
-      <div class = "red_pop_up" <%="hidden" unless @redirected%>>
-         <p>You have been redirected because you have not logged in yet</p>
-      </div>
-
-      <div class = "red_pop_up" <%="hidden" unless @suspended_user%>>
-         <p>You have been suspended. Contact with the system administrator for more details.</p>
-      </div>
+      <div class = "pop_ups">
+         <div class = "green">
+						 <%= CookieReader.readCookie("make-register-popup",request,response) %>
+						 <%= CookieReader.readCookie("change-from-login-popup",request,response) %>
+             <%= CookieReader.readCookie("redirected-popup",request,response) %>
+					   <%= CookieReader.readCookie("suspended-user-login-popup",request,response) %>
+         </div> 
+		  </div>
        
       <p>Login with your credentials below:</p>
        
