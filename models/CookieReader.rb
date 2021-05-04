@@ -48,7 +48,7 @@ class CookieReader
         "cancel-ongoing-request" => "You have successfully cancelled your ongoing request.",
         "mentee-cancels-application" => "You have withdrawn yourself from your current application.",
         "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request.",
-        "mentee-requests-same-mentor" => "You cannot request the same mentor twice."
+        "mentee-requests-same-mentor" => "You cannot request the same mentor twice.",
         
 		
         #mentorlist

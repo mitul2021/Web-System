@@ -9,6 +9,15 @@
       <!--NAV BAR-->
       <%= erb :"common/nav"%>
       
+		 <div class = "pop_ups">
+         <div class = "green">
+						 <%= CookieReader.readCookie("mentee-requests-meeting",request,response) %>
+         </div> 
+				 <div class = "red">
+						 <%= CookieReader.readCookie("mentee-requests-same-mentor",request,response) %>
+
+					</div> 
+		  </div>
       <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
          <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>
       </div>

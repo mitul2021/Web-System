@@ -1,7 +1,7 @@
 post "/setpairstatus" do
 
     status = params.fetch("status","").strip.to_i
-	  old_status = params.fetch("old_status","").strip.to_i
+	  old_status = params.fetch("old_status","-1").strip.to_i
     redirect_path = params.fetch("path","").strip
 
     case status
@@ -40,6 +40,10 @@ post "/setpairstatus" do
         else
             puts "Pair after changing its status to #{status} is NOT valid."
             puts pair.errors
+						response.set_cookie("mentee-requests-same-mentor", value: 'true')
+					  redirect "#{redirect_path}"
+
+
             #trigger cookie here infroming that sths wrong
         end
         
@@ -60,7 +64,7 @@ post "/setpairstatus" do
 end
 
 def triggerCookies(status, old_status)
-
+		#INDEX
 		#0->1
 		response.set_cookie("mentor-accepts-meeting", value: 'true') if old_status==0 && status==1
 	
@@ -81,4 +85,8 @@ def triggerCookies(status, old_status)
 		
 		#1-> 8
 		response.set_cookie("mentee-cancels-application", value: 'true') if old_status==1 && status==8
+	
+	  response.set_cookie("mentee-requests-mentorship", value: 'true') if old_status==1 && status==2
+		#MENTOR LIST
+		response.set_cookie("mentee-requests-meeting", value: 'true') if old_status==-1 && status==0
 end
