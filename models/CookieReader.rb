@@ -20,17 +20,37 @@ class CookieReader
 		"admin-to-adminmentor-failure" => "Unexpected error in switching from admin to adminmentor.",
 		"adminmentor-to-admin-success" => "You revoked your mentor role successfully.",
 		"adminmentor-to-admin-failure" => "Unexpected error in switching from adminmentor to admin.",
-		#login
+		
+        #login
 		"make-register-popup" => "You have registered successfully. Your recovery code is: ",
 		"change-from-login-popup" => "You have successfully requested changes to your account. Once an admin approves your request, you should be able to log in.",
 		"redirected-popup" => "You have been redirected because you have not logged in yet.",
 		"suspended-user-login-popup" => "You have been suspended. Contact with the system administrator for more details.",
-		#index
+		
+        #index
 		"make-login-popup" => "Login successful",
 		"accept-admin-email" => "You have successfuly changed user's email.",
 		"accept-admin-password" => "You have successfuly changed user's password.",
 		"accept-admin-username" => "You have successfuly changed user's username.",
-		"decline-admin" => "You have successfuly declined user's request."
-		}
+		"decline-admin" => "You have successfuly declined user's request.",
+        "mentor-accepts-meeting" => "You have accepted a meeting with the mentee.",
+        "mentor-declines-meeting" => "You have declined a meeting with the mentee.",
+        "cancels-meeting" => "You have cancelled your agreement to have a meeting.",
+        "mentor-accepts-mentorship" => "You have accepted the mentorship request from the mentee.",
+        "mentor-declines-mentorship" => "You have declined the mentorship request from the mentee.",
+        "mentor-cancels-mentorship" => "You have requested to cancel your mentorship with the mentee.",
+        "agree-on-cancelling" => "You have agreed to cancel your mentorship.",
+        "cancel-ongoing-request" => "You have successfully cancelled your ongoing request.",
+        "mentee-cancels-application" => "You have withdrawn yourself from your current application.",
+        "mentee-cancels-mentorship-request" => "You have successfully cancelled your mentorship request.",
+        
+        
+		
+        #mentorlist
+        "mentee-requests-meeting" => "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request.",
+        "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request."
+        
+        
+        }
     
 end

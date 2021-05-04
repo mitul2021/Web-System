@@ -55,7 +55,7 @@
                     <td>
                         <!--cancelling relation ship moving to status 8-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="6" />
+                        <input hidden name="status" value="8" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
