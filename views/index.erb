@@ -14,14 +14,21 @@
       <div class = "pop_ups">
          <div class = "green">
 						 <%= CookieReader.readCookie("make-login-popup",request,response) %>
-             <!--<p <%="hidden" unless @just_declined%> >You have successfully changed the status of your mentorship.</p>
-             <p <%="hidden" unless @just_cancelled%> >You have successfully cancelled your mentorship.</p>
-             <p <%="hidden" unless @just_accepted%> >You have successfully accepted your mentorship.</p>
-							TO BE DELETED SOON -->
              <%= CookieReader.readCookie("accept-admin-email",request,response) %>
              <%= CookieReader.readCookie("accept-admin-password",request,response) %>
 					   <%= CookieReader.readCookie("accept-admin-username",request,response) %>
 					   <%= CookieReader.readCookie("decline-admin",request,response) %>
+					 
+					   <%= CookieReader.readCookie("mentor-accepts-meeting",request,response) %> <!-- 2->3 -->
+						 <%= CookieReader.readCookie("mentor-declines-meeting",request,response) %> <!-- 2->3 -->
+					   <%= CookieReader.readCookie("cancels-meeting",request,response) %> <!-- ?->8 -->
+						 <%= CookieReader.readCookie("mentor-accepts-mentorship",request,response) %>
+						 <%= CookieReader.readCookie("mentor-declines-mentorship",request,response) %>
+						 <%= CookieReader.readCookie("mentor-cancels-mentorship",request,response) %>
+						 <%= CookieReader.readCookie("agree-on-cancelling",request,response) %> <!-- ?->5,7 -->
+						 <%= CookieReader.readCookie("cancel-ongoing-request",request,response) %>
+						 <%= CookieReader.readCookie("mentee-cancels-application",request,response) %>
+						 <%= CookieReader.readCookie("mentee-cancels-mentorship-request",request,response) %>					 
          </div> 
 		  </div>
 

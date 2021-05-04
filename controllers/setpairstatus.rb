@@ -1,6 +1,7 @@
 post "/setpairstatus" do
 
     status = params.fetch("status","").strip.to_i
+	  old_status = params.fetch("old_status","").strip.to_i
     redirect_path = params.fetch("path","").strip
 
     case status
@@ -47,14 +48,23 @@ post "/setpairstatus" do
         pair_id = params.fetch("pair_id","").strip.to_i
         pair = Pair[pair_id]
         pair.status=status
-        
+        response.set_cookie("cancels-meeting", value: 'true')
         pair.delete
         
     else
         puts "Retrieved unhandled status."
     end
 
-
+	  triggerCookies(status, old_status)
     redirect "#{redirect_path}"
 
+end
+
+def triggerCookies(status, old_status)
+		case status
+		when 5,7
+			response.set_cookie("agree-on-cancelling", value: 'true')
+		when 8
+			response.set_cookie("cancels-meeting", value: 'true')
+		end
 end
