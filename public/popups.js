@@ -18,7 +18,7 @@ function declineMeetingRequest() {
 
 // For when a mentee wants to cancel their ongoing Meeting Request
 function cancelMeetingRequest() {
-    return confirm("Are you sure you want to cancel your meeting request with this mentor?");
+    return confirm("Are you sure you want to cancel your meeting request with this mentor?. No record at this stage will be kept.");
 }
 
 
@@ -36,7 +36,7 @@ function acceptMentorshipRequest() {
 
 // For when a mentor clicks on Decline Mentorship Request
 function declineMentorshipRequest() {
-    return confirm("Are you sure you want to decline a mentorship request from this mentee?");
+    return confirm("Are you sure you want to decline a mentorship request from this mentee?. No record at this stage will be kept.");
 }
 
 
@@ -48,13 +48,13 @@ function cancelMentorship() {
 
 // For when a mentee wants to clicks on Cancel Application to cancel the application process for mentoring
 function cancelApplication() {
-    return confirm("Are you sure you want to cancel your application at this stage?");
+    return confirm("Are you sure you want to cancel your application at this stage?. No record of your current application will be kept.");
 }
 
 
 // For when a mentee wants to clicks on Cancel Mentorship Request
 function cancelMentorshipRequest() {
-    return confirm("Are you sure you want to cancel your ongoing Mentorship Request?");
+    return confirm("Are you sure you want to cancel your ongoing Mentorship Request?. No record of your current application will be kept.");
 }
 
 
@@ -84,7 +84,7 @@ function acceptRequest() {
 
 // For when a mentor clicks on Decline Request from a mentee
 function declineRequest() {
-    return confirm("Are you sure you want to decline this request? This action cannot be undone.");
+    return confirm("Are you sure you want to decline this request? This action cannot be undone. No record of the incoming mentee request would be kept.");
 }
 
 
