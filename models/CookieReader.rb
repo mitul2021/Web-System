@@ -41,15 +41,12 @@ class CookieReader
 		"accept-admin-username" => "You have successfuly changed user's username.",
 		"decline-admin" => "You have successfuly declined user's request.",
         "mentor-accepts-meeting" => "You have accepted a meeting with the mentee.",
-        "mentor-declines-meeting" => "You have declined a meeting with the mentee.",
         "cancels-meeting" => "You have cancelled your agreement to have a meeting.",
         "mentor-accepts-mentorship" => "You have accepted the mentorship request from the mentee.",
-        "mentor-declines-mentorship" => "You have declined the mentorship request from the mentee.",
-        "mentor-cancels-mentorship" => "You have requested to cancel your mentorship with the mentee.",
+        "decline-mentorship" => "You have declined the mentorship request.",
         "agree-on-cancelling" => "You have agreed to cancel your mentorship.",
         "cancel-ongoing-request" => "You have successfully cancelled your ongoing request.",
         "mentee-cancels-application" => "You have withdrawn yourself from your current application.",
-        "mentee-cancels-mentorship-request" => "You have successfully cancelled your mentorship request.",
         
         
 		
