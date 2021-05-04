@@ -49,18 +49,19 @@
                    </form>
                <% end %>    
             </div>
-						<div id="profileinfo">
-							<% path = "common/profilecreate"%>
-							<% @change ? path+="/change" : path+="/display" %>
-							<% session[:user_type].eql?("mentee") ? path+="/mentee": path+="/other" %>
-							
-							<%= erb :"#{path}" %> 
-					  </div>
-					  <div>
-							<a href="profilecreate?change=true" class="button">Change Profile Details</a><br>
-							<a href="/changeaccountdetails" class="button">Change Account Details</a> 
+             
+            <div id="profileinfo">
+                <% path = "common/profilecreate"%>
+                <% @change ? path+="/change" : path+="/display" %>
+                <% session[:user_type].eql?("mentee") ? path+="/mentee": path+="/other" %>
+
+                <%= erb :"#{path}" %> 
             </div>
+            <div>
+                <a href="profilecreate?change=true" class="button">Change Profile Details</a><br>
+                <a href="/changeaccountdetails" class="button">Change Account Details</a> 
             
+            </div>
          </div>
       </div>
        
