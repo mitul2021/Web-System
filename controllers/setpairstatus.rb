@@ -48,7 +48,6 @@ post "/setpairstatus" do
         pair_id = params.fetch("pair_id","").strip.to_i
         pair = Pair[pair_id]
         pair.status=status
-        response.set_cookie("cancels-meeting", value: 'true')
         pair.delete
         
     else
@@ -61,10 +60,25 @@ post "/setpairstatus" do
 end
 
 def triggerCookies(status, old_status)
-		case status
-		when 5,7
-			response.set_cookie("agree-on-cancelling", value: 'true')
-		when 8
-			response.set_cookie("cancels-meeting", value: 'true')
-		end
+
+		#0->1
+		response.set_cookie("mentor-accepts-meeting", value: 'true') if old_status==0 && status==1
+	
+		#0->8 or 1->8
+		response.set_cookie("cancels-meeting", value: 'true') if (old_status==0 || old_status==1) && status==8
+		
+		#2->3
+		response.set_cookie("mentor-accepts-mentorship", value: 'true') if old_status==2 && status==3
+		
+		#2->8
+		response.set_cookie("decline-mentorship", value: 'true') if old_status==2 && status==8
+		
+		#4->5 or 6->7
+		response.set_cookie("agree-on-cancelling", value: 'true') if (old_status==4 && status==5) || (old_status==6 && status==7)
+		
+		#6->3 or 4->3	
+		response.set_cookie("cancel-ongoing-request", value: 'true') if (old_status==6 || old_status==4) && status==3
+		
+		#1-> 8
+		response.set_cookie("mentee-cancels-application", value: 'true') if old_status==1 && status==8
 end
