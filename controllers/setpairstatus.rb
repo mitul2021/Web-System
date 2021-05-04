@@ -41,7 +41,15 @@ post "/setpairstatus" do
             puts pair.errors
             #trigger cookie here infroming that sths wrong
         end
-
+        
+    when 8
+        #coming from status 0 or 1 or 2 so deleting record since active mentorship hasn't started
+        pair_id = params.fetch("pair_id","").strip.to_i
+        pair = Pair[pair_id]
+        pair.status=status
+        
+        pair.delete
+        
     else
         puts "Retrieved unhandled status."
     end
