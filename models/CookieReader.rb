@@ -14,6 +14,13 @@ class CookieReader
 	
     end
 	COOKIE_HASH = { #maps the cookie name to its corresponding message 
+		#userlist
+		"successfully-suspended-popup" => "You have successfully suspended this user.",
+		"successfully-restored-popup" => "You have successfully restored this user.",
+		"status-nil-popup" => "Unexpected error as the status field is nil.",
+		"user-doesn't-exist-popup" => "Unexpected error as the user is nil.",
+		"user_id-doesn't-exist-popup" => "Unexpected error as the user_id field is nil.",
+		
 		#profile create
 		"change-from-profile-popup" => "You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.",
 		"admin-to-adminmentor-success" => "Now you have capabilities of mentor as well.",
