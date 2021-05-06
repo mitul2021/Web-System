@@ -69,6 +69,7 @@ class User < Sequel::Model
         self.job_deg_cosmetic_name = params.fetch("job_deg_cosmetic_name"," ").strip
         #self.deg_id = params.fetch("deg_id"," ").strip
         self.profile_text = params.fetch("profile_text"," ").strip
+        self.availability = params.fetch("availability"," ").strip
         #self.deg_year = params.fetch("deg_year"," ").strip
         #self.major_interest = params.fetch("major_interest"," ").strip
     end

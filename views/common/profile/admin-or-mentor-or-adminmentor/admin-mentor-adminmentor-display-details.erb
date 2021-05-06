@@ -16,6 +16,7 @@
 <label>Job title:</label><br>
 <%= @user.job_deg_cosmetic_name.nil? ? "Not given" : (h @user.job_deg_cosmetic_name) %><br><br>
 
+
 <label>Interests:</label><br>
 <% @usr_interests = Userinterest.where(user_id: @user_id) %>
 <%if @usr_interests.empty?%>
@@ -31,6 +32,9 @@
 </ul>
 <% end %>
 
+<label>Availability:</label><br>
+<%= @user.availability.nil? ? "Not given" : (h @user.availability) %>
+<br><br>
 
 <label>Other Notes:</label><br>
 <%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %><br>

@@ -68,6 +68,10 @@
 <!--type="button" prevents the page from refreshing-->
 <br><br>
 
+<label>Availability:</label><br>
+<textarea type="text" name="availability" rows="5" cols="50"><%= @user.availability.nil? ? "Not given" : (h @user.availability) %></textarea>
+<br>
+
 <label>Other Notes:</label><br>
 <textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
 <br>

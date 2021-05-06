@@ -40,6 +40,7 @@
                <th>Name</th>
                <th>Job Title</th>
                <th>Main Interest</th>
+                <th>Availability</th>
             </tr>
             <% @mentors.each do |mentor| %>
                 <tr>
@@ -54,6 +55,10 @@
 
                    <td>
                        <%= Userinterest.first(user_id: mentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: mentor.id).interest_id].description %>
+                   </td>
+                    
+                    <td>
+                       <%= mentor.availability.nil? ? "Not given" : (h mentor.availability) %>
                    </td>
 
                    <td>
@@ -92,6 +97,10 @@
 
                    <td>
                        <%= Userinterest.first(user_id: adminmentor.id).nil? ? "No major interest given" : Interest[Userinterest.first(user_id: adminmentor.id).interest_id].description %>
+                   </td>
+                    
+                    <td>
+                       <%= adminmentor.availability.nil? ? "Not given" : (h adminmentor.availability) %>
                    </td>
 
                    <td>
