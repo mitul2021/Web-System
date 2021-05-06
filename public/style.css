@@ -224,12 +224,11 @@ th, td {
     margin: 0px 55px 20px 55px;
 }
 .green {
-	  border: darkgreen solid 5px;
+
     color: darkblue;
     background-color: lightgreen;
 }
 .red {
-	  border: darkred solid 5px;
     color: darkred;
     background-color: rgb(255,77,77);
 }
