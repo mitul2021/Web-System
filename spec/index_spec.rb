@@ -17,7 +17,7 @@ RSpec.describe "Index page" do
       get "/index"
       expect(last_response.status).to eq(302)
     end
-      
+
     it "has css" do
       get "/index"
         page.has_css?('title', text: "Home")
