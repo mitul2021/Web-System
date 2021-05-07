@@ -22,6 +22,11 @@ To access it, simply type the url:
 ### https://picasso-speech-4567.codio.io
 # Where "picasso-speech" and "4567" should be replaced by your own local name and number.
 
+## Running the tests:
+All rspec tests can be ran using the following commands from the main project directory:
+* ##### bundle exec rspec spec
+
+
 ### Working Login details (password in brackets):
 MENTEE - rupert@sheffield.ac.uk (letmein)
 MENTOR - fm@company.com (hahaha)
