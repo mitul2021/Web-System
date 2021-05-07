@@ -11,17 +11,17 @@ post "/accept-admin" do #for user requests
         when 1 
             handleChangeEmail(@user_request) #changing email
 
-            #cookie trigger here informing admin that he change the user email succesfully
+            #cookie trigger here informing the admin that they changed the user's email successfully
             response.set_cookie("accept-admin-email", value: 'true')
         when 2 
             handleChangePassword(@user_request) #changing password
             
-            #cookie trigger here nforming admin that he change the user password succesfully
+            #cookie trigger here informing the admin that they change the user's password successfully
             response.set_cookie("accept-admin-password", value: 'true')
         when 3
             handleChangeUsername(@user_request) #changing username
             
-            #cookie trigger here nforming admin that he change the user password succesfully
+            #cookie trigger here informing the admin that they change the user's password successfully
             response.set_cookie("accept-admin-username", value: 'true')           
         else
             "You gave me #{type} -- I have no idea what to do with that."

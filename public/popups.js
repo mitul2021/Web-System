@@ -64,7 +64,7 @@ function cancelOngoingRequest() {
 }
 
 
-// For when a mentee or mentor agree on cancelling their relatio
+// For when a mentee or mentor agree on cancelling their relationship
 function agreeOnCancelling() {
     return confirm("Do you agree to cancelling your mentorship?");
 }
