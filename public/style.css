@@ -154,16 +154,7 @@ th, td {
     padding-left: 20px;
 }
  
-/* Draw a border for the contents of the profile of mentor */
-#profileinfo{
-    border: 12px ridge black;
-    position: relative;
-    flex-direction: column;
-    width: 500px;
-}
-
-
-#presentationOfDetails{
+#profileinfo {
     border-left: 5px solid black;
     border-right: 5px solid black;
 }
@@ -238,14 +229,29 @@ th, td {
     border-radius: 20px;
     width: 230px;
 }
+/*New Styling the popups */
 
+.pop_ups {
+		border-radius: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 55px 20px 55px;
+}
+.green {
 
-/* Styling the popups */
-
-.green_pop_up {
-    border: darkgreen solid 5px;
     color: darkblue;
     background-color: lightgreen;
+}
+.red {
+    color: darkred;
+    background-color: rgb(255,77,77);
+}
+
+/*OLD Styling the popups to be deleted*/
+
+.green_pop_up {
+
     border-radius: 20px;
     font-size: 30px;
     font-weight: bold;

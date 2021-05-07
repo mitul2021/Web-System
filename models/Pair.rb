@@ -48,7 +48,7 @@ class Pair < Sequel::Model
             count +=1 if ((pair.mentee_id == self.mentee_id) && !(pair.status > 3))
         end
 
-        count
+        return count
     end
     def numOfPairsMentor #for one mentor, doesnt count cancelled ones
 
@@ -58,7 +58,7 @@ class Pair < Sequel::Model
             count +=1 if ((pair.mentor_id == self.mentor_id) && !(pair.status > 3))
         end
 
-        count
+        return count
     end
     
     def self.id_exists?(id)

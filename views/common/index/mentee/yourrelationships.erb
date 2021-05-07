@@ -33,9 +33,10 @@
                         <%="You have requested a meeting with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
                     </td>
                     <td>
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
+                        <input hidden name="status" value="8" />
+												<input hidden name="old_status" value="<%=pair.status%>" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
@@ -50,14 +51,16 @@
                         <!--Status 2 if a Mentee wants to Request a Mentorship-->
                         <form method="post" action="setpairstatus">
                         <input hidden name="status" value="2" />
+												<input hidden name="old_status" value="<%=pair.status%>" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return requestMentorship()" value="Request Mentorship" name="request_mentorship"/>
                         </form>
 
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
+                        <input hidden name="status" value="8" />
+												<input hidden name="old_status" value="<%=pair.status%>" />
                         <input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelApplication()" value="Cancel Application" name="cancel_application"/>
@@ -69,10 +72,11 @@
                         <%="You have requested a mentorship with #{@mentor.first_name} #{@mentor.surname}. Wait for their reply."%>
                     </td>
                     <td>
-                        <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
+                        <!--Status 8 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="4" />
-                        <input hidden name="path" value="/index" />
+                        <input hidden name="status" value="8" />
+                        <input hidden name="old_status" value="<%=pair.status%>" />
+												<input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMentorshipRequest()" value="Cancel Mentorship Request" name="cancel_mentorship_request"/>
                         </form>
@@ -87,7 +91,8 @@
                         <!--Status 4 if a Mentee wants to cancel the relationship at any stage of the application-->
                         <form method="post" action="setpairstatus">
                         <input hidden name="status" value="4" />
-                        <input hidden name="path" value="/index" />
+                        <input hidden name="old_status" value="<%=pair.status%>" />
+												<input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
                         </form>
@@ -100,7 +105,8 @@
                         <!--Status 3 if a user calls off their request-->
                         <form method="post" action="setpairstatus">
                         <input hidden name="status" value="3" />
-                        <input hidden name="path" value="/index" />
+                        <input hidden name="old_status" value="<%=pair.status%>" />
+												<input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return cancelOngoingRequest()" value="Cancel ongoing Request" name="cancel_ongoing_request"/>
                         </form>
@@ -122,7 +128,8 @@
                     <td>
                         <form method="post" action="setpairstatus">
                         <input hidden name="status" value="7" />
-                        <input hidden name="path" value="/index" />
+                        <input hidden name="old_status" value="<%=pair.status%>" />
+												<input hidden name="path" value="/index" />
                         <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
                         <input id="requestbutton" type="submit" onclick="return agreeOnCancelling()" value="Agree on cancelling" name="agree_on_cancelling"/>
                         </form>

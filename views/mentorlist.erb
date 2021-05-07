@@ -9,6 +9,14 @@
       <!--NAV BAR-->
       <%= erb :"common/nav"%>
       
+		 <div class = "pop_ups">
+         <div class = "green">
+						 <%= CookieReader.readCookie("mentee-requests-meeting",request,response) %>
+         </div> 
+				 <div class = "red">
+						<%= CookieReader.readCookie("mentee-requests-mentorship-again",request,response) %>
+				</div> 
+		  </div>
       <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
          <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>
       </div>
@@ -16,15 +24,7 @@
       <div class = "red_pop_up" <%="hidden" unless @mentor_already_requested%>>
          <p>You cannot request as you already have a mentor or an ongoing request.</p>
       </div>
-      
-      <!-- These 2 pop ups for the id should be more useful for the programmer but this is to prevent the app from crashing --> 
-      <div class = "red_pop_up" <%="hidden" unless @mentor_id_not_integer%>>
-         <p>Unexpected error as mentor_id cannot be an integer.</p>
-      </div>
        
-      <div class = "red_pop_up" <%="hidden" unless @mentee_id_not_integer%>>
-         <p>Unexpected error as mentee_id cannot be an integer.</p>
-      </div>
 
       <div class = "red_pop_up" <%="hidden" unless @too_many_requests%>>
          <p>This mentor has too much ongoing requests try again later.</p>
