@@ -110,7 +110,7 @@ def triggerCookies(status, old_status, errors)
             puts "Is errors nil and pair_id case empty? #{!(errors.nil?) && !(errors[:pair_id].empty?)}"
             
             #MENTOR LIST
-            response.set_cookie("mentee-requests-mentorship-again", value: 'true') if !(errors.nil?) && !(errors[:pair_id].empty?)
+            response.set_cookie("mentee-requests-meeting-again", value: 'true') if !(errors.nil?) && !(errors[:pair_id].empty?)
             puts "we have triggered cookie"
             
             

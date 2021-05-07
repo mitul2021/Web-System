@@ -48,12 +48,11 @@ class CookieReader
         "agree-on-cancelling" => "You have agreed to cancel your mentorship.",
         "cancel-ongoing-request" => "You have successfully cancelled your ongoing request.",
         "mentee-cancels-application" => "You have withdrawn yourself from your current application.",
-        "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request.",
-        "mentee-requests-mentorship-again" => "You cannot request a mentorship with another mentor since you are already in an ongoing mentorship.", #not yet set anywhere     
+        "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request.",          
 		
-        #mentorlist
+        #mentorlist       
         "mentee-requests-meeting" => "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request.",
-        "mentee-requests-meeting-same-mentor" => "You cannot request a meeting with the same mentor." #not yet set anywhere
+        "mentee-requests-meeting-again" => "You cannot request a mentorship with another mentor since you are already in an ongoing mentorship."
         
         }
     
