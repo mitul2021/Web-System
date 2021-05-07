@@ -14,9 +14,8 @@
 						 <%= CookieReader.readCookie("mentee-requests-meeting",request,response) %>
          </div> 
 				 <div class = "red">
-						 <%= CookieReader.readCookie("mentee-requests-same-mentor",request,response) %>
-
-					</div> 
+						<%= CookieReader.readCookie("mentee-requests-mentorship-again",request,response) %>
+				</div> 
 		  </div>
       <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
          <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>

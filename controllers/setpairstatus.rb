@@ -23,8 +23,7 @@ post "/setpairstatus" do
 
         else
             puts "Newly created pair with status 0 is NOT valid"
-            puts new_pair.errors
-
+            errors = new_pair.errors
         end
 
     when 1,2,3,4,5,6,7
@@ -40,9 +39,6 @@ post "/setpairstatus" do
         else
             puts "Pair after changing its status to #{status} is NOT valid."
             errors = pair.errors
-            puts errors
-            errors = Hash.new(pairs.errors)
-
         end
         
     when 8
@@ -55,11 +51,12 @@ post "/setpairstatus" do
     else
         puts "Retrieved unhandled status."
     end
-      puts errors
-      puts "Is errors nil? #{errors.nil?}"
-	  puts "Checking if we have errors before entering the trigger cookies function ^"
-      triggerCookies(status, old_status, errors)
-      redirect "#{redirect_path}"
+    
+    puts errors
+    puts "Is errors nil? #{errors.nil?}"
+    puts "Checking if we have errors before entering the trigger cookies function ^"
+    triggerCookies(status, old_status, errors)
+    redirect "#{redirect_path}"
 
 end
 
