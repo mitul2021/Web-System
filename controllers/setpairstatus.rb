@@ -53,7 +53,6 @@ post "/setpairstatus" do
     end
     
     puts errors
-    puts "Is errors nil? #{errors.nil?}"
     puts "Checking if we have errors before entering the trigger cookies function ^"
     triggerCookies(status, old_status, errors)
     redirect "#{redirect_path}"
@@ -63,10 +62,7 @@ end
 def triggerCookies(status, old_status, errors)
         puts "We have entered triggerCookies function"
         puts errors
-    
-        puts "Is errors nil? #{errors.nil?}"
-        puts "Is errors empty? #{errors.empty?}"
-    
+
         #for green popups indicating success if there are no errors
         if (errors.nil?) || (errors.empty?)
             #trigger green popups here

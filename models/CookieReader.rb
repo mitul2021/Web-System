@@ -52,7 +52,7 @@ class CookieReader
 		
         #mentorlist       
         "mentee-requests-meeting" => "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request.",
-        "mentee-requests-meeting-again" => "You cannot request a mentorship with another mentor since you are already in an ongoing mentorship."
+        "mentee-requests-meeting-again" => "You cannot request a meeting with another mentor since you are already in an ongoing mentorship."
         
         }
     

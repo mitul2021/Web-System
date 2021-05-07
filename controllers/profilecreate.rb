@@ -2,12 +2,10 @@ get "/profilecreate" do
     if session[:loggedin]
         @role = session[:user_type]
         @user_id = session[:user_id]
-			  @user = User.first(id: @user_id)
-			
+        @user = User[session[:user_id]]
         @change = false
         @change = true if params["change"].eql?("true")
 
-        #EXPERIMANTAL HANDLING INTERESTS
         @numOfInterests = Interest.all.size() #maximum
         puts @numOfInterests
         
