@@ -10,9 +10,9 @@ function acceptMeetingRequest() {
 }
 
 
-// For when a mentor clicks on Decline Meeting Request or Cancel Meeting Request
+// For when a mentor clicks on Decline Meeting Request
 function declineMeetingRequest() {
-    return confirm("Are you sure you want to decline a meeting request from this mentee?")
+    return confirm("Are you sure you want to decline a meeting request from this mentee?. No record at this stage will be kept.")
 }
 
 
