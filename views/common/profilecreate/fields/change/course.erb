@@ -1,0 +1,9 @@
+ <label>Your course:</label><br>
+ <select name="deg_id">
+		<% @courses = Course.all %>
+		<% @courses.each_with_index do |course, index| %>
+			 <option value="<%=course.deg_id%>" <%="selected" if index+1==@user.deg_id%>>
+					<%=course.deg_name_functional%>
+			 </option>
+		<% end %>
+ </select><br><br>

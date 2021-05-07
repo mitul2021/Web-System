@@ -1,0 +1,14 @@
+<label>Interests:</label><br>
+<% @usr_interests = Userinterest.where(user_id: @user_id) %>
+<%if @usr_interests.empty?%>
+<p>You didn't enter any details about interests yet.</p>
+<% else %>
+<ul>
+   <% @usr_interests.each do | usr_interest |%>
+      <li>
+         <% @interest=Interest.first(interest_id: usr_interest.interest_id) %>
+         <%=  @interest.description %>
+      </li>
+   <% end %>
+</ul>
+<% end %>

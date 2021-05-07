@@ -40,53 +40,21 @@
                        <input id="button2" type="submit" value="Revoke your Mentor role &#10 and become an Admin only" class="button" name="adminmentor_to_admin"/><br>
                            </span>
                    </form>
-               <% end %>
-                
+               <% end %>    
             </div>
+             
+            <div id="profileinfo">
+                <% path = "common/profilecreate"%>
+                <% @change ? path+="/change" : path+="/display" %>
+                <% session[:user_type].eql?("mentee") ? path+="/mentee": path+="/other" %>
 
-            <%if @change%> 
-               <div id="profileinfo">
-                  <!-- CHANGING DETAILS-->
-                  <form method="post" action="profilecreate">
-										<% @user=User.first(id: @user_id) %>
-                     
-										<!--Displaying diffrent fields depending on user type-->
-                    <% case session[:user_type]%> 
-					<% when "mentee"%>
-                         <%= erb :"common/profile/mentee/mentee-change-details" %>   
-										
-                    <% when "mentor","adminmentor","admin"%> 
-                         <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-change-details" %>                                   
-
-                    <%end%>
-                    <br>
-                    <input type="submit" class="button" value="Save Changes" name="submit_change_details"/>
-                    <br>
-                  </form>
-                  
-               </div>
-            <% else %>
-               <div id="presentationOfDetails">
-								 
-                  <!-- PRESENTING DETAILS-->
-                 <% @user=User.first(id: @user_id) %>
-                  
-							<!--Displaying diffrent fields depending on user type-->
-                 <% case session[:user_type]%> 
-								 <% when "mentee"%>
-                     <%= erb :"common/profile/mentee/mentee-display-details" %>
-                  
-                 <%when "mentor","adminmentor","admin"%> 
-                     <%= erb :"common/profile/admin-or-mentor-or-adminmentor/admin-mentor-adminmentor-display-details" %>
-                     
-                 <%end%>
-               </div>
-               <div>
-                  <a href="profilecreate?change=true" class="button">Change Profile Details</a><br>
-                  <a href="/changeaccountdetails" class="button">Change Account Details</a> 
-               </div>
-            <% end %> 
+                <%= erb :"#{path}" %> 
+            </div>
+            <div>
+                <a href="profilecreate?change=true" class="button">Change Profile Details</a><br>
+                <a href="/changeaccountdetails" class="button">Change Account Details</a> 
             
+            </div>
          </div>
       </div>
        

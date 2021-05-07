@@ -1,0 +1,3 @@
+<label>Other Notes:</label><br>
+<textarea type="text" name="profile_text" rows="5" cols="50"><%= @user.profile_text.nil? ? "Not given" : (h @user.profile_text) %></textarea>
+<br>

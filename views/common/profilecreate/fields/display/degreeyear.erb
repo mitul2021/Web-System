@@ -1,0 +1,12 @@
+<label>Degree year:</label><br>
+<% keys = [" ","foundation_year","1","2","3","year_in_industry","masters","phd"] %>
+<% values = [" ","Foundation Year","1","2","3","Year In Industry","Masters Year","PhD"] %>
+<% selected = Array.new(keys.length) {false}%>
+<% if !@user.deg_year.nil?%>
+<% keys.each_with_index do |key, i| %>
+      <% selected[i]=true if key==@user.deg_year %>
+<% end %>
+<% end %> 
+<% for i in 0...keys.length do %>
+<%=values[i] if selected[i]%>
+<% end %><br><br> 
