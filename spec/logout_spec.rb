@@ -27,5 +27,9 @@ RSpec.describe "Logout Page" do
       expect(page.has_button?("Log in"))
     end  
       
+    it "has the correct footer'" do
+      get "/login"
+      page.has_css?('p', text: "Copyright")
+    end       
   end
 end
