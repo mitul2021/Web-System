@@ -24,7 +24,7 @@ function cancelMeetingRequest() {
 
 // For when a mentee clicks on Request Mentorship
 function requestMentorship() {
-    return confirm("Are you sure you want to request a mentorship?");
+    return confirm("Are you sure you want to request a mentorship with this mentor?");
 }
 
 
@@ -64,9 +64,9 @@ function cancelOngoingRequest() {
 }
 
 
-// For when a mentee has to agree on cancelling their mentorship with the mentor
+// For when a mentee or mentor agree on cancelling their relatio
 function agreeOnCancelling() {
-    return confirm("Do you agree to cancelling your mentorship with this mentor?");
+    return confirm("Do you agree to cancelling your mentorship?");
 }
 
 
