@@ -12,6 +12,7 @@
             <th>Actions</th> 
         </tr>
         <% @pairs.each do |pair| %>
+            <@pair = pair>
             <% @mentee = User.first(id: pair.mentee_id) %>
             <%unless @mentee.nil?%>
             <tr>
@@ -30,117 +31,60 @@
                     <td>
                         <%="#{@mentee.first_name} #{@mentee.surname} has requested a meeting."%>
                     </td>
-                    <td>
-                        <!--accepting meeting moving to status 1-->
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="1" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return acceptMeetingRequest()" value="Accept Meeting Request" name="accept_meeting_request"/>
-                        </form>
-                    
-                        <!--cancelling relation ship moving to status 6-->
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="6" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return declineMeetingRequest()" value="Decline Meeting Request" name="decline_meeting_request"/>
-                        </form>
-                    </td>
-                    
+                    <!--accepting meeting moving to status 1-->
+                    <%= erb :"common/index/status_switching/1"%>
+                    <!--cancelling relation ship moving to status 8-->
+                    <%= erb :"common/index/status_switching/8"%>                    
                 <%when 1%>
                     <td>
                         <%= "You have agreed on a meeting with #{@mentee.first_name} #{@mentee.surname}. After the meeting, expect a mentorship request soon."%>
                     </td>
-                    <td>
-                        <!--cancelling relation ship moving to status 6-->
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="6" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
-                        </form>
-                    </td>
+                    <!--cancelling relation ship moving to status 8-->
+                    <%= erb :"common/index/status_switching/8"%> 
                 <%when 2%>
                     <td>
                         <%="#{@mentee.first_name} #{@mentee.surname} wants to have you as their mentor."%>
                     </td>
-                    <td>
-                        <!--accepting mentorship moving to status 3-->
-                        <form method="post" action="setpairstatus">
-                            <input hidden name="status" value="3" />
-                            <input hidden name="path" value="/index" />
-                            <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                            <input id="requestbutton" type="submit" onclick="return acceptMentorshipRequest()" value="Accept Mentorship Request" name="accept_mentorship_request"/>
-                        </form>
-                    
-                        <!--cancelling relation ship moving to status 6-->
-                        <form method="post" action="setpairstatus">
-                            <input hidden name="status" value="6" />
-                            <input hidden name="path" value="/index" />
-                            <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                            <input id="requestbutton" type="submit" onclick="return declineMentorshipRequest()" value="Decline Mentorship Request" name="decline_mentorship_request"/>
-                        </form>
-                    </td>
+                    <!--accepting mentorship moving to status 3-->
+                    <%= erb :"common/index/status_switching/3"%>
+                    <!--cancelling relation ship moving to status 8-->
+                    <%= erb :"common/index/status_switching/8"%> 
+
                 <%when 3%>
                     <td>
                         <%="Active Mentorship"%>
                     </td>
-                    <td>
-                        <!--request cancelling  moving to status 6-->
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="6" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return cancelMentorship()" value="Cancel Mentorship" name="cancel_mentorship"/>
-                        </form>
-                    </td>
+                    <!--request cancelling  moving to status 6-->
+                    <%= erb :"common/index/status_switching/6"%> 
+
                 <%when 4%>
                     <td>
                         <%= "#{@mentee.first_name} #{@mentee.surname} wants to cancel their mentorship with you." %>
                     </td>
                     <!--agree on cancelling the relationship moving to status 5-->
-                    <td>
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="5" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return agreeOnCancelling()" value="Agree on cancelling" name="agree_on_cancelling"/>
-                        </form>
-                    </td>
-                
+                    <%= erb :"common/index/status_switching/5"%>
+
                 <%when 5%>
                     <td>
                         <%= "The mentorship was cancelled by #{@mentee.first_name} #{@mentee.surname}."%>
                     </td>
                 
-                    <!--No actions avaliable-->
-                    <td>
-                        <%= "No actions needed." %>
-                    </td>
+                    <!--No actions available-->
+                    <%= erb :"common/index/status_switching/no_action"%>
                 <%when 6%>
                     <td>
                         <%= "You have requested to cancel this mentorship with #{@mentee.first_name} #{@mentee.surname}. Wait for their reply."%>
                     </td>
-                    <td>
-                        <!--Call off the previous request they made to cancel, moving to status 3-->
-                        <form method="post" action="setpairstatus">
-                        <input hidden name="status" value="3" />
-                        <input hidden name="path" value="/index" />
-                        <input hidden name="pair_id" value="<%=pair.pair_id.nil? ? "" :  (h pair.pair_id) %>">
-                        <input id="requestbutton" type="submit" onclick="return cancelOngoingRequest()" value="Cancel ongoing Request" name="cancel_ongoing_request"/>
-                        </form>
-                    </td>
+                    <!--Call off the previous request they made to cancel, moving to status 3-->
+                    <%= erb :"common/index/status_switching/3"%>
                 
                 <%when 7%>
                     <td>
                         <%= "You have cancelled the mentorship with #{@mentee.first_name} #{@mentee.surname}."%>
                     </td>
                 
-                    <!--No actions avaliable-->
-                    <td>
-                        <%= "No actions needed." %>
-                    </td>
+                    <!--No actions available-->
+                    <%= erb :"common/index/status_switching/no_action"%>
                 <% else %>
                     <%= "ERROR Unhandled status type"%>
                 <% end %>   

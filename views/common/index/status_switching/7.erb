@@ -1,0 +1,9 @@
+<td>
+    <form method="post" action="setpairstatus">
+        <input hidden name="status" value="7" />
+        <input hidden name="old_status" value="<%=@pair.status%>" />
+        <input hidden name="path" value="/index" />
+        <input hidden name="pair_id" value="<%=@pair.pair_id.nil? ? "" :  (h @pair.pair_id) %>">
+        <input id="requestbutton" type="submit" onclick="return agreeOnCancelling()" value="Agree on cancelling" name="agree_on_cancelling"/>
+    </form>
+</td>
