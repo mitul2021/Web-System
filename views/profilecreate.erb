@@ -8,27 +8,18 @@
    <body>
       <!--NAV BAR-->
       <%= erb :"common/nav"%>
-       
-      <div class = "green_pop_up" <%="hidden" unless @changed_from_profile%>>
-         <p>You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.</p>
-      </div> 
-
-      <div class = "green_pop_up" <%="hidden" unless @admin_to_adminmentor_success%>>
-         <p>Now you have capabilities of mentor as well.</p>
-      </div> 
-
-      <div class = "green_pop_up" <%="hidden" unless @adminmentor_to_admin_success%>>
-         <p>You revoked your mentor role successfully.</p>
-      </div> 
-
-      <div class = "red_pop_up" <%="hidden" unless @admin_to_adminmentor_failure%>>
-         <p>Unexpected error in switching from admin to adminmentor.</p>
-      </div> 
-
-      <div class = "red_pop_up" <%="hidden" unless @adminmentor_to_admin_failures%>>
-         <p>Unexpected error in switching from adminmentor to admin.</p>
-      </div> 
-       
+		  <!--POP UPS-->
+      <div class = "pop_ups">
+         <div class = "green">
+						 <%= CookieReader.readCookie("change-from-profile-popup",request,response) %>
+						 <%= CookieReader.readCookie("admin-to-adminmentor-success",request,response) %>
+             <%= CookieReader.readCookie("adminmentor-to-admin-success",request,response) %>
+         </div> 
+				 <div class = "red">
+						 <%= CookieReader.readCookie("admin-to-adminmentor-failure",request,response) %>
+					   <%= CookieReader.readCookie("adminmentor-to-admin-failure",request,response) %>
+				 </div>
+		  </div>
        
       <div id="profilecreatebody">
          <h1>Your Profile</h1>

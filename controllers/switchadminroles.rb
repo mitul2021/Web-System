@@ -9,12 +9,12 @@ post "/switchadminroles" do
 
         if user.valid?
             user.save_changes
-            puts "Changing user type from admin to admin mentor was succesfull"
+            puts "Changing user type from admin to admin mentor was successful"
             session[:user_type] = user.user_type
             #green popup
             response.set_cookie("admin-to-adminmentor-success", value: 'true')
         else
-            puts "Changing user type from admin to admin mentor was NOT succesfull"
+            puts "Changing user type from admin to admin mentor was NOT successful"
             #red popup
             response.set_cookie("admin-to-adminmentor-failure", value: 'true')
         end
@@ -25,12 +25,12 @@ post "/switchadminroles" do
 
         if user.valid?
             user.save_changes
-            puts "Changing user type from adminmentor to admin was succesfull"
+            puts "Changing user type from adminmentor to admin was successful"
             session[:user_type] = user.user_type
             #green popup
             response.set_cookie("adminmentor-to-admin-success", value: 'true')
         else
-            puts "Changing user type from adminmentor to admin was NOT succesfull"
+            puts "Changing user type from adminmentor to admin was NOT successful"
             #red popup
             response.set_cookie("adminmentor-to-admin-failure", value: 'true')
         end

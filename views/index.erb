@@ -10,38 +10,24 @@
       <!--NAV BAR-->
       <%= erb :"common/nav"%>
       
-      <!--POPUPS-->
-      <div class = "green_pop_up" <%="hidden" unless @just_logged_in%>>
-         <p>Login successful</p>
-      </div>
-
-      <div class = "green_pop_up" <%="hidden" unless @just_declined%>>
-         <p>You have successfully changed the status of your mentorship.</p>
-      </div>
-
-      <div class = "green_pop_up" <%="hidden" unless @just_cancelled%>>
-         <p>You have successfully cancelled your mentorship.</p>
-      </div>
-
-      <div class = "green_pop_up" <%="hidden" unless @just_accepted%>>
-         <p>You have successfully accepted your mentorship.</p>
-      </div>
-
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_email%>>
-         <p>You have successfuly changed user's email.</p>
-      </div>
-
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_password%>>
-         <p>You have successfuly changed user's password.</p>
-      </div>
-       
-      <div class = "green_pop_up" <%="hidden" unless @accept_admin_username%>>
-         <p>You have successfuly changed user's username.</p>
-       </div>    
-
-      <div class = "green_pop_up" <%="hidden" unless @decline_admin%>>
-         <p>You have successfuly declined user's request.</p>
-      </div>
+		  <!--POPUPS-->
+      <div class = "pop_ups">
+         <div class = "green">
+						 <%= CookieReader.readCookie("make-login-popup",request,response) %>
+             <%= CookieReader.readCookie("accept-admin-email",request,response) %>
+             <%= CookieReader.readCookie("accept-admin-password",request,response) %>
+					   <%= CookieReader.readCookie("accept-admin-username",request,response) %>
+					   <%= CookieReader.readCookie("decline-admin",request,response) %>
+					 
+					   <%= CookieReader.readCookie("mentor-accepts-meeting",request,response) %> <!-- 0->1 -->
+					   <%= CookieReader.readCookie("cancels-meeting",request,response) %> <!-- 0->8 or 1->8 -->
+						 <%= CookieReader.readCookie("mentor-accepts-mentorship",request,response) %> <!-- 2->3 --> 
+						 <%= CookieReader.readCookie("decline-mentorship",request,response) %> <!-- 2-> 8 -->
+						 <%= CookieReader.readCookie("agree-on-cancelling",request,response) %> <!-- 4->5 or 6->7 -->
+						 <%= CookieReader.readCookie("cancel-ongoing-request",request,response) %> <!-- 6->3 or 4->3 -->
+						 <%= CookieReader.readCookie("mentee-cancels-application",request,response) %> <!-- 1-> 8-->				 
+         </div> 
+		  </div>
 
       <!--MAIN CONTAINER-->
       <div id="changedetailsbody">
