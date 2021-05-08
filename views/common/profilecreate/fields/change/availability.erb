@@ -1,0 +1,3 @@
+<label>Availability</label><br>
+<textarea type="text" name="availability" placeholder="Please enter your availability." rows="5" cols="50"><%= @user.availability.nil? ? "Not given" : (h @user.availability) %></textarea>
+<br>
