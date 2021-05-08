@@ -3,7 +3,7 @@ body {
   font-family: "Helvetica", sans-serif;
   background-color:#f3f2ee; 
   line-height: 1.1;
-  margin: 0;
+  margin: 10px;
   margin-bottom: 30vh;
   font-size: 30px;
 }
@@ -271,6 +271,11 @@ th, td {
 
 input#requestbutton {
     cursor:pointer;
+}
+
+#profile {
+    border: 5px solid black;
+    width: 700px;
 }
 
 /*Styling the footer */
