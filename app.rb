@@ -3,6 +3,7 @@ require "sinatra"
 require "require_all"
 require "sinatra/reloader" # Must be removed during demonstration and final project
 require "securerandom"
+require "net/http"
 
 include ERB::Util
 
