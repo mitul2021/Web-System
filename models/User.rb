@@ -117,7 +117,7 @@ class User < Sequel::Model
         validate
         errors.add("email", "email cannot be empty") if email.empty?
         errors.add("email", "there exist user with such email address") if exist_register?
-        errors.add("email", "this email addres is of not approved university") unless approved_email?
+        errors.add("email", "this email address is of not approved university") unless approved_email?
         errors.add("password", "password cannot be empty") if password.empty?
         errors.add("password", "password must be at least 8 characters long") if password.length<8
         errors.add("username", "username cannot be empty") if username.empty?
