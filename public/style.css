@@ -44,7 +44,7 @@ a:hover {
 }
  
 /* button on sign in and register page */
-.button, #displayemailbox .button {
+.button, #displayemailbox .button, #displayflex .become_mentor,  #displayflex .revoke_mentor{
     display: inline-block;
     background-color: rgb(128, 170, 255);
     border-radius: 10px;
@@ -75,6 +75,14 @@ h1 {
     font-size: 50px;
 }
 
+/*Button for admin to become a mentor */
+#displayflex .become_mentor{
+    width: 230px;
+}
+
+#displayflex .revoke_mentor{
+    width: 500px;
+}
 
 /* Bold the Labels */
 label {
