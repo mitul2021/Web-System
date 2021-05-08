@@ -238,6 +238,10 @@ th, td {
     text-align: center;
     margin: 0px 55px 20px 55px;
 }
+
+.error {
+    color:red;
+}
 .green {
 
     color: darkblue;
