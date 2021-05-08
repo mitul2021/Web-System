@@ -240,8 +240,8 @@ th, td {
 /*New Styling the popups */
 
 .pop_ups {
-		border-radius: 20px;
-    font-size: 30px;
+    border-radius: 20px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     margin: 0px 55px 20px 55px;
@@ -252,34 +252,13 @@ th, td {
 }
 .green {
 
+    border-radius: 20px;
     color: darkblue;
     background-color: lightgreen;
 }
 .red {
     color: darkred;
     background-color: rgb(255,77,77);
-}
-
-/*OLD Styling the popups to be deleted*/
-
-.green_pop_up {
-
-    border-radius: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0px 55px 20px 55px;
-}
-
-.red_pop_up {
-    border: darkred solid 5px;
-    color: darkred;
-    background-color: rgb(255,77,77);
-    border-radius: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0px 55px 20px 55px;
 }
 
 #logininput {
