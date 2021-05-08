@@ -194,7 +194,9 @@ describe "the mentor list page" do
   
   it "contains list of available mentors" do
     add_mentor_mentee
+    save_page
     visit "/mentorlist"
+    save_page
     expect(page).to have_content "Mentors"
     clear_database
   end
@@ -220,14 +222,10 @@ describe "mentor-mentee pairing" do
   it "allows a mentee to cancel a request " do
     add_mentor_mentee
     visit "/mentorlist"
-    click_button "Request Meeting"
-    visit "/index"
-    accept_confirm do
-      find('input[name="cancel_meeting_request"]').click
-    end
-    #click_button "Cancel Meeting Request"
+    find('input[name="cancel_meeting_request"]').click
+    puts "test"
     save_page
-    expect(page).to have_content "You don't have any ongoing requests."
+    expect(page).to have_content "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request."
     clear_database
   end
   
