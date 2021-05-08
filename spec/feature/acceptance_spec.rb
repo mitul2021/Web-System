@@ -60,7 +60,6 @@ describe "the register page" do
     fill_in "password", with: "test1234"
     fill_in "password_repeat", with: "test1234"
     click_button "submit_register"
-    save_page
     expect(page).to have_content "this email address is of not approved university"
     clear_database
   end
@@ -103,6 +102,17 @@ describe "the login page" do
     fill_in "password", with: "badd1234"
     click_button "submit_login"
     expect(page).to have_content "does not match"
+    clear_database
+  end
+  
+  it "will login a user with their username" do
+    add_user("mentee")
+    visit "/login"
+    fill_in "text", with: "Test mentee"
+    fill_in "password", with: "test12345"
+    click_button "submit_login"
+    save_page
+    expect(page).to have_content "Login successful"
     clear_database
   end
 end
@@ -216,9 +226,7 @@ describe "the mentor list page" do
   
   it "contains list of available mentors" do
     add_mentor_mentee
-    save_page
     visit "/mentorlist"
-    save_page
     expect(page).to have_content "Mentors"
     clear_database
   end
@@ -246,7 +254,6 @@ describe "mentor-mentee pairing" do
     visit "/mentorlist"
     find('input[name="cancel_meeting_request"]').click
     puts "test"
-    save_page
     expect(page).to have_content "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request."
     clear_database
   end
