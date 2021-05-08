@@ -6,7 +6,6 @@ body {
   margin: 0;
   margin-bottom: 30vh;
   font-size: 30px;
-  padding:5px;
 }
 
 /*Style the navigation bar*/
@@ -16,7 +15,8 @@ nav ul {
     list-style-type: none;
     justify-content: space-evenly;
     background-color:#0066b3;
-    border-radius:100px;
+/*     border-radius:100px; */
+/*     border-radius:20px; */
 }
 
 nav ul li {
@@ -288,6 +288,7 @@ input#requestbutton {
     margin-top:auto; 
     padding:0px;
     background-color:#0066b3;
+    color: #f3f2ee;
     font-size: 20px;
     font-style:italic; 
     margin-top: 150px;
