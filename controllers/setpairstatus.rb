@@ -5,6 +5,10 @@ post "/setpairstatus" do
     redirect_path = params.fetch("path","").strip
     
     errors = nil
+    
+    #Retrieving the email addresses of the mentee and the mentor to use in the function to send email
+    mentee_email = nil
+    mentor_email = nil
 
     case status
     when 0
@@ -19,6 +23,10 @@ post "/setpairstatus" do
 
         if new_pair.valid? #when status zero there shouldnt be any records in the db for that mentor
             puts "Newly created pair with status 0 is valid"
+            
+            mentee_email = User[mentee_id].email
+            mentor_email = User[mentor_id].email
+            
             new_pair.save_changes
 
         else
@@ -34,8 +42,12 @@ post "/setpairstatus" do
 
         if pair.valid? #when status > zero there should be only one pair in the DB
             puts "Pair after changing its status to #{status} is valid."
-            pair.save_changes
-
+            
+            mentee_email = User[pair.mentee_id].email
+            mentor_email = User[pair.mentor_id].email
+            
+            pair.save_changes       
+  
         else
             puts "Pair after changing its status to #{status} is NOT valid."
             errors = pair.errors
@@ -46,11 +58,18 @@ post "/setpairstatus" do
         pair_id = params.fetch("pair_id","").strip.to_i
         pair = Pair[pair_id]
         pair.status=status
+        
+        mentee_email = User[pair.mentee_id].email
+        mentor_email = User[pair.mentor_id].email
+        
         pair.delete
         
     else
         puts "Retrieved unhandled status."
     end
+    
+    puts "Is errors nil? #{errors.nil?}"
+    sendEmails(mentee_email, mentor_email) if errors.nil? || errors.empty?
     
     puts errors
     puts "Checking if we have errors before entering the trigger cookies function ^"
@@ -110,6 +129,23 @@ def triggerCookies(status, old_status, errors)
             puts "we have triggered cookie"
             
             
-        end
-        
+        end        
+end
+
+
+def sendEmails(mentee_email, mentor_email)
+    
+    sendEmail(mentee_email)
+    sendEmail(mentor_email)
+    puts "Email has been sent"
+    
+end
+
+
+def sendEmail(email_address)
+    return if (!EmailSender.validate_email_address(email_address))
+    subject = EmailSender.getSubject()
+    message = EmailSender.getMessage()
+    
+    return EmailSender.send_email(email_address, subject, message)
 end
