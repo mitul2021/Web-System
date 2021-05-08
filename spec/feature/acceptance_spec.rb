@@ -43,6 +43,28 @@ describe "the register page" do
     clear_database
   end
   
+  it "requires the the user to add a username" do
+    visit "/register"
+    fill_in "email", with: "test@sheffield.ac.uk"
+    fill_in "password", with: "test1234"
+    fill_in "password_repeat", with: "test1234"
+    click_button "submit_register"
+    expect(page).to have_content "username cannot be empty"
+    clear_database
+  end
+  
+  it "will not add a user without an approved university email address" do
+    visit "/register"
+    fill_in "username", with: "Test"
+    fill_in "email", with: "test@invalid.com"
+    fill_in "password", with: "test1234"
+    fill_in "password_repeat", with: "test1234"
+    click_button "submit_register"
+    save_page
+    expect(page).to have_content "this email address is of not approved university"
+    clear_database
+  end
+  
   it "will add a user when all details are entered" do
     visit "/register"
     add_user("mentee")
