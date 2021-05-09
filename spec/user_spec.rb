@@ -18,5 +18,12 @@ RSpec.describe "Index page" do
           expect(@user.valid_login?).to eq(true)
       end
     end
+      
+    context "when password is empty" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "", :email => "sample@sheffield.ac.uk")        
+          expect(@user.valid_login?).to eq(false)
+      end
+    end
   end
 end
