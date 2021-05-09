@@ -47,4 +47,20 @@ RSpec.describe "User.rb" do
       end
     end
   end
+    
+      describe "#approved_email?" do
+    context "when the email is not approved" do
+      it "returns false" do
+          @user = User.new(:username => "23575324", :password => "", :email => "notapproved@no.com")        
+          expect(@user.approved_email?).to eq(false)
+      end
+    end
+
+    context "when the email is approved" do
+      it "returns true" do
+          @user = User.new(:username => "23575324", :password => "", :email => "approved@sheffield.ac.uk")        
+          expect(@user.approved_email?).to eq(true)
+      end
+    end
+end
 end
