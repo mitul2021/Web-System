@@ -290,3 +290,9 @@ input#requestbutton {
     font-style:italic; 
     margin-top: 150px;
 }
+
+#radio_btns_register {
+	display: grid;
+	grid-template-columns: 125px auto;
+	align-items: center;
+}
