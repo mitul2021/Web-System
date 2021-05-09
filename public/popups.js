@@ -98,3 +98,8 @@ function suspendUser() {
 function restoreUser() {
     return confirm("Are you sure you want to restore this user?");
 }
+
+// For when a admin clicks on Promote to Admin
+function promoteToAdmin() {
+    return confirm("Are you sure you want to promote this user to an admin?");
+}
