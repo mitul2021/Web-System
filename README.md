@@ -23,8 +23,9 @@ To access it, simply type the url:
 # Where "picasso-speech" and "4567" should be replaced by your own local name and number.
 
 ## Running the tests:
-All rspec tests can be ran using the following commands from the main project directory:
-* ##### bundle exec rspec spec
+All rspec tests can be ran using the following command from the main project directory:
+* ##### rspec spec
+This will provide you with a coverage report found in 'project/coverage/index.html'
 
 
 ### Working Login details (password in brackets):
