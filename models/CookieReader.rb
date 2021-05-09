@@ -21,6 +21,7 @@ class CookieReader
 		"status-nil-popup" => "Unexpected error as the status field is nil.",
 		"user-doesn't-exist-popup" => "Unexpected error as the user is nil.",
 		"user_id-doesn't-exist-popup" => "Unexpected error as the user_id field is nil.",
+		"promoted-to-admin"=> "You have successfully promoted this user to admin role",
 		
 		#profile create
 		"change-from-profile-popup" => "You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.",

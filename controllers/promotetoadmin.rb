@@ -7,7 +7,8 @@ post "/promotetoadmin" do
 	
 	if(user.valid?)
 		deleteUserRecords(user_id) #remove past history, to prevent erorrs
-		user.save_changes	
+		user.save_changes
+		response.set_cookie("promoted-to-admin", value: 'true') #trigger a cooke to inform the admin
 	end
 	
 	redirect "/userlist"
