@@ -52,20 +52,15 @@
             <% end %>
             <br>
             
-            
-            <label>Mentee:</label>
-            <input type="radio" name="user_type" id="mentee" value="mentee" checked/>
+            <div id="radio_btns_register">
+							<label>Mentee</label>
+							<input type="radio" name="user_type" id="mentee" value="mentee" checked/>
+
+
+							<label>Mentor</label>
+							<input type="radio" name="user_type" id="mentor" value="mentor"/>
+            </div>
             <br>
-            
-            <label>Mentor:</label>
-            <input type="radio" name="user_type" id="mentor" value="mentor"/>
-            <br>
-            
-            <label>Admin:</label>
-            <input type="radio" name="user_type" id="admin" value="admin"/>
-            <br><br>
-                
-<!--             do some comparison and validation if the typed password meets the minimum requerements -->
             <input type="submit" value="Register" class="button" name="submit_register"/>
             <br>
             

@@ -116,27 +116,25 @@ class User < Sequel::Model
     def valid_register? #for the register
         validate
         errors.add("email", "email cannot be empty") if email.empty?
-        errors.add("email", "there exist user with such email address") if exist_register?
+        errors.add("email", "there exist user with such email address") if exist_email?
         errors.add("email", "this email address is of not approved university") unless approved_email?
         errors.add("password", "password cannot be empty") if password.empty?
         errors.add("password", "password must be at least 8 characters long") if password.length<8
         errors.add("username", "username cannot be empty") if username.empty?
-        errors.add("username", "there exists a user with such a username") if exist_register?
+        errors.add("username", "there exists a user with such a username") if exist_username?
         errors.add("password_repeat", "password repeat cannot be empty") if @password_repeat.empty?
         errors.add("password_repeat", "the passwords are not the same") if @password_repeat!=password
     
         return errors.empty? #if there are no errors we are good to go, and returns true
         
     end
+	
+    def exist_username? #for the register
+				!User.first(username: username).nil?
+		end
     
-    
-    #Check if it has to be modified now that there is a username field
-    
-    def exist_register? #for the register
-        db_user_email = User.first(email: email)
-        
-        #if user is nil return false, if db_user exists and it has the same password return true
-        return (!db_user_email.nil?)
+    def exist_email? #for the register
+				!User.first(email: email).nil?
     end
     
     def exist_login? #for the login
@@ -150,9 +148,9 @@ class User < Sequel::Model
     end
   
     def generate_recovery_code
-        code = SecureRandom.alphanumeric(6).upcase
-        puts "This is newly generated recovery code: #{code}"
-        return code
+        recovery_code = SecureRandom.alphanumeric(6).upcase
+        puts "This is newly generated recovery code: #{recovery_code}"
+        recovery_code
     end
 
     def approved_email?

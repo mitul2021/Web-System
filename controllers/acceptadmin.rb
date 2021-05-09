@@ -12,21 +12,27 @@ post "/accept-admin" do #for user requests
             handleChangeEmail(@user_request) #changing email
 
             #cookie trigger here informing the admin that they changed the user's email successfully
-            response.set_cookie("accept-admin-email", value: 'true')
+            response.set_cookie("accept-admin-email", value: 'true')         
+                      
         when 2 
             handleChangePassword(@user_request) #changing password
             
             #cookie trigger here informing the admin that they change the user's password successfully
             response.set_cookie("accept-admin-password", value: 'true')
+            
         when 3
             handleChangeUsername(@user_request) #changing username
             
             #cookie trigger here informing the admin that they change the user's password successfully
-            response.set_cookie("accept-admin-username", value: 'true')           
+            response.set_cookie("accept-admin-username", value: 'true')      
+            
         else
             "You gave me #{type} -- I have no idea what to do with that."
+            
         end
 
+        #sending an email to let the user know that their changes have been approved by an admin
+        sendEmailAfterApprovingDetails(User[@user_request.user_id].email)
 
 
     end
@@ -84,4 +90,17 @@ def handleChangeUsername(user_request)
     else
         puts "Validation failed in handling username change"
     end
+end
+
+
+def sendEmailAfterApprovingDetails(email_address)
+    return if (!EmailSender.validate_email_address(email_address))
+    
+    subject = "Request to Change Details has been approved!"
+    message = "Hello. You once requested changes to your account details. "
+    message += "An admin has approved of your request so you can now log in with your new details. "
+    
+    puts "Email has been sent to approve details"
+    
+    return EmailSender.send_email(email_address, subject, message) 
 end

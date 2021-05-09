@@ -3,7 +3,7 @@ body {
   font-family: "Helvetica", sans-serif;
   background-color:#f3f2ee; 
   line-height: 1.1;
-  margin: 0;
+  margin: 10px;
   margin-bottom: 30vh;
   font-size: 30px;
 }
@@ -44,7 +44,7 @@ a:hover {
 }
  
 /* button on sign in and register page */
-.button, #displayemailbox .button {
+.button, #displayemailbox .button, #displayflex .become_mentor,  #displayflex .revoke_mentor{
     display: inline-block;
     background-color: rgb(128, 170, 255);
     border-radius: 10px;
@@ -75,6 +75,14 @@ h1 {
     font-size: 50px;
 }
 
+/*Button for admin to become a mentor */
+#displayflex .become_mentor{
+    width: 230px;
+}
+
+#displayflex .revoke_mentor{
+    width: 500px;
+}
 
 /* Bold the Labels */
 label {
@@ -103,7 +111,8 @@ th, td {
 }
 
 #spacing td{
-    padding: 18px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 #profilelinks {
@@ -232,42 +241,25 @@ th, td {
 /*New Styling the popups */
 
 .pop_ups {
-		border-radius: 20px;
-    font-size: 30px;
+    border-radius: 20px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     margin: 0px 55px 20px 55px;
 }
+
+.error {
+    color:red;
+}
 .green {
 
+    border-radius: 20px;
     color: darkblue;
     background-color: lightgreen;
 }
 .red {
     color: darkred;
     background-color: rgb(255,77,77);
-}
-
-/*OLD Styling the popups to be deleted*/
-
-.green_pop_up {
-
-    border-radius: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0px 55px 20px 55px;
-}
-
-.red_pop_up {
-    border: darkred solid 5px;
-    color: darkred;
-    background-color: rgb(255,77,77);
-    border-radius: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0px 55px 20px 55px;
 }
 
 #logininput {
@@ -281,6 +273,11 @@ input#requestbutton {
     cursor:pointer;
 }
 
+#profile {
+    border: 5px solid black;
+    width: 700px;
+}
+
 /*Styling the footer */
 #footer {
     display: flex;
@@ -292,4 +289,10 @@ input#requestbutton {
     font-size: 20px;
     font-style:italic; 
     margin-top: 150px;
+}
+
+#radio_btns_register {
+	display: grid;
+	grid-template-columns: 125px auto;
+	align-items: center;
 }

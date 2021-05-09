@@ -14,6 +14,7 @@
          <div class = "green">
 						 <%= CookieReader.readCookie("successfully-suspended-popup",request,response) %>
 						 <%= CookieReader.readCookie("successfully-restored-popup",request,response) %>
+					   <%= CookieReader.readCookie("promoted-to-admin",request,response) %>
          </div> 
 				 <div class = "red">
 					   <%= CookieReader.readCookie("status-nil-popup",request,response) %>
@@ -81,7 +82,12 @@
                            </form>
                         </td>
                      <%end%>
-                     
+                     <td>
+													<form method="post" action="promotetoadmin">
+														<input hidden name="user_id" value="<%= mentee.id.nil? ? "" : (h mentee.id) %>"/>
+														<input type="submit" onclick="return promoteToAdmin()" value="Promote To Admin"/>
+												  </form>
+										 </td>
                      <td>
                         <a id="profilelinks" href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
                      </td>
@@ -160,7 +166,7 @@
           
          <!--ADMIN's--> 
          <h2>Below is a list of Admins that are currently enrolled in the system:</h2> 
-         <table>
+         <table id="spacing">
             <tr>
                <th>Name</th>
                <th>Job Title</th>
