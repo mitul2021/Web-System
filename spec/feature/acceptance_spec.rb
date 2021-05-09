@@ -117,6 +117,14 @@ describe "the login page" do
   end
 end
 
+describe "the change account details process" do
+  it "registration provides the user with a recovery code" do
+    add_user("mentee")
+    expect(page).to have_css('div.green')
+    clear_database
+  end
+end
+
 describe "the home page" do
   it "will show the mentee page if logged in as a mentee" do
     add_user("mentee")
