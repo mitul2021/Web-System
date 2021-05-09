@@ -82,10 +82,6 @@ function hide_next() //attached to button
 }
 
 
-function update_dropdowns()
-{
-  
-}
 attach('btn_show',show_next);
 attach('btn_hide',hide_next);
 
