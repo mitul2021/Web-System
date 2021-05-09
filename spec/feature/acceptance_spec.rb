@@ -123,6 +123,13 @@ describe "the change account details process" do
     expect(page).to have_css('div.green')
     clear_database
   end
+  
+  it "the change account details page is accessible from the login page" do
+    visit "/login"
+    click_link "Forgot your credentials?"
+    expect(page).to have_content "Change Account Details"
+    clear_database
+  end
 end
 
 describe "the home page" do
@@ -137,13 +144,6 @@ describe "the home page" do
     add_user("mentor")
     sign_in("mentor")
     expect(page).to have_content "Welcome, mentor!"
-    clear_database
-  end
-  
-  it "will show the mentor page if logged in as an admin" do
-    add_user("admin")
-    sign_in("admin")
-    expect(page).to have_content "Welcome, admin!"
     clear_database
   end
   
@@ -221,14 +221,6 @@ describe "the mentor list page" do
     sign_in("mentee")
     click_link "Mentor List"
     expect(page).to have_content "Mentors"
-    clear_database
-  end
-  
-  it "is accessible from the admin page" do
-    add_user("admin")
-    sign_in("admin")
-    click_link "User List"
-    expect(page).to have_content "enrolled in the system"
     clear_database
   end
   
