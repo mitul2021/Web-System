@@ -122,6 +122,7 @@ describe "the change account details process" do
     add_user("mentee")
     expect(page).to have_css('div.green')
     clear_database
+    
   end
   
   it "the change account details page is accessible from the login page" do
@@ -129,6 +130,22 @@ describe "the change account details process" do
     click_link "Forgot your credentials?"
     expect(page).to have_content "Change Account Details"
     clear_database
+  end
+  
+  it "lets the user change their email" do
+    add_user("mentee")
+    puts "ashjkldjklasdhjklasdjkljklhjkldfhjkldfghjklhjkldfgjkljkdfgjksdasdasdasdasdasd"
+    code = find(class: 'green').text.split(//).last(6).join
+    puts code
+    visit "/login"
+    click_link "Forgot your credentials?"
+    click_link "Change Email"
+    fill_in "new_email", with: "menteeNEW@sheffield.ac.uk"
+    fill_in "password", with: "test12345"
+    fill_in "recovery_code", with: code
+    save_page
+    find('input[name="submit_changes"]').click
+    save_page
   end
 end
 
