@@ -44,7 +44,7 @@ post "/changeaccountdetails" do
         
         erb :changeaccountdetails #display the page with erormessages
     else #no errors
-
+        
         #Redirecting and cookies
         case type
         when 1,2,3
@@ -116,6 +116,7 @@ def newRequest1(data)
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(data[0])
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -169,11 +170,12 @@ def newRequest2(data)
     @new_request = Userrequest.new
     @new_request.request_id = 3 #code for changing username
     @new_request.user_id = session[:user_id]
-    @new_request.request_data = data[0] #for the request we are entering desired password
+    @new_request.request_data = data[0] #for the request we are entering desired username
     @new_request.status = 0 #code for pending request
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(User[session[:user_id]].email)
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -237,6 +239,7 @@ def newRequest3(data)
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(User[session[:user_id]].email)
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -306,6 +309,7 @@ def newRequest4(data)
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(data[0])
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -374,6 +378,7 @@ def newRequest5(data)
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(User[@new_request.user_id].email)
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -448,6 +453,7 @@ def newRequest6(data)
 
     if @new_request.valid?
         puts "New request is valid saving changes..."
+        sendEmailAfterChangingDetails(User[@new_request.user_id].email)
         @new_request.save_changes
     else
         puts "New request is invalid sth gone wrong."
@@ -455,4 +461,16 @@ def newRequest6(data)
         #errors.add ....
     end
     
+end
+        
+        
+def sendEmailAfterChangingDetails(email_address)
+    return if (!EmailSender.validate_email_address(email_address))
+    
+    subject = "Request to Change Details has been sent!"
+    message = "Hello. You have requested changes to your account details. "
+    message += "Kindly wait for the admin to approve of your request and you should get an email if an admin approves. "
+    message += "After an admin approves of your request, you should be able to log in with your new details. "
+    
+    return EmailSender.send_email(email_address, subject, message) 
 end

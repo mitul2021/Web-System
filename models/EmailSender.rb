@@ -21,13 +21,6 @@ class EmailSender
     #Function that includes this subject for all mails and users about an update
     def self.getSubject()
         return "University Of Sheffield Mentorship Update"
-    end
-        
-#     EMAIL_HASH = { #maps the combination (array of old status and new status) to the appropriate email subject and message  
-        
-#         [0, 1] => "There has been an update. Log in to the system to see the update.", 
-        
-#     }    
-    
+    end   
     
 end
