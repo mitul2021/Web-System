@@ -1,7 +1,10 @@
 <label>Your course:</label><br>
-   <% @courses = Course.all %>
-   <% @courses.each_with_index do |course, index| %>
-      <%if index+1==@user.deg_id%>
-         <%=course.deg_name_functional%>
-      <% end %>
-   <% end %><br><br>
+<% any = false %>
+<% Course.all.each_with_index do |course, index| %>
+	<%if index+1==@user.deg_id%>
+		 <% any = true %>
+		 <%=course.deg_name_functional%>
+	<% end %>
+<% end %>
+<%= "Not given" unless any%>
+<br><br>

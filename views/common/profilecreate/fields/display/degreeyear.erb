@@ -6,7 +6,13 @@
 <% keys.each_with_index do |key, i| %>
       <% selected[i]=true if key==@user.deg_year %>
 <% end %>
-<% end %> 
+<% end %>
+<%any = false%>
 <% for i in 0...keys.length do %>
-<%=values[i] if selected[i]%>
-<% end %><br><br> 
+	<%if selected[i]%>
+		<%any = true%>
+		<%=values[i]%>
+	<%end%>
+<% end %>
+<%= "Not given" unless any%>
+<br><br> 
