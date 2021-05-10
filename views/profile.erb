@@ -22,8 +22,8 @@
             
 
             <div id="profile">
-                #university name needed
                 <h2>
+										<%= @user.get_university().nil? ? "" : (h @user.get_university()) %>
                     <p>Job title: <%= @user.job_deg_cosmetic_name.nil? ? "No occupation" : (h @user.job_deg_cosmetic_name.capitalize()) %></p>              
                 </h2>
                 <p>

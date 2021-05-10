@@ -159,6 +159,13 @@ class User < Sequel::Model
         end        
         false
     end
+	
+		def get_university()
+				University.all.each do |uni|
+            return uni.name if self.email.include?(uni.email)
+        end 
+				nil
+		end
     
     def get_faculty()
         course = Course.load_id(self.deg_id)
