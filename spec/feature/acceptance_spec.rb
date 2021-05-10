@@ -202,6 +202,19 @@ describe "the change account details process" do
     expect(page).to have_content "the recovery code and your password do not match"
     clear_database
   end
+  
+  it "prevents the fields being empty" do
+    add_user("mentee")
+    code = find(class: 'green').text.split(//).last(6).join
+    puts code
+    visit "/login"
+    click_link "Forgot your credentials?"
+    click_link "Change Email"
+    click_on "Request Changes"
+    expect(page).to have_content "your desired email cannot be empty"
+    expect(page).to have_content "password cannot be empty"
+    clear_database
+  end
 end
 
 describe "the home page" do
