@@ -114,6 +114,9 @@ def triggerCookies(status, old_status, errors)
             #1-> 2
             response.set_cookie("mentee-requests-mentorship", value: 'true') if old_status==1 && status==2
             
+						#3-> 4
+            response.set_cookie("mentee-cancels-mentorship", value: 'true') if old_status==3 && status==4
+					
             #3-> 6
             response.set_cookie("mentor-cancels-mentorship", value: 'true') if old_status==3 && status==6
             
