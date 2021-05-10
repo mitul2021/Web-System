@@ -8,12 +8,17 @@
       <h1>Login</h1>
       <div class = "pop_ups">
          <div class = "green">
-						 <%= CookieReader.readCookie("make-register-popup",request,response) %>
-						 <%= CookieReader.readCookie("change-from-login-popup",request,response) %>
+             <%= CookieReader.readCookie("make-register-popup",request,response) %>
+             <%= CookieReader.readCookie("change-from-login-popup",request,response) %>
              <%= CookieReader.readCookie("redirected-popup",request,response) %>
-					   <%= CookieReader.readCookie("suspended-user-login-popup",request,response) %>
+             <%= CookieReader.readCookie("suspended-user-login-popup",request,response) %>
+         </div>
+         <div class = "red">
+             <%= CookieReader.readCookie("same-email-request",request,response) %>
+             <%= CookieReader.readCookie("same-username-request",request,response) %>
+             <%= CookieReader.readCookie("same-password-request",request,response) %>
          </div> 
-		  </div>
+      </div>
        
       <p>Login with your credentials below:</p>
        

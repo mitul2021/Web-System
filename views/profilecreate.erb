@@ -11,15 +11,18 @@
 		  <!--POP UPS-->
       <div class = "pop_ups">
          <div class = "green">
-						 <%= CookieReader.readCookie("change-from-profile-popup",request,response) %>
-						 <%= CookieReader.readCookie("admin-to-adminmentor-success",request,response) %>
+             <%= CookieReader.readCookie("change-from-profile-popup",request,response) %>
+             <%= CookieReader.readCookie("admin-to-adminmentor-success",request,response) %>
              <%= CookieReader.readCookie("adminmentor-to-admin-success",request,response) %>
          </div> 
-				 <div class = "red">
-						 <%= CookieReader.readCookie("admin-to-adminmentor-failure",request,response) %>
-					   <%= CookieReader.readCookie("adminmentor-to-admin-failure",request,response) %>
-				 </div>
-		  </div>
+         <div class = "red">
+             <%= CookieReader.readCookie("admin-to-adminmentor-failure",request,response) %>
+             <%= CookieReader.readCookie("adminmentor-to-admin-failure",request,response) %>
+             <%= CookieReader.readCookie("same-email-request",request,response) %>
+             <%= CookieReader.readCookie("same-password-request",request,response) %>
+             <%= CookieReader.readCookie("same-username-request",request,response) %>
+         </div>
+      </div>
        
       <div id="profilecreatebody">
          <h1>Your Profile</h1>
@@ -35,7 +38,7 @@
                <% elsif @role.eql?("adminmentor") %>
                    <form method="post" action="switchadminroles">
                        <span>
-                       <input id="button2" type="submit" value="Revoke your Mentor role &#10;and become an Admin only" class="revoke_mentor" name="adminmentor_to_admin"/><br>
+                       <input id="button2" type="submit" value="Revoke your Mentor role and become an Admin only" class="revoke_mentor" name="adminmentor_to_admin"/><br>
                            </span>
                    </form>
                <% end %>    

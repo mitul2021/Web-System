@@ -37,9 +37,22 @@ post "/changeaccountdetails" do
     if any_errors?() #if there are any error maessages
         @form_number = type
         @errors["popup_error"].each do |error|
-            @same_email_request = true if error.eql?("1")
-            @same_password_request = true if error.eql?("2")
-            @same_username_request = true if error.eql?("3")
+         
+            case error
+            when "1"
+                response.set_cookie("same-email-request", value: 'true')
+            when "2"
+                response.set_cookie("same-password-request", value: 'true')
+            when "3"
+                response.set_cookie("same-username-request", value: 'true')              
+            end
+            
+            case error
+            when "1", "2", "3"
+                redirect "/login" if type > 3
+                redirect "/profilecreate"
+            end
+            
         end
         
         erb :changeaccountdetails #display the page with erormessages

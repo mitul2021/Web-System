@@ -1,21 +1,21 @@
 <html lang="en">
    <head>
       <title>Change Details</title>
-      <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
-      <script src="changeaccountdetails.js"></script> 
+      <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" /> 
    </head>
     
    <body>
       <h1>Change Account Details</h1>
       <p id="changetext">What would you like to change?</p>
        
-     <div class = "red_pop_up" <%="hidden" unless @same_email_request%>>
-         <p>You have tried to submit the same email request twice. Wait for the admin to proccess your previous requests.</p>
-     </div>
-
-     <div class = "red_pop_up" <%="hidden" unless @same_password_request%>>
-         <p>You have tried to submit the same password request twice. Wait for the admin to proccess your previous requests.</p>
-     </div>
+     <div class = "pop_ups">
+         <div class = "red">
+             <%= CookieReader.readCookie("same-email-request",request,response) %>
+             <%= CookieReader.readCookie("same-password-request",request,response) %>
+             <%= CookieReader.readCookie("same-username-request",request,response) %>
+         </div>
+      </div>
+       
       <!--defines form that posts to changeaccountdetails.rb controller -->
       <!-- If you are logged in then you would be accessing this page from the profilecreate view so it would not ask you for your recovery code since you have proved that you are that user -->
       <div id="change_details_container">

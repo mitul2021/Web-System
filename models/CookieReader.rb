@@ -15,6 +15,11 @@ class CookieReader
     end
 	COOKIE_HASH = { #maps the cookie name to its corresponding message 
 		
+        #changeaccountdetails
+        "same-email-request" => "You have tried to submit the same email request twice. Wait for the admin to proccess your previous request.",
+        "same-password-request" => "You have tried to submit the same password request twice. Wait for the admin to proccess your previous request.",
+        "same-username-request" => "You have tried to submit the same username request twice. Wait for the admin to proccess your previous request.",
+        
         #userlist
 		"successfully-suspended-popup" => "You have successfully suspended this user.",
 		"successfully-restored-popup" => "You have successfully restored this user.",
