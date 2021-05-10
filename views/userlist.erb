@@ -83,10 +83,10 @@
                         </td>
                      <%end%>
                      <td>
-						   <form method="post" action="promotetoadmin">
-								<input hidden name="user_id" value="<%= mentee.id.nil? ? "" : (h mentee.id) %>"/>
-				    			<input id="requestbutton" type="submit" onclick="return promoteToAdmin()" value="Promote To Admin"/>
-						   </form>
+                       <form method="post" action="promotetoadmin">
+                            <input hidden name="user_id" value="<%= mentee.id.nil? ? "" : (h mentee.id) %>"/>
+                            <input id="requestbutton" type="submit" onclick="return promoteToAdmin()" value="Promote To Admin"/>
+                       </form>
 					</td>
                      <td>
                         <a id="profilelinks" href="<%= mentee.id.nil? ? "/not_found" : "profile/" + (h mentee.id) %>">Profile</a>
