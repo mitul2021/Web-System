@@ -174,6 +174,21 @@ describe "the change account details process" do
     expect(page).to have_content "this email address is of not approved university"
     clear_database
   end
+  
+  it "prevents a user from changing their details with the wrong password" do
+    add_user("mentee")
+    code = find(class: 'green').text.split(//).last(6).join
+    puts code
+    visit "/login"
+    click_link "Forgot your credentials?"
+    click_link "Change Email"
+    fill_in "new_email", with: "mentee@sheffield.ac.uk"
+    fill_in "password", with: "bad12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "entered password is incorrect"
+    clear_database
+  end
 end
 
 describe "the home page" do
