@@ -13,21 +13,23 @@
 		  <!--POPUPS-->
       <div class = "pop_ups">
          <div class = "green">
-						 <%= CookieReader.readCookie("make-login-popup",request,response) %>
+             <%= CookieReader.readCookie("make-login-popup",request,response) %>
              <%= CookieReader.readCookie("accept-admin-email",request,response) %>
              <%= CookieReader.readCookie("accept-admin-password",request,response) %>
-					   <%= CookieReader.readCookie("accept-admin-username",request,response) %>
-					   <%= CookieReader.readCookie("decline-admin",request,response) %>
+             <%= CookieReader.readCookie("accept-admin-username",request,response) %>
+             <%= CookieReader.readCookie("decline-admin",request,response) %>
 					 
-					   <%= CookieReader.readCookie("mentor-accepts-meeting",request,response) %> <!-- 0->1 -->
-					   <%= CookieReader.readCookie("cancels-meeting",request,response) %> <!-- 0->8 or 1->8 -->
-						 <%= CookieReader.readCookie("mentor-accepts-mentorship",request,response) %> <!-- 2->3 --> 
-						 <%= CookieReader.readCookie("decline-mentorship",request,response) %> <!-- 2-> 8 -->
-						 <%= CookieReader.readCookie("agree-on-cancelling",request,response) %> <!-- 4->5 or 6->7 -->
-						 <%= CookieReader.readCookie("cancel-ongoing-request",request,response) %> <!-- 6->3 or 4->3 -->
-						 <%= CookieReader.readCookie("mentee-cancels-application",request,response) %> <!-- 1-> 8-->				 
+             <%= CookieReader.readCookie("mentor-accepts-meeting",request,response) %> <!-- 0->1 -->
+             <%= CookieReader.readCookie("cancels-meeting",request,response) %> <!-- 0->8 or 1->8 -->
+             <%= CookieReader.readCookie("mentor-accepts-mentorship",request,response) %> <!-- 2->3 --> 
+             <%= CookieReader.readCookie("decline-mentorship",request,response) %> <!-- 2-> 8 -->
+             <%= CookieReader.readCookie("agree-on-cancelling",request,response) %> <!-- 4->5 or 6->7 -->
+             <%= CookieReader.readCookie("cancel-ongoing-request",request,response) %> <!-- 6->3 or 4->3 -->
+             <%= CookieReader.readCookie("mentee-cancels-application",request,response) %> <!-- 1-> 8-->
+             <%= CookieReader.readCookie("mentee-requests-mentorship",request,response) %> <!-- 1-> 2-->
+             <%= CookieReader.readCookie("mentor-cancels-mentorship",request,response) %> <!-- 3-> 6-->
          </div> 
-		  </div>
+      </div>
 
       <!--MAIN CONTAINER-->
       <div id="changedetailsbody">

@@ -11,14 +11,19 @@ function acceptMeetingRequest() {
 
 
 // For when a mentor clicks on Decline Meeting Request
-function declineMeetingRequest() {
+function mentorDeclineMeetingRequest() {
     return confirm("Are you sure you want to decline a meeting request from this mentee?. No record at this stage will be kept.")
 }
 
 
 // For when a mentee wants to cancel their ongoing Meeting Request
-function cancelMeetingRequest() {
+function menteeCancelMeetingRequest() {
     return confirm("Are you sure you want to cancel your meeting request with this mentor?. No record at this stage will be kept.");
+}
+
+// For when a mentor wants to cancel their ongoing Meeting Request
+function mentorCancelMeetingRequest() {
+    return confirm("Are you sure you want to cancel your meeting request with this mentee?. No record at this stage will be kept.");
 }
 
 
@@ -58,7 +63,7 @@ function cancelMentorshipRequest() {
 }
 
 
-// For when a mentee clicks on Cancel ongoing Request
+// For when a mentee or mentor clicks on Cancel ongoing Request
 function cancelOngoingRequest() {
     return confirm("Are you sure you want to cancel your ongoing request?");
 }

@@ -85,13 +85,16 @@ def triggerCookies(status, old_status, errors)
         #for green popups indicating success if there are no errors
         if (errors.nil?) || (errors.empty?)
             #trigger green popups here
+            
+            puts "Old status: #{old_status}"
+            puts "New status: #{status}"
 
             #INDEX
             #0->1
             response.set_cookie("mentor-accepts-meeting", value: 'true') if old_status==0 && status==1
 
-            #0->8 or 1->8
-            response.set_cookie("cancels-meeting", value: 'true') if (old_status==0 || old_status==1) && status==8
+            #1->8
+            response.set_cookie("cancels-meeting", value: 'true') if (old_status==1 && status==8) && (session[:type].eql?("mentor") || session[:type].eql?("adminmentor"))
 
             #2->3
             response.set_cookie("mentor-accepts-mentorship", value: 'true') if old_status==2 && status==3
@@ -105,11 +108,14 @@ def triggerCookies(status, old_status, errors)
             #6->3 or 4->3	
             response.set_cookie("cancel-ongoing-request", value: 'true') if (old_status==6 || old_status==4) && status==3
 
-            #1-> 8
-            response.set_cookie("mentee-cancels-application", value: 'true') if old_status==1 && status==8
+            #0-> 8 or 1-> 8 or 2-> 8
+            response.set_cookie("mentee-cancels-application", value: 'true') if ((old_status==0 || old_status == 1 || old_status == 2) && status==8) && (session[:type].eql?("mentee"))
             
             #1-> 2
             response.set_cookie("mentee-requests-mentorship", value: 'true') if old_status==1 && status==2
+            
+            #3-> 6
+            response.set_cookie("mentor-cancels-mentorship", value: 'true') if old_status==3 && status==6
             
             #Nothing-> 0
             response.set_cookie("mentee-requests-meeting", value: 'true') if old_status==-1 && status==0

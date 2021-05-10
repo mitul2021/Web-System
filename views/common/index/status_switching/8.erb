@@ -4,6 +4,28 @@
         <input hidden name="old_status" value="<%=@pair.status%>" />
         <input hidden name="path" value="/index" />
         <input hidden name="pair_id" value="<%=@pair.pair_id.nil? ? "" :  (h @pair.pair_id) %>">
-        <input id="requestbutton" type="submit" onclick="return cancelMeetingRequest()" value="Cancel Meeting Request" name="cancel_meeting_request"/>
+        <% case @pair.status %>
+        <% when 0 %>
+            <% case session[:user_type] %>
+            <% when "mentee" %>
+                <input id="requestbutton" type="submit" onclick="return menteeCancelMeetingRequest()" value="Cancel Meeting Request" name="mentee_cancel_meeting_request"/>
+            <% when "mentor", "adminmentor" %>
+                <input id="requestbutton" type="submit" onclick="return mentorDeclineMeetingRequest()" value="Decline Meeting Request" name="mentor_decline_meeting_request"/>
+            <% end %>
+        <% when 1 %>
+            <% case session[:user_type] %>
+            <% when "mentee" %>
+                <input id="requestbutton" type="submit" onclick="return cancelApplication()" value="Cancel Application" name="cancel_application"/>
+            <% when "mentor", "adminmentor" %>
+                <input id="requestbutton" type="submit" onclick="return mentorCancelMeetingRequest()" value="Cancel Meeting Request" name="mentor_cancel_meeting_request"/>             
+            <% end %>
+        <% when 2 %>
+            <% case session[:user_type] %>
+            <% when "mentee" %>
+                <input id="requestbutton" type="submit" onclick="return cancelApplication()" value="Cancel Application" name="cancel_application"/>
+            <% when "mentor", "adminmentor" %>
+                <input id="requestbutton" type="submit" onclick="return declineMentorshipRequest()" value="Decline Mentorship Request" name="decline_mentorship_request"/>
+            <% end %>
+        <% end %>
     </form>
 </td>

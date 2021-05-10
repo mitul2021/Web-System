@@ -55,7 +55,8 @@ class CookieReader
         "agree-on-cancelling" => "You have agreed to cancel your mentorship.",
         "cancel-ongoing-request" => "You have successfully cancelled your ongoing request.",
         "mentee-cancels-application" => "You have withdrawn yourself from your current application.",
-        "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request.",          
+        "mentee-requests-mentorship" => "You have successfully requested a mentorship with this mentor. Wait for the mentor to accept or decline your request.",
+        "mentor-cancels-mentorship" => "You have requested to cancel your mentorship with the mentee.",
 		
         #mentorlist       
         "mentee-requests-meeting" => "You have successfully requested a meeting with the mentor. Wait for the mentor to accept or decline your request.",

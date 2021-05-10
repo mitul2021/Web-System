@@ -4,6 +4,11 @@
         <input hidden name="old_status" value="<%=@pair.status%>" />
         <input hidden name="path" value="/index" />
         <input hidden name="pair_id" value="<%=@pair.pair_id.nil? ? "" :  (h @pair.pair_id) %>">
-        <input id="requestbutton" type="submit" onclick="return cancelOngoingRequest()" value="Cancel ongoing Request" name="cancel_ongoing_request"/>
+        <% case @pair.status %>
+        <% when 2 %>
+            <input id="requestbutton" type="submit" onclick="return acceptMentorshipRequest()" value="Accept Mentorship Request" name="accept_mentorship_request"/>
+        <% when 4, 6 %>
+            <input id="requestbutton" type="submit" onclick="return cancelOngoingRequest()" value="Cancel ongoing Request" name="cancel_ongoing_request"/>
+        <% end %>
     </form>
 </td>
