@@ -111,7 +111,6 @@ describe "the login page" do
     fill_in "text", with: "Test mentee"
     fill_in "password", with: "test12345"
     click_button "submit_login"
-    save_page
     expect(page).to have_content "Login successful"
     clear_database
   end
@@ -122,7 +121,6 @@ describe "the change account details process" do
     add_user("mentee")
     expect(page).to have_css('div.green')
     clear_database
-    
   end
   
   it "the change account details page is accessible from the login page" do
@@ -134,18 +132,17 @@ describe "the change account details process" do
   
   it "lets the user change their email" do
     add_user("mentee")
-    puts "ashjkldjklasdhjklasdjkljklhjkldfhjkldfghjklhjkldfgjkljkdfgjksdasdasdasdasdasd"
     code = find(class: 'green').text.split(//).last(6).join
     puts code
     visit "/login"
     click_link "Forgot your credentials?"
     click_link "Change Email"
-    fill_in "new_email", with: "menteeNEW@sheffield.ac.uk"
+    fill_in "new_email", with: "test@test.com"
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: code
-    save_page
-    find('input[name="submit_changes"]').click
-    save_page
+    click_on "Request Changes"
+    # This causes an internal server error
+    clear_database
   end
 end
 
@@ -389,10 +386,12 @@ describe "profile page" do
     add_user("mentor")
     sign_in("mentor")
     click_link "Profile"
+    save_page
     fill_in "first_name", with: "Joe"
     fill_in "surname", with: "Bloggs"
     click_button "submit_change_details"
     visit "/profilecreate"
+    save_page
     expect(page).to have_field "first_name", with: "Joe"
     expect(page).to have_field "surname", with: "Bloggs"
     clear_database
