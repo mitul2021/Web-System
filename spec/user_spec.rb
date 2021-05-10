@@ -47,4 +47,38 @@ RSpec.describe "User.rb" do
       end
     end
   end
+    
+  describe "#valid_register?" do
+    context "when register details are right" do
+      it "returns true" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("12345678")
+          expect(@user.valid_register?).to eq(true)
+      end
+    end
+     
+    context "when password repeat during registering is wrong" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("1347a678")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+      
+    context "when email is not of approved university" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@gmail.com")
+          @user.set_password_repeat("12345678")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+      
+    context "when password length is less than 8" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "123458", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("123458")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+  end
 end
