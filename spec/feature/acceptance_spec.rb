@@ -248,6 +248,17 @@ describe "the change account details process" do
     expect(page).to have_content "new password should be at least 8 characters long"
     clear_database
   end
+  
+  it "ensures the user types the same password twice" do
+    code = recover("Password")
+    fill_in "email", with: "mentee@sheffield.ac.uk"
+    fill_in "new_password", with: "test45678"
+    fill_in "repeat_password", with: "test67890"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "repeated password does not match"
+    clear_database
+  end
 end
 
 describe "the home page" do
