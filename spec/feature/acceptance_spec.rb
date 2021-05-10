@@ -500,6 +500,22 @@ describe "profile page" do
     expect(page).to have_content "top guy"
   end
   
+  it "allows the user to edit their interests" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    click_link "Change Profile Details"
+    click_on "Add Interest"
+    select "Cooking", from: "interest_id_0"
+    click_on "Add Interest"
+    select "Music", from: "interest_id_1"
+    click_on "Add Interest"
+    click_on "Remove Interest"
+    click_button "submit_change_details"
+    expect(page).to have_content "Cooking"
+    expect(page).to have_content "Music"
+  end
+  
   it "redirects to login if not logged in" do
     visit "/profilecreate"
     expect(page).to have_content "Login"
