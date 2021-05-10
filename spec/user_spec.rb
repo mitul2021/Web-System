@@ -47,4 +47,72 @@ RSpec.describe "User.rb" do
       end
     end
   end
+    
+  describe "#valid_register?" do
+    context "when register details are right" do
+      it "returns true" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("12345678")
+          expect(@user.valid_register?).to eq(true)
+      end
+    end
+     
+    context "when password repeat during registering is wrong" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("1347a678")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+      
+    context "when email is not of approved university" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "sample@gmail.com")
+          @user.set_password_repeat("12345678")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+      
+    context "when password length is less than 8" do
+      it "returns false" do
+          @user = User.new(:username => "username", :password => "123458", :email => "sample@sheffield.ac.uk")
+          @user.set_password_repeat("123458")
+          expect(@user.valid_register?).to eq(false)
+      end
+    end
+  end
+  
+  describe "#approved_email?" do
+    context "when the email is not approved" do
+      it "returns false" do
+          @user = User.new(:username => "23575324", :password => "", :email => "notapproved@no.com")        
+          expect(@user.approved_email?).to eq(false)
+      end
+    end
+
+    context "when the email is approved" do
+      it "returns true" do
+          @user = User.new(:username => "23575324", :password => "", :email => "approved@sheffield.ac.uk")        
+          expect(@user.approved_email?).to eq(true)
+      end
+    end
+  end
+
+  describe "#valid_details?" do
+    context "when the details are valid" do
+      it "returns true" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "approved@sheffield.ac.uk")        
+          expect(@user.valid_details?).to eq(true)
+      end
+    end
+  end
+    
+  describe "#generate_recovery_code" do
+    context "when generating a recovery code" do
+      it "outputs an appropriate recovery code which has a length of 6" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "approved@sheffield.ac.uk")
+          expect(@user.generate_recovery_code).to have_attributes(size: 6)
+      end
+    end
+  end
 end
