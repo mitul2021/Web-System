@@ -205,8 +205,6 @@ describe "the change account details process" do
   
   it "prevents the fields being empty" do
     add_user("mentee")
-    code = find(class: 'green').text.split(//).last(6).join
-    puts code
     visit "/login"
     click_link "Forgot your credentials?"
     click_link "Change Email"
