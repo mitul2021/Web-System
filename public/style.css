@@ -258,6 +258,8 @@ th, td {
     background-color: lightgreen;
 }
 .red {
+    
+    border-radius: 20px;
     color: darkred;
     background-color: rgb(255,77,77);
 }
