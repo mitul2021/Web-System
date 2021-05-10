@@ -198,6 +198,23 @@ describe "the change account details process" do
     expect(page).to have_content "You have successfully requested changes to your account. Once an admin approves your request, you will be able to use your new details to log in."
     clear_database
   end
+  
+  it "prevents the user from changing their username to same username" do
+    code = recover("Username")
+    fill_in "new_username", with: "Test mentee"
+    fill_in "password", with: "test12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "someone already uses this username"
+    clear_database
+  end
+  
+  it "prevents the user from submitting an empty username" do
+    code = recover("Username")
+    click_on "Request Changes"
+    expect(page).to have_content "your desired username cannot be empty"
+    clear_database
+  end
 end
 
 describe "the home page" do
