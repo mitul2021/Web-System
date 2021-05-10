@@ -226,6 +226,28 @@ describe "the change account details process" do
     expect(page).to have_content "You have successfully requested changes to your account. Once an admin approves your request, you will be able to use your new details to log in."
     clear_database
   end
+  
+  it "prevents the user from changing the password to the same password" do
+    code = recover("Password")
+    fill_in "email", with: "mentee@sheffield.ac.uk"
+    fill_in "new_password", with: "test12345"
+    fill_in "repeat_password", with: "test12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "old and new password must be different"
+    clear_database
+  end
+  
+  it "prevents the user from changing to a insecure password" do
+    code = recover("Password")
+    fill_in "email", with: "mentee@sheffield.ac.uk"
+    fill_in "new_password", with: "test"
+    fill_in "repeat_password", with: "test"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "new password should be at least 8 characters long"
+    clear_database
+  end
 end
 
 describe "the home page" do
