@@ -182,7 +182,6 @@ describe "the change account details process" do
   
   it "prevents the fields being empty" do
     code = recover("Email")
-    save_page
     click_on "Request Changes"
     expect(page).to have_content "your desired email cannot be empty"
     expect(page).to have_content "password cannot be empty"
