@@ -18,8 +18,6 @@ require "capybara/rspec"
 
 Capybara.app = Sinatra::Application
 
-
-
 def app
 
  Sinatra::Application

@@ -141,7 +141,22 @@ describe "the change account details process" do
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: code
     click_on "Request Changes"
-    # This causes an internal server error
+    expect(page).to have_content "You have successfully requested changes to your account. Once an admin approves your request, you will be able to use your new details to log in."
+    clear_database
+  end
+  
+  it "prevents the user from changing to the same email" do
+    add_user("mentee")
+    code = find(class: 'green').text.split(//).last(6).join
+    puts code
+    visit "/login"
+    click_link "Forgot your credentials?"
+    click_link "Change Email"
+    fill_in "new_email", with: "mentee@sheffield.ac.uk"
+    fill_in "password", with: "test12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "someone already uses this email"
     clear_database
   end
 end
