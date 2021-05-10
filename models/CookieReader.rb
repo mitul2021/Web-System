@@ -13,6 +13,7 @@ class CookieReader
         return COOKIE_HASH[name] + value 
 	
     end
+    
 	COOKIE_HASH = { #maps the cookie name to its corresponding message 
 		
         #changeaccountdetails
@@ -28,7 +29,7 @@ class CookieReader
 		"user_id-doesn't-exist-popup" => "Unexpected error as the user_id field is nil.",
 		"promoted-to-admin"=> "You have successfully promoted this user to admin role",
 		
-		#profile create
+		#profilecreate
 		"change-from-profile-popup" => "You have successfully requested changes. Once an admin approves, you will be able to use your new details to log in.",
 		"admin-to-adminmentor-success" => "Now you have capabilities of a mentor as well.",
 		"admin-to-adminmentor-failure" => "Unexpected error in switching from admin to adminmentor.",

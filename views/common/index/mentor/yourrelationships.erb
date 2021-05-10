@@ -1,4 +1,4 @@
-<h1>Your Relationships:</h1>
+<h1>Your Mentorships:</h1>
 <% @pairs = Pair.where(mentor_id: @user_id) %>
 <% if(@pairs.empty?) %>
     <p>You haven't accepted any mentees yet.</p>

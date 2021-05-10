@@ -1,8 +1,8 @@
-<h1>Your Relationships:</h1>
+<h1>Your Menteeships:</h1>
 <!-- Retrieving all the pairs -->
 <% @pairs = Pair.where(mentee_id: @user_id) %>
 <% if(@pairs.empty?) %>
-    <p>You don't have any relationships at the moment.</p>
+    <p>You don't have any menteeships at the moment.</p>
 <% else %>
     <table>
         <tr>
