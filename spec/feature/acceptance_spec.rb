@@ -278,7 +278,7 @@ describe "the home page" do
   it "will show if I have no mentor as a mentee" do
     add_user("mentee")
     sign_in("mentee")
-    expect(page).to have_content "You don't have any relationships at the moment."
+    expect(page).to have_content "You don't have any menteeships at the moment."
     clear_database
   end
   
@@ -459,35 +459,45 @@ describe "profile page" do
     clear_database
   end
   
-  it "contains fields to change the users profile" do
+  it "contains current user information" do
     add_user("mentee")
     sign_in("mentee")
     click_link "Profile"
-    expect(page).to have_field "first_name"
-    expect(page).to have_field "surname"
-    expect(page).to have_select "year_of_birth"
-    expect(page).to have_select "gender"
-    expect(page).to have_field "contact_number"
-    expect(page).to have_select "deg_id"
-    expect(page).to have_select "deg_year"
-    expect(page).to have_field "major_interest"
-    expect(page).to have_field "profile_text"
-    expect(page).to have_button "submit_change_details"
+    expect(page).to have_content "First Name:"
     clear_database
   end
   
-  it "allows the user to edit and save their profile" do
+  it "allows the user to change their information" do
     add_user("mentee")
     sign_in("mentee")
     click_link "Profile"
-    fill_profile
+    click_link "Change Profile Details"
+    expect(page).to have_field "first_name"
+    expect(page).to have_field "surname"
+    expect(page).to have_field "contact_number"
+  end
+  
+  it "allows the user to save their new information" do
+    add_user("mentee")
+    sign_in("mentee")
+    click_link "Profile"
+    click_link "Change Profile Details"
+    fill_in "first_name", with: "Joe"
+    fill_in "surname", with: "Bloggs"
+    select "1978", from: "year_of_birth"
+    select "Male", from: "gender"
+    fill_in "contact_number", with: "07412369850"
+    select "Chemistry", from: "deg_id"
+    select "3", from: "deg_year"
+    fill_in "profile_text", with: "top guy"
     click_button "submit_change_details"
-    visit "/profilecreate"
-    expect(page).to have_field "first_name", with: "Joe"
-    expect(page).to have_field "surname", with: "Bloggs"
-    expect(page).to have_field "contact_number", with: "07415638951"
-    expect(page).to have_field "major_interest", with: "Cycling"
-    clear_database
+    expect(page).to have_content "Joe"
+    expect(page).to have_content "Bloggs"
+    expect(page).to have_content "1978"
+    expect(page).to have_content "Male"
+    expect(page).to have_content "07412369850"
+    expect(page).to have_content "Chemistry"
+    expect(page).to have_content "top guy"
   end
   
   it "redirects to login if not logged in" do
