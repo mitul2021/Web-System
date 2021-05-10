@@ -131,7 +131,7 @@ class User < Sequel::Model
 	
     def exist_username? #for the register
 				!User.first(username: username).nil?
-		end
+	end
     
     def exist_email? #for the register
 				!User.first(email: email).nil?
