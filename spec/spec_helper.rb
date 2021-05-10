@@ -88,6 +88,7 @@ def read_profile
 end
 
 def recover(type)
+  clear_database
   add_user("mentee")
   code = find(class: 'green').text.split(//).last(6).join
   visit "/login"

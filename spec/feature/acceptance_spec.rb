@@ -182,9 +182,20 @@ describe "the change account details process" do
   
   it "prevents the fields being empty" do
     code = recover("Email")
+    save_page
     click_on "Request Changes"
     expect(page).to have_content "your desired email cannot be empty"
     expect(page).to have_content "password cannot be empty"
+    clear_database
+  end
+  
+  it "lets the user change their username" do
+    code = recover("Username")
+    fill_in "new_username", with: "New mentee"
+    fill_in "password", with: "test12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "You have successfully requested changes to your account. Once an admin approves your request, you will be able to use your new details to log in."
     clear_database
   end
 end
@@ -429,12 +440,10 @@ describe "profile page" do
     add_user("mentor")
     sign_in("mentor")
     click_link "Profile"
-    save_page
     fill_in "first_name", with: "Joe"
     fill_in "surname", with: "Bloggs"
     click_button "submit_change_details"
     visit "/profilecreate"
-    save_page
     expect(page).to have_field "first_name", with: "Joe"
     expect(page).to have_field "surname", with: "Bloggs"
     clear_database
