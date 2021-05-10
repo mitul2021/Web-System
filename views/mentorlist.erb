@@ -10,27 +10,13 @@
       <%= erb :"common/nav"%>
       
 		 <div class = "pop_ups">
-         <div class = "green">
-						 <%= CookieReader.readCookie("mentee-requests-meeting",request,response) %>
-         </div> 
-				 <div class = "red">
-						<%= CookieReader.readCookie("mentee-requests-meeting-again",request,response) %>
-				</div> 
-		  </div>
-      <div class = "green_pop_up" <%="hidden" unless @just_requested%>>
-         <p>You have requested a mentor successfully. Click on the home page to view your ongoing request.</p>
-      </div>
-      
-      <div class = "red_pop_up" <%="hidden" unless @mentor_already_requested%>>
-         <p>You cannot request as you already have a mentor or an ongoing request.</p>
-      </div>
-       
-
-      <div class = "red_pop_up" <%="hidden" unless @too_many_requests%>>
-         <p>This mentor has too much ongoing requests try again later.</p>
-      </div>  
-      
-       
+             <div class = "green">
+                 <%= CookieReader.readCookie("mentee-requests-meeting",request,response) %>
+             </div> 
+             <div class = "red">
+                 <%= CookieReader.readCookie("mentee-requests-meeting-again",request,response) %>
+             </div> 
+		 </div>         
        
       <div id="changedetailsbody">
          <h1>Mentors</h1>
