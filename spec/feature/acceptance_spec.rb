@@ -215,6 +215,17 @@ describe "the change account details process" do
     expect(page).to have_content "your desired username cannot be empty"
     clear_database
   end
+  
+  it "lets the user change their password" do
+    code = recover("Password")
+    fill_in "email", with: "mentee@sheffield.ac.uk"
+    fill_in "new_password", with: "test45678"
+    fill_in "repeat_password", with: "test45678"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "You have successfully requested changes to your account. Once an admin approves your request, you will be able to use your new details to log in."
+    clear_database
+  end
 end
 
 describe "the home page" do
