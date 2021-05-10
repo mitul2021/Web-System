@@ -159,6 +159,21 @@ describe "the change account details process" do
     expect(page).to have_content "someone already uses this email"
     clear_database
   end
+  
+  it "prevents the user from changing to a non-approved email" do
+    add_user("mentee")
+    code = find(class: 'green').text.split(//).last(6).join
+    puts code
+    visit "/login"
+    click_link "Forgot your credentials?"
+    click_link "Change Email"
+    fill_in "new_email", with: "mentee@invalid.com"
+    fill_in "password", with: "test12345"
+    fill_in "recovery_code", with: code
+    click_on "Request Changes"
+    expect(page).to have_content "this email address is of not approved university"
+    clear_database
+  end
 end
 
 describe "the home page" do
