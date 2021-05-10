@@ -131,12 +131,7 @@ describe "the change account details process" do
   end
   
   it "lets the user change their email" do
-    add_user("mentee")
-    code = find(class: 'green').text.split(//).last(6).join
-    puts code
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     fill_in "new_email", with: "test@test.com"
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: code
@@ -146,12 +141,7 @@ describe "the change account details process" do
   end
   
   it "prevents the user from changing to the same email" do
-    add_user("mentee")
-    code = find(class: 'green').text.split(//).last(6).join
-    puts code
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     fill_in "new_email", with: "mentee@sheffield.ac.uk"
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: code
@@ -161,12 +151,7 @@ describe "the change account details process" do
   end
   
   it "prevents the user from changing to a non-approved email" do
-    add_user("mentee")
-    code = find(class: 'green').text.split(//).last(6).join
-    puts code
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     fill_in "new_email", with: "mentee@invalid.com"
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: code
@@ -176,12 +161,7 @@ describe "the change account details process" do
   end
   
   it "prevents a user from changing their details with the wrong password" do
-    add_user("mentee")
-    code = find(class: 'green').text.split(//).last(6).join
-    puts code
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     fill_in "new_email", with: "mentee@sheffield.ac.uk"
     fill_in "password", with: "bad12345"
     fill_in "recovery_code", with: code
@@ -191,10 +171,7 @@ describe "the change account details process" do
   end
   
   it "prevents a user from changing their details with the wrong recovery code" do
-    add_user("mentee")
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     fill_in "new_email", with: "mentee@sheffield.ac.uk"
     fill_in "password", with: "test12345"
     fill_in "recovery_code", with: "BADCOD"
@@ -204,10 +181,7 @@ describe "the change account details process" do
   end
   
   it "prevents the fields being empty" do
-    add_user("mentee")
-    visit "/login"
-    click_link "Forgot your credentials?"
-    click_link "Change Email"
+    code = recover("Email")
     click_on "Request Changes"
     expect(page).to have_content "your desired email cannot be empty"
     expect(page).to have_content "password cannot be empty"

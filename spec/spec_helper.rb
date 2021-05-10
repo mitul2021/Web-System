@@ -87,4 +87,13 @@ def read_profile
   expect(page).to have_field "first_name", text: "Joe" 
 end
 
+def recover(type)
+  add_user("mentee")
+  code = find(class: 'green').text.split(//).last(6).join
+  visit "/login"
+  click_link "Forgot your credentials?"
+  click_link "Change #{type}"
+  return code
+end
+
 clear_database
