@@ -26,8 +26,8 @@ get "/mentorlist" do
         response.delete_cookie("error-too-many-requests-popup") #deleting the cookie
         
         
-        @mentors = User.where(user_type: "mentor")
-        @adminmentors = User.where(user_type: "adminmentor")
+        @mentors = User.where(user_type: "mentor").or(user_type: "adminmentor")
+        #@adminmentors = User.where(user_type: "adminmentor")
         @mentee = User[session[:user_id]]
         erb :mentorlist
     else
