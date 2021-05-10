@@ -2,8 +2,7 @@ get "/userlist" do
     if session[:loggedin]
         @mentees = User.where(user_type: "mentee")
         @mentors = User.where(user_type: "mentor")
-        @admins = User.where(user_type: "admin")
-        @adminmentors = User.where(user_type: "adminmentor")
+        @admins = User.where(user_type: "admin").or(user_type: "adminmentor")
         
         erb :userlist
     else

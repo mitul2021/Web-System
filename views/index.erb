@@ -41,22 +41,58 @@
          <% case session[:user_type]%> 
          <% when "mentee"%>
             <p>
-               As a mentee, you should fill in the multi choice survey by clicking the 'Profile' button.
-               Once you have filled in the survey, you can view or change details about your profile from the 'Profile' page.
-               Once your details have been filled in, you can view recommended mentors for you from the 'Mentor List' page,
-               where you should chose a preferred mentor by clicking the 'request mentorship' button next to their name.
-               You will then be able to contact them via email once they have accepted your request.
-               You may logout at any time by pressing the 'Logout' button.
+               As a mentee, you should first fill in your details by heading over to the Profile page by clicking on the Profile button. 
+               Once you have filled in any other details, do not forget to click on the button Save Changes. 
+               You should then be able to view your details and change them if you have to by clicking on the Change Profile Details button. 
+               You can also change your Account Details from your Profile page at any time by clicking on the Change Account Details button. 
+               As always, should you want to log out from the system at any point, you can do so by clicking on the Logout page.
+            </p>
+          
+            <p>
+               By filling in your Profile page and clicking on the Mentor List page, you should be able to view the list of Mentors in a recommended order 
+               from most similar to least similar. You can then view their individual profiles and then choose to request a meeting. 
+               After requesting a meeting, you should expect the mentor to accept or decline your request for a meeting. 
+               You can also cancel your ongoing request for a meeting, if you have changed your mind. <b>Note: By cancelling your application at any point 
+               before an ongoing mentorship immediately results in a withdrawal from your application and you would have to start the process again.</b>
+            </p>
+          
+            <p>
+               You will then get an email regarding an update to the system if the mentor chooses to accept or decline your request. 
+               If the mentor accepts your request for a meeting, you should contact them outside of the system to decide a date, time and platform 
+               to have a meeting. <b>Note: You will also get emails for any other updates that are made in the system, for instance: after you have requested 
+               to change your account details and after it has been approved, or any other updates resulting in a change in the system.</b>
+            </p>
+          
+            <p>
+               After the meeting, you can decide whether to request a mentorship with the mentor or not.  If you request a mentorship, and a mentor accepts your 
+               request, you are then in an active mentorship. Should you want to cancel your ongoing mentorship at any point, you can do so by clicking on the 
+               Cancel Mentorship button. <b>Note: You would have to reach a formal agreement with your mentor as they would have to agree on your request 
+               to cancel.</b> 
             </p>
 
             <%= erb :"common/index/mentee/yourrelationships"%>
 
          <% when "mentor"%>
             <p>
-               As a mentor, you can fill in the multi choice survey by clicking the 'Profile' button.
-               Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
-               When all details have been filled in, you can view any requests for menteeship from the 'View Requests button',
-               where you can accept or deny requests.
+               As a mentor, you should first fill in your details by heading over to the Profile page by clicking on the Profile button. Once you have filled in any 
+               other details, do not forget to click on the button Save Changes. You should then be able to view your details and change them if you have to by 
+               clicking on the Change Profile Details button. You can also change your Account Details from your Profile page at any time by clicking on the Change 
+               Account Details button. As always, should you want to log out from the system at any point, you can do so by clicking on the Logout page.
+            </p>
+          
+            <p>
+               By filling in your Profile page, relevant details will be visible for mentees as they look for a mentor. If a mentee requests to have a meeting with 
+               you then you should get a request for a meeting, you can then choose to accept or decline the request to have a meeting. If you accept their request 
+               for a meeting, you should then discuss a convenient date, time and platform for you and the mentee to have a meeting. After the meeting, if the mentee
+               is interested, then you should receive a mentorship request and an email about an update made to the system. <b>Note: You will also get emails for any
+               other updates that are made in the system, for instance: after you have requested to change your account details and after it has been approved, 
+               or any other updates resulting in a change in the system.</b>
+            </p>
+          
+            <p>
+               If you accept the request for a mentorship, you are then in an active mentorship. Should you want to cancel your mentorship with the mentee, you can 
+               do so by clicking on the Cancel Mentorship button. <b>Note: You would have to reach a formal agreement with the mentee as they have to agree to your 
+               request before the mentorship is cancelled.</b>
             </p>
 
             <!--Section that enables mentor to see his relations ships with mentees-->
@@ -64,10 +100,22 @@
 
          <% when "admin"%>
             <p>
-               As an admin, you can fill in the multi choice survey by clicking the 'Profile' button.
-               Once you have filled in the survey, you can view or change details about you profile from the 'Profile' page.
-               When all details have been filled in, you can view any requests made by mentees or mentors and you can choose
-               to approve or reject their requests.
+               As an admin, you should first fill in any missing details in the Profile page. This is so that if you want to be a mentor, you can do so by 
+               clicking on the "Become a Mentor too" button and by filling additional information such as Interests, as this allows mentees to know more about you. 
+               Once you have filled in any other details, do not forget to click on the button Save Changes. You should then be able to view your details and change 
+               them if you have to by clicking on the Change Profile Details button. Should you want to become an admin by not being a mentor anymore, you can also 
+               go back to being an admin by clicking on the "Revoke your Mentor role and become an Admin only" button.  You can also change your Account Details from
+               your Profile page at any time by clicking on the Change Account Details button. As always, should you want to log out from the system at any point, you 
+               can do so by clicking on the Logout page.
+            </p>
+          
+            <p>
+               In the Home page, you can view requests made by users to change their account details and you can choose to accept or decline their requests. 
+               You can also see all of the current pairings in the system and their corresponding status. In the User List page, you can view all of the users that 
+               are currently enrolled in the system. <b>Note: You will receive an email consisting of the name and email of a new user once they first register.</b>
+               Also in the User List page, you can view the profile and contact details. You can also Suspend and Restore a user (not an admin or an admin who is 
+               also a mentor), should you want to in any given circumstance. You also have the capability to promote a user to an admin to introduce new admin users 
+               in the system.
             </p>
           
             <!--Section that enables admin to see user requests-->
@@ -78,7 +126,25 @@
 
          <% when "adminmentor"%>
           
-            <p>Placeholder for text for an AdminMentor</p>
+            <p>
+               As an admin and a mentor, you have the ability to interact with the system as both an admin and a mentor. By also being a mentor, you can receive 
+               requests from mentees in the Home page. If you have not already, you should fill in any additional details such as Interests and Availability that 
+               would be useful for when a mentee is looking for a mentor. 
+            </p>
+          
+            <p>
+               If a mentee requests to have a meeting with you then you should get a request for a meeting, you can then choose to accept or decline the request 
+               to have a meeting. If you accept their request for a meeting, you should then discuss a convenient date, time and platform for you and the mentee to 
+               have a meeting. After the meeting, if the mentee is interested, then you should receive a mentorship request and an email about an update made to 
+               the system. <b>Note: You will also get emails for any other updates that are made in the system, for instance: after you have requested to change 
+               your account details and after it has been approved, or any other updates resulting in a change in the system.</b>
+            </p>
+          
+            <p>
+               If you accept the request for a mentorship, you are then in an active mentorship. Should you want to cancel your mentorship with the mentee, you can 
+               do so by clicking on the Cancel Mentorship button. <b>Note: You would have to reach a formal agreement with the mentee as they have to agree to your 
+               request before the mentorship is cancelled.</b>
+            </p>
             
             <!--Section that enables admin to see user requests-->
             <%= erb :"common/index/admin/userrequests"%>
