@@ -63,4 +63,13 @@ RSpec.describe "User.rb" do
       end
     end
 end
+
+      describe "#valid_details?" do
+    context "when the details are valid" do
+      it "returns true" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "approved@sheffield.ac.uk")        
+          expect(@user.valid_details?).to eq(true)
+      end
+    end
+end
 end
