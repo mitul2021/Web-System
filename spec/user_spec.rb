@@ -106,4 +106,13 @@ RSpec.describe "User.rb" do
       end
     end
   end
+    
+  describe "#generate_recovery_code" do
+    context "when generating a recovery code" do
+      it "outputs an appropriate recovery code which has a length of 6" do
+          @user = User.new(:username => "username", :password => "12345678", :email => "approved@sheffield.ac.uk")
+          expect(@user.generate_recovery_code).to have_attributes(size: 6)
+      end
+    end
+  end
 end
